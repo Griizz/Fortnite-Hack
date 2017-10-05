@@ -28,7 +28,7 @@ float HeadshotMinDistance = 1400.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
 #define AIMBOT_KEY VK_XBUTTON2
-#define ESP_KEY VK_F10
+#define ESP_KEY VK_F9
 
 //==========================================================================================================================
 
