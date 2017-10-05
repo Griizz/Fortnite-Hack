@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -19,13 +11,17 @@
     <Filter Include="Resource Files\MinHook">
       <UniqueIdentifier>{bb1ad4ad-90fc-46ab-8339-379f9f7a0308}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SDK">
+    <Filter Include="Source">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source\SDK">
       <UniqueIdentifier>{35ed8296-1075-4b2e-9216-ed96fa4e91fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="FW1FontWrapper\CFW1ColorRGBA.h">
       <Filter>Resource Files\FW1FontWrapper</Filter>
@@ -97,22 +93,25 @@
       <Filter>Resource Files\MinHook</Filter>
     </ClInclude>
     <ClInclude Include="SDK.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="variables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FindPattern.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="util.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="bones.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="hooks.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,20 +205,23 @@
     <ClCompile Include="MinHook\src\hde\hde64.c">
       <Filter>Resource Files\MinHook</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SDK\FN_Basic.cpp">
-      <Filter>Source Files\SDK</Filter>
+      <Filter>Source\SDK</Filter>
     </ClCompile>
     <ClCompile Include="SDK\FN_CoreUObject_functions.cpp">
-      <Filter>Source Files\SDK</Filter>
+      <Filter>Source\SDK</Filter>
     </ClCompile>
     <ClCompile Include="SDK\FN_Engine_functions.cpp">
-      <Filter>Source Files\SDK</Filter>
+      <Filter>Source\SDK</Filter>
     </ClCompile>
     <ClCompile Include="SDK\FN_FortniteGame_functions.cpp">
-      <Filter>Source Files\SDK</Filter>
+      <Filter>Source\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

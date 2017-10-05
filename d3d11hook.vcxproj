@@ -169,10 +169,12 @@
     <ClInclude Include="MinHook\src\hde\table32.h" />
     <ClInclude Include="MinHook\src\hde\table64.h" />
     <ClInclude Include="MinHook\src\trampoline.h" />
+    <ClInclude Include="renderer.h" />
+    <ClCompile Include="renderer.cpp" />
     <ClInclude Include="SDK.hpp" />
-    <ClInclude Include="FindPattern.h" />
+    <ClInclude Include="shader.h" />
     <ClInclude Include="util.h" />
-    <ClInclude Include="variables.h" />
+    <ClInclude Include="global.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FW1FontWrapper\CFW1ColorRGBA.cpp" />

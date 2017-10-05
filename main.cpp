@@ -1,8 +1,8 @@
 ﻿//d3d11 w2s finder by n7
-#include "variables.h"
 #include <vector>
 #include <sstream>
 #include <chrono>
+#include <memory>
 #include <d3d11.h>
 #include <D3D11Shader.h>
 #include <D3Dcompiler.h>//generateshader
@@ -11,171 +11,159 @@
 
 #pragma comment(lib, "winmm.lib") //timeGetTime
 #include "MinHook/include/MinHook.h" //detour x86&x64
-#include "FW1FontWrapper/FW1FontWrapper.h" //font
 
+#include "global.h"
 #include "bones.h"
 #include "hooks.h"
-
-IFW1Factory *pFW1Factory = NULL;
-IFW1FontWrapper *pFontWrapper = NULL;
+#include "renderer.h"
 
 #include "main.h" //helper funcs
 #include "util.h"
 
 //==========================================================================================================================
 
+bool EnableESP = true;
 bool AutofireEnabled = true;
 float HeadshotMinDistance = 1400.0f;
 
 //==========================================================================================================================
 
-void LeftClick(bool down)
-{
-    INPUT Input = { 0 };
-    ::ZeroMemory(&Input, sizeof(INPUT));
-    Input.type = INPUT_MOUSE;
+float LastAimDistance = 0.0f;
+float WeaponEffectiveRange = 0.0f;
 
-    if (down)
+bool firing = false;
+SDK::AActor* targetPlayer = nullptr;
+
+std::chrono::high_resolution_clock timer;
+auto delay = timer.now();
+
+void Aimbot()
+{
+    if ((GetAsyncKeyState(VK_XBUTTON1) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
     {
-        Input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+        AutofireEnabled = !AutofireEnabled;
+        delay = timer.now();
+    }
+
+    if ((*Global::m_UWorld) == nullptr)
+    {
+        return;
+    }
+
+    Global::m_persistentLevel = (*Global::m_UWorld)->PersistentLevel;
+    Global::m_owningGameInstance = (*Global::m_UWorld)->OwningGameInstance;
+    Global::LocalPlayers = Global::m_owningGameInstance->LocalPlayers;
+    Global::m_LocalPlayer = Global::LocalPlayers[0];
+    Global::m_Actors = &Global::m_persistentLevel->AActors;
+
+    SDK::APlayerController* playerController = Global::m_LocalPlayer->PlayerController;
+    if (playerController == nullptr || playerController->AcknowledgedPawn == nullptr)
+    {
+        return;
+    }
+
+    auto maxRange = std::numeric_limits<float>::max();
+
+    if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
+    {
+        SDK::AFortPawn* m_LocalPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
+        auto weapon = m_LocalPawn->CurrentWeapon;
+        if (weapon != nullptr && weapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
+        {
+            maxRange = static_cast<SDK::AFortWeaponRanged*>(weapon)->GetRange();
+            WeaponEffectiveRange = maxRange;
+        }
+    }
+
+    if (GetAsyncKeyState(VK_XBUTTON2) & 0x8000)
+    {
+        targetPlayer = Util::GetClosestVisiblePlayer(maxRange);
     }
     else
     {
-        Input.mi.dwFlags = MOUSEEVENTF_LEFTUP;
+        targetPlayer = nullptr;
     }
 
-    ::SendInput(1, &Input, sizeof(INPUT));
-}
+    if (targetPlayer != nullptr)
+    {
+        SDK::FVector playerLoc;
+        Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
 
-float LastAimDistance = 0.0f;
+        auto dist = Util::GetDistance(playerController->RootComponent->Location, playerLoc);
+        LastAimDistance = dist;
+
+        if (dist <= HeadshotMinDistance)
+        {
+            Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_HEAD);
+        }
+
+        Util::LookAt(playerController, playerLoc);
+
+        SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
+
+        auto lineOfSight = playerController->LineOfSightTo(targetPlayer, zero, false);
+
+        if (AutofireEnabled)
+        {
+            if (!firing && lineOfSight)
+            {
+                firing = true;
+                Util::LeftClick(true);
+            }
+            else if (firing && !lineOfSight)
+            {
+                firing = false;
+                Util::LeftClick(false);
+            }
+        }
+    }
+    else if (firing)
+    {
+        firing = false;
+        Util::LeftClick(false);
+    }
+}
 
 DWORD WINAPI UpdateThread(LPVOID)
 {
     try
     {
-        Variables::BaseAddress = (DWORD_PTR)GetModuleHandle(NULL);
-        GetModuleInformation(GetCurrentProcess(), (HMODULE)Variables::BaseAddress, &Variables::info, sizeof(Variables::info));
-        auto btAddrUWorld = Utils::Pattern::FindPattern((PBYTE)Variables::BaseAddress, Variables::info.SizeOfImage, (PBYTE)"\x48\x8B\x1D\x00\x00\x00\x00\x00\x00\x00\x10\x4C\x8D\x4D\x00\x4C", "xxx???????xxxx?x", 0);
+        Global::BaseAddress = (DWORD_PTR)GetModuleHandle(NULL);
+        GetModuleInformation(GetCurrentProcess(), (HMODULE)Global::BaseAddress, &Global::info, sizeof(Global::info));
+        auto btAddrUWorld = Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x8B\x1D\x00\x00\x00\x00\x00\x00\x00\x10\x4C\x8D\x4D\x00\x4C", "xxx???????xxxx?x", 0);
         auto btOffUWorld = *reinterpret_cast<uint32_t*>(btAddrUWorld + 3);
-        Variables::m_UWorld = reinterpret_cast<SDK::UWorld**>(btAddrUWorld + 7 + btOffUWorld);
+        Global::m_UWorld = reinterpret_cast<SDK::UWorld**>(btAddrUWorld + 7 + btOffUWorld);
 
-        auto btAddrGObj = Utils::Pattern::FindPattern((PBYTE)Variables::BaseAddress, Variables::info.SizeOfImage, (PBYTE)"\x48\x8D\x0D\x00\x00\x00\x00\xE8\x00\x00\x00\x00\xE8\x00\x00\x00\x00\xE8\x00\x00\x00\x00\x48\x8B\xD6", "xxx????x????x????x????xxx", 0);
+        auto btAddrGObj = Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x8D\x0D\x00\x00\x00\x00\xE8\x00\x00\x00\x00\xE8\x00\x00\x00\x00\xE8\x00\x00\x00\x00\x48\x8B\xD6", "xxx????x????x????x????xxx", 0);
         auto btOffGObj = *reinterpret_cast<uint32_t*>(btAddrGObj + 3);
         SDK::UObject::GObjects = reinterpret_cast<SDK::FUObjectArray*>(btAddrGObj + 7 + btOffGObj);
 
-        auto btAddrGName = Utils::Pattern::FindPattern((PBYTE)Variables::BaseAddress, Variables::info.SizeOfImage, (PBYTE)"\x48\x8B\x05\x00\x00\x00\x00\x48\x85\xC0\x75\x50\xB9\x00\x00\x00\x00\x48\x89\x5C\x24", "xxx????xxxxxx????xxxx", 0);
+        auto btAddrGName = Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x8B\x05\x00\x00\x00\x00\x48\x85\xC0\x75\x50\xB9\x00\x00\x00\x00\x48\x89\x5C\x24", "xxx????xxxxxx????xxxx", 0);
         auto btOffGName = *reinterpret_cast<uint32_t*>(btAddrGName + 3);
         SDK::FName::GNames = *reinterpret_cast<SDK::TNameEntryArray**>(btAddrGName + 7 + btOffGName);
 
-        Utils::Engine::w2sAddress = (DWORD_PTR)Utils::Pattern::FindPattern((PBYTE)Variables::BaseAddress, Variables::info.SizeOfImage, (PBYTE)"\x48\x89\x5C\x24\x00\x48\x89\x74\x24\x00\x57\x48\x81\xEC\x00\x00\x00\x00\x41\x0F\xB6\xF9", "xxxx?xxxx?xxxx????xxxx", 0);
-        Utils::Engine::boneAddress = (DWORD_PTR)Utils::Pattern::FindPattern((PBYTE)Variables::BaseAddress, Variables::info.SizeOfImage, (PBYTE)"\x40\x53\x55\x57\x41\x56\x48\x81\xEC\x00\x00\x00\x00\x45\x33\xF6", "xxxxxxxxx????xxx", 0);
-
-        bool firing = false;
-        SDK::AActor* targetPlayer = nullptr;
-
-        std::chrono::high_resolution_clock clock;
-        auto timer = clock.now();
+        Util::Engine::w2sAddress = (DWORD_PTR)Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x89\x5C\x24\x00\x48\x89\x74\x24\x00\x57\x48\x81\xEC\x00\x00\x00\x00\x41\x0F\xB6\xF9", "xxxx?xxxx?xxxx????xxxx", 0);
+        Util::Engine::boneAddress = (DWORD_PTR)Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x40\x53\x55\x57\x41\x56\x48\x81\xEC\x00\x00\x00\x00\x45\x33\xF6", "xxxxxxxxx????xxx", 0);
 
         while (true)
         {
-            if ((GetAsyncKeyState(VK_XBUTTON1) & 0x8000) && ((clock.now() - timer) > std::chrono::milliseconds(250)))
-            {
-                AutofireEnabled = !AutofireEnabled;
-                timer = clock.now();
-            }
-
-            if ((*Variables::m_UWorld) != nullptr)
-            {
-                Variables::m_persistentLevel = (*Variables::m_UWorld)->PersistentLevel;
-                Variables::m_owningGameInstance = (*Variables::m_UWorld)->OwningGameInstance;
-                Variables::LocalPlayers = Variables::m_owningGameInstance->LocalPlayers;
-                Variables::m_LocalPlayer = Variables::LocalPlayers[0];
-                Variables::m_Actors = &Variables::m_persistentLevel->AActors;
-
-                SDK::APlayerController* m_PlayerController = Variables::m_LocalPlayer->PlayerController;
-                if (m_PlayerController == nullptr || m_PlayerController->AcknowledgedPawn == nullptr)
-                {
-                    continue;
-                }
-
-                auto maxRange = std::numeric_limits<float>::max();
-
-                if (m_PlayerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
-                {
-                    SDK::AFortPawn* m_LocalPawn = static_cast<SDK::AFortPawn*>(m_PlayerController->AcknowledgedPawn);
-                    auto weapon = m_LocalPawn->CurrentWeapon;
-                    if (weapon != nullptr && weapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
-                    {
-                        maxRange = static_cast<SDK::AFortWeaponRanged*>(weapon)->GetRange();
-                    }
-                }
-
-                if (GetAsyncKeyState(VK_XBUTTON2) & 0x8000)
-                {
-                    targetPlayer = Utils::GetClosestVisiblePlayer(maxRange);
-                }
-                else
-                {
-                    targetPlayer = nullptr;
-                }
-
-                if (targetPlayer != nullptr)
-                {
-                    SDK::FVector playerLoc;
-                    Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
-
-                    auto dist = Utils::GetDistance(m_PlayerController->RootComponent->Location, playerLoc);
-                    LastAimDistance = dist;
-
-                    if (dist <= HeadshotMinDistance)
-                    {
-                        Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_HEAD);
-                    }
-
-                    Utils::LookAt(m_PlayerController, playerLoc);
-
-                    SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
-
-                    auto lineOfSight = m_PlayerController->LineOfSightTo(targetPlayer, zero, false);
-
-                    if (AutofireEnabled)
-                    {
-                        if (!firing && lineOfSight)
-                        {
-                            firing = true;
-                            LeftClick(true);
-                        }
-                        else if (firing && !lineOfSight)
-                        {
-                            firing = false;
-                            LeftClick(false);
-                        }
-                    }
-                }
-                else if (firing)
-                {
-                    firing = false;
-                    LeftClick(false);
-                }
-            }
-
-            Variables::isInitialized = true;
+            Aimbot();
             Sleep(1);
         }
     }
     catch (...)
     {
-        printf("----------------!!!AN ERROR HAS OCCURRED!!!----------------\n");
     }
 
     return NULL;
 }
 
+std::unique_ptr<Renderer> renderer;
+
 HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
     if (firstTime)
     {
-
         //get device
         if (SUCCEEDED(pSwapChain->GetDevice(__uuidof(ID3D11Device), (void **)&pDevice)))
         {
@@ -230,30 +218,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
         stencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_ZERO;
         stencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_NEVER;
         pDevice->CreateDepthStencilState(&stencilDesc, &myDepthStencilStates[static_cast<int>(eDepthState::READ_NO_WRITE)]);
-
-        //wireframe
-        D3D11_RASTERIZER_DESC rwDesc;
-        pContext->RSGetState(&rwState); // retrieve the current state
-        rwState->GetDesc(&rwDesc);    // get the desc of the state
-        rwDesc.FillMode = D3D11_FILL_WIREFRAME;
-        rwDesc.CullMode = D3D11_CULL_NONE;
-        // create a whole new rasterizer state
-        pDevice->CreateRasterizerState(&rwDesc, &rwState);
-
-        //solid
-        D3D11_RASTERIZER_DESC rsDesc;
-        pContext->RSGetState(&rsState); // retrieve the current state
-        rsState->GetDesc(&rsDesc);    // get the desc of the state
-        rsDesc.FillMode = D3D11_FILL_SOLID;
-        rsDesc.CullMode = D3D11_CULL_BACK;
-        // create a whole new rasterizer state
-        pDevice->CreateRasterizerState(&rsDesc, &rsState);
-
-        //create font
-        HRESULT hResult = FW1CreateFactory(FW1_VERSION, &pFW1Factory);
-        hResult = pFW1Factory->CreateFontWrapper(pDevice, L"Tahoma", &pFontWrapper);
-        pFW1Factory->Release();
-
+        
         //use the back buffer address to create the render target
         if (SUCCEEDED(pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&RenderTargetTexture)))
         {
@@ -262,38 +227,69 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
             RenderTargetTexture->Release();
         }
 
+        renderer = std::make_unique<Renderer>(pDevice);
         firstTime = false;
     }
 
-    //viewport
+    // viewport
     pContext->RSGetViewports(&vps, &viewport);
     ScreenCenterX = viewport.Width / 2.0f;
     ScreenCenterY = viewport.Height / 2.0f;
 
-    //shaders
-    if (!psRed)
-        GenerateShader(pDevice, &psRed, 0.85f, 0.0f, 0.0f);
-
-    if (!psGreen)
-        GenerateShader(pDevice, &psGreen, 0.0f, 0.85f, 0.0f);
-
-    //call before you draw
+    // call before you draw
     pContext->OMSetRenderTargets(1, &RenderTargetView, NULL);
 
-    //draw
-    if (pFontWrapper)
+    renderer->begin();
+
+    auto msg = AutofireEnabled ? L"AUTOFIRE IS ON" : L"AUTOFIRE IS OFF";
+    std::wstringstream ss;
+    ss.precision(4);
+    ss << msg << L" (DISTANCE: " << LastAimDistance << L", MAX RANGE: " << WeaponEffectiveRange << L")";
+    auto str = ss.str();
+    renderer->drawText(Vec2(16.0f, 16.0f), str.c_str(), Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 18.0f, L"Verdana");
+
+    if (EnableESP && Global::m_persistentLevel != nullptr && Global::m_LocalPlayer != nullptr)
     {
-        auto msg = AutofireEnabled ? L"AUTOFIRE IS ON" : L"AUTOFIRE IS OFF";
+        auto actors = Global::m_persistentLevel->AActors;
+        for (int i = 0; i < actors.Num(); i++)
+        {
+            auto actor = Global::m_persistentLevel->AActors[i];
+            if (actor == nullptr || actor->RootComponent == nullptr)
+            {
+                continue;
+            }
 
-        std::wstringstream ss;
-        ss.precision(4);
+            if (actor->IsA(SDK::AFortPawn::StaticClass()))
+            {
+                auto pawn = static_cast<SDK::AFortPawn*>(actor);
+                if (pawn->GetName().find("PlayerPawn_Athena_C") != string::npos)
+                {
+                    SDK::FVector playerLoc;
+                    Util::Engine::GetBoneLocation(pawn->Mesh, &playerLoc, 66);
 
-        ss << msg << L" (DIST: " << LastAimDistance << L")";
-
-        auto str = ss.str();
-
-        pFontWrapper->DrawString(pContext, str.c_str(), 14, 16.0f, 16.0f, 0xff0000ff, FW1_RESTORESTATE);
+                    SDK::FVector2D screenPos;
+                    if (!Util::IsTeammate(actor) && !Util::IsLocalPlayer(actor) &&
+                        Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
+                    {
+                        auto size = renderer->getTextExtent(L"Enemy", 10.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.0f, 1.0f, 1.0f }, 0, 12.0f, L"Verdana");
+                    }
+                }
+            }
+            else if (actor->GetName().find("B_Pickups_C") != string::npos)
+            {
+                SDK::FVector2D screenPos;
+                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                {
+                    auto size = renderer->getTextExtent(L"Item", 10.0f, L"Verdana");
+                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"Item", Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 12.0f, L"Verdana");
+                }
+            }
+        }
     }
+
+    renderer->draw();
+    renderer->end();
 
     return phookD3D11Present(pSwapChain, SyncInterval, Flags);
 }
@@ -302,9 +298,6 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
 
 void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation)
 {
-    //if (GetAsyncKeyState(VK_F9) & 1)
-    //Log("DrawIndexed called");
-
     //get stride & vdesc.ByteWidth
     pContext->IAGetVertexBuffers(0, 1, &veBuffer, &Stride, &veBufferOffset);
     if (veBuffer)
@@ -332,10 +325,15 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
         pcsBuffer->Release(); pcsBuffer = NULL;
     }
 
+    // shaders
+    if (!psRed)
+        GenerateShader(pDevice, &psRed, 0.85f, 0.0f, 0.0f);
+
+    if (!psGreen)
+        GenerateShader(pDevice, &psGreen, 0.0f, 0.85f, 0.0f);
+
     //wallhack/chams
-    //if (sOptions[0].Function||sOptions[1].Function) //if wallhack/chams option is selected in menu
     if (Stride == 24 || Stride == countnum)
-        //if (Stride == ? && indesc.ByteWidth ? && indesc.ByteWidth ? && Descr.Format .. ) //later here you do better model rec, values are different in every game
     {
         SetDepthStencilState(DISABLED);
         pContext->PSSetShader(psRed, NULL, NULL);
@@ -343,11 +341,6 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
         pContext->PSSetShader(psGreen, NULL, NULL);
         SetDepthStencilState(READ_NO_WRITE);
     }
-
-    if (GetAsyncKeyState(VK_OEM_4) & 1) //-
-        countnum--;
-    if (GetAsyncKeyState(VK_OEM_6) & 1) //+
-        countnum++;
 
     return phookD3D11DrawIndexed(pContext, IndexCount, StartIndexLocation, BaseVertexLocation);
 }
@@ -652,5 +645,6 @@ BOOL __stdcall DllMain(HINSTANCE hModule, DWORD dwReason, LPVOID lpReserved)
         }
         break;
     }
+
     return TRUE;
 }

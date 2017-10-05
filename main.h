@@ -157,27 +157,6 @@ void SetDepthStencilState(eDepthState aState)
     pContext->OMSetDepthStencilState(myDepthStencilStates[aState], 1);
 }
 
-//==========================================================================================================================
-
-
-//==========================================================================================================================
-
-//w2s stuff
-struct Vec2
-{
-    float x, y;
-};
-
-struct Vec3
-{
-    float x, y, z;
-};
-
-struct Vec4
-{
-    float x, y, z, w;
-};
-
 static Vec4 Vec4MulMat4x4(const Vec4& v, float(*mat4x4)[4])
 {
     Vec4 o;
@@ -313,7 +292,6 @@ void AddModel(ID3D11DeviceContext* pContext)
     Vec3 v;
     Vec4 vWorldView = Vec3MulMat4x4(v, matWorldView);
 
-
     //PROJECTION
     if (pProjCB != NULL)
         m_pCurProjCB = CopyBufferToCpu(pProjCB);
@@ -328,7 +306,6 @@ void AddModel(ID3D11DeviceContext* pContext)
         SAFE_RELEASE(m_pCurProjCB);
     }
     Vec4 vWorldViewProj = Vec4MulMat4x4(vWorldView, matProj);
-
 
     Vec2 o;
     o.x = ScreenCenterX + ScreenCenterX * vWorldViewProj.x / vWorldViewProj.w;

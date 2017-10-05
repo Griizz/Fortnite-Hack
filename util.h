@@ -1,15 +1,63 @@
 #pragma once
 #include "SDK.hpp"
-#include "variables.h"
-#include "FindPattern.h"
+#include "global.h"
 
 #undef max
 #define M_PI 3.14159265358979323846f
 
-namespace Utils
+namespace Util
 {
+    void LeftClick(bool down)
+    {
+        INPUT Input = { 0 };
+        ::ZeroMemory(&Input, sizeof(INPUT));
+        Input.type = INPUT_MOUSE;
+
+        if (down)
+        {
+            Input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+        }
+        else
+        {
+            Input.mi.dwFlags = MOUSEEVENTF_LEFTUP;
+        }
+
+        ::SendInput(1, &Input, sizeof(INPUT));
+    }
+
+
+    bool DataCompare(PBYTE pData, PBYTE bSig, char* szMask)
+    {
+        for (; *szMask; ++szMask, ++pData, ++bSig)
+        {
+            if (*szMask == 'x' && *pData != *bSig)
+                return false;
+        }
+        return (*szMask) == 0;
+    }
+
+    PBYTE FindPattern(PBYTE dwAddress, DWORD dwSize, PBYTE pbSig, char* szMask, long offset)
+    {
+        size_t length = strlen(szMask);
+        for (size_t i = NULL; i < dwSize - length; i++)
+        {
+            if (DataCompare(dwAddress + i, pbSig, szMask))
+                return dwAddress + i + offset;
+        }
+        return 0;
+    }
+
 	namespace Vector
 	{
+        SDK::FVector Add(SDK::FVector point1, SDK::FVector point2)
+        {
+            SDK::FVector vector{ 0, 0, 0 };
+            vector.X = point1.X + point2.X;
+            vector.Y = point1.Y + point2.Y;
+            vector.Z = point1.Z + point2.Z;
+            return vector;
+        }
+
 		SDK::FVector Subtract(SDK::FVector point1, SDK::FVector point2)
 		{
 			SDK::FVector vector{ 0, 0, 0 };
@@ -60,11 +108,11 @@ namespace Utils
 
 	bool IsLocalPlayer(SDK::AActor* player)
 	{
-		if (Variables::m_LocalPlayer->PlayerController->AcknowledgedPawn == nullptr)
+		if (Global::m_LocalPlayer->PlayerController->AcknowledgedPawn == nullptr)
 		{
 			return true;
 		}
-		return (static_cast<SDK::APawn*>(player) == Variables::m_LocalPlayer->PlayerController->AcknowledgedPawn);
+		return (static_cast<SDK::APawn*>(player) == Global::m_LocalPlayer->PlayerController->AcknowledgedPawn);
 	}
 
     bool IsTeammate(SDK::AActor* player)
@@ -79,7 +127,7 @@ namespace Utils
             return false;
         }
 
-        auto myPawn = Variables::m_LocalPlayer->PlayerController->AcknowledgedPawn;
+        auto myPawn = Global::m_LocalPlayer->PlayerController->AcknowledgedPawn;
         if (!myPawn)
         {
             return false;
@@ -145,7 +193,7 @@ namespace Utils
     {
         SDK::FVector localPos;
 
-        auto playerController = Variables::m_LocalPlayer->PlayerController;
+        auto playerController = Global::m_LocalPlayer->PlayerController;
 
         if (playerController != nullptr)
         {
@@ -161,10 +209,10 @@ namespace Utils
 
         std::vector<SDK::AActor*> candidates;
 
-        auto& actors = Variables::m_persistentLevel->AActors;
+        auto actors = Global::m_persistentLevel->AActors;
         for (int i = 0; i < actors.Num(); i++)
         {
-            auto actor = Variables::m_persistentLevel->AActors[i];
+            auto actor = Global::m_persistentLevel->AActors[i];
             if (actor == nullptr || !actor->IsA(SDK::AFortPawn::StaticClass()) || actor->RootComponent == nullptr || IsLocalPlayer(actor))
             {
                 continue;
@@ -176,7 +224,7 @@ namespace Utils
             }
 
             SDK::FVector playerLoc;
-            Utils::Engine::GetBoneLocation(static_cast<SDK::AFortPawn*>(actor)->Mesh, &playerLoc, 66);
+            Util::Engine::GetBoneLocation(static_cast<SDK::AFortPawn*>(actor)->Mesh, &playerLoc, 66);
             if (GetDistance(playerLoc, localPos) > maxRange * 0.95f)
             {
                 continue;
@@ -205,7 +253,7 @@ namespace Utils
         for (auto candidate : candidates)
         {
             SDK::FVector playerLoc;
-            Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
+            Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
             float curDist = GetDistance(localPos, playerLoc);
 
             if (curDist < distance)
@@ -219,17 +267,22 @@ namespace Utils
         playerController->GetViewportSize(&screenSizeX, &screenSizeY);
         SDK::FVector2D centerScreen{ (float)screenSizeX / 2, (float)screenSizeY / 2 };
 
-        distance = 360.0f;
+        distance = 600.0f;
         for (auto candidate : candidates)
         {
             SDK::FVector playerLoc;
-            Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
+            Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
 
             SDK::FVector2D screenPos;
             if (Engine::WorldToScreen(playerController, playerLoc, &screenPos))
             {
                 float dist = GetDistance2D(centerScreen, screenPos);
-                if (dist < distance)
+                if (dist < 70.0f)
+                {
+                    closestPlayer = candidate;
+                    break;
+                }
+                else if (dist < distance)
                 {
                     closestPlayer = candidate;
                     distance = dist;
