@@ -301,18 +301,22 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                         switch (itemDef->Tier.GetValue())
                         {
                         case SDK::EFortItemTier::I:
+                            break;
                         case SDK::EFortItemTier::II:
+                            color = Color{ 0.0f, 0.95f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::III:
-                            color = Color{ 0.95f, 0.0f, 0.0f, 0.9f };
+                            color = Color{ 0.0f, 0.1f, 0.95f, 0.9f };
                             break;
                         case SDK::EFortItemTier::IV:
-                            color = Color{ 0.0f, 0.1f, 0.8f, 0.9f };
+                            color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::V:
-                            color = Color{ 0.8f, 0.7f, 0.0f, 0.9f };
-                            break;
                         case SDK::EFortItemTier::VI:
+                        case SDK::EFortItemTier::VII:
+                        case SDK::EFortItemTier::VIII:
+                        case SDK::EFortItemTier::IX:
+                        case SDK::EFortItemTier::X:
                             color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
                             break;
                         }
