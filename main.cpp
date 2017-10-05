@@ -1,6 +1,7 @@
 ﻿//d3d11 w2s finder by n7
 #include "variables.h"
 #include <vector>
+#include <sstream>
 #include <chrono>
 #include <d3d11.h>
 #include <D3D11Shader.h>
@@ -13,48 +14,18 @@
 #include "FW1FontWrapper/FW1FontWrapper.h" //font
 
 #include "bones.h"
-
-typedef HRESULT(__stdcall *D3D11PresentHook) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
-typedef void(__stdcall *D3D11DrawIndexedHook) (ID3D11DeviceContext* pContext, UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
-typedef void(__stdcall *D3D11PSSetShaderResourcesHook) (ID3D11DeviceContext* pContext, UINT StartSlot, UINT NumViews, ID3D11ShaderResourceView *const *ppShaderResourceViews);
-typedef void(__stdcall *D3D11CreateQueryHook) (ID3D11Device* pDevice, const D3D11_QUERY_DESC *pQueryDesc, ID3D11Query **ppQuery);
-
-typedef void(__stdcall *D3D11DrawIndexedInstancedHook) (ID3D11DeviceContext* pContext, UINT IndexCountPerInstance, UINT InstanceCount, UINT StartIndexLocation, INT BaseVertexLocation, UINT StartInstanceLocation);
-typedef void(__stdcall *D3D11DrawHook) (ID3D11DeviceContext* pContext, UINT VertexCount, UINT StartVertexLocation);
-typedef void(__stdcall *D3D11DrawInstancedHook) (ID3D11DeviceContext* pContext, UINT VertexCountPerInstance, UINT InstanceCount, UINT StartVertexLocation, UINT StartInstanceLocation);
-typedef void(__stdcall *D3D11DrawInstancedIndirectHook) (ID3D11DeviceContext* pContext, ID3D11Buffer *pBufferForArgs, UINT AlignedByteOffsetForArgs);
-typedef void(__stdcall *D3D11DrawIndexedInstancedIndirectHook) (ID3D11DeviceContext* pContext, ID3D11Buffer *pBufferForArgs, UINT AlignedByteOffsetForArgs);
-typedef void(__stdcall *D3D11VSSetConstantBuffersHook) (ID3D11DeviceContext* pContext, UINT StartSlot, UINT NumBuffers, ID3D11Buffer *const *ppConstantBuffers);
-typedef void(__stdcall *D3D11PSSetSamplersHook) (ID3D11DeviceContext* pContext, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState *const *ppSamplers);
-
-
-D3D11PresentHook phookD3D11Present = NULL;
-D3D11DrawIndexedHook phookD3D11DrawIndexed = NULL;
-D3D11PSSetShaderResourcesHook phookD3D11PSSetShaderResources = NULL;
-D3D11CreateQueryHook phookD3D11CreateQuery = NULL;
-
-D3D11DrawIndexedInstancedHook phookD3D11DrawIndexedInstanced = NULL;
-D3D11DrawHook phookD3D11Draw = NULL;
-D3D11DrawInstancedHook phookD3D11DrawInstanced = NULL;
-D3D11DrawInstancedIndirectHook phookD3D11DrawInstancedIndirect = NULL;
-D3D11DrawIndexedInstancedIndirectHook phookD3D11DrawIndexedInstancedIndirect = NULL;
-D3D11VSSetConstantBuffersHook phookD3D11VSSetConstantBuffers = NULL;
-D3D11PSSetSamplersHook phookD3D11PSSetSamplers = NULL;
-
-
-ID3D11Device *pDevice = NULL;
-ID3D11DeviceContext *pContext = NULL;
-
-DWORD_PTR* pSwapChainVtable = NULL;
-DWORD_PTR* pContextVTable = NULL;
-DWORD_PTR* pDeviceVTable = NULL;
+#include "hooks.h"
 
 IFW1Factory *pFW1Factory = NULL;
 IFW1FontWrapper *pFontWrapper = NULL;
 
-
 #include "main.h" //helper funcs
 #include "util.h"
+
+//==========================================================================================================================
+
+bool AutofireEnabled = true;
+float HeadshotMinDistance = 1400.0f;
 
 //==========================================================================================================================
 
@@ -76,8 +47,7 @@ void LeftClick(bool down)
     ::SendInput(1, &Input, sizeof(INPUT));
 }
 
-bool AutofireEnabled = true;
-float HeadshotMinDistance = 1200.0f;
+float LastAimDistance = 0.0f;
 
 DWORD WINAPI UpdateThread(LPVOID)
 {
@@ -127,6 +97,7 @@ DWORD WINAPI UpdateThread(LPVOID)
                 {
                     continue;
                 }
+
                 auto maxRange = std::numeric_limits<float>::max();
 
                 if (m_PlayerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
@@ -154,8 +125,8 @@ DWORD WINAPI UpdateThread(LPVOID)
                     SDK::FVector playerLoc;
                     Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
 
-                    auto myPos = m_PlayerController->RootComponent->Location;
-                    auto dist = Utils::GetDistance(myPos, playerLoc);
+                    auto dist = Utils::GetDistance(m_PlayerController->RootComponent->Location, playerLoc);
+                    LastAimDistance = dist;
 
                     if (dist <= HeadshotMinDistance)
                     {
@@ -314,7 +285,15 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
     if (pFontWrapper)
     {
         auto msg = AutofireEnabled ? L"AUTOFIRE IS ON" : L"AUTOFIRE IS OFF";
-        pFontWrapper->DrawString(pContext, msg, 14, 16.0f, 16.0f, 0xff0000ff, FW1_RESTORESTATE);
+
+        std::wstringstream ss;
+        ss.precision(2);
+
+        ss << msg << L" (DIST: " << LastAimDistance << L")";
+
+        auto str = ss.str();
+
+        pFontWrapper->DrawString(pContext, str.c_str(), 14, 16.0f, 16.0f, 0xff0000ff, FW1_RESTORESTATE);
     }
 
     return phookD3D11Present(pSwapChain, SyncInterval, Flags);

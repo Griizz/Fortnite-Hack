@@ -160,6 +160,7 @@
     <ClInclude Include="FW1FontWrapper\FW1CompileSettings.h" />
     <ClInclude Include="FW1FontWrapper\FW1FontWrapper.h" />
     <ClInclude Include="FW1FontWrapper\FW1Precompiled.h" />
+    <ClInclude Include="hooks.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MinHook\src\buffer.h" />
     <ClInclude Include="MinHook\src\hde\hde32.h" />

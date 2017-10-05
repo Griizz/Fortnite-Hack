@@ -111,6 +111,9 @@
     <ClInclude Include="bones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hooks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FW1FontWrapper\CFW1ColorRGBA.cpp">

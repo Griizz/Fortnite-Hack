@@ -2,7 +2,7 @@ Features:
 
 - Chams
 - No-spread
-- Improved aimbot with line of sight check and autoshoot.
+- Improved aimbot with line of sight check and autofire.
 - Doesn't target downed enemies. Prioritizes targets near your crosshair.
 - Aims at the head at short range and torso at mid/ long range.
 
