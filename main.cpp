@@ -226,26 +226,28 @@ void DrawESP()
 
                         switch (itemDef->Tier.GetValue())
                         {
-                        case SDK::EFortItemTier::I:
+                        case SDK::EFortItemTier::I: // white
                             break;
-                        case SDK::EFortItemTier::II:
+                        case SDK::EFortItemTier::II: // green
                             color = Color{ 0.0f, 0.95f, 0.0f, 0.9f };
                             break;
-                        case SDK::EFortItemTier::III:
-                            color = Color{ 0.0f, 0.35f, 0.95f, 0.9f };
+                        case SDK::EFortItemTier::III: // blue
+                            color = Color{ 0.2f, 0.45f, 1.0f, 0.9f };
                             break;
-                        case SDK::EFortItemTier::IV:
+                        case SDK::EFortItemTier::IV: // purple
+                            color = Color{ 0.7f, 0.25f, 0.85f, 0.9f };
+                            break;
+                        case SDK::EFortItemTier::V: // orange
                             color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
                             break;
-                        case SDK::EFortItemTier::V:
-                            color = Color{ 0.7f, 0.0f, 0.95f, 0.9f };
-                            break;
-                        case SDK::EFortItemTier::VI:
+                        case SDK::EFortItemTier::VI: // gold
                         case SDK::EFortItemTier::VII:
+                            color = Color{ 0.95f, 0.85f, 0.45f, 0.9f };
+                            break;
                         case SDK::EFortItemTier::VIII:
                         case SDK::EFortItemTier::IX:
                         case SDK::EFortItemTier::X:
-                            color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
+                            color = Color{ 1.0f, 0.0f, 1.0f, 0.9f };
                             break;
                         }
 
