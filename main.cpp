@@ -33,7 +33,6 @@ float HeadshotMinDistance = 1400.0f;
 //==========================================================================================================================
 
 float LastAimDistance = 0.0f;
-float WeaponEffectiveRange = 0.0f;
 
 bool firing = false;
 SDK::AActor* targetPlayer = nullptr;
@@ -72,24 +71,9 @@ void Aimbot()
         return;
     }
 
-    auto maxRange = std::numeric_limits<float>::max();
-
-    if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
-    {
-        SDK::AFortPawn* m_LocalPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
-        auto weapon = m_LocalPawn->CurrentWeapon;
-        if (weapon != nullptr && weapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
-        {
-            auto rangedWeapon = static_cast<SDK::AFortWeaponRanged*>(weapon);
-            maxRange = rangedWeapon->GetRange();
-            
-            WeaponEffectiveRange = maxRange;
-        }
-    }
-
     if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
     {
-        targetPlayer = Util::GetClosestVisiblePlayer(maxRange);
+        targetPlayer = Util::GetClosestVisiblePlayer();
     }
     else
     {
@@ -255,7 +239,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
     auto msg = AutofireEnabled ? L"AUTOFIRE IS ON" : L"AUTOFIRE IS OFF";
     std::wstringstream ss;
     ss.precision(4);
-    ss << msg << L" (DISTANCE: " << LastAimDistance << L", MAX RANGE: " << WeaponEffectiveRange << L")";
+    ss << msg << L" (DISTANCE: " << LastAimDistance << L")";
     auto str = ss.str();
     renderer->drawText(Vec2(16.0f, 16.0f), str.c_str(), Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 18.0f, L"Verdana");
 
@@ -313,9 +297,12 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                             color = Color{ 0.95f, 0.0f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::IV:
-                            color = Color{ 1.0f, 0.5f, 0.0f, 0.9f };
+                            color = Color{ 0.0f, 0.1f, 0.8f, 0.9f };
                             break;
                         case SDK::EFortItemTier::V:
+                            color = Color{ 1.0f, 0.7f, 0.0f, 0.9f };
+                            break;
+                        case SDK::EFortItemTier::VI:
                             color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
                             break;
                         }
