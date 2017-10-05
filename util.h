@@ -181,11 +181,6 @@ namespace Utils
                 {
                     if (m_Player->RootComponent != nullptr && !IsLocalPlayer(m_Player))
                     {
-                        SDK::FVector zero;
-                        zero.X = 0.0f;
-                        zero.Y = 0.0f;
-                        zero.Z = 0.0f;
-
                         SDK::FVector playerLoc;
                         Utils::Engine::GetBoneLocation(static_cast<SDK::AFortPawn*>(m_Player)->Mesh, &playerLoc, 66);
                         if (GetDistance(playerLoc, localPos) > maxRange * 0.95f)
@@ -193,6 +188,7 @@ namespace Utils
                             continue;
                         }
 
+                        SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
                         if (!playerController->LineOfSightTo(m_Player, zero, false))
                         {
                             continue;

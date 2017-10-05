@@ -11,6 +11,7 @@
 #include "MinHook/include/MinHook.h" //detour x86&x64
 #include "FW1FontWrapper/FW1FontWrapper.h" //font
 
+#include "bones.h"
 
 typedef HRESULT(__stdcall *D3D11PresentHook) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 typedef void(__stdcall *D3D11DrawIndexedHook) (ID3D11DeviceContext* pContext, UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
@@ -56,7 +57,7 @@ IFW1FontWrapper *pFontWrapper = NULL;
 
 //==========================================================================================================================
 
-void LeftClick (bool down)
+void LeftClick(bool down)
 {
     INPUT Input = { 0 };
     ::ZeroMemory(&Input, sizeof(INPUT));
@@ -73,6 +74,9 @@ void LeftClick (bool down)
 
     ::SendInput(1, &Input, sizeof(INPUT));
 }
+
+bool AutofireEnabled = true;
+float HeadshotMinDistance = 1200.0f;
 
 DWORD WINAPI UpdateThread(LPVOID)
 {
@@ -135,28 +139,42 @@ DWORD WINAPI UpdateThread(LPVOID)
                     targetPlayer = nullptr;
                 }
 
+                if (GetAsyncKeyState(VK_XBUTTON1) & 0x8000)
+                {
+                    AutofireEnabled = !AutofireEnabled;
+                }
+
                 if (targetPlayer != nullptr)
                 {
                     SDK::FVector playerLoc;
-                    Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, 66);
+                    Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
+
+                    auto myPos = m_PlayerController->RootComponent->Location;
+                    auto dist = Utils::GetDistance(myPos, playerLoc);
+
+                    if (dist <= HeadshotMinDistance)
+                    {
+                        Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_HEAD);
+                    }
+
                     Utils::LookAt(m_PlayerController, playerLoc);
 
-                    SDK::FVector zero;
-                    zero.X = 0.0f;
-                    zero.Y = 0.0f;
-                    zero.Z = 0.0f;
+                    SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
 
                     auto lineOfSight = m_PlayerController->LineOfSightTo(targetPlayer, zero, false);
 
-                    if (!firing && lineOfSight)
+                    if (AutofireEnabled)
                     {
-                        firing = true;
-                        LeftClick(true);
-                    }
-                    else if (firing && !lineOfSight)
-                    {
-                        firing = false;
-                        LeftClick(false);
+                        if (!firing && lineOfSight)
+                        {
+                            firing = true;
+                            LeftClick(true);
+                        }
+                        else if (firing && !lineOfSight)
+                        {
+                            firing = false;
+                            LeftClick(false);
+                        }
                     }
                 }
                 else if (firing)
@@ -286,16 +304,13 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
 
     //call before you draw
     pContext->OMSetRenderTargets(1, &RenderTargetView, NULL);
+
     //draw
     if (pFontWrapper)
     {
-        //pFontWrapper->DrawString(pContext, L"not copy paste", 14, 16.0f, 16.0f, 0xff0000ff, FW1_RESTORESTATE);
+        auto msg = AutofireEnabled ? L"AUTOFIRE IS ON" : L"AUTOFIRE IS OFF";
+        pFontWrapper->DrawString(pContext, msg, 14, 16.0f, 16.0f, 0xff0000ff, FW1_RESTORESTATE);
     }
-    //show target amount 
-    //wchar_t reportValueS[256];
-    //swprintf_s(reportValueS, L"AimEspInfo.size() = %d", (int)AimEspInfo.size());
-    //if (pFontWrapper)
-    //pFontWrapper->DrawString(pContext, reportValueS, 14.0f, 16.0f, 30.0f, 0xffffffff, FW1_RESTORESTATE);
 
     return phookD3D11Present(pSwapChain, SyncInterval, Flags);
 }

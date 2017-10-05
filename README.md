@@ -2,7 +2,9 @@ Features:
 
 - Chams
 - No-spread
-- Improved aimbot with line of sight check and autoshoot. Doesn't target downed enemies. Prioritizes targets near your crosshair.
+- Improved aimbot with line of sight check and autoshoot.
+- Doesn't target downed enemies. Prioritizes targets near your crosshair.
+- Aims at the head at short range and torso at mid/ long range.
 
 Hold *Mouse 5* to use the aimbot.
 

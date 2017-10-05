@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bones.h" />
     <ClInclude Include="FW1FontWrapper\CFW1ColorRGBA.h" />
     <ClInclude Include="FW1FontWrapper\CFW1DWriteRenderTarget.h" />
     <ClInclude Include="FW1FontWrapper\CFW1Factory.h" />
