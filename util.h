@@ -254,7 +254,7 @@ namespace Util
         playerController->GetViewportSize(&screenSizeX, &screenSizeY);
         SDK::FVector2D centerScreen{ (float)screenSizeX / 2, (float)screenSizeY / 2 };
 
-        distance = 600.0f;
+        distance = 300.0f;
         for (auto candidate : candidates)
         {
             SDK::FVector playerLoc;
