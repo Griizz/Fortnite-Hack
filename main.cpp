@@ -26,6 +26,10 @@ bool EnableESP = true;
 bool AutofireEnabled = true;
 float HeadshotMinDistance = 1400.0f;
 
+#define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
+#define AIMBOT_KEY VK_XBUTTON2
+#define ESP_KEY VK_F11
+
 //==========================================================================================================================
 
 float LastAimDistance = 0.0f;
@@ -39,9 +43,15 @@ auto delay = timer.now();
 
 void Aimbot()
 {
-    if ((GetAsyncKeyState(VK_XBUTTON1) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+    if ((GetAsyncKeyState(AUTOFIRE_TOGGLE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
     {
         AutofireEnabled = !AutofireEnabled;
+        delay = timer.now();
+    }
+
+    if ((GetAsyncKeyState(ESP_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+    {
+        EnableESP = !EnableESP;
         delay = timer.now();
     }
 
@@ -77,7 +87,7 @@ void Aimbot()
         }
     }
 
-    if (GetAsyncKeyState(VK_XBUTTON2) & 0x8000)
+    if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
     {
         targetPlayer = Util::GetClosestVisiblePlayer(maxRange);
     }
@@ -293,18 +303,19 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                         }
 
                         Color color{ 0.8f, 0.8f, 0.8f, 0.9f };
+
                         switch (itemDef->Tier.GetValue())
                         {
                         case SDK::EFortItemTier::I:
-                            color = Color{ 0.9f, 0.9f, 0.9f, 0.9f };
-                            break;
                         case SDK::EFortItemTier::II:
-                            color = Color{ 0.95f, 0.0f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::III:
-                            color = Color{ 1.0f, 0.5f, 0.0f, 0.9f };
+                            color = Color{ 0.95f, 0.0f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::IV:
+                            color = Color{ 1.0f, 0.5f, 0.0f, 0.9f };
+                            break;
+                        case SDK::EFortItemTier::V:
                             color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
                             break;
                         }
