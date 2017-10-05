@@ -29,6 +29,7 @@ struct UErrorEntry_C_SetErrorInfo_Params
 // Function ErrorEntry.ErrorEntry_C.GetButtonVisibility
 struct UErrorEntry_C_GetButtonVisibility_Params
 {
+	ESlateVisibility                                   NewParam;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ErrorEntry.ErrorEntry_C.Construct

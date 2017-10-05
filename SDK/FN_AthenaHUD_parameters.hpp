@@ -69,6 +69,7 @@ struct UAthenaHUD_C_HandleOnPointOfInterestAdded_Params
 // Function AthenaHUD.AthenaHUD_C.ShowPicker
 struct UAthenaHUD_C_ShowPicker_Params
 {
+	EFortPickerMode                                    Mode;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                InitialOption;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               IgnoreFirstAccept;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -135,6 +136,7 @@ struct UAthenaHUD_C_SetQuickbarSizes_Params
 // Function AthenaHUD.AthenaHUD_C.HandleQuickbarSlotFocusSlotChanged
 struct UAthenaHUD_C_HandleQuickbarSlotFocusSlotChanged_Params
 {
+	EFortQuickBars                                     Quickbar_Index;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -164,6 +166,7 @@ struct UAthenaHUD_C_Construct_Params
 // Function AthenaHUD.AthenaHUD_C.OnEnterState
 struct UAthenaHUD_C_OnEnterState_Params
 {
+	EFortUIState*                                      PreviousUIState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AthenaHUD.AthenaHUD_C.QuestsCompleted

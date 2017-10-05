@@ -14,6 +14,11 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function AlterationWidget.AlterationWidget_C.SetEvolutionDetails
+struct UAlterationWidget_C_SetEvolutionDetails_Params
+{
+};
+
 // Function AlterationWidget.AlterationWidget_C.UpdateRaritySwitcherVisiblity
 struct UAlterationWidget_C_UpdateRaritySwitcherVisiblity_Params
 {

@@ -51,8 +51,10 @@ void UMiniPartyMember_C::OpenPartyFinder()
 
 // Function MiniPartyMember.MiniPartyMember_C.GetLeaderVisibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UMiniPartyMember_C::GetLeaderVisibility()
+ESlateVisibility UMiniPartyMember_C::GetLeaderVisibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MiniPartyMember.MiniPartyMember_C.GetLeaderVisibility");
 
@@ -63,6 +65,8 @@ void UMiniPartyMember_C::GetLeaderVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

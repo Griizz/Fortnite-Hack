@@ -34,10 +34,10 @@ public:
 	int                                                CurrentCombatScore;                                       // 0x02E8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	int                                                CurrentBuildingScore;                                     // 0x02EC(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	int                                                CurrentUtilityScore;                                      // 0x02F0(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bShowTopBarIcons : 1;                                     // 0x02F4(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bShowSideBarIcons : 1;                                    // 0x02F5(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bOnlyShowIconsForTopCategory : 1;                         // 0x02F6(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bOnlyShowBarsWithCountInRange : 1;                        // 0x02F7(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bShowTopBarIcons;                                         // 0x02F4(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bShowSideBarIcons;                                        // 0x02F5(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bOnlyShowIconsForTopCategory;                             // 0x02F6(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bOnlyShowBarsWithCountInRange;                            // 0x02F7(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortMultiSizeBrush                         CombatCategoryIcon;                                       // 0x02F8(0x0360) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FFortMultiSizeBrush                         BuildingCategoryIcon;                                     // 0x0658(0x0360) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FFortMultiSizeBrush                         UtilityCategoryIcon;                                      // 0x09B8(0x0360) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
@@ -50,7 +50,7 @@ public:
 	unsigned char                                      UnknownData01[0x4];                                       // 0x0D4C(0x0004) MISSED OFFSET
 	class UFortUIMessageManager*                       MessageManager;                                           // 0x0D50(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	int                                                MaxScoreMessagesDisplayed;                                // 0x0D58(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bDisplayScoreStream : 1;                                  // 0x0D5C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bDisplayScoreStream;                                      // 0x0D5C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData02[0x3];                                       // 0x0D5D(0x0003) MISSED OFFSET
 	float                                              BarHeightOverride;                                        // 0x0D60(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
@@ -62,13 +62,13 @@ public:
 
 
 	void UnregisterForScoreStreamEvents();
-	void HandleScoreNumberChanged();
+	void HandleScoreNumberChanged(EStatCategory ScoreCategory);
 	void HandleMessageDisplayed(class UFortUIMessageItemWidget* ItemWidget);
 	void HideScoreMessageSlots();
 	void RegisterForScoreStreamEvents();
 	void HandleScoreMessageExpired(class UFortUIMessageItemWidget* Expired_Message);
 	void TryGetNextScoreMessage();
-	void HandleScoreStatChanged(int Delta, TEnumAsByte<EFortReplicatedStat> StatType, struct FText* Name);
+	void HandleScoreStatChanged(int Delta, TEnumAsByte<EFortReplicatedStat> StatType, EStatCategory StatCategory, struct FText* Name);
 	void InitializeIcons();
 	void UpdateScoreBars();
 	void HandleUpdateUI(class AFortMissionState* Mission);

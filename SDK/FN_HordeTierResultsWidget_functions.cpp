@@ -78,12 +78,15 @@ void UHordeTierResultsWidget_C::ChooseMediaToUse(class UMediaSource** MediaToUse
 
 // Function HordeTierResultsWidget.HordeTierResultsWidget_C.Initialize
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortCompletionResult          Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UHordeTierResultsWidget_C::Initialize()
+void UHordeTierResultsWidget_C::Initialize(EFortCompletionResult Result)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HordeTierResultsWidget.HordeTierResultsWidget_C.Initialize");
 
 	UHordeTierResultsWidget_C_Initialize_Params params;
+	params.Result = Result;
 
 	auto flags = fn->FunctionFlags;
 

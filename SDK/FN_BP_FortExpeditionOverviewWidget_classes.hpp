@@ -31,7 +31,7 @@ public:
 	class UBP_FortExpeditionMasterWidget_C*            ParentWidget;                                             // 0x02E0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FName                                       CurrentTabId;                                             // 0x02E8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	TArray<class UBP_FortExpeditionIconTabButton_C*>   TabButtons;                                               // 0x02F0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	unsigned char                                      bIgnoreBuildExpeditionAction : 1;                         // 0x0300(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bIgnoreBuildExpeditionAction;                             // 0x0300(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -41,7 +41,7 @@ public:
 
 
 	struct FTimespan Get_Utc_Now_Offset();
-	void Set_List_Sort_Type();
+	void Set_List_Sort_Type(EFortExpeditionListSort InSortType);
 	void Should_Disable_Build_Expedition_Action(class UFortExpeditionItem* Expedition, bool* Disable);
 	void Try_to_Build_Expedition(class UFortExpeditionItem* Expedition);
 	void Try_to_Abandon_Expedition(class UFortExpeditionItem* Expedition);

@@ -13,13 +13,13 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum SkillTreePages.SkillTreePages
-enum class ESkillTreePages
+enum class ESkillTreePages : uint8_t
 {
-	SkillTreePages__NewEnumerator0 = 0,
-	SkillTreePages__NewEnumerator1 = 1,
-	SkillTreePages__NewEnumerator2 = 2,
-	SkillTreePages__NewEnumerator3 = 3,
-	SkillTreePages__SkillTreePages_MAX = 4
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	SkillTreePages_MAX             = 4
 };
 
 

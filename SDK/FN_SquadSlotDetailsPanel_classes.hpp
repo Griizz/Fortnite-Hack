@@ -37,7 +37,7 @@ public:
 
 
 	void Set_Scroll_Box_to_Nav_Scroll_Widget();
-	void GetRestrictionReasonsAsText(struct FText* Text);
+	void GetRestrictionReasonsAsText(TArray<EFortSquadSlottingRestrictionReason>* Reasons, struct FText* Text);
 	void UpdateSkillTreeButtonVisibility();
 	void HandleDifferentSquadSlotSetBP();
 	void HandleSquadSlotStateChangedBP();

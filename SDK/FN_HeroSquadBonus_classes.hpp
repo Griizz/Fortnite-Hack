@@ -31,7 +31,7 @@ public:
 	struct FText                                       EmptyText;                                                // 0x03B0(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FText                                       BonusPerkTItleText;                                       // 0x03C8(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	struct FVector2D                                   Skill_Icon_Size;                                          // 0x03E0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x03E8(0x0001) UNKNOWN PROPERTY: EnumProperty HeroSquadBonus.HeroSquadBonus_C.SquadBonusType
+	EFortSupportBonusType                              SquadBonusType;                                           // 0x03E8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

@@ -70,6 +70,7 @@ struct ULegacyItem_DO_NOT_USE_C_Hide_Subtype_Icons_Params
 struct ULegacyItem_DO_NOT_USE_C_Set_Primary_Icon_Visibility_Params
 {
 	bool                                               Override_Icon_Visibility;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ESlateVisibility                                   Item_Icon_Visibility;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Set Subtype Icons & Ammo Color
@@ -139,6 +140,7 @@ struct ULegacyItem_DO_NOT_USE_C_Get_Item_Tooltip_Params
 // Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Set Display Mode
 struct ULegacyItem_DO_NOT_USE_C_Set_Display_Mode_Params
 {
+	EFortUIState                                       Current_UI_State;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               Cursor_Mode;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -156,6 +158,7 @@ struct ULegacyItem_DO_NOT_USE_C_Update_Subtype_Icons___Ammo_Params
 // Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Get Display Style
 struct ULegacyItem_DO_NOT_USE_C_Get_Display_Style_Params
 {
+	EFortItemType                                      Item_Type;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TEnumAsByte<EItemDisplayStyle>                     Style;                                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

@@ -22,6 +22,7 @@ struct UScoreBarsWidget_C_UnregisterForScoreStreamEvents_Params
 // Function ScoreBarsWidget.ScoreBarsWidget_C.HandleScoreNumberChanged
 struct UScoreBarsWidget_C_HandleScoreNumberChanged_Params
 {
+	EStatCategory                                      ScoreCategory;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ScoreBarsWidget.ScoreBarsWidget_C.HandleMessageDisplayed
@@ -57,6 +58,7 @@ struct UScoreBarsWidget_C_HandleScoreStatChanged_Params
 	int                                                Delta;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       Name;                                                     // (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 	TEnumAsByte<EFortReplicatedStat>                   StatType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EStatCategory                                      StatCategory;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ScoreBarsWidget.ScoreBarsWidget_C.InitializeIcons

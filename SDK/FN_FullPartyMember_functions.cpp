@@ -51,12 +51,15 @@ void UFullPartyMember_C::HighlightEmptyBanner(bool BannerIsHighlighted)
 
 // Function FullPartyMember.FullPartyMember_C.SetSecondaryStatDisplayVisibility
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ESlateVisibility               InVisibility                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UFullPartyMember_C::SetSecondaryStatDisplayVisibility()
+void UFullPartyMember_C::SetSecondaryStatDisplayVisibility(ESlateVisibility InVisibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function FullPartyMember.FullPartyMember_C.SetSecondaryStatDisplayVisibility");
 
 	UFullPartyMember_C_SetSecondaryStatDisplayVisibility_Params params;
+	params.InVisibility = InVisibility;
 
 	auto flags = fn->FunctionFlags;
 
@@ -167,13 +170,15 @@ void UFullPartyMember_C::MakeLocalPlayerConfirmActions(bool LocalPlayerAlone, TA
 // Function FullPartyMember.FullPartyMember_C.HandleLocalPlayerActionsResult
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UFullPartyMember_C::HandleLocalPlayerActionsResult(const struct FName& ResultName)
+void UFullPartyMember_C::HandleLocalPlayerActionsResult(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function FullPartyMember.FullPartyMember_C.HandleLocalPlayerActionsResult");
 
 	UFullPartyMember_C_HandleLocalPlayerActionsResult_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -333,13 +338,15 @@ void UFullPartyMember_C::UpdateMemberInfo(const struct FFortTeamMemberInfo& NewM
 // Function FullPartyMember.FullPartyMember_C.DialogResult_1F64669049EA0B1762273C8ED9CBB619
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UFullPartyMember_C::DialogResult_1F64669049EA0B1762273C8ED9CBB619(const struct FName& ResultName)
+void UFullPartyMember_C::DialogResult_1F64669049EA0B1762273C8ED9CBB619(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function FullPartyMember.FullPartyMember_C.DialogResult_1F64669049EA0B1762273C8ED9CBB619");
 
 	UFullPartyMember_C_DialogResult_1F64669049EA0B1762273C8ED9CBB619_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;

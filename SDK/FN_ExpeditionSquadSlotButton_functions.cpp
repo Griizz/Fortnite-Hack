@@ -34,8 +34,9 @@ void UExpeditionSquadSlotButton_C::Send_to_Skill_Tree()
 // Parameters:
 // struct FName                   OutSquadId                     (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            OutSquadSlotIndex              (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// TArray<EFortItemType>          ItemTypes                      (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 
-void UExpeditionSquadSlotButton_C::Get_Squad_Data(struct FName* OutSquadId, int* OutSquadSlotIndex)
+void UExpeditionSquadSlotButton_C::Get_Squad_Data(struct FName* OutSquadId, int* OutSquadSlotIndex, TArray<EFortItemType>* ItemTypes)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ExpeditionSquadSlotButton.ExpeditionSquadSlotButton_C.Get Squad Data");
 
@@ -51,6 +52,8 @@ void UExpeditionSquadSlotButton_C::Get_Squad_Data(struct FName* OutSquadId, int*
 		*OutSquadId = params.OutSquadId;
 	if (OutSquadSlotIndex != nullptr)
 		*OutSquadSlotIndex = params.OutSquadSlotIndex;
+	if (ItemTypes != nullptr)
+		*ItemTypes = params.ItemTypes;
 }
 
 

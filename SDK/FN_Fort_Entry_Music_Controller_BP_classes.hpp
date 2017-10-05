@@ -56,7 +56,7 @@ public:
 	void Store_Intro_Loop();
 	void VBucks_Menu_Enter();
 	void ReceiveBeginPlay();
-	void On_Sub_Game_Changed();
+	void On_Sub_Game_Changed(ESubGame SubGame);
 	void Music_Lobby_Athena_FadeIn();
 	void ExecuteUbergraph_Fort_Entry_Music_Controller_BP(int EntryPoint);
 };

@@ -122,10 +122,6 @@ DWORD WINAPI UpdateThread(LPVOID)
                     if (weapon != nullptr && weapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
                     {
                         auto rangedWeapon = static_cast<SDK::AFortWeaponRanged*>(weapon);
-                        rangedWeapon->CurrentReticleSpread = 0.0f;
-                        rangedWeapon->CurrentReticleSpreadMultiplier = 0.0f;
-                        rangedWeapon->CurrentStandingStillSpreadMultiplier = 0.0f;
-
                         maxRange = rangedWeapon->GetRange();
                     }
                 }

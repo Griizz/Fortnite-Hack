@@ -14,12 +14,15 @@ namespace SDK
 
 // Function AthenaGamePhaseChangeWidget.AthenaGamePhaseChangeWidget_C.PlayGamePhaseAlertSound
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EAthenaGamePhaseStep           Index                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaGamePhaseChangeWidget_C::PlayGamePhaseAlertSound()
+void UAthenaGamePhaseChangeWidget_C::PlayGamePhaseAlertSound(EAthenaGamePhaseStep Index)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaGamePhaseChangeWidget.AthenaGamePhaseChangeWidget_C.PlayGamePhaseAlertSound");
 
 	UAthenaGamePhaseChangeWidget_C_PlayGamePhaseAlertSound_Params params;
+	params.Index = Index;
 
 	auto flags = fn->FunctionFlags;
 
@@ -32,14 +35,16 @@ void UAthenaGamePhaseChangeWidget_C::PlayGamePhaseAlertSound()
 // Function AthenaGamePhaseChangeWidget.AthenaGamePhaseChangeWidget_C.UpdateMessaging
 // (FUNC_Event, FUNC_Protected, FUNC_HasOutParms, FUNC_BlueprintEvent)
 // Parameters:
+// EAthenaGamePhaseStep*          Step                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText*                  MESSAGE                        (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 // struct FText*                  TimeText                       (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 
-void UAthenaGamePhaseChangeWidget_C::UpdateMessaging(struct FText* MESSAGE, struct FText* TimeText)
+void UAthenaGamePhaseChangeWidget_C::UpdateMessaging(EAthenaGamePhaseStep* Step, struct FText* MESSAGE, struct FText* TimeText)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaGamePhaseChangeWidget.AthenaGamePhaseChangeWidget_C.UpdateMessaging");
 
 	UAthenaGamePhaseChangeWidget_C_UpdateMessaging_Params params;
+	params.Step = Step;
 	params.MESSAGE = MESSAGE;
 	params.TimeText = TimeText;
 
@@ -73,12 +78,15 @@ void UAthenaGamePhaseChangeWidget_C::OnAnimationFinished(class UWidgetAnimation*
 
 // Function AthenaGamePhaseChangeWidget.AthenaGamePhaseChangeWidget_C.GamePhaseStepChanged
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+// Parameters:
+// EAthenaGamePhaseStep*          Step                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaGamePhaseChangeWidget_C::GamePhaseStepChanged()
+void UAthenaGamePhaseChangeWidget_C::GamePhaseStepChanged(EAthenaGamePhaseStep* Step)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaGamePhaseChangeWidget.AthenaGamePhaseChangeWidget_C.GamePhaseStepChanged");
 
 	UAthenaGamePhaseChangeWidget_C_GamePhaseStepChanged_Params params;
+	params.Step = Step;
 
 	auto flags = fn->FunctionFlags;
 

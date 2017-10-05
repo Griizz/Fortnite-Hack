@@ -17,6 +17,7 @@ namespace SDK
 // Function TooltipStatWrapper.TooltipStatWrapper_C.ShowUpgradeArrow
 struct UTooltipStatWrapper_C_ShowUpgradeArrow_Params
 {
+	ESlateVisibility                                   InVisibility;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function TooltipStatWrapper.TooltipStatWrapper_C.Construct

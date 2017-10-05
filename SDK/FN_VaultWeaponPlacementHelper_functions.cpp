@@ -111,12 +111,17 @@ void AVaultWeaponPlacementHelper_C::OnTeamMemberAdded(const struct FFortTeamMemb
 
 // Function VaultWeaponPlacementHelper.VaultWeaponPlacementHelper_C.OnFrontEndCameraChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFrontEndCamera                NewCamera                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFrontEndCamera                OldCamera                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AVaultWeaponPlacementHelper_C::OnFrontEndCameraChanged()
+void AVaultWeaponPlacementHelper_C::OnFrontEndCameraChanged(EFrontEndCamera NewCamera, EFrontEndCamera OldCamera)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function VaultWeaponPlacementHelper.VaultWeaponPlacementHelper_C.OnFrontEndCameraChanged");
 
 	AVaultWeaponPlacementHelper_C_OnFrontEndCameraChanged_Params params;
+	params.NewCamera = NewCamera;
+	params.OldCamera = OldCamera;
 
 	auto flags = fn->FunctionFlags;
 

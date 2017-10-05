@@ -17,7 +17,8 @@ namespace SDK
 class UAvfMediaSettings : public UObject
 {
 public:
-	unsigned char                                      NativeAudioOut : 1;                                       // 0x0028(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               NativeAudioOut;                                           // 0x0028(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0029(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

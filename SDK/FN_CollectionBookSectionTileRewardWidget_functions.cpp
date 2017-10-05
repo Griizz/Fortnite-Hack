@@ -36,12 +36,15 @@ void UCollectionBookSectionTileRewardWidget_C::SetSlotCompletionRatio(int NumSlo
 
 // Function CollectionBookSectionTileRewardWidget.CollectionBookSectionTileRewardWidget_C.OnRewardStatusChanged
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+// Parameters:
+// ECollectionBookRewardStatus*   NewStatus                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCollectionBookSectionTileRewardWidget_C::OnRewardStatusChanged()
+void UCollectionBookSectionTileRewardWidget_C::OnRewardStatusChanged(ECollectionBookRewardStatus* NewStatus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CollectionBookSectionTileRewardWidget.CollectionBookSectionTileRewardWidget_C.OnRewardStatusChanged");
 
 	UCollectionBookSectionTileRewardWidget_C_OnRewardStatusChanged_Params params;
+	params.NewStatus = NewStatus;
 
 	auto flags = fn->FunctionFlags;
 

@@ -13,13 +13,13 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum EnumEventWorldItemDrop.EnumEventWorldItemDrop
-enum class EnumEventWorldItemDrop
+enum class EnumEventWorldItemDrop : uint8_t
 {
-	EnumEventWorldItemDrop__NewEnumerator0 = 0,
-	EnumEventWorldItemDrop__NewEnumerator1 = 1,
-	EnumEventWorldItemDrop__NewEnumerator2 = 2,
-	EnumEventWorldItemDrop__NewEnumerator3 = 3,
-	EnumEventWorldItemDrop__EnumEventWorldItemDrop_MAX = 4
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	EnumEventWorldItemDrop_MAX     = 4
 };
 
 

@@ -27,7 +27,7 @@ public:
 	class UClass*                                      MouseKeyboardStyle;                                       // 0x0970(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FDataTableRowHandle                         ButtonClickAction;                                        // 0x0978(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	TEnumAsByte<EHorizontalAlignment>                  ContentAlignment;                                         // 0x0988(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bMouseKeyboardStyleSet : 1;                               // 0x0989(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bMouseKeyboardStyleSet;                                   // 0x0989(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

@@ -33,7 +33,7 @@ public:
 	}
 
 
-	void UpdateValue(float NewValue, float CurrentValue);
+	void UpdateValue(float NewValue, float CurrentValue, EFortStatValueDisplayType DisplayType, EFortBuffState BuffState);
 	void UpdateIcon();
 	void UpdateDisplayData();
 	void GetLocalPlayerId(struct FUniqueNetIdRepl* LocalPlayerNetId);

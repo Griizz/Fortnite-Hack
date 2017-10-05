@@ -14,8 +14,10 @@ namespace SDK
 
 // Function Subtitles.Subtitles_C.GetSubtitleVisibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void USubtitles_C::GetSubtitleVisibility()
+ESlateVisibility USubtitles_C::GetSubtitleVisibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Subtitles.Subtitles_C.GetSubtitleVisibility");
 
@@ -26,6 +28,8 @@ void USubtitles_C::GetSubtitleVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

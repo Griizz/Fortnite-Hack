@@ -15,14 +15,14 @@ namespace SDK
 // Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.RefreshReadyState
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// bool                           bReady                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// bool                           Ready                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULobbyPlayerPadTop_C::RefreshReadyState(bool bReady)
+void ULobbyPlayerPadTop_C::RefreshReadyState(bool Ready)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.RefreshReadyState");
 
 	ULobbyPlayerPadTop_C_RefreshReadyState_Params params;
-	params.bReady = bReady;
+	params.Ready = Ready;
 
 	auto flags = fn->FunctionFlags;
 
@@ -35,15 +35,15 @@ void ULobbyPlayerPadTop_C::RefreshReadyState(bool bReady)
 // Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnAthenaReadyStateChanged
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// struct FUniqueNetIdRepl        MemberId                       (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-// bool                           bReady                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// struct FUniqueNetIdRepl        Member_Id                      (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+// bool                           Ready                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULobbyPlayerPadTop_C::OnAthenaReadyStateChanged(bool bReady, struct FUniqueNetIdRepl* MemberId)
+void ULobbyPlayerPadTop_C::OnAthenaReadyStateChanged(bool Ready, struct FUniqueNetIdRepl* Member_Id)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnAthenaReadyStateChanged");
 
 	ULobbyPlayerPadTop_C_OnAthenaReadyStateChanged_Params params;
-	params.bReady = bReady;
+	params.Ready = Ready;
 
 	auto flags = fn->FunctionFlags;
 
@@ -51,8 +51,8 @@ void ULobbyPlayerPadTop_C::OnAthenaReadyStateChanged(bool bReady, struct FUnique
 
 	fn->FunctionFlags = flags;
 
-	if (MemberId != nullptr)
-		*MemberId = params.MemberId;
+	if (Member_Id != nullptr)
+		*Member_Id = params.Member_Id;
 }
 
 
@@ -215,6 +215,79 @@ void ULobbyPlayerPadTop_C::PreConstruct(bool* IsDesignTime)
 
 	ULobbyPlayerPadTop_C_PreConstruct_Params params;
 	params.IsDesignTime = IsDesignTime;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.Construct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void ULobbyPlayerPadTop_C::Construct()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.Construct");
+
+	ULobbyPlayerPadTop_C_Construct_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyStarted
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void ULobbyPlayerPadTop_C::OnLobbyStarted()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyStarted");
+
+	ULobbyPlayerPadTop_C_OnLobbyStarted_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnUpdateLobbyPlayerPadTop
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// struct FUniqueNetIdRepl        PlayerNetId                    (CPF_Parm)
+// bool                           bIsReady                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void ULobbyPlayerPadTop_C::OnUpdateLobbyPlayerPadTop(const struct FUniqueNetIdRepl& PlayerNetId, bool bIsReady)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnUpdateLobbyPlayerPadTop");
+
+	ULobbyPlayerPadTop_C_OnUpdateLobbyPlayerPadTop_Params params;
+	params.PlayerNetId = PlayerNetId;
+	params.bIsReady = bIsReady;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyDisconnected
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void ULobbyPlayerPadTop_C::OnLobbyDisconnected()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyDisconnected");
+
+	ULobbyPlayerPadTop_C_OnLobbyDisconnected_Params params;
 
 	auto flags = fn->FunctionFlags;
 

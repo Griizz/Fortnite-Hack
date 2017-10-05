@@ -303,12 +303,15 @@ void AFort_Entry_Music_Controller_BP_C::ReceiveBeginPlay()
 
 // Function Fort_Entry_Music_Controller_BP.Fort_Entry_Music_Controller_BP_C.On Sub Game Changed
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ESubGame                       SubGame                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AFort_Entry_Music_Controller_BP_C::On_Sub_Game_Changed()
+void AFort_Entry_Music_Controller_BP_C::On_Sub_Game_Changed(ESubGame SubGame)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Fort_Entry_Music_Controller_BP.Fort_Entry_Music_Controller_BP_C.On Sub Game Changed");
 
 	AFort_Entry_Music_Controller_BP_C_On_Sub_Game_Changed_Params params;
+	params.SubGame = SubGame;
 
 	auto flags = fn->FunctionFlags;
 

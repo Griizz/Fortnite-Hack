@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum ItemTooltip_DisplayMode.ItemTooltip_DisplayMode
-enum class EItemTooltip_DisplayMode
+enum class EItemTooltip_DisplayMode : uint8_t
 {
-	ItemTooltip_DisplayMode__NewEnumerator0 = 0,
-	ItemTooltip_DisplayMode__NewEnumerator1 = 1,
-	ItemTooltip_DisplayMode__NewEnumerator2 = 2,
-	ItemTooltip_DisplayMode__ItemTooltip_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	ItemTooltip_MAX                = 3
 };
 
 

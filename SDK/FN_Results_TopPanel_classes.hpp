@@ -36,7 +36,7 @@ public:
 	}
 
 
-	void Initialize();
+	void Initialize(EFortCompletionResult CompletionResult);
 	void BndEvt__Anim_Intro_K2Node_ComponentBoundEvent_56_OnWidgetAnimationPlaybackStatusChanged__DelegateSignature();
 	void Intro_Sequence();
 	void ExecuteUbergraph_Results_TopPanel(int EntryPoint);

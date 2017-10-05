@@ -14,6 +14,11 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function MainModeItemDetailsHostPanel.MainModeItemDetailsHostPanel_C.UpdateDescriptionVisibility
+struct UMainModeItemDetailsHostPanel_C_UpdateDescriptionVisibility_Params
+{
+};
+
 // Function MainModeItemDetailsHostPanel.MainModeItemDetailsHostPanel_C.HandleHasItemMarkedForMulchingChanged
 struct UMainModeItemDetailsHostPanel_C_HandleHasItemMarkedForMulchingChanged_Params
 {

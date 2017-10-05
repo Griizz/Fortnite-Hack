@@ -14,6 +14,13 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function QuestScreen.QuestScreen_C.ShouldShowPlayQuest
+struct UQuestScreen_C_ShouldShowPlayQuest_Params
+{
+	class UFortQuestItem*                              Quest;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ShouldShowPlay;                                           // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function QuestScreen.QuestScreen_C.Toggle Disable Claim Reward Button
 struct UQuestScreen_C_Toggle_Disable_Claim_Reward_Button_Params
 {
@@ -188,11 +195,13 @@ struct UQuestScreen_C_PlayerPartyStateChanged_Params
 // Function QuestScreen.QuestScreen_C.OnClientPartyStateChanged
 struct UQuestScreen_C_OnClientPartyStateChanged_Params
 {
+	EFortPartyState                                    PartyState;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuestScreen.QuestScreen_C.OnMatchamkingComplete
 struct UQuestScreen_C_OnMatchamkingComplete_Params
 {
+	EMatchmakingCompleteResult                         Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuestScreen.QuestScreen_C.OnMatchmakingStarted

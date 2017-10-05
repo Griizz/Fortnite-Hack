@@ -341,12 +341,15 @@ void UAthenaInventoryPanel_C::UpdateEquipSlots()
 
 // Function AthenaInventoryPanel.AthenaInventoryPanel_C.HandleQuickBarChangedBP
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars*                QuickBarType                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaInventoryPanel_C::HandleQuickBarChangedBP()
+void UAthenaInventoryPanel_C::HandleQuickBarChangedBP(EFortQuickBars* QuickBarType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaInventoryPanel.AthenaInventoryPanel_C.HandleQuickBarChangedBP");
 
 	UAthenaInventoryPanel_C_HandleQuickBarChangedBP_Params params;
+	params.QuickBarType = QuickBarType;
 
 	auto flags = fn->FunctionFlags;
 

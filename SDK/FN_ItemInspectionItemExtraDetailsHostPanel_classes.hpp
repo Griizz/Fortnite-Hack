@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // WidgetBlueprintGeneratedClass ItemInspectionItemExtraDetailsHostPanel.ItemInspectionItemExtraDetailsHostPanel_C
-// 0x0000 (0x0288 - 0x0288)
+// 0x0000 (0x0290 - 0x0290)
 class UItemInspectionItemExtraDetailsHostPanel_C : public UFortItemDetailsHostPanel
 {
 public:

@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum RewardListEntryType.RewardListEntryType
-enum class ERewardListEntryType
+enum class ERewardListEntryType : uint8_t
 {
-	RewardListEntryType__NewEnumerator0 = 0,
-	RewardListEntryType__NewEnumerator1 = 1,
-	RewardListEntryType__NewEnumerator2 = 2,
-	RewardListEntryType__RewardListEntryType_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	RewardListEntryType_MAX        = 3
 };
 
 

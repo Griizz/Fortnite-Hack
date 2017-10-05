@@ -59,6 +59,12 @@ public:
 		return FindObject<UClass>(name);
 	}
 
+	template<typename T>
+	static T* GetObjectCasted(std::size_t index)
+	{
+		return static_cast<T*>(GetGlobalObjects().GetByIndex(index));
+	}
+
 	bool IsA(UClass* cmp) const;
 
 	static UClass* StaticClass()
@@ -69,7 +75,7 @@ public:
 
 	inline void ProcessEvent(class UFunction* function, void* parms)
 	{
-		return GetVFunction<void(*)(UObject*, class UFunction*, void*)>(this, 61)(this, function, parms);
+		return GetVFunction<void(*)(UObject*, class UFunction*, void*)>(this, 62)(this, function, parms);
 	}
 
 
@@ -213,7 +219,7 @@ public:
 
 	inline UObject* CreateDefaultObject()
 	{
-		return GetVFunction<UObject*(*)(UClass*)>(this, 98)(this);
+		return GetVFunction<UObject*(*)(UClass*)>(this, 99)(this);
 	}
 
 };

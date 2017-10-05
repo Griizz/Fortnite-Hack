@@ -25,6 +25,7 @@ struct UItemTransformKeyScreen_C_Determine_Tab_List_Title_Params
 struct UItemTransformKeyScreen_C_Determine_Key_Types_to_See_Params
 {
 	struct FName                                       TabNameID;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EConversionControlKeyRequest                       RequestType;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ItemTransformKeyScreen.ItemTransformKeyScreen_C.NavigateToFirstItem
@@ -63,6 +64,7 @@ struct UItemTransformKeyScreen_C_SetupKeyList_Params
 // Function ItemTransformKeyScreen.ItemTransformKeyScreen_C.RebuildKeyList
 struct UItemTransformKeyScreen_C_RebuildKeyList_Params
 {
+	EConversionControlKeyRequest                       RequestType;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ItemTransformKeyScreen.ItemTransformKeyScreen_C.Construct

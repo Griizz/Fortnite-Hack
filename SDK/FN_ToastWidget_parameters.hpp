@@ -17,6 +17,7 @@ namespace SDK
 // Function ToastWidget.ToastWidget_C.GetOpenButtonVisibility
 struct UToastWidget_C_GetOpenButtonVisibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function ToastWidget.ToastWidget_C.StartIntro

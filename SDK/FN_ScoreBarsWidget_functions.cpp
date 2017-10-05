@@ -31,12 +31,15 @@ void UScoreBarsWidget_C::UnregisterForScoreStreamEvents()
 
 // Function ScoreBarsWidget.ScoreBarsWidget_C.HandleScoreNumberChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EStatCategory                  ScoreCategory                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UScoreBarsWidget_C::HandleScoreNumberChanged()
+void UScoreBarsWidget_C::HandleScoreNumberChanged(EStatCategory ScoreCategory)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ScoreBarsWidget.ScoreBarsWidget_C.HandleScoreNumberChanged");
 
 	UScoreBarsWidget_C_HandleScoreNumberChanged_Params params;
+	params.ScoreCategory = ScoreCategory;
 
 	auto flags = fn->FunctionFlags;
 
@@ -143,14 +146,16 @@ void UScoreBarsWidget_C::TryGetNextScoreMessage()
 // int                            Delta                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   Name                           (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 // TEnumAsByte<EFortReplicatedStat> StatType                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EStatCategory                  StatCategory                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UScoreBarsWidget_C::HandleScoreStatChanged(int Delta, TEnumAsByte<EFortReplicatedStat> StatType, struct FText* Name)
+void UScoreBarsWidget_C::HandleScoreStatChanged(int Delta, TEnumAsByte<EFortReplicatedStat> StatType, EStatCategory StatCategory, struct FText* Name)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ScoreBarsWidget.ScoreBarsWidget_C.HandleScoreStatChanged");
 
 	UScoreBarsWidget_C_HandleScoreStatChanged_Params params;
 	params.Delta = Delta;
 	params.StatType = StatType;
+	params.StatCategory = StatCategory;
 
 	auto flags = fn->FunctionFlags;
 

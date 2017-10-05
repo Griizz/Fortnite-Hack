@@ -19,6 +19,7 @@ struct UCollectionBookSectionTileWidget_C_OnSectionSlotUpdate_Params
 {
 	int*                                               NumFilledSlots;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int*                                               NumSlots;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCollectionBookState*                          SectionState;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CollectionBookSectionTileWidget.CollectionBookSectionTileWidget_C.ExecuteUbergraph_CollectionBookSectionTileWidget

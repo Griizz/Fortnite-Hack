@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum EpicCMSUIFramework.EDateType
-enum class EDateType
+enum class EDateType : uint8_t
 {
-	EDateType__None                = 0,
-	EDateType__Coming              = 1,
-	EDateType__Ending              = 2,
-	EDateType__EDateType_MAX       = 3
+	None                           = 0,
+	Coming                         = 1,
+	Ending                         = 2,
+	EDateType_MAX                  = 3
 };
 
 
@@ -34,8 +34,9 @@ struct FSlotDescription
 	struct FName                                       SlotName;                                                 // 0x0000(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ColumnCount;                                              // 0x0008(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                RowCount;                                                 // 0x000C(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bUseFeaturedTextStyle : 1;                                // 0x0010(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bEnableAutoScroll : 1;                                    // 0x0011(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bUseFeaturedTextStyle;                                    // 0x0010(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bEnableAutoScroll;                                        // 0x0011(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x6];                                       // 0x0012(0x0006) MISSED OFFSET
 };
 
 // ScriptStruct EpicCMSUIFramework.TileDefinition
@@ -49,10 +50,11 @@ struct FTileDefinition
 	struct FString                                     Link;                                                     // 0x0040(0x0010) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor)
 	struct FString                                     GroupID;                                                  // 0x0050(0x0010) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor)
 	struct FDateTime                                   Countdown;                                                // 0x0060(0x0008) (CPF_BlueprintVisible, CPF_BlueprintReadOnly)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0068(0x0001) UNKNOWN PROPERTY: EnumProperty EpicCMSUIFramework.TileDefinition.CountdownType
-	unsigned char                                      UnknownData01[0x7];                                       // 0x0069(0x0007) MISSED OFFSET
+	EDateType                                          CountdownType;                                            // 0x0068(0x0001) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0069(0x0007) MISSED OFFSET
 	struct FString                                     MediaUrl;                                                 // 0x0070(0x0010) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor)
-	unsigned char                                      IsVisible : 1;                                            // 0x0080(0x0001) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               IsVisible;                                                // 0x0080(0x0001) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x7];                                       // 0x0081(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct EpicCMSUIFramework.EpicCMSTileTypeMapping

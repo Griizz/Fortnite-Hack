@@ -172,12 +172,15 @@ void UMainMenu_C::RefreshFriendCodesButton()
 
 // Function MainMenu.MainMenu_C.HandlePartyStateChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortPartyState                New_State                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::HandlePartyStateChanged()
+void UMainMenu_C::HandlePartyStateChanged(EFortPartyState New_State)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.HandlePartyStateChanged");
 
 	UMainMenu_C_HandlePartyStateChanged_Params params;
+	params.New_State = New_State;
 
 	auto flags = fn->FunctionFlags;
 
@@ -240,12 +243,15 @@ void UMainMenu_C::HandleLobbyStarted()
 
 // Function MainMenu.MainMenu_C.HandleMatchmakingComplete
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EMatchmakingCompleteResult     Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::HandleMatchmakingComplete()
+void UMainMenu_C::HandleMatchmakingComplete(EMatchmakingCompleteResult Result)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.HandleMatchmakingComplete");
 
 	UMainMenu_C_HandleMatchmakingComplete_Params params;
+	params.Result = Result;
 
 	auto flags = fn->FunctionFlags;
 
@@ -277,12 +283,15 @@ void UMainMenu_C::HandleActiveInvitesAmountChanged(int ActiveInvitesAmount)
 
 // Function MainMenu.MainMenu_C.HandlePartyTypeChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EPartyType                     Party_Type                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::HandlePartyTypeChanged()
+void UMainMenu_C::HandlePartyTypeChanged(EPartyType Party_Type)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.HandlePartyTypeChanged");
 
 	UMainMenu_C_HandlePartyTypeChanged_Params params;
+	params.Party_Type = Party_Type;
 
 	auto flags = fn->FunctionFlags;
 
@@ -311,12 +320,17 @@ void UMainMenu_C::HandlePartyJoined()
 
 // Function MainMenu.MainMenu_C.HandlePartybarUIFeatureChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 Feature                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortUIFeatureState            FeatureState                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::HandlePartybarUIFeatureChanged()
+void UMainMenu_C::HandlePartybarUIFeatureChanged(EFortUIFeature Feature, EFortUIFeatureState FeatureState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.HandlePartybarUIFeatureChanged");
 
 	UMainMenu_C_HandlePartybarUIFeatureChanged_Params params;
+	params.Feature = Feature;
+	params.FeatureState = FeatureState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -408,13 +422,15 @@ void UMainMenu_C::HandleLocalPlayerStateChanged(struct FFortTeamMemberInfo* Memb
 // Function MainMenu.MainMenu_C.HandlePrivacySelected
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EPartyType                     PartyPrivacyType               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           FriendsOfFriends               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::HandlePrivacySelected(bool FriendsOfFriends)
+void UMainMenu_C::HandlePrivacySelected(EPartyType PartyPrivacyType, bool FriendsOfFriends)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.HandlePrivacySelected");
 
 	UMainMenu_C_HandlePrivacySelected_Params params;
+	params.PartyPrivacyType = PartyPrivacyType;
 	params.FriendsOfFriends = FriendsOfFriends;
 
 	auto flags = fn->FunctionFlags;
@@ -484,13 +500,15 @@ void UMainMenu_C::SetPrivacyButtonData(class UTexture2D* Image, const struct FTe
 // Function MainMenu.MainMenu_C.UpdatePrivacyButton
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EPartyType                     Overide_Party_Type             (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           Use_Overide_Party_Type         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::UpdatePrivacyButton(bool Use_Overide_Party_Type)
+void UMainMenu_C::UpdatePrivacyButton(EPartyType Overide_Party_Type, bool Use_Overide_Party_Type)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.UpdatePrivacyButton");
 
 	UMainMenu_C_UpdatePrivacyButton_Params params;
+	params.Overide_Party_Type = Overide_Party_Type;
 	params.Use_Overide_Party_Type = Use_Overide_Party_Type;
 
 	auto flags = fn->FunctionFlags;
@@ -631,13 +649,15 @@ void UMainMenu_C::SetupTestUI()
 // Function MainMenu.MainMenu_C.DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0(const struct FName& ResultName)
+void UMainMenu_C::DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0");
 
 	UMainMenu_C_DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -651,13 +671,15 @@ void UMainMenu_C::DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0(const struct FNa
 // Function MainMenu.MainMenu_C.DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7(const struct FName& ResultName)
+void UMainMenu_C::DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7");
 
 	UMainMenu_C_DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -1847,16 +1869,16 @@ void UMainMenu_C::BndEvt__AthenaPartyPrivacyButton_K2Node_ComponentBoundEvent_60
 }
 
 
-// Function MainMenu.MainMenu_C.BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature
+// Function MainMenu.MainMenu_C.BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature
 // (FUNC_BlueprintEvent)
 // Parameters:
 // class UCommonButton*           Button                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMainMenu_C::BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature(class UCommonButton* Button)
+void UMainMenu_C::BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature(class UCommonButton* Button)
 {
-	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature");
+	static auto fn = UObject::FindObject<UFunction>("Function MainMenu.MainMenu_C.BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature");
 
-	UMainMenu_C_BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature_Params params;
+	UMainMenu_C_BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature_Params params;
 	params.Button = Button;
 
 	auto flags = fn->FunctionFlags;

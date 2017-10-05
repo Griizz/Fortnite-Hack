@@ -12,6 +12,23 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function ZoneScoreWidget.ZoneScoreWidget_C.BindEndOfDayHeaderText
+// (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void UZoneScoreWidget_C::BindEndOfDayHeaderText()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ZoneScoreWidget.ZoneScoreWidget_C.BindEndOfDayHeaderText");
+
+	UZoneScoreWidget_C_BindEndOfDayHeaderText_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ZoneScoreWidget.ZoneScoreWidget_C.ShowTeamScoreContributions
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
@@ -171,23 +188,6 @@ void UZoneScoreWidget_C::OnScoreTweenEndEvent()
 }
 
 
-// Function ZoneScoreWidget.ZoneScoreWidget_C.Construct
-// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
-
-void UZoneScoreWidget_C::Construct()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ZoneScoreWidget.ZoneScoreWidget_C.Construct");
-
-	UZoneScoreWidget_C_Construct_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function ZoneScoreWidget.ZoneScoreWidget_C.Tick
 // (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
 // Parameters:
@@ -201,6 +201,23 @@ void UZoneScoreWidget_C::Tick(struct FGeometry* MyGeometry, float* InDeltaTime)
 	UZoneScoreWidget_C_Tick_Params params;
 	params.MyGeometry = MyGeometry;
 	params.InDeltaTime = InDeltaTime;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ZoneScoreWidget.ZoneScoreWidget_C.Construct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UZoneScoreWidget_C::Construct()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ZoneScoreWidget.ZoneScoreWidget_C.Construct");
+
+	UZoneScoreWidget_C_Construct_Params params;
 
 	auto flags = fn->FunctionFlags;
 

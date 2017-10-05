@@ -44,7 +44,7 @@ public:
 	struct FScriptMulticastDelegate                    OnMediaOpenFailed;                                        // 0x0070(0x0010) (CPF_ZeroConstructor, CPF_InstancedReference, CPF_BlueprintAssignable)
 	struct FScriptMulticastDelegate                    OnPlaybackResumed;                                        // 0x0080(0x0010) (CPF_ZeroConstructor, CPF_InstancedReference, CPF_BlueprintAssignable)
 	struct FScriptMulticastDelegate                    OnPlaybackSuspended;                                      // 0x0090(0x0010) (CPF_ZeroConstructor, CPF_InstancedReference, CPF_BlueprintAssignable)
-	unsigned char                                      PlayOnOpen : 1;                                           // 0x00A0(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               PlayOnOpen;                                               // 0x00A0(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x3];                                       // 0x00A1(0x0003) MISSED OFFSET
 	unsigned char                                      Shuffle : 1;                                              // 0x00A4(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly)
 	unsigned char                                      Loop : 1;                                                 // 0x00A4(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly)
@@ -73,7 +73,7 @@ public:
 	void SetOverlays(class UMediaOverlays* NewOverlays);
 	bool SetLooping(bool Looping);
 	void SetDesiredPlayerName(const struct FName& PlayerName);
-	bool SelectTrack(int TrackIndex);
+	bool SelectTrack(EMediaPlayerTrack TrackType, int TrackIndex);
 	bool Seek(const struct FTimespan& Time);
 	bool Rewind();
 	bool Reopen();
@@ -92,14 +92,14 @@ public:
 	bool IsPaused();
 	bool IsLooping();
 	struct FString GetUrl();
-	struct FString GetTrackLanguage(int TrackIndex);
-	struct FText GetTrackDisplayName(int TrackIndex);
+	struct FString GetTrackLanguage(EMediaPlayerTrack TrackType, int TrackIndex);
+	struct FText GetTrackDisplayName(EMediaPlayerTrack TrackType, int TrackIndex);
 	struct FTimespan GetTime();
-	int GetSelectedTrack();
+	int GetSelectedTrack(EMediaPlayerTrack TrackType);
 	struct FFloatRange GetReverseRates(bool Unthinned);
 	float GetRate();
 	struct FName GetPlayerName();
-	int GetNumTracks();
+	int GetNumTracks(EMediaPlayerTrack TrackType);
 	struct FFloatRange GetForwardRates(bool Unthinned);
 	struct FTimespan GetDuration();
 	struct FName GetDesiredPlayerName();
@@ -194,7 +194,8 @@ class UFileMediaSource : public UBaseMediaSource
 {
 public:
 	struct FString                                     FilePath;                                                 // 0x0038(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      PrecacheFile : 1;                                         // 0x0048(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               PrecacheFile;                                             // 0x0048(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0049(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

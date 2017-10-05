@@ -34,7 +34,7 @@ public:
 	void Get_Type_Text(class UFortItem* Item, struct FText* Type);
 	void HandleCommitAction(bool* PassThrough);
 	void HandleItemSelected(class UObject* ItemSelected, bool IsSelected);
-	void DialogResult_C897FB8741239C9DAE2430AD3D91A030(const struct FName& ResultName, bool bWaitingForLatentActionCompletion, const struct FFortDialogExternalLatentActionHandle& WaitingDialogHandle);
+	void DialogResult_C897FB8741239C9DAE2430AD3D91A030(EFortDialogResult Result, const struct FName& ResultName, bool bWaitingForLatentActionCompletion, const struct FFortDialogExternalLatentActionHandle& WaitingDialogHandle);
 	void Construct();
 	void ShowSlotItemConfirmation(class UFortItem* SelectedItem);
 	void ExecuteUbergraph_CollectionBookItemPicker(int EntryPoint);

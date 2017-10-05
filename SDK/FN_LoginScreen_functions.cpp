@@ -461,13 +461,15 @@ void ULoginScreen_C::ShowSignInWindow(bool DirectSignIn)
 // Function LoginScreen.LoginScreen_C.DialogResult_EE7DC32F44B9651770AED08101A03510
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULoginScreen_C::DialogResult_EE7DC32F44B9651770AED08101A03510(const struct FName& ResultName)
+void ULoginScreen_C::DialogResult_EE7DC32F44B9651770AED08101A03510(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LoginScreen.LoginScreen_C.DialogResult_EE7DC32F44B9651770AED08101A03510");
 
 	ULoginScreen_C_DialogResult_EE7DC32F44B9651770AED08101A03510_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -481,13 +483,15 @@ void ULoginScreen_C::DialogResult_EE7DC32F44B9651770AED08101A03510(const struct 
 // Function LoginScreen.LoginScreen_C.DialogResult_B952A8754B3836D2151B4981F531542E
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULoginScreen_C::DialogResult_B952A8754B3836D2151B4981F531542E(const struct FName& ResultName)
+void ULoginScreen_C::DialogResult_B952A8754B3836D2151B4981F531542E(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LoginScreen.LoginScreen_C.DialogResult_B952A8754B3836D2151B4981F531542E");
 
 	ULoginScreen_C_DialogResult_B952A8754B3836D2151B4981F531542E_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -537,12 +541,15 @@ void ULoginScreen_C::OnPatchingComplete(bool* bProceed)
 
 // Function LoginScreen.LoginScreen_C.OnEnterState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  PreviousUIState                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULoginScreen_C::OnEnterState()
+void ULoginScreen_C::OnEnterState(EFortUIState* PreviousUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LoginScreen.LoginScreen_C.OnEnterState");
 
 	ULoginScreen_C_OnEnterState_Params params;
+	params.PreviousUIState = PreviousUIState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -554,12 +561,15 @@ void ULoginScreen_C::OnEnterState()
 
 // Function LoginScreen.LoginScreen_C.OnExitState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  NextUIState                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULoginScreen_C::OnExitState()
+void ULoginScreen_C::OnExitState(EFortUIState* NextUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LoginScreen.LoginScreen_C.OnExitState");
 
 	ULoginScreen_C_OnExitState_Params params;
+	params.NextUIState = NextUIState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -942,12 +952,15 @@ void ULoginScreen_C::OnDisplayErrorComplete()
 
 // Function LoginScreen.LoginScreen_C.HandleOnLoginAccountTypeSelected
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortLoginAccountType          LoginAccountType               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULoginScreen_C::HandleOnLoginAccountTypeSelected()
+void ULoginScreen_C::HandleOnLoginAccountTypeSelected(EFortLoginAccountType LoginAccountType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LoginScreen.LoginScreen_C.HandleOnLoginAccountTypeSelected");
 
 	ULoginScreen_C_HandleOnLoginAccountTypeSelected_Params params;
+	params.LoginAccountType = LoginAccountType;
 
 	auto flags = fn->FunctionFlags;
 

@@ -52,7 +52,7 @@ std::string UObject::GetFullName() const
 
 bool UObject::IsA(UClass* cmp) const
 {
-	for (auto super = Class; super; super = (UClass*)super->SuperField)
+	for (auto super = Class; super; super = static_cast<UClass*>(super->SuperField))
 	{
 		if (super == cmp)
 		{

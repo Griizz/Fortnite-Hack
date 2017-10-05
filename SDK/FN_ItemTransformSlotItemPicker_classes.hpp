@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // WidgetBlueprintGeneratedClass ItemTransformSlotItemPicker.ItemTransformSlotItemPicker_C
-// 0x0000 (0x0290 - 0x0290)
+// 0x0000 (0x02A0 - 0x02A0)
 class UItemTransformSlotItemPicker_C : public UFortTransformSlotItemPicker
 {
 public:

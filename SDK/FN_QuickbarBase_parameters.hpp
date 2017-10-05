@@ -57,22 +57,26 @@ struct UQuickbarBase_C_OnWorldItemListChanged_Params
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarSlotFocusChanged
 struct UQuickbarBase_C_OnQuickbarSlotFocusChanged_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarContentsChanged
 struct UQuickbarBase_C_OnQuickbarContentsChanged_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarForceFullUpdate
 struct UQuickbarBase_C_OnQuickbarForceFullUpdate_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarSecondarySlotFocusChanged_Event_1
 struct UQuickbarBase_C_OnQuickbarSecondarySlotFocusChanged_Event_1_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

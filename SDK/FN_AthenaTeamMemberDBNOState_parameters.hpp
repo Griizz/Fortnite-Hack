@@ -26,6 +26,18 @@ struct UAthenaTeamMemberDBNOState_C_Set_DBNO_Params
 	bool                                               Is_DBNO;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
+// Function AthenaTeamMemberDBNOState.AthenaTeamMemberDBNOState_C.PreConstruct
+struct UAthenaTeamMemberDBNOState_C_PreConstruct_Params
+{
+	bool*                                              IsDesignTime;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function AthenaTeamMemberDBNOState.AthenaTeamMemberDBNOState_C.ExecuteUbergraph_AthenaTeamMemberDBNOState
+struct UAthenaTeamMemberDBNOState_C_ExecuteUbergraph_AthenaTeamMemberDBNOState_Params
+{
+	int                                                EntryPoint;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 }
 
 #ifdef _MSC_VER

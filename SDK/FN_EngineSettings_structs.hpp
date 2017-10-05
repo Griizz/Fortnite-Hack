@@ -13,20 +13,20 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum EngineSettings.EThreePlayerSplitScreenType
-enum class EThreePlayerSplitScreenType
+enum class EThreePlayerSplitScreenType : uint8_t
 {
-	EThreePlayerSplitScreenType__FavorTop = 0,
-	EThreePlayerSplitScreenType__FavorBottom = 1,
-	EThreePlayerSplitScreenType__EThreePlayerSplitScreenType_MAX = 2
+	FavorTop                       = 0,
+	FavorBottom                    = 1,
+	EThreePlayerSplitScreenType_MAX = 2
 };
 
 
 // Enum EngineSettings.ETwoPlayerSplitScreenType
-enum class ETwoPlayerSplitScreenType
+enum class ETwoPlayerSplitScreenType : uint8_t
 {
-	ETwoPlayerSplitScreenType__Horizontal = 0,
-	ETwoPlayerSplitScreenType__Vertical = 1,
-	ETwoPlayerSplitScreenType__ETwoPlayerSplitScreenType_MAX = 2
+	Horizontal                     = 0,
+	Vertical                       = 1,
+	ETwoPlayerSplitScreenType_MAX  = 2
 };
 
 

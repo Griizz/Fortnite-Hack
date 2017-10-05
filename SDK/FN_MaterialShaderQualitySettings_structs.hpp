@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum MaterialShaderQualitySettings.EMobileCSMQuality
-enum class EMobileCSMQuality
+enum class EMobileCSMQuality : uint8_t
 {
-	EMobileCSMQuality__NoFiltering = 0,
-	EMobileCSMQuality__PCF_1x1     = 1,
-	EMobileCSMQuality__PCF_2x2     = 2,
-	EMobileCSMQuality__EMobileCSMQuality_MAX = 3
+	NoFiltering                    = 0,
+	PCF_1x1                        = 1,
+	PCF_2x2                        = 2,
+	EMobileCSMQuality_MAX          = 3
 };
 
 
@@ -31,12 +31,12 @@ enum class EMobileCSMQuality
 // 0x0006
 struct FMaterialQualityOverrides
 {
-	unsigned char                                      bEnableOverride : 1;                                      // 0x0000(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      bForceFullyRough : 1;                                     // 0x0001(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      bForceNonMetal : 1;                                       // 0x0002(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      bForceDisableLMDirectionality : 1;                        // 0x0003(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      bForceLQReflections : 1;                                  // 0x0004(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0005(0x0001) UNKNOWN PROPERTY: EnumProperty MaterialShaderQualitySettings.MaterialQualityOverrides.MobileCSMQuality
+	bool                                               bEnableOverride;                                          // 0x0000(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bForceFullyRough;                                         // 0x0001(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bForceNonMetal;                                           // 0x0002(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bForceDisableLMDirectionality;                            // 0x0003(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bForceLQReflections;                                      // 0x0004(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	EMobileCSMQuality                                  MobileCSMQuality;                                         // 0x0005(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 };
 
 }

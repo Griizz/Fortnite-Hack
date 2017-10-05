@@ -6,8 +6,7 @@
 	#pragma pack(push, 0x8)
 #endif
 
-//#include "../SDK.hpp"
-#include "FN_OnlineSubsystem_structs.hpp"
+#include "../SDK.hpp"
 
 namespace SDK
 {

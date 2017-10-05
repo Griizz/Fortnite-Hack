@@ -404,6 +404,26 @@ void UOptionsMenuInput_C::OnMouseEnter(struct FGeometry* MyGeometry, struct FPoi
 }
 
 
+// Function OptionsMenuInput.OptionsMenuInput_C.BndEvt__IconTextButton_K2Node_ComponentBoundEvent_226_CommonButtonClicked__DelegateSignature
+// (FUNC_BlueprintEvent)
+// Parameters:
+// class UCommonButton*           Button                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UOptionsMenuInput_C::BndEvt__IconTextButton_K2Node_ComponentBoundEvent_226_CommonButtonClicked__DelegateSignature(class UCommonButton* Button)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function OptionsMenuInput.OptionsMenuInput_C.BndEvt__IconTextButton_K2Node_ComponentBoundEvent_226_CommonButtonClicked__DelegateSignature");
+
+	UOptionsMenuInput_C_BndEvt__IconTextButton_K2Node_ComponentBoundEvent_226_CommonButtonClicked__DelegateSignature_Params params;
+	params.Button = Button;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function OptionsMenuInput.OptionsMenuInput_C.ExecuteUbergraph_OptionsMenuInput
 // (FUNC_HasDefaults)
 // Parameters:
@@ -424,18 +444,38 @@ void UOptionsMenuInput_C::ExecuteUbergraph_OptionsMenuInput(int EntryPoint)
 }
 
 
+// Function OptionsMenuInput.OptionsMenuInput_C.UnbindClicked__DelegateSignature
+// (FUNC_Public, FUNC_Delegate, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// int                            Number_in_List                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UOptionsMenuInput_C::UnbindClicked__DelegateSignature(int Number_in_List)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function OptionsMenuInput.OptionsMenuInput_C.UnbindClicked__DelegateSignature");
+
+	UOptionsMenuInput_C_UnbindClicked__DelegateSignature_Params params;
+	params.Number_in_List = Number_in_List;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function OptionsMenuInput.OptionsMenuInput_C.Input Clicked__DelegateSignature
 // (FUNC_Public, FUNC_Delegate, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// int                            Number_In_List                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// int                            Number_in_List                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           Is_Primary_Button              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UOptionsMenuInput_C::Input_Clicked__DelegateSignature(int Number_In_List, bool Is_Primary_Button)
+void UOptionsMenuInput_C::Input_Clicked__DelegateSignature(int Number_in_List, bool Is_Primary_Button)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function OptionsMenuInput.OptionsMenuInput_C.Input Clicked__DelegateSignature");
 
 	UOptionsMenuInput_C_Input_Clicked__DelegateSignature_Params params;
-	params.Number_In_List = Number_In_List;
+	params.Number_in_List = Number_in_List;
 	params.Is_Primary_Button = Is_Primary_Button;
 
 	auto flags = fn->FunctionFlags;

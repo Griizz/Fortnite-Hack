@@ -18,6 +18,7 @@ namespace SDK
 struct UChoiceCardName_C_UpdateText_Params
 {
 	struct FText                                       DisplayText;                                              // (CPF_Parm)
+	EFortRarity                                        Rarity;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 }

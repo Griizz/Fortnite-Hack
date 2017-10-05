@@ -51,6 +51,7 @@ struct UHeroSquadManagementScreen_C_HandleClosePicker_Params
 // Function HeroSquadManagementScreen.HeroSquadManagementScreen_C.GetInZoneVisibility
 struct UHeroSquadManagementScreen_C_GetInZoneVisibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function HeroSquadManagementScreen.HeroSquadManagementScreen_C.OnActivated

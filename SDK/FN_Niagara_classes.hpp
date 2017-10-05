@@ -180,7 +180,8 @@ class UNiagaraSpriteRendererProperties : public UNiagaraEffectRendererProperties
 {
 public:
 	struct FVector2D                                   SubImageInfo;                                             // 0x0028(0x0008) (CPF_Edit, CPF_IsPlainOldData)
-	unsigned char                                      bBVelocityAligned : 1;                                    // 0x0030(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bBVelocityAligned;                                        // 0x0030(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0031(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -203,11 +204,11 @@ public:
 	TArray<struct FNiagaraDataSetProperties>           EventReceivers;                                           // 0x0068(0x0010) (CPF_ZeroConstructor)
 	TArray<struct FNiagaraDataSetProperties>           EventGenerators;                                          // 0x0078(0x0010) (CPF_ZeroConstructor)
 	struct FNiagaraScriptDataUsageInfo                 DataUsage;                                                // 0x0088(0x0001)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0089(0x0001) UNKNOWN PROPERTY: EnumProperty Niagara.NiagaraScript.Usage
-	unsigned char                                      UnknownData01[0x6];                                       // 0x008A(0x0006) MISSED OFFSET
+	ENiagaraScriptUsage                                Usage;                                                    // 0x0089(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x6];                                       // 0x008A(0x0006) MISSED OFFSET
 	TArray<struct FNiagaraScriptDataInterfaceInfo>     DataInterfaceInfo;                                        // 0x0090(0x0010) (CPF_ZeroConstructor)
-	unsigned char                                      UnknownData02[0x1];                                       // 0x00A0(0x0001) UNKNOWN PROPERTY: EnumProperty Niagara.NiagaraScript.NumericOutputTypeSelectionMode
-	unsigned char                                      UnknownData03[0x27];                                      // 0x00A1(0x0027) MISSED OFFSET
+	ENiagaraNumericOutputTypeSelectionMode             NumericOutputTypeSelectionMode;                           // 0x00A0(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x27];                                      // 0x00A1(0x0027) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -239,6 +240,7 @@ class UNiagaraEventReceiverEmitterAction_SpawnParticles : public UNiagaraEventRe
 {
 public:
 	uint32_t                                           NumParticles;                                             // 0x0028(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x002C(0x0004) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -255,14 +257,14 @@ class UNiagaraEmitterProperties : public UObject
 {
 public:
 	float                                              SpawnRate;                                                // 0x0028(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bLocalSpace : 1;                                          // 0x002C(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bLocalSpace;                                              // 0x002C(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x002D(0x0003) MISSED OFFSET
 	class UMaterial*                                   Material;                                                 // 0x0030(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              StartTime;                                                // 0x0038(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              EndTime;                                                  // 0x003C(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                NumLoops;                                                 // 0x0040(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0044(0x0001) UNKNOWN PROPERTY: EnumProperty Niagara.NiagaraEmitterProperties.CollisionMode
-	unsigned char                                      UnknownData02[0x3];                                       // 0x0045(0x0003) MISSED OFFSET
+	ENiagaraCollisionMode                              CollisionMode;                                            // 0x0044(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x3];                                       // 0x0045(0x0003) MISSED OFFSET
 	class UNiagaraEffectRendererProperties*            RendererProperties;                                       // 0x0048(0x0008) (CPF_Edit, CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FNiagaraEmitterScriptProperties             UpdateScriptProps;                                        // 0x0050(0x0028)
 	struct FNiagaraEmitterScriptProperties             SpawnScriptProps;                                         // 0x0078(0x0028)

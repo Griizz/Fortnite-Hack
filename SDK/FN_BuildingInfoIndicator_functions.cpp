@@ -32,13 +32,15 @@ void UBuildingInfoIndicator_C::RefreshBuildingInfo()
 // Function BuildingInfoIndicator.BuildingInfoIndicator_C.HandleQuickbarFocusChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortQuickBars                 QuickBar                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            QuickBarSlot                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UBuildingInfoIndicator_C::HandleQuickbarFocusChanged(int QuickBarSlot)
+void UBuildingInfoIndicator_C::HandleQuickbarFocusChanged(EFortQuickBars QuickBar, int QuickBarSlot)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function BuildingInfoIndicator.BuildingInfoIndicator_C.HandleQuickbarFocusChanged");
 
 	UBuildingInfoIndicator_C_HandleQuickbarFocusChanged_Params params;
+	params.QuickBar = QuickBar;
 	params.QuickBarSlot = QuickBarSlot;
 
 	auto flags = fn->FunctionFlags;
@@ -77,10 +79,11 @@ void UBuildingInfoIndicator_C::HandleAttachedTrapChanged(class ABuildingTrap* Bu
 // bool                           IsAnyTrapAttached              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           IsTrapAttachedFacingPlayer     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           IsPreviewTrapAttached          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortBuildingInteraction       InteractionType                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            InteractionCost                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // TEnumAsByte<EFortResourceType> BuildingMaterial               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UBuildingInfoIndicator_C::UpdateBuildingInfo_InteractionWidgets(bool Interactable, bool CanBePlayerEdited, bool IsAnyTrapAttached, bool IsTrapAttachedFacingPlayer, bool IsPreviewTrapAttached, int InteractionCost, TEnumAsByte<EFortResourceType> BuildingMaterial)
+void UBuildingInfoIndicator_C::UpdateBuildingInfo_InteractionWidgets(bool Interactable, bool CanBePlayerEdited, bool IsAnyTrapAttached, bool IsTrapAttachedFacingPlayer, bool IsPreviewTrapAttached, EFortBuildingInteraction InteractionType, int InteractionCost, TEnumAsByte<EFortResourceType> BuildingMaterial)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function BuildingInfoIndicator.BuildingInfoIndicator_C.UpdateBuildingInfo_InteractionWidgets");
 
@@ -90,6 +93,7 @@ void UBuildingInfoIndicator_C::UpdateBuildingInfo_InteractionWidgets(bool Intera
 	params.IsAnyTrapAttached = IsAnyTrapAttached;
 	params.IsTrapAttachedFacingPlayer = IsTrapAttachedFacingPlayer;
 	params.IsPreviewTrapAttached = IsPreviewTrapAttached;
+	params.InteractionType = InteractionType;
 	params.InteractionCost = InteractionCost;
 	params.BuildingMaterial = BuildingMaterial;
 

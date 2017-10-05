@@ -22,6 +22,7 @@ struct USquadSlotDetailsPanel_C_Set_Scroll_Box_to_Nav_Scroll_Widget_Params
 // Function SquadSlotDetailsPanel.SquadSlotDetailsPanel_C.GetRestrictionReasonsAsText
 struct USquadSlotDetailsPanel_C_GetRestrictionReasonsAsText_Params
 {
+	TArray<EFortSquadSlottingRestrictionReason>        Reasons;                                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	struct FText                                       Text;                                                     // (CPF_Parm, CPF_OutParm)
 };
 

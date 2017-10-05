@@ -49,13 +49,17 @@ void URewards_Header_C::SetQuestNameText()
 // Function Rewards_Header.Rewards_Header_C.PopulateFromRewardType
 // (FUNC_Private, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFrontEndRewardType            Selection                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ECollectionBookRewardType      CollectionBookRewardType       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   RewardDetailText               (CPF_Parm)
 
-void URewards_Header_C::PopulateFromRewardType(const struct FText& RewardDetailText)
+void URewards_Header_C::PopulateFromRewardType(EFrontEndRewardType Selection, ECollectionBookRewardType CollectionBookRewardType, const struct FText& RewardDetailText)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Rewards_Header.Rewards_Header_C.PopulateFromRewardType");
 
 	URewards_Header_C_PopulateFromRewardType_Params params;
+	params.Selection = Selection;
+	params.CollectionBookRewardType = CollectionBookRewardType;
 	params.RewardDetailText = RewardDetailText;
 
 	auto flags = fn->FunctionFlags;

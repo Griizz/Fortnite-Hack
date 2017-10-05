@@ -66,6 +66,7 @@ struct UJoinServer_C_ShowTutorialCanceled_Params
 // Function JoinServer.JoinServer_C.GetMatchmakingError
 struct UJoinServer_C_GetMatchmakingError_Params
 {
+	EMatchmakingCompleteResult                         MatchMakingError;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ErrorText;                                                // (CPF_Parm, CPF_OutParm)
 };
 
@@ -88,6 +89,7 @@ struct UJoinServer_C_StartTutorialMatchmakingFlow_Params
 // Function JoinServer.JoinServer_C.HandleEnterState
 struct UJoinServer_C_HandleEnterState_Params
 {
+	EFortUIState                                       PreviousState;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function JoinServer.JoinServer_C.HandleLobbyDisconnected
@@ -105,6 +107,7 @@ struct UJoinServer_C_HandleMatchmakingStateChange_Params
 // Function JoinServer.JoinServer_C.HandleMatchmakingComplete
 struct UJoinServer_C_HandleMatchmakingComplete_Params
 {
+	EMatchmakingCompleteResult                         Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function JoinServer.JoinServer_C.Initialize
@@ -115,6 +118,7 @@ struct UJoinServer_C_Initialize_Params
 // Function JoinServer.JoinServer_C.DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF
 struct UJoinServer_C_DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -182,6 +186,7 @@ struct UJoinServer_C_Construct_Params
 // Function JoinServer.JoinServer_C.OnEnterState
 struct UJoinServer_C_OnEnterState_Params
 {
+	EFortUIState*                                      PreviousUIState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function JoinServer.JoinServer_C.ExecuteUbergraph_JoinServer

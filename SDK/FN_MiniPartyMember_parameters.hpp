@@ -28,6 +28,7 @@ struct UMiniPartyMember_C_OpenPartyFinder_Params
 // Function MiniPartyMember.MiniPartyMember_C.GetLeaderVisibility
 struct UMiniPartyMember_C_GetLeaderVisibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function MiniPartyMember.MiniPartyMember_C.UpdateMemberInfo

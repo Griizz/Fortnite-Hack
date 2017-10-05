@@ -72,6 +72,23 @@ void ULoginAccountSelect_C::BndEvt__XBoxLoginButton_K2Node_ComponentBoundEvent_2
 }
 
 
+// Function LoginAccountSelect.LoginAccountSelect_C.OnActivated
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void ULoginAccountSelect_C::OnActivated()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LoginAccountSelect.LoginAccountSelect_C.OnActivated");
+
+	ULoginAccountSelect_C_OnActivated_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function LoginAccountSelect.LoginAccountSelect_C.ExecuteUbergraph_LoginAccountSelect
 // ()
 // Parameters:

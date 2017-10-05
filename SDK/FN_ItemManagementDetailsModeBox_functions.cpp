@@ -31,12 +31,15 @@ void UItemManagementDetailsModeBox_C::RegisterInspectUpgrade()
 
 // Function ItemManagementDetailsModeBox.ItemManagementDetailsModeBox_C.HandleQuickbarContentsChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemManagementDetailsModeBox_C::HandleQuickbarContentsChanged()
+void UItemManagementDetailsModeBox_C::HandleQuickbarContentsChanged(EFortQuickBars QuickbarIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementDetailsModeBox.ItemManagementDetailsModeBox_C.HandleQuickbarContentsChanged");
 
 	UItemManagementDetailsModeBox_C_HandleQuickbarContentsChanged_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 
 	auto flags = fn->FunctionFlags;
 

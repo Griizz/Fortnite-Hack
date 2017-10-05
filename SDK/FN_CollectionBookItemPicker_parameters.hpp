@@ -37,6 +37,7 @@ struct UCollectionBookItemPicker_C_HandleItemSelected_Params
 // Function CollectionBookItemPicker.CollectionBookItemPicker_C.DialogResult_C897FB8741239C9DAE2430AD3D91A030
 struct UCollectionBookItemPicker_C_DialogResult_C897FB8741239C9DAE2430AD3D91A030_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWaitingForLatentActionCompletion;                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortDialogExternalLatentActionHandle       WaitingDialogHandle;                                      // (CPF_Parm)

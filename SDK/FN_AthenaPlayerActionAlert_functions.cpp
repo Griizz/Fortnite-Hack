@@ -15,13 +15,15 @@ namespace SDK
 // Function AthenaPlayerActionAlert.AthenaPlayerActionAlert_C.AlertPlayer
 // (FUNC_Event, FUNC_Protected, FUNC_HasOutParms, FUNC_BlueprintEvent)
 // Parameters:
+// EAthenaPlayerActionAlert*      Alert                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText*                  DetailText                     (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 
-void UAthenaPlayerActionAlert_C::AlertPlayer(struct FText* DetailText)
+void UAthenaPlayerActionAlert_C::AlertPlayer(EAthenaPlayerActionAlert* Alert, struct FText* DetailText)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaPlayerActionAlert.AthenaPlayerActionAlert_C.AlertPlayer");
 
 	UAthenaPlayerActionAlert_C_AlertPlayer_Params params;
+	params.Alert = Alert;
 	params.DetailText = DetailText;
 
 	auto flags = fn->FunctionFlags;

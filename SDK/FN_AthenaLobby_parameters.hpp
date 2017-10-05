@@ -194,6 +194,7 @@ struct UAthenaLobby_C_Initialize_Params
 // Function AthenaLobby.AthenaLobby_C.DialogResult_156754AE468EF93DCA2009A412591BA7
 struct UAthenaLobby_C_DialogResult_156754AE468EF93DCA2009A412591BA7_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

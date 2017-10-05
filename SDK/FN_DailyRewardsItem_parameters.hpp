@@ -14,12 +14,6 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
-// Function DailyRewardsItem.DailyRewardsItem_C.SetCardSize
-struct UDailyRewardsItem_C_SetCardSize_Params
-{
-	TEnumAsByte<EFortBrushSize>                        CardSize;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
 // Function DailyRewardsItem.DailyRewardsItem_C.Construct
 struct UDailyRewardsItem_C_Construct_Params
 {

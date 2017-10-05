@@ -23,10 +23,10 @@ public:
 	struct FText                                       Title;                                                    // 0x0418(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	struct FText                                       Description;                                              // 0x0430(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	struct FSlateBrush                                 Icon;                                                     // 0x0448(0x0090) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      bIntroOutrEnabled : 1;                                    // 0x04D8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bAutoInitialize : 1;                                      // 0x04D9(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bFocusSelf : 1;                                           // 0x04DA(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bConsumeAnalogInput : 1;                                  // 0x04DB(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIntroOutrEnabled;                                        // 0x04D8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bAutoInitialize;                                          // 0x04D9(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bFocusSelf;                                               // 0x04DA(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bConsumeAnalogInput;                                      // 0x04DB(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

@@ -13,42 +13,42 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum MovieScene.ESpawnOwnership
-enum class ESpawnOwnership
+enum class ESpawnOwnership : uint8_t
 {
-	ESpawnOwnership__InnerSequence = 0,
-	ESpawnOwnership__MasterSequence = 1,
-	ESpawnOwnership__External      = 2,
-	ESpawnOwnership__ESpawnOwnership_MAX = 3
+	InnerSequence                  = 0,
+	MasterSequence                 = 1,
+	External                       = 2,
+	ESpawnOwnership_MAX            = 3
 };
 
 
 // Enum MovieScene.EMovieSceneKeyInterpolation
-enum class EMovieSceneKeyInterpolation
+enum class EMovieSceneKeyInterpolation : uint8_t
 {
-	EMovieSceneKeyInterpolation__Auto = 0,
-	EMovieSceneKeyInterpolation__User = 1,
-	EMovieSceneKeyInterpolation__Break = 2,
-	EMovieSceneKeyInterpolation__Linear = 3,
-	EMovieSceneKeyInterpolation__Constant = 4,
-	EMovieSceneKeyInterpolation__EMovieSceneKeyInterpolation_MAX = 5
+	Auto                           = 0,
+	User                           = 1,
+	Break                          = 2,
+	Linear                         = 3,
+	Constant                       = 4,
+	EMovieSceneKeyInterpolation_MAX = 5
 };
 
 
 // Enum MovieScene.EMovieSceneCompletionMode
-enum class EMovieSceneCompletionMode
+enum class EMovieSceneCompletionMode : uint8_t
 {
-	EMovieSceneCompletionMode__KeepState = 0,
-	EMovieSceneCompletionMode__RestoreState = 1,
-	EMovieSceneCompletionMode__EMovieSceneCompletionMode_MAX = 2
+	KeepState                      = 0,
+	RestoreState                   = 1,
+	EMovieSceneCompletionMode_MAX  = 2
 };
 
 
 // Enum MovieScene.EEvaluationMethod
-enum class EEvaluationMethod
+enum class EEvaluationMethod : uint8_t
 {
-	EEvaluationMethod__Static      = 0,
-	EEvaluationMethod__Swept       = 1,
-	EEvaluationMethod__EEvaluationMethod_MAX = 2
+	Static                         = 0,
+	Swept                          = 1,
+	EEvaluationMethod_MAX          = 2
 };
 
 
@@ -65,7 +65,8 @@ struct FMovieSceneSpawnable
 	struct FString                                     Name;                                                     // 0x0010(0x0010) (CPF_ZeroConstructor)
 	class UObject*                                     ObjectTemplate;                                           // 0x0020(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<struct FGuid>                               ChildPossessables;                                        // 0x0028(0x0010) (CPF_ZeroConstructor)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0038(0x0001) UNKNOWN PROPERTY: EnumProperty MovieScene.MovieSceneSpawnable.Ownership
+	ESpawnOwnership                                    Ownership;                                                // 0x0038(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0039(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieScenePossessable
@@ -100,7 +101,8 @@ struct FMovieSceneBindingOverrideData
 {
 	struct FMovieSceneObjectBindingPtr                 ObjectBindingId;                                          // 0x0000(0x0010) (CPF_Edit)
 	TWeakObjectPtr<class UObject>                      Object;                                                   // 0x0010(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bOverridesDefault : 1;                                    // 0x0018(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bOverridesDefault;                                        // 0x0018(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0019(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieSceneSequencePlaybackSettings
@@ -109,10 +111,10 @@ struct FMovieSceneSequencePlaybackSettings
 {
 	int                                                LoopCount;                                                // 0x0000(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              PlayRate;                                                 // 0x0004(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bRandomStartTime : 1;                                     // 0x0008(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bRandomStartTime;                                         // 0x0008(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0009(0x0003) MISSED OFFSET
 	float                                              StartTime;                                                // 0x000C(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bRestoreState : 1;                                        // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bRestoreState;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x0011(0x0007) MISSED OFFSET
 	TScriptInterface<class UMovieSceneBindingOverridesInterface> BindingOverrides;                                         // 0x0018(0x0010) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -121,8 +123,8 @@ struct FMovieSceneSequencePlaybackSettings
 // 0x0002
 struct FMovieSceneSectionEvalOptions
 {
-	unsigned char                                      bCanEditCompletionMode : 1;                               // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0001(0x0001) UNKNOWN PROPERTY: EnumProperty MovieScene.MovieSceneSectionEvalOptions.CompletionMode
+	bool                                               bCanEditCompletionMode;                                   // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EMovieSceneCompletionMode                          CompletionMode;                                           // 0x0001(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // ScriptStruct MovieScene.MovieSceneTrackEvalOptions
@@ -133,6 +135,7 @@ struct FMovieSceneTrackEvalOptions
 	unsigned char                                      bEvaluateNearestSection : 1;                              // 0x0000(0x0001) (CPF_Edit)
 	unsigned char                                      bEvaluateInPreroll : 1;                                   // 0x0000(0x0001) (CPF_Edit)
 	unsigned char                                      bEvaluateInPostroll : 1;                                  // 0x0000(0x0001) (CPF_Edit)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieSceneSegment
@@ -162,21 +165,22 @@ struct FMovieSceneEvaluationTrack
 {
 	struct FGuid                                       ObjectBindingId;                                          // 0x0000(0x0010) (CPF_IsPlainOldData)
 	uint16_t                                           EvaluationPriority;                                       // 0x0010(0x0002) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0012(0x0001) UNKNOWN PROPERTY: EnumProperty MovieScene.MovieSceneEvaluationTrack.EvaluationMethod
-	unsigned char                                      UnknownData01[0x5];                                       // 0x0013(0x0005) MISSED OFFSET
+	EEvaluationMethod                                  EvaluationMethod;                                         // 0x0012(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x5];                                       // 0x0013(0x0005) MISSED OFFSET
 	TArray<struct FMovieSceneSegment>                  Segments;                                                 // 0x0018(0x0010) (CPF_ZeroConstructor)
 	TArray<struct FMovieSceneEvalTemplatePtr>          ChildTemplates;                                           // 0x0028(0x0010) (CPF_ZeroConstructor)
 	struct FMovieSceneTrackImplementationPtr           TrackTemplate;                                            // 0x0038(0x0038)
 	struct FName                                       EvaluationGroup;                                          // 0x0070(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      bEvaluateInPreroll : 1;                                   // 0x0078(0x0001)
 	unsigned char                                      bEvaluateInPostroll : 1;                                  // 0x0078(0x0001)
+	unsigned char                                      UnknownData01[0x7];                                       // 0x0079(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieSceneEvaluationGroupLUTIndex
 // 0x0010
 struct FMovieSceneEvaluationGroupLUTIndex
 {
-	unsigned char                                      bRequiresImmediateFlush : 1;                              // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bRequiresImmediateFlush;                                  // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
 	int                                                LUTOffset;                                                // 0x0004(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                NumInitPtrs;                                              // 0x0008(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -252,6 +256,7 @@ struct FMovieSceneSubSequenceData
 	struct FMovieSceneSequenceTransform                RootToSequenceTransform;                                  // 0x0008(0x0008)
 	struct FGuid                                       SourceSequenceSignature;                                  // 0x0010(0x0010) (CPF_IsPlainOldData)
 	struct FMovieSceneSequenceID                       DeterministicSequenceID;                                  // 0x0020(0x0004)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0024(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieSceneSequenceHierarchyNode
@@ -290,6 +295,7 @@ struct FMovieSceneEvaluationTemplate
 	struct FMovieSceneGenerationLedger                 Ledger;                                                   // 0x0170(0x00A8)
 	unsigned char                                      bHasLegacyTrackInstances : 1;                             // 0x0218(0x0001)
 	unsigned char                                      bKeepStaleTracks : 1;                                     // 0x0218(0x0001)
+	unsigned char                                      UnknownData01[0x7];                                       // 0x0219(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.CachedMovieSceneEvaluationTemplate
@@ -303,7 +309,7 @@ struct FCachedMovieSceneEvaluationTemplate : public FMovieSceneEvaluationTemplat
 // 0x0001
 struct FMovieSceneTrackCompilationParams
 {
-	unsigned char                                      bForEditorPreview : 1;                                    // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bForEditorPreview;                                        // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // ScriptStruct MovieScene.MovieSceneTrackLabels
@@ -317,7 +323,7 @@ struct FMovieSceneTrackLabels
 // 0x0001
 struct FMovieSceneExpansionState
 {
-	unsigned char                                      bExpanded : 1;                                            // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bExpanded;                                                // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // ScriptStruct MovieScene.MovieSceneEditorData
@@ -348,14 +354,15 @@ struct FMovieSceneEvalTemplateBase
 // 0x0001
 struct FMovieSceneEmptyStruct
 {
-
+	unsigned char                                      UnknownData00[0x1];                                       // 0x0000(0x0001) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieSceneEvalTemplate
 // 0x0008 (0x0018 - 0x0010)
 struct FMovieSceneEvalTemplate : public FMovieSceneEvalTemplateBase
 {
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0010(0x0001) UNKNOWN PROPERTY: EnumProperty MovieScene.MovieSceneEvalTemplate.CompletionMode
+	EMovieSceneCompletionMode                          CompletionMode;                                           // 0x0010(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0011(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieScene.MovieSceneTrackImplementation

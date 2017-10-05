@@ -38,7 +38,7 @@ public:
 	}
 
 
-	void GetOpenButtonVisibility();
+	ESlateVisibility GetOpenButtonVisibility();
 	void StartIntro();
 	void ShowText(const struct FText& Text, class UCommonTextBlock* TextBlock);
 	void SetToast(class UFortUINotification* Toast);

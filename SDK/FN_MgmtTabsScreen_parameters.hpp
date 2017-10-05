@@ -58,11 +58,15 @@ struct UMgmtTabsScreen_C_Destruct_Params
 // Function MgmtTabsScreen.MgmtTabsScreen_C.HandleShowQuests
 struct UMgmtTabsScreen_C_HandleShowQuests_Params
 {
+	EFortUIFeature                                     ChangedFeature;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortUIFeatureState                                NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MgmtTabsScreen.MgmtTabsScreen_C.HandleShowObjectives
 struct UMgmtTabsScreen_C_HandleShowObjectives_Params
 {
+	EFortUIFeature                                     ChangedFeature;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortUIFeatureState                                NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MgmtTabsScreen.MgmtTabsScreen_C.ExecuteUbergraph_MgmtTabsScreen

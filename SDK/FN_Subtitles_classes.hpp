@@ -28,7 +28,7 @@ public:
 	}
 
 
-	void GetSubtitleVisibility();
+	ESlateVisibility GetSubtitleVisibility();
 	void Construct();
 	void ExecuteUbergraph_Subtitles(int EntryPoint);
 };

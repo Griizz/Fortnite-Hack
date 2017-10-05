@@ -22,6 +22,7 @@ struct UBuildingInfoIndicator_C_RefreshBuildingInfo_Params
 // Function BuildingInfoIndicator.BuildingInfoIndicator_C.HandleQuickbarFocusChanged
 struct UBuildingInfoIndicator_C_HandleQuickbarFocusChanged_Params
 {
+	EFortQuickBars                                     QuickBar;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                QuickBarSlot;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -39,6 +40,7 @@ struct UBuildingInfoIndicator_C_UpdateBuildingInfo_InteractionWidgets_Params
 	bool                                               IsAnyTrapAttached;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               IsTrapAttachedFacingPlayer;                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               IsPreviewTrapAttached;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortBuildingInteraction                           InteractionType;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                InteractionCost;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TEnumAsByte<EFortResourceType>                     BuildingMaterial;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };

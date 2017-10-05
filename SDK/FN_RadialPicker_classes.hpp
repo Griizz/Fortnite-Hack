@@ -35,20 +35,20 @@ public:
 	int                                                ActiveOption;                                             // 0x02B0(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	int                                                NumOptions;                                               // 0x02B4(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              YAxisMultiplier;                                          // 0x02B8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      PickerClosing : 1;                                        // 0x02BC(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x02BD(0x0001) UNKNOWN PROPERTY: EnumProperty RadialPicker.RadialPicker_C.PickerMode
+	bool                                               PickerClosing;                                            // 0x02BC(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	EFortPickerMode                                    PickerMode;                                               // 0x02BD(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	TEnumAsByte<EControllerAnalogStick>                Thumbstick;                                               // 0x02BE(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData01[0x1];                                       // 0x02BF(0x0001) MISSED OFFSET
+	unsigned char                                      UnknownData00[0x1];                                       // 0x02BF(0x0001) MISSED OFFSET
 	class USoundBase*                                  SoundOnAccept;                                            // 0x02C0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class USoundBase*                                  SoundOnCancel;                                            // 0x02C8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class USoundBase*                                  SoundOnSelect;                                            // 0x02D0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<class URadialPickerItem_C*>                 PickerOptions;                                            // 0x02D8(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	unsigned char                                      bUsingGamepad : 1;                                        // 0x02E8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bIgnoringMoveInput : 1;                                   // 0x02E9(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bIgnoringLookInput : 1;                                   // 0x02EA(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData02[0x1];                                       // 0x02EB(0x0001) MISSED OFFSET
+	bool                                               bUsingGamepad;                                            // 0x02E8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bIgnoringMoveInput;                                       // 0x02E9(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bIgnoringLookInput;                                       // 0x02EA(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x1];                                       // 0x02EB(0x0001) MISSED OFFSET
 	float                                              CurrentPointerAngle;                                      // 0x02EC(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bShowingMouseCursor : 1;                                  // 0x02F0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bShowingMouseCursor;                                      // 0x02F0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -69,13 +69,14 @@ public:
 	void GetOptionAngle(int Option, float* Angle);
 	void GetAngleDifference(float AngleA, float AngleB, float* Difference);
 	void GetOptionPosition(int Option, struct FVector2D* Position);
-	void InitializePicker(int InitialOption);
+	void InitializePicker(EFortPickerMode PickerMode, int InitialOption);
 	void Tick(struct FGeometry* MyGeometry, float* InDeltaTime);
 	void Construct();
 	void Event_AcceptOption();
 	void Event_CancelPicker();
 	void ClosePicker();
 	void AcceptChosenOption(int PickerOption);
+	void OnPickerRefreshItems();
 	void ExecuteUbergraph_RadialPicker(int EntryPoint);
 };
 

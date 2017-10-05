@@ -40,6 +40,7 @@ public:
 	unsigned char                                      bConstrainRx : 1;                                         // 0x00E8(0x0001) (CPF_Edit)
 	unsigned char                                      bConstrainRy : 1;                                         // 0x00E8(0x0001) (CPF_Edit)
 	unsigned char                                      bConstrainRz : 1;                                         // 0x00E8(0x0001) (CPF_Edit)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x00E9(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -56,12 +57,13 @@ class UMovieScene3DPathSection : public UMovieScene3DConstraintSection
 {
 public:
 	unsigned char                                      UnknownData00[0x68];                                      // 0x00E0(0x0068) MISSED OFFSET
-	unsigned char                                      UnknownData01[0x1];                                       // 0x00E0(0x0001) UNKNOWN PROPERTY: EnumProperty MovieSceneTracks.MovieScene3DPathSection.FrontAxisEnum
-	unsigned char                                      UnknownData02[0x1];                                       // 0x0149(0x0001) UNKNOWN PROPERTY: EnumProperty MovieSceneTracks.MovieScene3DPathSection.UpAxisEnum
-	unsigned char                                      UnknownData03[0x2];                                       // 0x014A(0x0002) MISSED OFFSET
+	EMovieScene3DPathSection_Axis                      FrontAxisEnum;                                            // 0x0148(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EMovieScene3DPathSection_Axis                      UpAxisEnum;                                               // 0x0149(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x2];                                       // 0x014A(0x0002) MISSED OFFSET
 	unsigned char                                      bFollow : 1;                                              // 0x014C(0x0001) (CPF_Edit)
 	unsigned char                                      bReverse : 1;                                             // 0x014C(0x0001) (CPF_Edit)
 	unsigned char                                      bForceUpright : 1;                                        // 0x014C(0x0001) (CPF_Edit)
+	unsigned char                                      UnknownData02[0x3];                                       // 0x014D(0x0003) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -165,7 +167,7 @@ public:
 	float                                              AudioVolume;                                              // 0x00DC(0x0004) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	struct FRichCurve                                  SoundVolume;                                              // 0x00E0(0x0070) (CPF_Edit)
 	struct FRichCurve                                  PitchMultiplier;                                          // 0x0150(0x0070) (CPF_Edit)
-	unsigned char                                      bSuppressSubtitles : 1;                                   // 0x01C0(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bSuppressSubtitles;                                       // 0x01C0(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0xF];                                       // 0x01C1(0x000F) MISSED OFFSET
 
 	static UClass* StaticClass()
@@ -198,7 +200,7 @@ public:
 class UMovieSceneBoolSection : public UMovieSceneSection
 {
 public:
-	unsigned char                                      DefaultValue : 1;                                         // 0x00D0(0x0001) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
+	bool                                               DefaultValue;                                             // 0x00D0(0x0001) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x00D1(0x0007) MISSED OFFSET
 	struct FIntegralCurve                              BoolCurve;                                                // 0x00D8(0x0070)
 	unsigned char                                      UnknownData01[0x8];                                       // 0x0148(0x0008) MISSED OFFSET
@@ -254,7 +256,7 @@ public:
 	float                                              PlayScale;                                                // 0x00F4(0x0004) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	float                                              BlendInTime;                                              // 0x00F8(0x0004) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	float                                              BlendOutTime;                                             // 0x00FC(0x0004) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
-	unsigned char                                      bLooping : 1;                                             // 0x0100(0x0001) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
+	bool                                               bLooping;                                                 // 0x0100(0x0001) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0xF];                                       // 0x0101(0x000F) MISSED OFFSET
 
 	static UClass* StaticClass()
@@ -733,7 +735,7 @@ public:
 class UMovieSceneColorTrack : public UMovieScenePropertyTrack
 {
 public:
-	unsigned char                                      bIsSlateColor : 1;                                        // 0x00E0(0x0001) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
+	bool                                               bIsSlateColor;                                            // 0x00E0(0x0001) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0xF];                                       // 0x00E1(0x000F) MISSED OFFSET
 
 	static UClass* StaticClass()

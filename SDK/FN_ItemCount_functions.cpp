@@ -12,6 +12,26 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function ItemCount.ItemCount_C.SetIsBeingPreviewed
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// bool                           BeingPreviewed                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UItemCount_C::SetIsBeingPreviewed(bool BeingPreviewed)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemCount.ItemCount_C.SetIsBeingPreviewed");
+
+	UItemCount_C_SetIsBeingPreviewed_Params params;
+	params.BeingPreviewed = BeingPreviewed;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ItemCount.ItemCount_C.SetItemDefinition
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:

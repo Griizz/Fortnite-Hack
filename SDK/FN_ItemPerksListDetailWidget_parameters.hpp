@@ -14,6 +14,13 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function ItemPerksListDetailWidget.ItemPerksListDetailWidget_C.SetState
+struct UItemPerksListDetailWidget_C_SetState_Params
+{
+	EFortPerksWidgetState                              InState;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UFortHero*                                   InEvolutionOption;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function ItemPerksListDetailWidget.ItemPerksListDetailWidget_C.HandlePostDifferentItemToDetailSet
 struct UItemPerksListDetailWidget_C_HandlePostDifferentItemToDetailSet_Params
 {

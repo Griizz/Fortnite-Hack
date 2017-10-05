@@ -63,6 +63,7 @@ struct UItemInspectScreen_C_HandleCursorModeChanging_Params
 struct UItemInspectScreen_C_OpenItemInspect__Function__Params
 {
 	class UFortItem*                                   ItemToInspect;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortItemInspectionMode                            Mode;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ShouldAllowUpgrading;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ShouldAllowEvolution;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ShouldAllowFavoriting;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -107,6 +108,7 @@ struct UItemInspectScreen_C_HandleEvolutionChoiceHovered_Params
 // Function ItemInspectScreen.ItemInspectScreen_C.SetInspectMode
 struct UItemInspectScreen_C_SetInspectMode_Params
 {
+	EFortItemInspectionMode                            NewInspectMode;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ItemInspectScreen.ItemInspectScreen_C.HandleUpgrade
@@ -150,13 +152,13 @@ struct UItemInspectScreen_C_OnMCPRequestComplete_5E880EAB4E8645A0B59BA2991740020
 {
 };
 
-// Function ItemInspectScreen.ItemInspectScreen_C.BndEvt__ItemInspectUpgradeConfirmation_K2Node_ComponentBoundEvent_1_OnUpgradeCancel__DelegateSignature
-struct UItemInspectScreen_C_BndEvt__ItemInspectUpgradeConfirmation_K2Node_ComponentBoundEvent_1_OnUpgradeCancel__DelegateSignature_Params
+// Function ItemInspectScreen.ItemInspectScreen_C.BndEvt__ItemInspectEvolutionConfirmation_K2Node_ComponentBoundEvent_4_OnEvolutionConfirm__DelegateSignature
+struct UItemInspectScreen_C_BndEvt__ItemInspectEvolutionConfirmation_K2Node_ComponentBoundEvent_4_OnEvolutionConfirm__DelegateSignature_Params
 {
 };
 
-// Function ItemInspectScreen.ItemInspectScreen_C.BndEvt__ItemInspectEvolutionConfirmation_K2Node_ComponentBoundEvent_4_OnEvolutionConfirm__DelegateSignature
-struct UItemInspectScreen_C_BndEvt__ItemInspectEvolutionConfirmation_K2Node_ComponentBoundEvent_4_OnEvolutionConfirm__DelegateSignature_Params
+// Function ItemInspectScreen.ItemInspectScreen_C.BndEvt__ItemInspectUpgradeConfirmation_K2Node_ComponentBoundEvent_1_OnUpgradeCancel__DelegateSignature
+struct UItemInspectScreen_C_BndEvt__ItemInspectUpgradeConfirmation_K2Node_ComponentBoundEvent_1_OnUpgradeCancel__DelegateSignature_Params
 {
 };
 
@@ -173,13 +175,13 @@ struct UItemInspectScreen_C_BndEvt__InspectedItem_K2Node_ComponentBoundEvent_9_F
 	bool                                               bIngredientsChanged;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
-// Function ItemInspectScreen.ItemInspectScreen_C.BndEvt__InspectedItem_K2Node_ComponentBoundEvent_10_FortOnItemDestroyedDelegate__DelegateSignature
-struct UItemInspectScreen_C_BndEvt__InspectedItem_K2Node_ComponentBoundEvent_10_FortOnItemDestroyedDelegate__DelegateSignature_Params
+// Function ItemInspectScreen.ItemInspectScreen_C.Construct
+struct UItemInspectScreen_C_Construct_Params
 {
 };
 
-// Function ItemInspectScreen.ItemInspectScreen_C.Construct
-struct UItemInspectScreen_C_Construct_Params
+// Function ItemInspectScreen.ItemInspectScreen_C.BndEvt__InspectedItem_K2Node_ComponentBoundEvent_10_FortOnItemDestroyedDelegate__DelegateSignature
+struct UItemInspectScreen_C_BndEvt__InspectedItem_K2Node_ComponentBoundEvent_10_FortOnItemDestroyedDelegate__DelegateSignature_Params
 {
 };
 
@@ -216,6 +218,7 @@ struct UItemInspectScreen_C_OnActivated_Params
 struct UItemInspectScreen_C_OpenItemInspect_Params
 {
 	class UFortItem**                                  ItemToInspect;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortItemInspectionMode*                           Mode;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool*                                              ShouldAllowUpgrading;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool*                                              ShouldAllowEvolution;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool*                                              ShouldAllowFavorite;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)

@@ -24,6 +24,7 @@ struct UExpeditionSquadSlotButton_C_Get_Squad_Data_Params
 {
 	struct FName                                       OutSquadId;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                OutSquadSlotIndex;                                        // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<EFortItemType>                              ItemTypes;                                                // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 };
 
 // Function ExpeditionSquadSlotButton.ExpeditionSquadSlotButton_C.PreConstruct

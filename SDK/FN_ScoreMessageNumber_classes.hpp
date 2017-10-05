@@ -22,7 +22,7 @@ public:
 	int                                                Score;                                                    // 0x0248(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x4];                                       // 0x024C(0x0004) MISSED OFFSET
 	struct FScriptMulticastDelegate                    OnScoreValueSet;                                          // 0x0250(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0260(0x0001) UNKNOWN PROPERTY: EnumProperty ScoreMessageNumber.ScoreMessageNumber_C.ScoreCategory
+	EStatCategory                                      ScoreCategory;                                            // 0x0260(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -35,7 +35,7 @@ public:
 	void UpdateScoreText();
 	void Construct();
 	void ExecuteUbergraph_ScoreMessageNumber(int EntryPoint);
-	void OnScoreValueSet__DelegateSignature();
+	void OnScoreValueSet__DelegateSignature(EStatCategory ChangedScoreCategory);
 };
 
 

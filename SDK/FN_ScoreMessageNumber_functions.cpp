@@ -88,12 +88,15 @@ void UScoreMessageNumber_C::ExecuteUbergraph_ScoreMessageNumber(int EntryPoint)
 
 // Function ScoreMessageNumber.ScoreMessageNumber_C.OnScoreValueSet__DelegateSignature
 // (FUNC_Public, FUNC_Delegate, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EStatCategory                  ChangedScoreCategory           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UScoreMessageNumber_C::OnScoreValueSet__DelegateSignature()
+void UScoreMessageNumber_C::OnScoreValueSet__DelegateSignature(EStatCategory ChangedScoreCategory)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ScoreMessageNumber.ScoreMessageNumber_C.OnScoreValueSet__DelegateSignature");
 
 	UScoreMessageNumber_C_OnScoreValueSet__DelegateSignature_Params params;
+	params.ChangedScoreCategory = ChangedScoreCategory;
 
 	auto flags = fn->FunctionFlags;
 

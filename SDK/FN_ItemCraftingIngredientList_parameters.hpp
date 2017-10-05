@@ -14,6 +14,19 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.GetIngredients
+struct UItemCraftingIngredientList_C_GetIngredients_Params
+{
+	class UObject*                                     Item;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<struct FFortItemQuantityPair>               ReturnIngredients;                                        // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.SetItemToCompare
+struct UItemCraftingIngredientList_C_SetItemToCompare_Params
+{
+	class UFortItem*                                   ItemToCompare;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.ItemNeedsInventoryTracking
 struct UItemCraftingIngredientList_C_ItemNeedsInventoryTracking_Params
 {

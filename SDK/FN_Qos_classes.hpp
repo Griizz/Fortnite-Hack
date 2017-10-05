@@ -27,7 +27,7 @@ public:
 
 
 	void ServerQosRequest(const struct FString& InSessionId);
-	void ClientQosResponse();
+	void ClientQosResponse(EQosResponseType Response);
 };
 
 
@@ -52,7 +52,7 @@ public:
 class UQosRegionManager : public UObject
 {
 public:
-	unsigned char                                      bUseOldQosServers : 1;                                    // 0x0028(0x0001) (CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bUseOldQosServers;                                        // 0x0028(0x0001) (CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0029(0x0003) MISSED OFFSET
 	int                                                NumTestsPerRegion;                                        // 0x002C(0x0004) (CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	float                                              PingTimeout;                                              // 0x0030(0x0004) (CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
@@ -60,14 +60,14 @@ public:
 	TArray<struct FQosDatacenterInfo>                  Datacenters;                                              // 0x0038(0x0010) (CPF_ZeroConstructor, CPF_Config)
 	struct FDateTime                                   LastCheckTimestamp;                                       // 0x0048(0x0008)
 	class UQosEvaluator*                               Evaluator;                                                // 0x0050(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData02[0x1];                                       // 0x0058(0x0001) UNKNOWN PROPERTY: EnumProperty Qos.QosRegionManager.QosEvalResult
-	unsigned char                                      UnknownData03[0x7];                                       // 0x0059(0x0007) MISSED OFFSET
+	EQosCompletionResult                               QosEvalResult;                                            // 0x0058(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData02[0x7];                                       // 0x0059(0x0007) MISSED OFFSET
 	TArray<struct FQosRegionInfo>                      RegionOptions;                                            // 0x0060(0x0010) (CPF_ZeroConstructor)
 	struct FString                                     ForceRegionId;                                            // 0x0070(0x0010) (CPF_ZeroConstructor)
-	unsigned char                                      bRegionForcedViaCommandline : 1;                          // 0x0080(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData04[0x7];                                       // 0x0081(0x0007) MISSED OFFSET
+	bool                                               bRegionForcedViaCommandline;                              // 0x0080(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData03[0x7];                                       // 0x0081(0x0007) MISSED OFFSET
 	struct FString                                     SelectedRegionId;                                         // 0x0088(0x0010) (CPF_ZeroConstructor)
-	unsigned char                                      UnknownData05[0x10];                                      // 0x0098(0x0010) MISSED OFFSET
+	unsigned char                                      UnknownData04[0x10];                                      // 0x0098(0x0010) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -86,8 +86,8 @@ public:
 	struct FQosSearchPass                              CurrentSearchPass;                                        // 0x0028(0x0008)
 	unsigned char                                      UnknownData00[0xA8];                                      // 0x0030(0x00A8) MISSED OFFSET
 	int                                                ControllerId;                                             // 0x00D8(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bInProgress : 1;                                          // 0x00DC(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bCancelOperation : 1;                                     // 0x00DD(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bInProgress;                                              // 0x00DC(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bCancelOperation;                                         // 0x00DD(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x2];                                       // 0x00DE(0x0002) MISSED OFFSET
 	TArray<struct FQosRegionInfo>                      Datacenters;                                              // 0x00E0(0x0010) (CPF_ZeroConstructor, CPF_Transient)
 	unsigned char                                      UnknownData02[0x30];                                      // 0x00F0(0x0030) MISSED OFFSET

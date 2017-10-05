@@ -52,7 +52,7 @@ public:
 	void OnAbilitySelected(class UCommonButton* AbilityButton);
 	void HandleBack(bool* PassThrough);
 	void OnActivated();
-	void OnQuickbarContentsChanged();
+	void OnQuickbarContentsChanged(EFortQuickBars QuickbarIndex);
 	void Construct();
 	void OnDeactivated();
 	void ExecuteUbergraph_AbilitiesPage(int EntryPoint);

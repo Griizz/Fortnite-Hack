@@ -55,6 +55,7 @@ struct UFortTwitchLogin_C_CenterOnWidget_Params
 // Function FortTwitchLogin.FortTwitchLogin_C.DialogResult_5994C6BA48DC4D282A16D7BA54384F79
 struct UFortTwitchLogin_C_DialogResult_5994C6BA48DC4D282A16D7BA54384F79_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

@@ -48,12 +48,15 @@ void UResults_NameplateWidget_C::Intro()
 
 // Function Results_NameplateWidget.Results_NameplateWidget_C.Initialize
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortCompletionResult          Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UResults_NameplateWidget_C::Initialize()
+void UResults_NameplateWidget_C::Initialize(EFortCompletionResult Result)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Results_NameplateWidget.Results_NameplateWidget_C.Initialize");
 
 	UResults_NameplateWidget_C_Initialize_Params params;
+	params.Result = Result;
 
 	auto flags = fn->FunctionFlags;
 

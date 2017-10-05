@@ -276,12 +276,15 @@ void UTopBar_C::HandleSwitchProfileAction(bool* PassThrough)
 
 // Function TopBar.TopBar_C.HandleFeatureSwitchOp
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 Feature                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UTopBar_C::HandleFeatureSwitchOp()
+void UTopBar_C::HandleFeatureSwitchOp(EFortUIFeature Feature)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function TopBar.TopBar_C.HandleFeatureSwitchOp");
 
 	UTopBar_C_HandleFeatureSwitchOp_Params params;
+	params.Feature = Feature;
 
 	auto flags = fn->FunctionFlags;
 
@@ -456,13 +459,15 @@ void UTopBar_C::OpenMainMenu()
 // Function TopBar.TopBar_C.DialogResult_32D813B145A5E184B01A15AABE16B774
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UTopBar_C::DialogResult_32D813B145A5E184B01A15AABE16B774(const struct FName& ResultName)
+void UTopBar_C::DialogResult_32D813B145A5E184B01A15AABE16B774(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function TopBar.TopBar_C.DialogResult_32D813B145A5E184B01A15AABE16B774");
 
 	UTopBar_C_DialogResult_32D813B145A5E184B01A15AABE16B774_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;

@@ -43,9 +43,9 @@ public:
 	}
 
 
-	void Get_Tooltip_Header_Text_Visibility();
-	void Get_Tooltip_Header_Icon_Visibility();
-	void Get_Tooltip_Header_Visibility();
+	ESlateVisibility Get_Tooltip_Header_Text_Visibility();
+	ESlateVisibility Get_Tooltip_Header_Icon_Visibility();
+	ESlateVisibility Get_Tooltip_Header_Visibility();
 	struct FLinearColor Get_Theme_Color__Normal_();
 	struct FSlateBrush Get_Icon_Brush();
 	void Construct();

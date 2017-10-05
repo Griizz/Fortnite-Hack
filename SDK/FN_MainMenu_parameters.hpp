@@ -63,6 +63,7 @@ struct UMainMenu_C_RefreshFriendCodesButton_Params
 // Function MainMenu.MainMenu_C.HandlePartyStateChanged
 struct UMainMenu_C_HandlePartyStateChanged_Params
 {
+	EFortPartyState                                    New_State;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MainMenu.MainMenu_C.HandleMatchmakingStarted
@@ -83,6 +84,7 @@ struct UMainMenu_C_HandleLobbyStarted_Params
 // Function MainMenu.MainMenu_C.HandleMatchmakingComplete
 struct UMainMenu_C_HandleMatchmakingComplete_Params
 {
+	EMatchmakingCompleteResult                         Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MainMenu.MainMenu_C.HandleActiveInvitesAmountChanged
@@ -94,6 +96,7 @@ struct UMainMenu_C_HandleActiveInvitesAmountChanged_Params
 // Function MainMenu.MainMenu_C.HandlePartyTypeChanged
 struct UMainMenu_C_HandlePartyTypeChanged_Params
 {
+	EPartyType                                         Party_Type;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MainMenu.MainMenu_C.HandlePartyJoined
@@ -104,6 +107,8 @@ struct UMainMenu_C_HandlePartyJoined_Params
 // Function MainMenu.MainMenu_C.HandlePartybarUIFeatureChanged
 struct UMainMenu_C_HandlePartybarUIFeatureChanged_Params
 {
+	EFortUIFeature                                     Feature;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortUIFeatureState                                FeatureState;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MainMenu.MainMenu_C.HandleRemotePlayerRemoved
@@ -132,6 +137,7 @@ struct UMainMenu_C_HandleLocalPlayerStateChanged_Params
 // Function MainMenu.MainMenu_C.HandlePrivacySelected
 struct UMainMenu_C_HandlePrivacySelected_Params
 {
+	EPartyType                                         PartyPrivacyType;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               FriendsOfFriends;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -155,6 +161,7 @@ struct UMainMenu_C_SetPrivacyButtonData_Params
 // Function MainMenu.MainMenu_C.UpdatePrivacyButton
 struct UMainMenu_C_UpdatePrivacyButton_Params
 {
+	EPartyType                                         Overide_Party_Type;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               Use_Overide_Party_Type;                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -198,12 +205,14 @@ struct UMainMenu_C_SetupTestUI_Params
 // Function MainMenu.MainMenu_C.DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0
 struct UMainMenu_C_DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MainMenu.MainMenu_C.DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7
 struct UMainMenu_C_DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -560,8 +569,8 @@ struct UMainMenu_C_BndEvt__AthenaPartyPrivacyButton_K2Node_ComponentBoundEvent_6
 	class UCommonButton*                               Button;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
-// Function MainMenu.MainMenu_C.BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature
-struct UMainMenu_C_BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature_Params
+// Function MainMenu.MainMenu_C.BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature
+struct UMainMenu_C_BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature_Params
 {
 	class UCommonButton*                               Button;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };

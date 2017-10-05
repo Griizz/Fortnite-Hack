@@ -23,6 +23,7 @@ struct UBuildingBar_C_UpdateBuildingTrap_Params
 // Function BuildingBar.BuildingBar_C.Set Display Mode
 struct UBuildingBar_C_Set_Display_Mode_Params
 {
+	EFortBuildingInteraction                           Display_Mode;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BuildingBar.BuildingBar_C.Update Durability Text

@@ -93,12 +93,15 @@ void USubgameSelect_C::Construct()
 
 // Function SubgameSelect.SubgameSelect_C.OnEnterState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  PreviousUIState                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void USubgameSelect_C::OnEnterState()
+void USubgameSelect_C::OnEnterState(EFortUIState* PreviousUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function SubgameSelect.SubgameSelect_C.OnEnterState");
 
 	USubgameSelect_C_OnEnterState_Params params;
+	params.PreviousUIState = PreviousUIState;
 
 	auto flags = fn->FunctionFlags;
 

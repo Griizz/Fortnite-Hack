@@ -182,12 +182,15 @@ void ACheckFrontEndRewardsAction_C::OpenFrontEndRewards()
 
 // Function CheckFrontEndRewardsAction.CheckFrontEndRewardsAction_C.PopulateUnseenQuests
 // (FUNC_Private, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuestType                 QuestType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ACheckFrontEndRewardsAction_C::PopulateUnseenQuests()
+void ACheckFrontEndRewardsAction_C::PopulateUnseenQuests(EFortQuestType QuestType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CheckFrontEndRewardsAction.CheckFrontEndRewardsAction_C.PopulateUnseenQuests");
 
 	ACheckFrontEndRewardsAction_C_PopulateUnseenQuests_Params params;
+	params.QuestType = QuestType;
 
 	auto flags = fn->FunctionFlags;
 

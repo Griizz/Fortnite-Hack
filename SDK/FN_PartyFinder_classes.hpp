@@ -45,12 +45,12 @@ public:
 	TArray<class UObject*> SocialTreeView_GetChildrenForCategory(class UObject* Item);
 	void IgnoreInvite();
 	void SendInvite();
-	void GetFinderItemVisibility(class UFortSocialItem* PartyFinderItem);
+	ESlateVisibility GetFinderItemVisibility(class UFortSocialItem* PartyFinderItem);
 	void UpdateDetails(class UFortSocialItem* PartyFinderItem);
 	void HandleSocialListChanged(bool bExpandAll, TArray<class UFortSocialItem*>* SocialItems);
-	void HandlePartyTransitionStarted();
+	void HandlePartyTransitionStarted(EFortPartyTransition Transition);
 	void BindDelegates();
-	void DialogResult_9763B6F5495998E5B2E944A5F646709C(const struct FName& ResultName);
+	void DialogResult_9763B6F5495998E5B2E944A5F646709C(EFortDialogResult Result, const struct FName& ResultName);
 	void Construct();
 	void BndEvt__IconTextButton_1_K2Node_ComponentBoundEvent_49_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void HandlePartyDataChanged(const struct FPartyState& PartyData);

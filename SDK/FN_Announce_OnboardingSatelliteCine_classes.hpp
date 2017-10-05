@@ -20,9 +20,9 @@ public:
 	struct FPointerToUberGraphFrame                    UberGraphFrame;                                           // 0x03F8(0x0008) (CPF_Transient, CPF_DuplicateTransient)
 	class USceneComponent*                             DefaultSceneRoot;                                         // 0x0400(0x0008) (CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UMediaSource*                                SatelliteMediaSource;                                     // 0x0408(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      AllowSkipping : 1;                                        // 0x0410(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0411(0x0001) UNKNOWN PROPERTY: EnumProperty Announce_OnboardingSatelliteCine.Announce_OnboardingSatelliteCine_C.StartingState
-	unsigned char                                      UnknownData01[0x6];                                       // 0x0412(0x0006) MISSED OFFSET
+	bool                                               AllowSkipping;                                            // 0x0410(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	EFortUIState                                       StartingState;                                            // 0x0411(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x6];                                       // 0x0412(0x0006) MISSED OFFSET
 	class UFortMediaSubtitlesPlayer*                   SatelliteSubtitlesPlayer;                                 // 0x0418(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()

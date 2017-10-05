@@ -17,6 +17,7 @@ namespace SDK
 // Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeIconSizeByMagnitude
 struct USkillTreeBPLibrary_C_GetSkillTreeNodeIconSizeByMagnitude_Params
 {
+	EFortHomebaseNodeMagnitude                         Node_Magnitude;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TEnumAsByte<EFortBrushSize>                        Icon_Size;                                                // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -24,6 +25,7 @@ struct USkillTreeBPLibrary_C_GetSkillTreeNodeIconSizeByMagnitude_Params
 // Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeShapeByDisplayType
 struct USkillTreeBPLibrary_C_GetSkillTreeNodeShapeByDisplayType_Params
 {
+	EFortHomebaseNodeDisplayType                       Display_Type;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               IsSquare;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               IsExitNode;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -32,6 +34,8 @@ struct USkillTreeBPLibrary_C_GetSkillTreeNodeShapeByDisplayType_Params
 // Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeSizeByMagnitude
 struct USkillTreeBPLibrary_C_GetSkillTreeNodeSizeByMagnitude_Params
 {
+	EFortHomebaseNodeMagnitude                         Node_Magnitude;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortHomebaseNodeDisplayType                       Display_Type;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UObject*                                     World_Context;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Size;                                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)

@@ -24,25 +24,8 @@ struct UItemDetailsHeader_C_UpdateItemsForWidgets_Params
 {
 };
 
-// Function ItemDetailsHeader.ItemDetailsHeader_C.FormatItemDisplayTags
-struct UItemDetailsHeader_C_FormatItemDisplayTags_Params
-{
-	TArray<struct FText>                               TagTexts;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-	struct FText                                       FormatedText;                                             // (CPF_Parm, CPF_OutParm)
-};
-
 // Function ItemDetailsHeader.ItemDetailsHeader_C.Construct
 struct UItemDetailsHeader_C_Construct_Params
-{
-};
-
-// Function ItemDetailsHeader.ItemDetailsHeader_C.HandlePostDifferentItemToDetailSet
-struct UItemDetailsHeader_C_HandlePostDifferentItemToDetailSet_Params
-{
-};
-
-// Function ItemDetailsHeader.ItemDetailsHeader_C.HandlePostDifferentItemToCompareWithSet
-struct UItemDetailsHeader_C_HandlePostDifferentItemToCompareWithSet_Params
 {
 };
 
@@ -50,6 +33,16 @@ struct UItemDetailsHeader_C_HandlePostDifferentItemToCompareWithSet_Params
 struct UItemDetailsHeader_C_PreConstruct_Params
 {
 	bool*                                              IsDesignTime;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function ItemDetailsHeader.ItemDetailsHeader_C.HandleDifferentItemToDetailSet
+struct UItemDetailsHeader_C_HandleDifferentItemToDetailSet_Params
+{
+};
+
+// Function ItemDetailsHeader.ItemDetailsHeader_C.HandleDifferentItemToCompareSet
+struct UItemDetailsHeader_C_HandleDifferentItemToCompareSet_Params
+{
 };
 
 // Function ItemDetailsHeader.ItemDetailsHeader_C.ExecuteUbergraph_ItemDetailsHeader

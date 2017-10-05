@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass TODM_A.TODM_A_C
-// 0x01BC (0x0DAC - 0x0BF0)
+// 0x01D0 (0x0DC0 - 0x0BF0)
 class ATODM_A_C : public AFortTimeOfDayManager
 {
 public:
@@ -39,20 +39,20 @@ public:
 	float                                              WindStrength;                                             // 0x0C48(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              FutureWindStrength;                                       // 0x0C4C(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              FutureWindSpeed;                                          // 0x0C50(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bPickNewWindConditions : 1;                               // 0x0C54(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bPickNewWindConditions;                                   // 0x0C54(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData02[0x3];                                       // 0x0C55(0x0003) MISSED OFFSET
 	float                                              LightningStrength;                                        // 0x0C58(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              ThreatCloudStormAmount;                                   // 0x0C5C(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UseRainWithStorms : 1;                                    // 0x0C60(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      Play_a_Particle_Effect_Near_the_players_Feet : 1;         // 0x0C61(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      WindEffects_Should_be_Active : 1;                         // 0x0C62(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               UseRainWithStorms;                                        // 0x0C60(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               Play_a_Particle_Effect_Near_the_players_Feet;             // 0x0C61(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               WindEffects_Should_be_Active;                             // 0x0C62(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData03[0x5];                                       // 0x0C63(0x0005) MISSED OFFSET
 	class UParticleSystemComponent*                    Storm_Foot_Particle_Outdoor;                              // 0x0C68(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystem*                             Storm_Foot_Particle_While_on_Terrain;                     // 0x0C70(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UParticleSystemComponent*                    Storm_Foot_Particle_Indoor;                               // 0x0C78(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystem*                             Storm_Foot_Particle_While_NOT_on_Terrain;                 // 0x0C80(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Storm_Wind_Strength;                                      // 0x0C88(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      Generate_Foliage_Wind_Gusts : 1;                          // 0x0C8C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               Generate_Foliage_Wind_Gusts;                              // 0x0C8C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData04[0x3];                                       // 0x0C8D(0x0003) MISSED OFFSET
 	struct FTimerHandle                                LightningStrikeTimerHandle;                               // 0x0C90(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FLinearColor                                PreviousDirectionalLightColor;                            // 0x0C98(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -60,7 +60,7 @@ public:
 	float                                              Lightning_Flash_Timeline_Min;                             // 0x0CB8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              Lightning_Flash_Timeline_Max;                             // 0x0CBC(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystemComponent*                    ShootingStarParticleSystem;                               // 0x0CC0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      Spawn_Shooting_Stars : 1;                                 // 0x0CC8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               Spawn_Shooting_Stars;                                     // 0x0CC8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData05[0x3];                                       // 0x0CC9(0x0003) MISSED OFFSET
 	struct FLinearColor                                SkyboxFogMorningColor;                                    // 0x0CCC(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FLinearColor                                SkyboxFogMorningLitColor;                                 // 0x0CDC(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -94,6 +94,8 @@ public:
 	float                                              SkyboxFogNightLitLength;                                  // 0x0DA0(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              SkyboxFogNightLitRotation;                                // 0x0DA4(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              SkyboxFogNightLitOffset;                                  // 0x0DA8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	float                                              World_Border_Cloud_Base_Color_Brightness;                 // 0x0DAC(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FLinearColor                                World_Border_Cloud_Sub_Surface_Color_and_Opacity;         // 0x0DB0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

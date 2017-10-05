@@ -12,6 +12,50 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.GetIngredients
+// (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// class UObject*                 Item                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// TArray<struct FFortItemQuantityPair> ReturnIngredients              (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+
+void UItemCraftingIngredientList_C::GetIngredients(class UObject* Item, TArray<struct FFortItemQuantityPair>* ReturnIngredients)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.GetIngredients");
+
+	UItemCraftingIngredientList_C_GetIngredients_Params params;
+	params.Item = Item;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (ReturnIngredients != nullptr)
+		*ReturnIngredients = params.ReturnIngredients;
+}
+
+
+// Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.SetItemToCompare
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// class UFortItem*               ItemToCompare                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UItemCraftingIngredientList_C::SetItemToCompare(class UFortItem* ItemToCompare)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.SetItemToCompare");
+
+	UItemCraftingIngredientList_C_SetItemToCompare_Params params;
+	params.ItemToCompare = ItemToCompare;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.ItemNeedsInventoryTracking
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
@@ -120,7 +164,7 @@ void UItemCraftingIngredientList_C::HandleWorldItemListChanged(TArray<class UFor
 
 
 // Function ItemCraftingIngredientList.ItemCraftingIngredientList_C.Refresh
-// (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
 void UItemCraftingIngredientList_C::Refresh()
 {

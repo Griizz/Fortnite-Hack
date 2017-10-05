@@ -36,10 +36,10 @@ public:
 	}
 
 
-	void PlayGamePhaseAlertSound();
-	void UpdateMessaging(struct FText* MESSAGE, struct FText* TimeText);
+	void PlayGamePhaseAlertSound(EAthenaGamePhaseStep Index);
+	void UpdateMessaging(EAthenaGamePhaseStep* Step, struct FText* MESSAGE, struct FText* TimeText);
 	void OnAnimationFinished(class UWidgetAnimation** Animation);
-	void GamePhaseStepChanged();
+	void GamePhaseStepChanged(EAthenaGamePhaseStep* Step);
 	void ExecuteUbergraph_AthenaGamePhaseChangeWidget(int EntryPoint);
 };
 

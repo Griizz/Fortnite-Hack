@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // WidgetBlueprintGeneratedClass ItemTransformKeyPicker.ItemTransformKeyPicker_C
-// 0x0000 (0x02F0 - 0x02F0)
+// 0x0000 (0x0300 - 0x0300)
 class UItemTransformKeyPicker_C : public UFortTransformKeyPicker
 {
 public:

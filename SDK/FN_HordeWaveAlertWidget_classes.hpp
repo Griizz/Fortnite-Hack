@@ -44,8 +44,8 @@ public:
 	void OnWaveStarted(const struct FText& LevelText, int Level, const struct FText& WaveText, int WaveNum);
 	void OnWaveCompleted(int Wave, TArray<struct FFortItemInstanceQuantityPair> Rewards);
 	void OnHordeTierInitialized_Event_1(TArray<struct FFortItemInstanceQuantityPair> Items);
-	void Construct();
 	void OnWaveModifiersAdded(TArray<class UFortGameplayModifierItemDefinition*> Modifiers);
+	void Construct();
 	void OnModifierAppearanceAnimComplete();
 	void OnAllModifiersPresented();
 	void OnAppearanceDisappearanceAnimComplete();

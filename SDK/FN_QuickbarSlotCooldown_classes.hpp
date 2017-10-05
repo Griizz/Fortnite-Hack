@@ -30,10 +30,10 @@ public:
 	}
 
 
-	void Initialize(TEnumAsByte<EItemDisplayStyle> QuickbarItemDisplayStyle);
+	void Initialize(TEnumAsByte<EItemDisplayStyle> QuickbarItemDisplayStyle, TArray<EFortItemCooldownType>* DesiredCooldownTypesSupported);
 	void Show_Countdown(bool Show);
-	void OnCooldownStarted();
-	void OnCooldownStopped();
+	void OnCooldownStarted(EFortItemCooldownType* CooldownType);
+	void OnCooldownStopped(EFortItemCooldownType* CooldownType);
 	void ExecuteUbergraph_QuickbarSlotCooldown(int EntryPoint);
 };
 

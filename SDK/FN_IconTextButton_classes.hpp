@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // WidgetBlueprintGeneratedClass IconTextButton.IconTextButton_C
-// 0x00F2 (0x0992 - 0x08A0)
+// 0x0100 (0x09A0 - 0x08A0)
 class UIconTextButton_C : public UCommonButton
 {
 public:
@@ -26,9 +26,10 @@ public:
 	struct FSlateBrush                                 IconBrush;                                                // 0x08E0(0x0090) (CPF_Edit, CPF_BlueprintVisible)
 	class UClass*                                      ControllerInputStyle;                                     // 0x0970(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UClass*                                      MouseKeyboardStyle;                                       // 0x0978(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	struct FDataTableRowHandle                         ButtonClickAction;                                        // 0x0980(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	TEnumAsByte<EHorizontalAlignment>                  ContentAlignment;                                         // 0x0990(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bMouseKeyboardStyleSet : 1;                               // 0x0991(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	TEnumAsByte<EHorizontalAlignment>                  ContentAlignment;                                         // 0x0980(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bMouseKeyboardStyleSet;                                   // 0x0981(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x6];                                       // 0x0982(0x0006) MISSED OFFSET
+	struct FText                                       OverrideButtonText;                                       // 0x0988(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 
 	static UClass* StaticClass()
 	{
@@ -37,6 +38,7 @@ public:
 	}
 
 
+	void SetTextInternal(const struct FText& InButtonText);
 	void SetInitialMouseKeyboardStyle();
 	void UpdateTextStyle();
 	void SetContentAlignment(TEnumAsByte<EHorizontalAlignment> ContentAlignment);
@@ -57,6 +59,7 @@ public:
 	void OnActionProgress(float* HeldPercent);
 	void OnActionComplete();
 	void Construct();
+	void Destruct();
 	void ExecuteUbergraph_IconTextButton(int EntryPoint);
 };
 

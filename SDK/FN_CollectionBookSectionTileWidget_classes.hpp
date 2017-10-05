@@ -31,7 +31,7 @@ public:
 	}
 
 
-	void OnSectionSlotUpdate(int* NumFilledSlots, int* NumSlots);
+	void OnSectionSlotUpdate(int* NumFilledSlots, int* NumSlots, EFortCollectionBookState* SectionState);
 	void ExecuteUbergraph_CollectionBookSectionTileWidget(int EntryPoint);
 };
 

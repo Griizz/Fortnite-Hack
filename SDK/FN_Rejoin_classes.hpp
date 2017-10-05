@@ -17,10 +17,10 @@ namespace SDK
 class URejoinCheck : public UObject
 {
 public:
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0028(0x0001) UNKNOWN PROPERTY: EnumProperty Rejoin.RejoinCheck.LastKnownStatus
-	unsigned char                                      bRejoinAfterCheck : 1;                                    // 0x0029(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bAttemptingRejoin : 1;                                    // 0x002A(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData01[0x185];                                     // 0x002B(0x0185) MISSED OFFSET
+	ERejoinStatus                                      LastKnownStatus;                                          // 0x0028(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bRejoinAfterCheck;                                        // 0x0029(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bAttemptingRejoin;                                        // 0x002A(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x185];                                     // 0x002B(0x0185) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

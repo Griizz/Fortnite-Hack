@@ -51,8 +51,8 @@ public:
 	struct FCaptureProtocolID                          CaptureType;                                              // 0x0038(0x0008) (CPF_Edit, CPF_Config)
 	class UMovieSceneCaptureProtocolSettings*          ProtocolSettings;                                         // 0x0040(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FMovieSceneCaptureSettings                  Settings;                                                 // 0x0048(0x0050) (CPF_Edit, CPF_Config)
-	unsigned char                                      bUseSeparateProcess : 1;                                  // 0x0098(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      bCloseEditorWhenCaptureStarts : 1;                        // 0x0099(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bUseSeparateProcess;                                      // 0x0098(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bCloseEditorWhenCaptureStarts;                            // 0x0099(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x6];                                       // 0x009A(0x0006) MISSED OFFSET
 	struct FString                                     AdditionalCommandLineArguments;                           // 0x00A0(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Config)
 	struct FString                                     InheritedCommandLineArguments;                            // 0x00B0(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Transient)
@@ -155,6 +155,7 @@ class UImageCaptureSettings : public UFrameGrabberProtocolSettings
 {
 public:
 	int                                                CompressionQuality;                                       // 0x0030(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0034(0x0004) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -171,7 +172,7 @@ class UCompositionGraphCaptureSettings : public UMovieSceneCaptureProtocolSettin
 {
 public:
 	struct FCompositionGraphCapturePasses              IncludeRenderPasses;                                      // 0x0028(0x0010) (CPF_Edit, CPF_Config)
-	unsigned char                                      bCaptureFramesInHDR : 1;                                  // 0x0038(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bCaptureFramesInHDR;                                      // 0x0038(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0039(0x0003) MISSED OFFSET
 	int                                                HDRCompressionQuality;                                    // 0x003C(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	TEnumAsByte<EHDRCaptureGamut>                      CaptureGamut;                                             // 0x0040(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
@@ -192,7 +193,7 @@ public:
 class UVideoCaptureSettings : public UFrameGrabberProtocolSettings
 {
 public:
-	unsigned char                                      bUseCompression : 1;                                      // 0x0030(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bUseCompression;                                          // 0x0030(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0031(0x0003) MISSED OFFSET
 	float                                              CompressionQuality;                                       // 0x0034(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	struct FString                                     VideoCodec;                                               // 0x0038(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Config)

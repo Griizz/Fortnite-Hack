@@ -17,7 +17,7 @@ namespace SDK
 // Function TeamScoreToPlayerXPRewardWidget.TeamScoreToPlayerXPRewardWidget_C.Initialize
 struct UTeamScoreToPlayerXPRewardWidget_C_Initialize_Params
 {
-	struct FFortUIXpInfo                               XPInfo;                                                   // (CPF_Parm)
+	struct FFortUIXpInfo                               XPinfo;                                                   // (CPF_Parm)
 };
 
 // Function TeamScoreToPlayerXPRewardWidget.TeamScoreToPlayerXPRewardWidget_C.Update XP LERP

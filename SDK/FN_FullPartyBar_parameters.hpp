@@ -14,6 +14,19 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function FullPartyBar.FullPartyBar_C.GetTooltipStat
+struct UFullPartyBar_C_GetTooltipStat_Params
+{
+	struct FGameplayTag                                Token;                                                    // (CPF_ConstParm, CPF_Parm)
+	struct FFortDisplayAttribute                       OutDisplayAttribute;                                      // (CPF_Parm, CPF_OutParm)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FullPartyBar.FullPartyBar_C.InitializeStatLabels
+struct UFullPartyBar_C_InitializeStatLabels_Params
+{
+};
+
 // Function FullPartyBar.FullPartyBar_C.Get_Tech_ToolTipWidget
 struct UFullPartyBar_C_Get_Tech_ToolTipWidget_Params
 {
@@ -59,6 +72,8 @@ struct UFullPartyBar_C_OpenPartyPrivacy_Params
 // Function FullPartyBar.FullPartyBar_C.HandlePartybarUIFeatureChanged
 struct UFullPartyBar_C_HandlePartybarUIFeatureChanged_Params
 {
+	EFortUIFeature                                     Feature;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortUIFeatureState                                FeatureState;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FullPartyBar.FullPartyBar_C.Initialize

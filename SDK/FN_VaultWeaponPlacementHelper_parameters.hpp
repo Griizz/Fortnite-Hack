@@ -46,6 +46,8 @@ struct AVaultWeaponPlacementHelper_C_OnTeamMemberAdded_Params
 // Function VaultWeaponPlacementHelper.VaultWeaponPlacementHelper_C.OnFrontEndCameraChanged
 struct AVaultWeaponPlacementHelper_C_OnFrontEndCameraChanged_Params
 {
+	EFrontEndCamera                                    NewCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFrontEndCamera                                    OldCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function VaultWeaponPlacementHelper.VaultWeaponPlacementHelper_C.OnLobbyStarted

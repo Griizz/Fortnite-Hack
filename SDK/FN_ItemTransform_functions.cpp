@@ -554,23 +554,6 @@ void UItemTransform_C::OpenItemTransform()
 }
 
 
-// Function ItemTransform.ItemTransform_C.Construct
-// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
-
-void UItemTransform_C::Construct()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemTransform.ItemTransform_C.Construct");
-
-	UItemTransform_C_Construct_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function ItemTransform.ItemTransform_C.BndEvt__KeyScreen_K2Node_ComponentBoundEvent_6_OnKeySelected__DelegateSignature
 // (FUNC_BlueprintEvent)
 // Parameters:
@@ -658,6 +641,23 @@ void UItemTransform_C::BndEvt__SlotScreen_K2Node_ComponentBoundEvent_598_OnTrans
 
 	UItemTransform_C_BndEvt__SlotScreen_K2Node_ComponentBoundEvent_598_OnTransformButtonUpdated__DelegateSignature_Params params;
 	params.TransformActive = TransformActive;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemTransform.ItemTransform_C.Construct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UItemTransform_C::Construct()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemTransform.ItemTransform_C.Construct");
+
+	UItemTransform_C_Construct_Params params;
 
 	auto flags = fn->FunctionFlags;
 

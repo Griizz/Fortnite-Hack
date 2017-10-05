@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass PBWA_BG_ArchwayLarge.PBWA_BG_ArchwayLarge_C
-// 0x0000 (0x10A0 - 0x10A0)
+// 0x0000 (0x10B0 - 0x10B0)
 class APBWA_BG_ArchwayLarge_C : public ABuildingWall
 {
 public:

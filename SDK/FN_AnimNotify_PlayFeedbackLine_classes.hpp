@@ -18,7 +18,7 @@ class UAnimNotify_PlayFeedbackLine_C : public UAnimNotify
 {
 public:
 	struct FFortFeedbackHandle                         Event;                                                    // 0x0038(0x0018) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      bAllowReplication : 1;                                    // 0x0050(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bAllowReplication;                                        // 0x0050(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

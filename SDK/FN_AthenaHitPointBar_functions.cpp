@@ -158,13 +158,15 @@ void UAthenaHitPointBar_C::Update_Fill_Bar()
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // float                          Current                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortHitPointModificationReason Reason                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaHitPointBar_C::UpdateCurrentValue(float Current)
+void UAthenaHitPointBar_C::UpdateCurrentValue(float Current, EFortHitPointModificationReason Reason)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaHitPointBar.AthenaHitPointBar_C.UpdateCurrentValue");
 
 	UAthenaHitPointBar_C_UpdateCurrentValue_Params params;
 	params.Current = Current;
+	params.Reason = Reason;
 
 	auto flags = fn->FunctionFlags;
 

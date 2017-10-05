@@ -17,6 +17,7 @@ namespace SDK
 // Function Subtitles.Subtitles_C.GetSubtitleVisibility
 struct USubtitles_C_GetSubtitleVisibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function Subtitles.Subtitles_C.Construct

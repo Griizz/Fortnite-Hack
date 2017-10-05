@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass Tiered_BluGlo_Parent.Tiered_BluGlo_Parent_C
-// 0x0000 (0x10C0 - 0x10C0)
+// 0x0000 (0x10D0 - 0x10D0)
 class ATiered_BluGlo_Parent_C : public ABuildingContainer
 {
 public:

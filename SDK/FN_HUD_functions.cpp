@@ -168,14 +168,16 @@ void UHUD_C::HandleOnPointOfInterestAdded(class AActor* PointOfInterest, const s
 // Function HUD.HUD_C.ShowPicker
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortPickerMode                Mode                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            InitialOption                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           IgnoreFirstAccept              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UHUD_C::ShowPicker(int InitialOption, bool IgnoreFirstAccept)
+void UHUD_C::ShowPicker(EFortPickerMode Mode, int InitialOption, bool IgnoreFirstAccept)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HUD.HUD_C.ShowPicker");
 
 	UHUD_C_ShowPicker_Params params;
+	params.Mode = Mode;
 	params.InitialOption = InitialOption;
 	params.IgnoreFirstAccept = IgnoreFirstAccept;
 
@@ -206,12 +208,15 @@ void UHUD_C::OnHordeTierCompleteWidgetFinished()
 
 // Function HUD.HUD_C.HandleHordeTierComplete
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortCompletionResult          Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UHUD_C::HandleHordeTierComplete()
+void UHUD_C::HandleHordeTierComplete(EFortCompletionResult Result)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HUD.HUD_C.HandleHordeTierComplete");
 
 	UHUD_C_HandleHordeTierComplete_Params params;
+	params.Result = Result;
 
 	auto flags = fn->FunctionFlags;
 
@@ -458,13 +463,15 @@ void UHUD_C::SetQuickbarSizes()
 // Function HUD.HUD_C.HandleQuickbarSlotFocusSlotChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortQuickBars                 Quickbar_Index                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            Slot                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UHUD_C::HandleQuickbarSlotFocusSlotChanged(int Slot)
+void UHUD_C::HandleQuickbarSlotFocusSlotChanged(EFortQuickBars Quickbar_Index, int Slot)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HUD.HUD_C.HandleQuickbarSlotFocusSlotChanged");
 
 	UHUD_C_HandleQuickbarSlotFocusSlotChanged_Params params;
+	params.Quickbar_Index = Quickbar_Index;
 	params.Slot = Slot;
 
 	auto flags = fn->FunctionFlags;
@@ -535,12 +542,15 @@ void UHUD_C::OnConfirmed_0E0300084F8A9EB1D6CB5E836DBF8C7A()
 
 // Function HUD.HUD_C.OnEnterState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  PreviousUIState                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UHUD_C::OnEnterState()
+void UHUD_C::OnEnterState(EFortUIState* PreviousUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HUD.HUD_C.OnEnterState");
 
 	UHUD_C_OnEnterState_Params params;
+	params.PreviousUIState = PreviousUIState;
 
 	auto flags = fn->FunctionFlags;
 

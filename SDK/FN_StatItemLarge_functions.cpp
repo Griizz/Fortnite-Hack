@@ -17,14 +17,18 @@ namespace SDK
 // Parameters:
 // float                          NewValue                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          CurrentValue                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortStatValueDisplayType      DisplayType                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortBuffState                 BuffState                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UStatItemLarge_C::UpdateValue(float NewValue, float CurrentValue)
+void UStatItemLarge_C::UpdateValue(float NewValue, float CurrentValue, EFortStatValueDisplayType DisplayType, EFortBuffState BuffState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function StatItemLarge.StatItemLarge_C.UpdateValue");
 
 	UStatItemLarge_C_UpdateValue_Params params;
 	params.NewValue = NewValue;
 	params.CurrentValue = CurrentValue;
+	params.DisplayType = DisplayType;
+	params.BuffState = BuffState;
 
 	auto flags = fn->FunctionFlags;
 

@@ -131,16 +131,28 @@ struct UOptionsMenuInput_C_OnMouseEnter_Params
 	struct FPointerEvent*                              MouseEvent;                                               // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 
+// Function OptionsMenuInput.OptionsMenuInput_C.BndEvt__IconTextButton_K2Node_ComponentBoundEvent_226_CommonButtonClicked__DelegateSignature
+struct UOptionsMenuInput_C_BndEvt__IconTextButton_K2Node_ComponentBoundEvent_226_CommonButtonClicked__DelegateSignature_Params
+{
+	class UCommonButton*                               Button;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function OptionsMenuInput.OptionsMenuInput_C.ExecuteUbergraph_OptionsMenuInput
 struct UOptionsMenuInput_C_ExecuteUbergraph_OptionsMenuInput_Params
 {
 	int                                                EntryPoint;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
+// Function OptionsMenuInput.OptionsMenuInput_C.UnbindClicked__DelegateSignature
+struct UOptionsMenuInput_C_UnbindClicked__DelegateSignature_Params
+{
+	int                                                Number_in_List;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function OptionsMenuInput.OptionsMenuInput_C.Input Clicked__DelegateSignature
 struct UOptionsMenuInput_C_Input_Clicked__DelegateSignature_Params
 {
-	int                                                Number_In_List;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                Number_in_List;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               Is_Primary_Button;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

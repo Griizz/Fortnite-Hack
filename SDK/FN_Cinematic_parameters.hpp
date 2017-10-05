@@ -117,11 +117,13 @@ struct UCinematic_C_PushContentWidgetInternal_Params
 // Function Cinematic.Cinematic_C.OnEnterState
 struct UCinematic_C_OnEnterState_Params
 {
+	EFortUIState*                                      PreviousUIState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Cinematic.Cinematic_C.OnExitState
 struct UCinematic_C_OnExitState_Params
 {
+	EFortUIState*                                      NextUIState;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Cinematic.Cinematic_C.OnMediaEvent

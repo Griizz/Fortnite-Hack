@@ -36,7 +36,7 @@ public:
 	void HideSlotInfo();
 	void ShowSlotInfo(const struct FText& HeaderText, const struct FText& BodyText);
 	void HandleClosePicker(bool* bPassThrough);
-	void GetInZoneVisibility();
+	ESlateVisibility GetInZoneVisibility();
 	void OnActivated();
 	void Construct();
 	void SetDefaultScroll();

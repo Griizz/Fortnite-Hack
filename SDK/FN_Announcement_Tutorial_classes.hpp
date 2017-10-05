@@ -39,7 +39,7 @@ public:
 
 	void ContinueTutorial();
 	void CheckContinueTutorial(const struct FFortClientAnnouncementData_Tutorial& TutorialData);
-	void GetLightboxVisibility(const struct FFortClientAnnouncementData_Tutorial& FortClientAnnouncementData_Tutorial);
+	ESlateVisibility GetLightboxVisibility(const struct FFortClientAnnouncementData_Tutorial& FortClientAnnouncementData_Tutorial);
 	void RefreshTextLines();
 	void UpdateTutorialData(const struct FFortClientAnnouncementData_Tutorial& TutorialData);
 	void AddTextLine(const struct FText& Text, bool Transparent);

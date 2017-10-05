@@ -14,6 +14,12 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function SupportHeroSquadBonusesDetailWidget.SupportHeroSquadBonusesDetailWidget_C.SetState
+struct USupportHeroSquadBonusesDetailWidget_C_SetState_Params
+{
+	EFortSupportPerkWidgetState                        InState;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function SupportHeroSquadBonusesDetailWidget.SupportHeroSquadBonusesDetailWidget_C.UpdatePerkWidgets
 struct USupportHeroSquadBonusesDetailWidget_C_UpdatePerkWidgets_Params
 {

@@ -14,6 +14,11 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function ZoneScoreWidget.ZoneScoreWidget_C.BindEndOfDayHeaderText
+struct UZoneScoreWidget_C_BindEndOfDayHeaderText_Params
+{
+};
+
 // Function ZoneScoreWidget.ZoneScoreWidget_C.ShowTeamScoreContributions
 struct UZoneScoreWidget_C_ShowTeamScoreContributions_Params
 {
@@ -61,16 +66,16 @@ struct UZoneScoreWidget_C_OnScoreTweenEndEvent_Params
 {
 };
 
-// Function ZoneScoreWidget.ZoneScoreWidget_C.Construct
-struct UZoneScoreWidget_C_Construct_Params
-{
-};
-
 // Function ZoneScoreWidget.ZoneScoreWidget_C.Tick
 struct UZoneScoreWidget_C_Tick_Params
 {
 	struct FGeometry*                                  MyGeometry;                                               // (CPF_Parm, CPF_IsPlainOldData)
 	float*                                             InDeltaTime;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function ZoneScoreWidget.ZoneScoreWidget_C.Construct
+struct UZoneScoreWidget_C_Construct_Params
+{
 };
 
 // Function ZoneScoreWidget.ZoneScoreWidget_C.OnEndOfDayRecap

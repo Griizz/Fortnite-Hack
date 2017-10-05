@@ -45,6 +45,7 @@ struct UStoreItemCardFront_C_Construct_Params
 // Function StoreItemCardFront.StoreItemCardFront_C.OnFortStoreStateChanged
 struct UStoreItemCardFront_C_OnFortStoreStateChanged_Params
 {
+	EFortStoreState                                    NewStoreState;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StoreItemCardFront.StoreItemCardFront_C.InitFromObject

@@ -232,12 +232,17 @@ void ABP_Hex_PARENT_C::OnInitializeTile()
 
 // Function BP_Hex_PARENT.BP_Hex_PARENT_C.HandleFrontendCameraChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFrontEndCamera                NewCamera                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFrontEndCamera                OldCamera                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ABP_Hex_PARENT_C::HandleFrontendCameraChanged()
+void ABP_Hex_PARENT_C::HandleFrontendCameraChanged(EFrontEndCamera NewCamera, EFrontEndCamera OldCamera)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function BP_Hex_PARENT.BP_Hex_PARENT_C.HandleFrontendCameraChanged");
 
 	ABP_Hex_PARENT_C_HandleFrontendCameraChanged_Params params;
+	params.NewCamera = NewCamera;
+	params.OldCamera = OldCamera;
 
 	auto flags = fn->FunctionFlags;
 

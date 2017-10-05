@@ -17,14 +17,16 @@ namespace SDK
 // Parameters:
 // int*                           NumFilledSlots                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int*                           NumSlots                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortCollectionBookState*      SectionState                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCollectionBookSectionTileWidget_C::OnSectionSlotUpdate(int* NumFilledSlots, int* NumSlots)
+void UCollectionBookSectionTileWidget_C::OnSectionSlotUpdate(int* NumFilledSlots, int* NumSlots, EFortCollectionBookState* SectionState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CollectionBookSectionTileWidget.CollectionBookSectionTileWidget_C.OnSectionSlotUpdate");
 
 	UCollectionBookSectionTileWidget_C_OnSectionSlotUpdate_Params params;
 	params.NumFilledSlots = NumFilledSlots;
 	params.NumSlots = NumSlots;
+	params.SectionState = SectionState;
 
 	auto flags = fn->FunctionFlags;
 

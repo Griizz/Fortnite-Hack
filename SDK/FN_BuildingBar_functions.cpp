@@ -34,12 +34,15 @@ void UBuildingBar_C::UpdateBuildingTrap(class ABuildingTrap* BuildingTrap)
 
 // Function BuildingBar.BuildingBar_C.Set Display Mode
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortBuildingInteraction       Display_Mode                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UBuildingBar_C::Set_Display_Mode()
+void UBuildingBar_C::Set_Display_Mode(EFortBuildingInteraction Display_Mode)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function BuildingBar.BuildingBar_C.Set Display Mode");
 
 	UBuildingBar_C_Set_Display_Mode_Params params;
+	params.Display_Mode = Display_Mode;
 
 	auto flags = fn->FunctionFlags;
 

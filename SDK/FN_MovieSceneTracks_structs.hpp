@@ -13,44 +13,44 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum MovieSceneTracks.MovieScene3DPathSection_Axis
-enum class EMovieScene3DPathSection_Axis
+enum class EMovieScene3DPathSection_Axis : uint8_t
 {
-	MovieScene3DPathSection_Axis__X = 0,
-	MovieScene3DPathSection_Axis__Y = 1,
-	MovieScene3DPathSection_Axis__Z = 2,
-	MovieScene3DPathSection_Axis__NEG_X = 3,
-	MovieScene3DPathSection_Axis__NEG_Y = 4,
-	MovieScene3DPathSection_Axis__NEG_Z = 5,
-	MovieScene3DPathSection_Axis__MovieScene3DPathSection_MAX = 6
+	X                              = 0,
+	Y                              = 1,
+	Z                              = 2,
+	NEG_X                          = 3,
+	NEG_Y                          = 4,
+	NEG_Z                          = 5,
+	MovieScene3DPathSection_MAX    = 6
 };
 
 
 // Enum MovieSceneTracks.EShow3DTrajectory
-enum class EShow3DTrajectory
+enum class EShow3DTrajectory : uint8_t
 {
-	EShow3DTrajectory__EST_OnlyWhenSelected = 0,
-	EShow3DTrajectory__EST_Always  = 1,
-	EShow3DTrajectory__EST_Never   = 2,
-	EShow3DTrajectory__EST_MAX     = 3
+	EST_OnlyWhenSelected           = 0,
+	EST_Always                     = 1,
+	EST_Never                      = 2,
+	EST_MAX                        = 3
 };
 
 
 // Enum MovieSceneTracks.ELevelVisibility
-enum class ELevelVisibility
+enum class ELevelVisibility : uint8_t
 {
-	ELevelVisibility__Visible      = 0,
-	ELevelVisibility__Hidden       = 1,
-	ELevelVisibility__ELevelVisibility_MAX = 2
+	Visible                        = 0,
+	Hidden                         = 1,
+	ELevelVisibility_MAX           = 2
 };
 
 
 // Enum MovieSceneTracks.EParticleKey
-enum class EParticleKey
+enum class EParticleKey : uint8_t
 {
-	EParticleKey__Activate         = 0,
-	EParticleKey__Deactivate       = 1,
-	EParticleKey__Trigger          = 2,
-	EParticleKey__EParticleKey_MAX = 3
+	Activate                       = 0,
+	Deactivate                     = 1,
+	Trigger                        = 2,
+	EParticleKey_MAX               = 3
 };
 
 
@@ -68,7 +68,8 @@ struct FMovieSceneCameraAnimSectionData
 	float                                              PlayScale;                                                // 0x000C(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              BlendInTime;                                              // 0x0010(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              BlendOutTime;                                             // 0x0014(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bLooping : 1;                                             // 0x0018(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bLooping;                                                 // 0x0018(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0019(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneCameraShakeSectionData
@@ -80,6 +81,7 @@ struct FMovieSceneCameraShakeSectionData
 	TEnumAsByte<ECameraAnimPlaySpace>                  PlaySpace;                                                // 0x000C(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x000D(0x0003) MISSED OFFSET
 	struct FRotator                                    UserDefinedPlaySpace;                                     // 0x0010(0x000C) (CPF_Edit, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x4];                                       // 0x001C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneEventParameters
@@ -216,6 +218,7 @@ struct FMovieSceneVector4KeyStruct : public FMovieSceneVectorKeyStructBase
 struct FMovieSceneVectorKeyStruct : public FMovieSceneVectorKeyStructBase
 {
 	struct FVector                                     Vector;                                                   // 0x0048(0x000C) (CPF_Edit, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0054(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneVector2DKeyStruct
@@ -239,6 +242,7 @@ struct FMovieSceneParameterSectionTemplate : public FMovieSceneEvalTemplate
 struct FMovieSceneComponentMaterialSectionTemplate : public FMovieSceneParameterSectionTemplate
 {
 	int                                                MaterialIndex;                                            // 0x0048(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x004C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneSpawnSectionTemplate
@@ -263,12 +267,13 @@ struct FMovieScene3DPathSectionTemplate : public FMovieSceneEvalTemplate
 {
 	struct FGuid                                       PathGuid;                                                 // 0x0018(0x0010) (CPF_IsPlainOldData)
 	struct FRichCurve                                  TimingCurve;                                              // 0x0028(0x0070)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0098(0x0001) UNKNOWN PROPERTY: EnumProperty MovieSceneTracks.MovieScene3DPathSectionTemplate.FrontAxisEnum
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0099(0x0001) UNKNOWN PROPERTY: EnumProperty MovieSceneTracks.MovieScene3DPathSectionTemplate.UpAxisEnum
-	unsigned char                                      UnknownData02[0x2];                                       // 0x009A(0x0002) MISSED OFFSET
+	EMovieScene3DPathSection_Axis                      FrontAxisEnum;                                            // 0x0098(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EMovieScene3DPathSection_Axis                      UpAxisEnum;                                               // 0x0099(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x2];                                       // 0x009A(0x0002) MISSED OFFSET
 	unsigned char                                      bFollow : 1;                                              // 0x009C(0x0001)
 	unsigned char                                      bReverse : 1;                                             // 0x009C(0x0001)
 	unsigned char                                      bForceUpright : 1;                                        // 0x009C(0x0001)
+	unsigned char                                      UnknownData01[0x3];                                       // 0x009D(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieScene3DTransformSectionTemplate
@@ -300,6 +305,7 @@ struct FMovieSceneAudioSectionTemplateData
 	struct FRichCurve                                  AudioPitchMultiplierCurve;                                // 0x0020(0x0070)
 	struct FRichCurve                                  AudioVolumeCurve;                                         // 0x0090(0x0070)
 	int                                                RowIndex;                                                 // 0x0100(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x4];                                       // 0x0104(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneAudioSectionTemplate
@@ -329,6 +335,7 @@ struct FMovieSceneCameraShakeSectionTemplate : public FMovieSceneAdditiveCameraA
 {
 	struct FMovieSceneCameraShakeSectionData           SourceData;                                               // 0x0018(0x0020)
 	float                                              SectionStartTime;                                         // 0x0038(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x003C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneCameraAnimSectionTemplate
@@ -337,6 +344,7 @@ struct FMovieSceneCameraAnimSectionTemplate : public FMovieSceneAdditiveCameraAn
 {
 	struct FMovieSceneCameraAnimSectionData            SourceData;                                               // 0x0018(0x0020)
 	float                                              SectionStartTime;                                         // 0x0038(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x003C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneCameraCutSectionTemplate
@@ -362,6 +370,7 @@ struct FMovieSceneEventSectionTemplate : public FMovieSceneEvalTemplate
 	struct FMovieSceneEventSectionData                 EventData;                                                // 0x0018(0x0020)
 	unsigned char                                      bFireEventsWhenForwards : 1;                              // 0x0038(0x0001)
 	unsigned char                                      bFireEventsWhenBackwards : 1;                             // 0x0038(0x0001)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0039(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneFadeSectionTemplate
@@ -371,6 +380,7 @@ struct FMovieSceneFadeSectionTemplate : public FMovieSceneEvalTemplate
 	struct FRichCurve                                  FadeCurve;                                                // 0x0018(0x0070)
 	struct FLinearColor                                FadeColor;                                                // 0x0088(0x0010) (CPF_IsPlainOldData)
 	unsigned char                                      bFadeAudio : 1;                                           // 0x0098(0x0001)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0099(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneLevelVisibilitySharedTrack
@@ -384,8 +394,8 @@ struct FMovieSceneLevelVisibilitySharedTrack : public FMovieSceneEvalTemplate
 // 0x0018 (0x0030 - 0x0018)
 struct FMovieSceneLevelVisibilitySectionTemplate : public FMovieSceneEvalTemplate
 {
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0018(0x0001) UNKNOWN PROPERTY: EnumProperty MovieSceneTracks.MovieSceneLevelVisibilitySectionTemplate.Visibility
-	unsigned char                                      UnknownData01[0x7];                                       // 0x0019(0x0007) MISSED OFFSET
+	ELevelVisibility                                   Visibility;                                               // 0x0018(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0019(0x0007) MISSED OFFSET
 	TArray<struct FName>                               LevelNames;                                               // 0x0020(0x0010) (CPF_ZeroConstructor)
 };
 
@@ -410,6 +420,7 @@ struct FMovieSceneVectorPropertySectionTemplate : public FMovieSceneEvalTemplate
 	struct FMovieScenePropertySectionData              PropertyData;                                             // 0x0018(0x0020)
 	struct FRichCurve                                  ComponentCurves[0x4];                                     // 0x0038(0x0070)
 	int                                                NumChannelsUsed;                                          // 0x01F8(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x01FC(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct MovieSceneTracks.MovieSceneStringPropertySectionTemplate
@@ -493,7 +504,8 @@ struct FMovieSceneSlomoSectionTemplate : public FMovieSceneEvalTemplate
 // 0x0008 (0x00B0 - 0x00A8)
 struct FMovieSceneVisibilitySectionTemplate : public FMovieSceneBoolPropertySectionTemplate
 {
-	unsigned char                                      bTemporarilyHiddenInGame : 1;                             // 0x00A8(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bTemporarilyHiddenInGame;                                 // 0x00A8(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x00A9(0x0007) MISSED OFFSET
 };
 
 }

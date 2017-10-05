@@ -17,6 +17,7 @@ namespace SDK
 // Function AthenaPlayerActionAlert.AthenaPlayerActionAlert_C.AlertPlayer
 struct UAthenaPlayerActionAlert_C_AlertPlayer_Params
 {
+	EAthenaPlayerActionAlert*                          Alert;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText*                                      DetailText;                                               // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 

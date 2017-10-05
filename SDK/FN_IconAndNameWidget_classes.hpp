@@ -25,9 +25,9 @@ public:
 	struct FSlateBrush                                 Brush;                                                    // 0x0260(0x0090) (CPF_Edit, CPF_BlueprintVisible)
 	struct FText                                       Text;                                                     // 0x02F0(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	class UClass*                                      BorderStyle;                                              // 0x0308(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bBorderVisible : 1;                                       // 0x0310(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bMatches : 1;                                             // 0x0311(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bBorderColorOverride : 1;                                 // 0x0312(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bBorderVisible;                                           // 0x0310(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bMatches;                                                 // 0x0311(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bBorderColorOverride;                                     // 0x0312(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x1];                                       // 0x0313(0x0001) MISSED OFFSET
 	struct FLinearColor                                RGBA0;                                                    // 0x0314(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 

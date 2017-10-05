@@ -13,16 +13,16 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum StoreOfferCosts.StoreOfferCosts
-enum class EStoreOfferCosts
+enum class EStoreOfferCosts : uint8_t
 {
-	StoreOfferCosts__NewEnumerator0 = 0,
-	StoreOfferCosts__NewEnumerator1 = 1,
-	StoreOfferCosts__NewEnumerator2 = 2,
-	StoreOfferCosts__NewEnumerator3 = 3,
-	StoreOfferCosts__NewEnumerator4 = 4,
-	StoreOfferCosts__NewEnumerator5 = 5,
-	StoreOfferCosts__NewEnumerator7 = 6,
-	StoreOfferCosts__StoreOfferCosts_MAX = 7
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	NewEnumerator4                 = 4,
+	NewEnumerator5                 = 5,
+	NewEnumerator7                 = 6,
+	StoreOfferCosts_MAX            = 7
 };
 
 

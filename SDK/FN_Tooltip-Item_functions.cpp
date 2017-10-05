@@ -14,8 +14,10 @@ namespace SDK
 
 // Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Text Visibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UTooltip_Item_C::Get_Tooltip_Header_Text_Visibility()
+ESlateVisibility UTooltip_Item_C::Get_Tooltip_Header_Text_Visibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Text Visibility");
 
@@ -26,13 +28,17 @@ void UTooltip_Item_C::Get_Tooltip_Header_Text_Visibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
 // Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Icon Visibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UTooltip_Item_C::Get_Tooltip_Header_Icon_Visibility()
+ESlateVisibility UTooltip_Item_C::Get_Tooltip_Header_Icon_Visibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Icon Visibility");
 
@@ -43,13 +49,17 @@ void UTooltip_Item_C::Get_Tooltip_Header_Icon_Visibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
 // Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Visibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UTooltip_Item_C::Get_Tooltip_Header_Visibility()
+ESlateVisibility UTooltip_Item_C::Get_Tooltip_Header_Visibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Visibility");
 
@@ -60,6 +70,8 @@ void UTooltip_Item_C::Get_Tooltip_Header_Visibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

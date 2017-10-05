@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass BP_ZT_Onboarding_Suburban_a.BP_ZT_Onboarding_Suburban_a_C
-// 0x0000 (0x0290 - 0x0290)
+// 0x0000 (0x0270 - 0x0270)
 class UBP_ZT_Onboarding_Suburban_a_C : public UBP_ZT_TheGrasslands_C
 {
 public:

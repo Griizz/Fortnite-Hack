@@ -36,14 +36,14 @@ public:
 
 
 	void Determine_Tab_List_Title(const struct FName& TabNameID, struct FText* Text);
-	void Determine_Key_Types_to_See(const struct FName& TabNameID);
+	void Determine_Key_Types_to_See(const struct FName& TabNameID, EConversionControlKeyRequest* RequestType);
 	void NavigateToFirstItem();
 	void NavigateToSelectedItem(class UFortItem* InItem);
 	void Get_Selected_Item(class UFortItem** SelectedKey);
 	void ResetScreen();
 	void HandleItemSelected(class UFortItem* Item);
 	void SetupKeyList();
-	void RebuildKeyList();
+	void RebuildKeyList(EConversionControlKeyRequest RequestType);
 	void Construct();
 	void BndEvt__ItemTransformKeyPicker_K2Node_ComponentBoundEvent_189_OnItemSelectionEvent__DelegateSignature(class UFortItem* SelectedItem);
 	void BndEvt__HorizontalTabList_K2Node_ComponentBoundEvent_17_OnTabSelected__DelegateSignature(const struct FName& TabId);

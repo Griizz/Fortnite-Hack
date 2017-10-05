@@ -14,6 +14,12 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function ItemCount.ItemCount_C.SetIsBeingPreviewed
+struct UItemCount_C_SetIsBeingPreviewed_Params
+{
+	bool                                               BeingPreviewed;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function ItemCount.ItemCount_C.SetItemDefinition
 struct UItemCount_C_SetItemDefinition_Params
 {

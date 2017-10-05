@@ -17,6 +17,7 @@ namespace SDK
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.RarityEnumToText
 struct AStoreCardReveal_BP_C_RarityEnumToText_Params
 {
+	EFortRarity                                        InRarity;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       OutRarity;                                                // (CPF_Parm, CPF_OutParm)
 };
 
@@ -120,6 +121,26 @@ struct AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__UpdateFunc_Params
 {
 };
 
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__SpeedTimeBackUp__EventFunc
+struct AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__SpeedTimeBackUp__EventFunc_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CameraFOV__EventFunc
+struct AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__CameraFOV__EventFunc_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CC-Phase2-Hide__EventFunc
+struct AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__CC_Phase2_Hide__EventFunc_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CC-Phase2__EventFunc
+struct AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__CC_Phase2__EventFunc_Params
+{
+};
+
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-MouseoverCC-A__FinishedFunc
 struct AStoreCardReveal_BP_C_TL_MouseoverCC_A__FinishedFunc_Params
 {
@@ -220,6 +241,11 @@ struct AStoreCardReveal_BP_C_TL_CC_DataDiskBurns__UpdateFunc_Params
 {
 };
 
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CC-DataDiskBurns__ChangeTexture__EventFunc
+struct AStoreCardReveal_BP_C_TL_CC_DataDiskBurns__ChangeTexture__EventFunc_Params
+{
+};
+
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CardMoveToScreen__FinishedFunc
 struct AStoreCardReveal_BP_C_TL_CardMoveToScreen__FinishedFunc_Params
 {
@@ -228,6 +254,18 @@ struct AStoreCardReveal_BP_C_TL_CardMoveToScreen__FinishedFunc_Params
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CardMoveToScreen__UpdateFunc
 struct AStoreCardReveal_BP_C_TL_CardMoveToScreen__UpdateFunc_Params
 {
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B5C4EF30E6
+struct AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B5C4EF30E6_Params
+{
+	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7181AC990
+struct AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B7181AC990_Params
+{
+	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_8
@@ -242,14 +280,8 @@ struct AStoreCardReveal_BP_C_InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_7_Pa
 	struct FKey                                        Key;                                                      // (CPF_Parm)
 };
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7DA628494
-struct AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B7DA628494_Params
-{
-	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B5D3E0A70B
-struct AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B5D3E0A70B_Params
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B51198EA0F
+struct AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B51198EA0F_Params
 {
 	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -260,8 +292,8 @@ struct AStoreCardReveal_BP_C_InpActEvt_Gamepad_RightTrigger_K2Node_InputKeyEvent
 	struct FKey                                        Key;                                                      // (CPF_Parm)
 };
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B70F155E7D
-struct AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B70F155E7D_Params
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7CD6D1379
+struct AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B7CD6D1379_Params
 {
 	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -280,16 +312,26 @@ struct AStoreCardReveal_BP_C_InpTchEvt_Pressed_Params
 	struct FVector                                     Location;                                                 // (CPF_Parm, CPF_IsPlainOldData)
 };
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B506977DE2
-struct AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B506977DE2_Params
-{
-	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_5
 struct AStoreCardReveal_BP_C_InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_5_Params
 {
 	struct FKey                                        Key;                                                      // (CPF_Parm)
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.InitiatePinata
+struct AStoreCardReveal_BP_C_InitiatePinata_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnStoreStateChanged
+struct AStoreCardReveal_BP_C_OnStoreStateChanged_Params
+{
+	EFortStoreState                                    NewStoreState;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.StartPackOpen
+struct AStoreCardReveal_BP_C_StartPackOpen_Params
+{
 };
 
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.CardEnterStart
@@ -297,8 +339,8 @@ struct AStoreCardReveal_BP_C_CardEnterStart_Params
 {
 };
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.StartPackOpen
-struct AStoreCardReveal_BP_C_StartPackOpen_Params
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.PackDestroyStart
+struct AStoreCardReveal_BP_C_PackDestroyStart_Params
 {
 };
 
@@ -324,16 +366,6 @@ struct AStoreCardReveal_BP_C_CardBackRevealStart_Params
 
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.CardFrontRevealStart
 struct AStoreCardReveal_BP_C_CardFrontRevealStart_Params
-{
-};
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnStoreStateChanged
-struct AStoreCardReveal_BP_C_OnStoreStateChanged_Params
-{
-};
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.InitiatePinata
-struct AStoreCardReveal_BP_C_InitiatePinata_Params
 {
 };
 
@@ -384,11 +416,6 @@ struct AStoreCardReveal_BP_C_BndEvt__S_ChoiceCardB_K2Node_ComponentBoundEvent_1_
 {
 	class UPrimitiveComponent*                         TouchedComponent;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FKey                                        ButtonPressed;                                            // (CPF_Parm)
-};
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.PackDestroyStart
-struct AStoreCardReveal_BP_C_PackDestroyStart_Params
-{
 };
 
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.SkipBackRevealForChoicePack
@@ -516,16 +543,6 @@ struct AStoreCardReveal_BP_C_InpAxisEvt_MoveRight_Gamepad_K2Node_InputAxisEvent_
 	float                                              AxisValue;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Gamepad Choice Left
-struct AStoreCardReveal_BP_C_Handle_Gamepad_Choice_Left_Params
-{
-};
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Gamepad Choice Right
-struct AStoreCardReveal_BP_C_Handle_Gamepad_Choice_Right_Params
-{
-};
-
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Input Mode Changed
 struct AStoreCardReveal_BP_C_Handle_Input_Mode_Changed_Params
 {
@@ -564,6 +581,27 @@ struct AStoreCardReveal_BP_C_OpenGamepadGate_Params
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.CloseGamepadGate
 struct AStoreCardReveal_BP_C_CloseGamepadGate_Params
 {
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.EndQuestionMarkAnim
+struct AStoreCardReveal_BP_C_EndQuestionMarkAnim_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.SetCCRarityColor
+struct AStoreCardReveal_BP_C_SetCCRarityColor_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.CCRarityColorReady
+struct AStoreCardReveal_BP_C_CCRarityColorReady_Params
+{
+};
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.InpAxisEvt_MoveRight_K2Node_InputAxisEvent_41
+struct AStoreCardReveal_BP_C_InpAxisEvt_MoveRight_K2Node_InputAxisEvent_41_Params
+{
+	float                                              AxisValue;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.ExecuteUbergraph_StoreCardReveal_BP

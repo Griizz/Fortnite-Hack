@@ -231,12 +231,15 @@ void UAmbientControllerComponent_Athena_C::ReceiveTick(float* DeltaSeconds)
 
 // Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.On Game Phase Change
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EAthenaGamePhase               GamePhase                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAmbientControllerComponent_Athena_C::On_Game_Phase_Change()
+void UAmbientControllerComponent_Athena_C::On_Game_Phase_Change(EAthenaGamePhase GamePhase)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.On Game Phase Change");
 
 	UAmbientControllerComponent_Athena_C_On_Game_Phase_Change_Params params;
+	params.GamePhase = GamePhase;
 
 	auto flags = fn->FunctionFlags;
 
@@ -248,12 +251,15 @@ void UAmbientControllerComponent_Athena_C::On_Game_Phase_Change()
 
 // Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.On Game Phase Step Change
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EAthenaGamePhaseStep           GamePhaseStep                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAmbientControllerComponent_Athena_C::On_Game_Phase_Step_Change()
+void UAmbientControllerComponent_Athena_C::On_Game_Phase_Step_Change(EAthenaGamePhaseStep GamePhaseStep)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.On Game Phase Step Change");
 
 	UAmbientControllerComponent_Athena_C_On_Game_Phase_Step_Change_Params params;
+	params.GamePhaseStep = GamePhaseStep;
 
 	auto flags = fn->FunctionFlags;
 

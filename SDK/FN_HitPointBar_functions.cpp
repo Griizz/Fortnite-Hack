@@ -121,13 +121,15 @@ void UHitPointBar_C::Update_Fill_Bar()
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // float                          Current                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortHitPointModificationReason Reason                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UHitPointBar_C::UpdateCurrentValue(float Current)
+void UHitPointBar_C::UpdateCurrentValue(float Current, EFortHitPointModificationReason Reason)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HitPointBar.HitPointBar_C.UpdateCurrentValue");
 
 	UHitPointBar_C_UpdateCurrentValue_Params params;
 	params.Current = Current;
+	params.Reason = Reason;
 
 	auto flags = fn->FunctionFlags;
 

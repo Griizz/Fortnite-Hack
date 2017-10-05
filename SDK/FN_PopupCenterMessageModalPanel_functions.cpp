@@ -53,12 +53,15 @@ void UPopupCenterMessageModalPanel_C::UpdateMatchTimerText(bool* StopTimer)
 
 // Function PopupCenterMessageModalPanel.PopupCenterMessageModalPanel_C.UpdateState
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ECenterPopupMessageStateEnum   NewState                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UPopupCenterMessageModalPanel_C::UpdateState()
+void UPopupCenterMessageModalPanel_C::UpdateState(ECenterPopupMessageStateEnum NewState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function PopupCenterMessageModalPanel.PopupCenterMessageModalPanel_C.UpdateState");
 
 	UPopupCenterMessageModalPanel_C_UpdateState_Params params;
+	params.NewState = NewState;
 
 	auto flags = fn->FunctionFlags;
 

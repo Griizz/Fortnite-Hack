@@ -13,64 +13,64 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum GameSubCatalog.ECatalogRequirementType
-enum class ECatalogRequirementType
+enum class ECatalogRequirementType : uint8_t
 {
-	ECatalogRequirementType__RequireFulfillment = 0,
-	ECatalogRequirementType__DenyOnFulfillment = 1,
-	ECatalogRequirementType__RequireItemOwnership = 2,
-	ECatalogRequirementType__DenyOnItemOwnership = 3,
-	ECatalogRequirementType__ECatalogRequirementType_MAX = 4
+	RequireFulfillment             = 0,
+	DenyOnFulfillment              = 1,
+	RequireItemOwnership           = 2,
+	DenyOnItemOwnership            = 3,
+	ECatalogRequirementType_MAX    = 4
 };
 
 
 // Enum GameSubCatalog.ECatalogOfferType
-enum class ECatalogOfferType
+enum class ECatalogOfferType : uint8_t
 {
-	ECatalogOfferType__StaticPrice = 0,
-	ECatalogOfferType__DynamicBundle = 1,
-	ECatalogOfferType__ECatalogOfferType_MAX = 2
+	StaticPrice                    = 0,
+	DynamicBundle                  = 1,
+	ECatalogOfferType_MAX          = 2
 };
 
 
 // Enum GameSubCatalog.ECatalogSaleType
-enum class ECatalogSaleType
+enum class ECatalogSaleType : uint8_t
 {
-	ECatalogSaleType__NotOnSale    = 0,
-	ECatalogSaleType__UndecoratedNewPrice = 1,
-	ECatalogSaleType__AmountOff    = 2,
-	ECatalogSaleType__PercentOff   = 3,
-	ECatalogSaleType__PercentOn    = 4,
-	ECatalogSaleType__Strikethrough = 5,
-	ECatalogSaleType__MAX          = 6,
-	ECatalogSaleType__ECatalogSaleType_MAX = 7
+	NotOnSale                      = 0,
+	UndecoratedNewPrice            = 1,
+	AmountOff                      = 2,
+	PercentOff                     = 3,
+	PercentOn                      = 4,
+	Strikethrough                  = 5,
+	MAX                            = 6,
+	ECatalogSaleType_MAX           = 7
 };
 
 
 // Enum GameSubCatalog.EAppStore
-enum class EAppStore
+enum class EAppStore : uint8_t
 {
-	EAppStore__DebugStore          = 0,
-	EAppStore__EpicPurchasingService = 1,
-	EAppStore__IOSAppStore         = 2,
-	EAppStore__WeChatAppStore      = 3,
-	EAppStore__GooglePlayAppStore  = 4,
-	EAppStore__KindleStore         = 5,
-	EAppStore__PlayStationStore    = 6,
-	EAppStore__XboxLiveStore       = 7,
-	EAppStore__MAX                 = 8,
-	EAppStore__EAppStore_MAX       = 9
+	DebugStore                     = 0,
+	EpicPurchasingService          = 1,
+	IOSAppStore                    = 2,
+	WeChatAppStore                 = 3,
+	GooglePlayAppStore             = 4,
+	KindleStore                    = 5,
+	PlayStationStore               = 6,
+	XboxLiveStore                  = 7,
+	MAX                            = 8,
+	EAppStore_MAX                  = 9
 };
 
 
 // Enum GameSubCatalog.EStoreCurrencyType
-enum class EStoreCurrencyType
+enum class EStoreCurrencyType : uint8_t
 {
-	EStoreCurrencyType__RealMoney  = 0,
-	EStoreCurrencyType__MtxCurrency = 1,
-	EStoreCurrencyType__GameItem   = 2,
-	EStoreCurrencyType__Other      = 3,
-	EStoreCurrencyType__MAX        = 4,
-	EStoreCurrencyType__EStoreCurrencyType_MAX = 5
+	RealMoney                      = 0,
+	MtxCurrency                    = 1,
+	GameItem                       = 2,
+	Other                          = 3,
+	MAX                            = 4,
+	EStoreCurrencyType_MAX         = 5
 };
 
 
@@ -124,7 +124,7 @@ struct FItemQuantity
 struct FCatalogDynamicBundleItem
 {
 	struct FItemQuantity                               Item;                                                     // 0x0000(0x0038) (CPF_Edit, CPF_DisableEditOnInstance)
-	unsigned char                                      bCanOwnMultiple : 1;                                      // 0x0038(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bCanOwnMultiple;                                          // 0x0038(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0039(0x0003) MISSED OFFSET
 	int                                                RegularPrice;                                             // 0x003C(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	int                                                DiscountedPrice;                                          // 0x0040(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -158,8 +158,8 @@ struct FCatalogMetaAssetInfo
 // 0x0018
 struct FCatalogOfferRequirement
 {
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0000(0x0001) UNKNOWN PROPERTY: EnumProperty GameSubCatalog.CatalogOfferRequirement.RequirementType
-	unsigned char                                      UnknownData01[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
+	ECatalogRequirementType                            RequirementType;                                          // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
 	int                                                MinQuantity;                                              // 0x0004(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     RequiredId;                                               // 0x0008(0x0010) (CPF_ZeroConstructor)
 };
@@ -170,8 +170,8 @@ struct FCatalogOffer
 {
 	struct FString                                     OfferId;                                                  // 0x0000(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_EditConst)
 	TArray<struct FCatalogKeyValue>                    MetaInfo;                                                 // 0x0010(0x0010) (CPF_Edit, CPF_ZeroConstructor)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0020(0x0001) UNKNOWN PROPERTY: EnumProperty GameSubCatalog.CatalogOffer.OfferType
-	unsigned char                                      UnknownData01[0x7];                                       // 0x0021(0x0007) MISSED OFFSET
+	ECatalogOfferType                                  OfferType;                                                // 0x0020(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0021(0x0007) MISSED OFFSET
 	TArray<struct FCatalogItemPrice>                   Prices;                                                   // 0x0028(0x0010) (CPF_Edit, CPF_ZeroConstructor)
 	struct FCatalogDynamicBundle                       DynamicBundleInfo;                                        // 0x0038(0x0030) (CPF_Edit)
 	int                                                DailyLimit;                                               // 0x0068(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -230,6 +230,7 @@ struct FCatalogPurchaseInfo
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0015(0x0003) MISSED OFFSET
 	struct FString                                     CurrencySubType;                                          // 0x0018(0x0010) (CPF_ZeroConstructor)
 	int                                                ExpectedPrice;                                            // 0x0028(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x4];                                       // 0x002C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct GameSubCatalog.CatalogReceiptInfo

@@ -53,8 +53,9 @@ void UAnnouncement_Tutorial_C::CheckContinueTutorial(const struct FFortClientAnn
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
 // struct FFortClientAnnouncementData_Tutorial FortClientAnnouncementData_Tutorial (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UAnnouncement_Tutorial_C::GetLightboxVisibility(const struct FFortClientAnnouncementData_Tutorial& FortClientAnnouncementData_Tutorial)
+ESlateVisibility UAnnouncement_Tutorial_C::GetLightboxVisibility(const struct FFortClientAnnouncementData_Tutorial& FortClientAnnouncementData_Tutorial)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Announcement_Tutorial.Announcement_Tutorial_C.GetLightboxVisibility");
 
@@ -66,6 +67,8 @@ void UAnnouncement_Tutorial_C::GetLightboxVisibility(const struct FFortClientAnn
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

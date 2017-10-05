@@ -96,6 +96,7 @@ struct UMediaPlayer_SetDesiredPlayerName_Params
 // Function MediaAssets.MediaPlayer.SelectTrack
 struct UMediaPlayer_SelectTrack_Params
 {
+	EMediaPlayerTrack                                  TrackType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                TrackIndex;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -218,6 +219,7 @@ struct UMediaPlayer_GetUrl_Params
 // Function MediaAssets.MediaPlayer.GetTrackLanguage
 struct UMediaPlayer_GetTrackLanguage_Params
 {
+	EMediaPlayerTrack                                  TrackType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                TrackIndex;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
@@ -225,6 +227,7 @@ struct UMediaPlayer_GetTrackLanguage_Params
 // Function MediaAssets.MediaPlayer.GetTrackDisplayName
 struct UMediaPlayer_GetTrackDisplayName_Params
 {
+	EMediaPlayerTrack                                  TrackType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                TrackIndex;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
@@ -238,6 +241,7 @@ struct UMediaPlayer_GetTime_Params
 // Function MediaAssets.MediaPlayer.GetSelectedTrack
 struct UMediaPlayer_GetSelectedTrack_Params
 {
+	EMediaPlayerTrack                                  TrackType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -263,6 +267,7 @@ struct UMediaPlayer_GetPlayerName_Params
 // Function MediaAssets.MediaPlayer.GetNumTracks
 struct UMediaPlayer_GetNumTracks_Params
 {
+	EMediaPlayerTrack                                  TrackType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 

@@ -48,7 +48,7 @@ public:
 	void SetupAsPage(class UFortCollectionBookPage** Page);
 	void OnExpansionChanged(bool* bExpanded);
 	void PreConstruct(bool* IsDesignTime);
-	void OnPageDetailsUpdated(int* NumAvailableSlots);
+	void OnPageDetailsUpdated(int* NumAvailableSlots, EFortCollectionBookState* State);
 	void OnSelectionChanged(class UCommonButton* ThisButton, bool bSelected);
 	void ExecuteUbergraph_CollectionBookPageListWidget(int EntryPoint);
 };

@@ -624,13 +624,15 @@ void UAthenaLobby_C::Initialize()
 // Function AthenaLobby.AthenaLobby_C.DialogResult_156754AE468EF93DCA2009A412591BA7
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaLobby_C::DialogResult_156754AE468EF93DCA2009A412591BA7(const struct FName& ResultName)
+void UAthenaLobby_C::DialogResult_156754AE468EF93DCA2009A412591BA7(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaLobby.AthenaLobby_C.DialogResult_156754AE468EF93DCA2009A412591BA7");
 
 	UAthenaLobby_C_DialogResult_156754AE468EF93DCA2009A412591BA7_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;

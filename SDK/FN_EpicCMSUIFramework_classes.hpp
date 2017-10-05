@@ -42,8 +42,8 @@ public:
 	class UClass*                                      FeaturedTitleTextStyle;                                   // 0x08B0(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FText                                       Title;                                                    // 0x08B8(0x0018) (CPF_BlueprintVisible, CPF_BlueprintReadOnly)
 	struct FString                                     Link;                                                     // 0x08D0(0x0010) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor)
-	unsigned char                                      bDownloadingExternalMedia : 1;                            // 0x08E0(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bRefreshingMcpCatalog : 1;                                // 0x08E1(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bDownloadingExternalMedia;                                // 0x08E0(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bRefreshingMcpCatalog;                                    // 0x08E1(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0xB6];                                      // 0x08E2(0x00B6) MISSED OFFSET
 	class UCommonLazyImage*                            LazyImage_Icon;                                           // 0x0998(0x0008) (CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	class UCommonTextBlock*                            TitleTextBlock;                                           // 0x09A0(0x0008) (CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
@@ -87,7 +87,7 @@ class UEpicCMSManager : public UObject
 public:
 	unsigned char                                      UnknownData00[0x78];                                      // 0x0028(0x0078) MISSED OFFSET
 	struct FString                                     CmsEndpointOverride;                                      // 0x00A0(0x0010) (CPF_ZeroConstructor)
-	unsigned char                                      bRefreshing : 1;                                          // 0x00B0(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bRefreshing;                                              // 0x00B0(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x2F];                                      // 0x00B1(0x002F) MISSED OFFSET
 
 	static UClass* StaticClass()
@@ -109,8 +109,9 @@ public:
 	class UCommonWidgetCarousel*                       Carousel;                                                 // 0x0260(0x0008) (CPF_BlueprintVisible, CPF_ExportObject, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	class UWidget*                                     NextPageButton;                                           // 0x0268(0x0008) (CPF_BlueprintVisible, CPF_ExportObject, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	class UWidget*                                     PreviousPageButton;                                       // 0x0270(0x0008) (CPF_BlueprintVisible, CPF_ExportObject, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
-	unsigned char                                      bShouldShowNavigationOnlyOnHover : 1;                     // 0x0278(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bIsShowingNavigation : 1;                                 // 0x0279(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bShouldShowNavigationOnlyOnHover;                         // 0x0278(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsShowingNavigation;                                     // 0x0279(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x6];                                       // 0x027A(0x0006) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

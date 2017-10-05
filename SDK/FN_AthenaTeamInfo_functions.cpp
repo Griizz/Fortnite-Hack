@@ -32,9 +32,9 @@ void UAthenaTeamInfo_C::HandleTeamMemberRemoved()
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamRevivingChanged
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// TArray<unsigned char>          TeamReviving                   (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+// TArray<bool>                   TeamReviving                   (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 
-void UAthenaTeamInfo_C::HandleTeamRevivingChanged(TArray<unsigned char>* TeamReviving)
+void UAthenaTeamInfo_C::HandleTeamRevivingChanged(TArray<bool>* TeamReviving)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamRevivingChanged");
 
@@ -71,9 +71,9 @@ void UAthenaTeamInfo_C::HandleTeamMemberPlayerNamesChanged()
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamDeadChanged
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// TArray<unsigned char>          TeamDead                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+// TArray<bool>                   TeamDead                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 
-void UAthenaTeamInfo_C::HandleTeamDeadChanged(TArray<unsigned char>* TeamDead)
+void UAthenaTeamInfo_C::HandleTeamDeadChanged(TArray<bool>* TeamDead)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamDeadChanged");
 
@@ -93,9 +93,9 @@ void UAthenaTeamInfo_C::HandleTeamDeadChanged(TArray<unsigned char>* TeamDead)
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamDBNOChanged
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// TArray<unsigned char>          TeamDBNO                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+// TArray<bool>                   TeamDBNO                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 
-void UAthenaTeamInfo_C::HandleTeamDBNOChanged(TArray<unsigned char>* TeamDBNO)
+void UAthenaTeamInfo_C::HandleTeamDBNOChanged(TArray<bool>* TeamDBNO)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamDBNOChanged");
 

@@ -44,8 +44,8 @@ public:
 	float                                              FadeUpdateRate;                                           // 0x02F4(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FFortMultiSizeFont                          MultiFont;                                                // 0x02F8(0x0270) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	class UTexture2D*                                  Baseplate_Texture;                                        // 0x0568(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      Volatile : 1;                                             // 0x0570(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      DBNOStateCache : 1;                                       // 0x0571(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               Volatile;                                                 // 0x0570(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               DBNOStateCache;                                           // 0x0571(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -61,7 +61,7 @@ public:
 	void Initialize_Bar();
 	void UpdateCurrentValueWithoutReason(float Current);
 	void Update_Fill_Bar();
-	void UpdateCurrentValue(float Current);
+	void UpdateCurrentValue(float Current, EFortHitPointModificationReason Reason);
 	void UpdateMaxValue(float Max);
 	void Construct();
 	void PreConstruct(bool* IsDesignTime);

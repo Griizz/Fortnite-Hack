@@ -183,6 +183,7 @@ struct UCommonActivatablePanel_SetActionHandlerStateWithDisabledCommitEvent_Para
 {
 	class UDataTable*                                  DataTable;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       RowName;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EInputActionState                                  State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FScriptDelegate                             DisabledCommitEvent;                                      // (CPF_Parm, CPF_ZeroConstructor)
 };
 
@@ -190,6 +191,7 @@ struct UCommonActivatablePanel_SetActionHandlerStateWithDisabledCommitEvent_Para
 struct UCommonActivatablePanel_SetActionHandlerStateFromHandleWithDisabledCommitEvent_Params
 {
 	struct FDataTableRowHandle                         InputActionRow;                                           // (CPF_Parm)
+	EInputActionState                                  State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FScriptDelegate                             DisabledCommitEvent;                                      // (CPF_Parm, CPF_ZeroConstructor)
 };
 
@@ -197,6 +199,7 @@ struct UCommonActivatablePanel_SetActionHandlerStateFromHandleWithDisabledCommit
 struct UCommonActivatablePanel_SetActionHandlerStateFromHandle_Params
 {
 	struct FDataTableRowHandle                         InputActionRow;                                           // (CPF_Parm)
+	EInputActionState                                  State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CommonUI.CommonActivatablePanel.SetActionHandlerState
@@ -204,6 +207,7 @@ struct UCommonActivatablePanel_SetActionHandlerState_Params
 {
 	class UDataTable*                                  DataTable;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       RowName;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EInputActionState                                  State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CommonUI.CommonActivatablePanel.RemoveInputActionHandler
@@ -1049,6 +1053,7 @@ struct UCommonButtonStyle_GetButtonPadding_Params
 // DelegateFunction CommonUI.CommonCustomNavigation.OnCustomNavigationEvent__DelegateSignature
 struct UCommonCustomNavigation_OnCustomNavigationEvent__DelegateSignature_Params
 {
+	EUINavigation                                      NavigationType;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -1327,6 +1332,7 @@ struct UCommonTextStyle_GetColor_Params
 // Function CommonUI.CommonUIContext.SetGamepadInputType
 struct UCommonUIContext_SetGamepadInputType_Params
 {
+	ECommonInputType                                   InGamepadInputType;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CommonUI.CommonUIContext.IsUsingTouch
@@ -1369,12 +1375,14 @@ struct UCommonUIContext_GetInputManager_Params
 struct UCommonUIContext_GetInputActionButtonIcon_Params
 {
 	struct FDataTableRowHandle                         InputActionRowHandle;                                     // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	ECommonInputType                                   InputType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FSlateBrush                                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
 // Function CommonUI.CommonUIContext.GetCurrentInputType
 struct UCommonUIContext_GetCurrentInputType_Params
 {
+	ECommonInputType                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function CommonUI.CommonUILibrary.FindParentWidgetOfType

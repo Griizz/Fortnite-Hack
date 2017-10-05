@@ -60,7 +60,7 @@ public:
 	void BndEvt__3Star_K2Node_ComponentBoundEvent_907_On_Mouse_Hovered_Changed__DelegateSignature(bool Is_Hovered);
 	void BndEvt__2Star_K2Node_ComponentBoundEvent_925_On_Mouse_Hovered_Changed__DelegateSignature(bool Is_Hovered);
 	void BndEvt__1Star_K2Node_ComponentBoundEvent_944_On_Mouse_Hovered_Changed__DelegateSignature(bool Is_Hovered);
-	void OnClientPartyStateChanged();
+	void OnClientPartyStateChanged(EFortPartyState PartyState);
 	void OnStarButtonClicked(class UFortBaseButton* Button_Clicked);
 	void OnInputMethodChanged(bool bUsingGamepad);
 	void Destruct();

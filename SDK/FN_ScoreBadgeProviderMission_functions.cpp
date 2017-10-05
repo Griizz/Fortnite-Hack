@@ -15,13 +15,15 @@ namespace SDK
 // Function ScoreBadgeProviderMission.ScoreBadgeProviderMission_C.GetTotalScore
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EStatCategory                  ScoreCategory                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            Score                          (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UScoreBadgeProviderMission_C::GetTotalScore(int* Score)
+void UScoreBadgeProviderMission_C::GetTotalScore(EStatCategory ScoreCategory, int* Score)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ScoreBadgeProviderMission.ScoreBadgeProviderMission_C.GetTotalScore");
 
 	UScoreBadgeProviderMission_C_GetTotalScore_Params params;
+	params.ScoreCategory = ScoreCategory;
 
 	auto flags = fn->FunctionFlags;
 
@@ -37,13 +39,15 @@ void UScoreBadgeProviderMission_C::GetTotalScore(int* Score)
 // Function ScoreBadgeProviderMission.ScoreBadgeProviderMission_C.GetScoreBadgeInfos
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EStatCategory                  ScoreCategory                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // TArray<struct FCollectionMissionBadgeDisplayInfo> BadgeInfos                     (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 
-void UScoreBadgeProviderMission_C::GetScoreBadgeInfos(TArray<struct FCollectionMissionBadgeDisplayInfo>* BadgeInfos)
+void UScoreBadgeProviderMission_C::GetScoreBadgeInfos(EStatCategory ScoreCategory, TArray<struct FCollectionMissionBadgeDisplayInfo>* BadgeInfos)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ScoreBadgeProviderMission.ScoreBadgeProviderMission_C.GetScoreBadgeInfos");
 
 	UScoreBadgeProviderMission_C_GetScoreBadgeInfos_Params params;
+	params.ScoreCategory = ScoreCategory;
 
 	auto flags = fn->FunctionFlags;
 

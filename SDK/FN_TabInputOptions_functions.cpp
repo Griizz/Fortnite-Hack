@@ -47,7 +47,7 @@ void UTabInputOptions_C::Set_Input_Enabled()
 
 
 // Function TabInputOptions.TabInputOptions_C.Overlay Key Pressed
-// (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // struct FKey                    NewKey                         (CPF_Parm)
 
@@ -86,15 +86,15 @@ void UTabInputOptions_C::Construct()
 // Function TabInputOptions.TabInputOptions_C.Input Clicked
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// int                            Number_In_List                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// int                            Number_in_List                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           Is_Primary_Button              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UTabInputOptions_C::Input_Clicked(int Number_In_List, bool Is_Primary_Button)
+void UTabInputOptions_C::Input_Clicked(int Number_in_List, bool Is_Primary_Button)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function TabInputOptions.TabInputOptions_C.Input Clicked");
 
 	UTabInputOptions_C_Input_Clicked_Params params;
-	params.Number_In_List = Number_In_List;
+	params.Number_in_List = Number_in_List;
 	params.Is_Primary_Button = Is_Primary_Button;
 
 	auto flags = fn->FunctionFlags;
@@ -170,6 +170,26 @@ void UTabInputOptions_C::HandleUsingGamepadChanged(bool* bUsingGamepad)
 
 	UTabInputOptions_C_HandleUsingGamepadChanged_Params params;
 	params.bUsingGamepad = bUsingGamepad;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function TabInputOptions.TabInputOptions_C.UnbindClicked
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// int                            Number_in_List                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UTabInputOptions_C::UnbindClicked(int Number_in_List)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function TabInputOptions.TabInputOptions_C.UnbindClicked");
+
+	UTabInputOptions_C_UnbindClicked_Params params;
+	params.Number_in_List = Number_in_List;
 
 	auto flags = fn->FunctionFlags;
 

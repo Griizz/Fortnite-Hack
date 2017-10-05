@@ -17,6 +17,7 @@ namespace SDK
 // Function PopupCenterMessageWidget.PopupCenterMessageWidget_C.OnModalDisplayed
 struct UPopupCenterMessageWidget_C_OnModalDisplayed_Params
 {
+	ECenterPopupMessageStateEnum*                      NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCommonActivatablePanel**                    ModalPopup;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

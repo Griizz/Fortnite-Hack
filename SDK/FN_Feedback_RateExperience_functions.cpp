@@ -284,12 +284,15 @@ void UFeedback_RateExperience_C::BndEvt__1Star_K2Node_ComponentBoundEvent_944_On
 
 // Function Feedback_RateExperience.Feedback_RateExperience_C.OnClientPartyStateChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortPartyState                PartyState                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UFeedback_RateExperience_C::OnClientPartyStateChanged()
+void UFeedback_RateExperience_C::OnClientPartyStateChanged(EFortPartyState PartyState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Feedback_RateExperience.Feedback_RateExperience_C.OnClientPartyStateChanged");
 
 	UFeedback_RateExperience_C_OnClientPartyStateChanged_Params params;
+	params.PartyState = PartyState;
 
 	auto flags = fn->FunctionFlags;
 

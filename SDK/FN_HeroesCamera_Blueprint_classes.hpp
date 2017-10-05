@@ -18,7 +18,7 @@ class AHeroesCamera_Blueprint_C : public AFortCameraBase
 {
 public:
 	struct FPointerToUberGraphFrame                    UberGraphFrame;                                           // 0x08C0(0x0008) (CPF_Transient, CPF_DuplicateTransient)
-	unsigned char                                      MouseDown : 1;                                            // 0x08C8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               MouseDown;                                                // 0x08C8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x08C9(0x0007) MISSED OFFSET
 	class AFortPlayerPawn*                             Cached_Pawn;                                              // 0x08D0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnTemplate, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 

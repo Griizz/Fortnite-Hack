@@ -13,14 +13,14 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum Direction.Direction
-enum class EDirection
+enum class EDirection : uint8_t
 {
-	Direction__NewEnumerator0      = 0,
-	Direction__NewEnumerator1      = 1,
-	Direction__NewEnumerator2      = 2,
-	Direction__NewEnumerator3      = 3,
-	Direction__NewEnumerator4      = 4,
-	Direction__Direction_MAX       = 5
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	NewEnumerator4                 = 4,
+	Direction_MAX                  = 5
 };
 
 

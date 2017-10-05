@@ -12,6 +12,28 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function AthenaDeathWidget.AthenaDeathWidget_C.AddTeamMemberIndicator
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// class AFortPlayerStateAthena*  Player_State                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// int                            Team_Member_Index              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UAthenaDeathWidget_C::AddTeamMemberIndicator(class AFortPlayerStateAthena* Player_State, int Team_Member_Index)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function AthenaDeathWidget.AthenaDeathWidget_C.AddTeamMemberIndicator");
+
+	UAthenaDeathWidget_C_AddTeamMemberIndicator_Params params;
+	params.Player_State = Player_State;
+	params.Team_Member_Index = Team_Member_Index;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function AthenaDeathWidget.AthenaDeathWidget_C.AnyTeamMembersStillAlive
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
@@ -129,6 +151,26 @@ void UAthenaDeathWidget_C::OnPawnDied(struct FFortPlayerDeathReport* DeathReport
 }
 
 
+// Function AthenaDeathWidget.AthenaDeathWidget_C.BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature
+// (FUNC_BlueprintEvent)
+// Parameters:
+// class UCommonButton*           Button                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UAthenaDeathWidget_C::BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature(class UCommonButton* Button)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function AthenaDeathWidget.AthenaDeathWidget_C.BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature");
+
+	UAthenaDeathWidget_C_BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature_Params params;
+	params.Button = Button;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function AthenaDeathWidget.AthenaDeathWidget_C.OnActivated
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 
@@ -180,17 +222,34 @@ void UAthenaDeathWidget_C::On_Kill_Feed_Updated()
 }
 
 
-// Function AthenaDeathWidget.AthenaDeathWidget_C.BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature
-// (FUNC_BlueprintEvent)
-// Parameters:
-// class UCommonButton*           Button                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// Function AthenaDeathWidget.AthenaDeathWidget_C.TeamMemberChanged
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
-void UAthenaDeathWidget_C::BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature(class UCommonButton* Button)
+void UAthenaDeathWidget_C::TeamMemberChanged()
 {
-	static auto fn = UObject::FindObject<UFunction>("Function AthenaDeathWidget.AthenaDeathWidget_C.BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature");
+	static auto fn = UObject::FindObject<UFunction>("Function AthenaDeathWidget.AthenaDeathWidget_C.TeamMemberChanged");
 
-	UAthenaDeathWidget_C_BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature_Params params;
-	params.Button = Button;
+	UAthenaDeathWidget_C_TeamMemberChanged_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function AthenaDeathWidget.AthenaDeathWidget_C.PreConstruct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// bool*                          IsDesignTime                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UAthenaDeathWidget_C::PreConstruct(bool* IsDesignTime)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function AthenaDeathWidget.AthenaDeathWidget_C.PreConstruct");
+
+	UAthenaDeathWidget_C_PreConstruct_Params params;
+	params.IsDesignTime = IsDesignTime;
 
 	auto flags = fn->FunctionFlags;
 

@@ -30,6 +30,16 @@ struct UAlterationsWidget_C_OnItemChanged_Params
 {
 };
 
+// Function AlterationsWidget.AlterationsWidget_C.OnItemToCompareWithChanged
+struct UAlterationsWidget_C_OnItemToCompareWithChanged_Params
+{
+};
+
+// Function AlterationsWidget.AlterationsWidget_C.OnStateChanged
+struct UAlterationsWidget_C_OnStateChanged_Params
+{
+};
+
 // Function AlterationsWidget.AlterationsWidget_C.ExecuteUbergraph_AlterationsWidget
 struct UAlterationsWidget_C_ExecuteUbergraph_AlterationsWidget_Params
 {

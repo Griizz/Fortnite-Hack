@@ -139,13 +139,15 @@ void UDefaultObjectiveContentWidget_C::Setup(class AFortObjectiveBase* Objective
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class AFortObjectiveBase*      Objective                      (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortObjectiveStatus           NewStatus                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UDefaultObjectiveContentWidget_C::HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective)
+void UDefaultObjectiveContentWidget_C::HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective, EFortObjectiveStatus NewStatus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function DefaultObjectiveContentWidget.DefaultObjectiveContentWidget_C.HandleObjectiveStatusChanged");
 
 	UDefaultObjectiveContentWidget_C_HandleObjectiveStatusChanged_Params params;
 	params.Objective = Objective;
+	params.NewStatus = NewStatus;
 
 	auto flags = fn->FunctionFlags;
 

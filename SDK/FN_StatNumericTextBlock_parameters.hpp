@@ -17,6 +17,7 @@ namespace SDK
 // Function StatNumericTextBlock.StatNumericTextBlock_C.SetComparisonState
 struct UStatNumericTextBlock_C_SetComparisonState_Params
 {
+	EFortBuffState                                     Buff_State;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StatNumericTextBlock.StatNumericTextBlock_C.UpdateComparison

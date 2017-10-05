@@ -36,15 +36,15 @@ struct UHordeWaveAlertWidget_C_OnHordeTierInitialized_Event_1_Params
 	TArray<struct FFortItemInstanceQuantityPair>       Items;                                                    // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
-// Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.Construct
-struct UHordeWaveAlertWidget_C_Construct_Params
-{
-};
-
 // Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.OnWaveModifiersAdded
 struct UHordeWaveAlertWidget_C_OnWaveModifiersAdded_Params
 {
 	TArray<class UFortGameplayModifierItemDefinition*> Modifiers;                                                // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+};
+
+// Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.Construct
+struct UHordeWaveAlertWidget_C_Construct_Params
+{
 };
 
 // Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.OnModifierAppearanceAnimComplete

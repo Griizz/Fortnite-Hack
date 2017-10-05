@@ -42,6 +42,7 @@ struct UBasicRatingWidget_C_Update_Power_Rating_Value_Params
 // Function BasicRatingWidget.BasicRatingWidget_C.GetBorderVisibility
 struct UBasicRatingWidget_C_GetBorderVisibility_Params
 {
+	ESlateVisibility                                   Visibility;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BasicRatingWidget.BasicRatingWidget_C.PreConstruct

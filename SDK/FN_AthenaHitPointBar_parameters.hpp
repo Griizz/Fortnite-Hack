@@ -60,6 +60,7 @@ struct UAthenaHitPointBar_C_Update_Fill_Bar_Params
 struct UAthenaHitPointBar_C_UpdateCurrentValue_Params
 {
 	float                                              Current;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortHitPointModificationReason                    Reason;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AthenaHitPointBar.AthenaHitPointBar_C.UpdateMaxValue

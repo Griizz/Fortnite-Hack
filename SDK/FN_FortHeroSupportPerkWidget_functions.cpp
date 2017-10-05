@@ -12,6 +12,23 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.UpdateComparisonVisibility
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void UFortHeroSupportPerkWidget_C::UpdateComparisonVisibility()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.UpdateComparisonVisibility");
+
+	UFortHeroSupportPerkWidget_C_UpdateComparisonVisibility_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.UpdateEmptyVisibility
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
@@ -84,13 +101,15 @@ void UFortHeroSupportPerkWidget_C::UpdateVisibility()
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // bool                           DisplayedOutsideOfHeroSquad    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortSupportBonusType          TargetedSupportType            (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UFortHeroSupportPerkWidget_C::Update(bool DisplayedOutsideOfHeroSquad)
+void UFortHeroSupportPerkWidget_C::Update(bool DisplayedOutsideOfHeroSquad, EFortSupportBonusType TargetedSupportType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.Update");
 
 	UFortHeroSupportPerkWidget_C_Update_Params params;
 	params.DisplayedOutsideOfHeroSquad = DisplayedOutsideOfHeroSquad;
+	params.TargetedSupportType = TargetedSupportType;
 
 	auto flags = fn->FunctionFlags;
 
@@ -142,6 +161,23 @@ void UFortHeroSupportPerkWidget_C::Construct()
 	static auto fn = UObject::FindObject<UFunction>("Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.Construct");
 
 	UFortHeroSupportPerkWidget_C_Construct_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.OnStateChanged
+// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UFortHeroSupportPerkWidget_C::OnStateChanged()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.OnStateChanged");
+
+	UFortHeroSupportPerkWidget_C_OnStateChanged_Params params;
 
 	auto flags = fn->FunctionFlags;
 

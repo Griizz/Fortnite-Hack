@@ -19,6 +19,8 @@ struct UStatItemLarge_C_UpdateValue_Params
 {
 	float                                              NewValue;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              CurrentValue;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortStatValueDisplayType                          DisplayType;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortBuffState                                     BuffState;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StatItemLarge.StatItemLarge_C.UpdateIcon

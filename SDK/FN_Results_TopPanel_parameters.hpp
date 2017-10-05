@@ -17,6 +17,7 @@ namespace SDK
 // Function Results_TopPanel.Results_TopPanel_C.Initialize
 struct UResults_TopPanel_C_Initialize_Params
 {
+	EFortCompletionResult                              CompletionResult;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Results_TopPanel.Results_TopPanel_C.BndEvt__Anim_Intro_K2Node_ComponentBoundEvent_56_OnWidgetAnimationPlaybackStatusChanged__DelegateSignature

@@ -32,10 +32,11 @@ void UItemManagementMulchDetailsPanel_C::UpdateDoneButtonText()
 // Function ItemManagementMulchDetailsPanel.ItemManagementMulchDetailsPanel_C.GetWarningText
 // (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// TArray<EItemRecyclingWarning>  Warnings                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 // bool                           HasAnimateItems                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   WarningText                    (CPF_Parm, CPF_OutParm)
 
-void UItemManagementMulchDetailsPanel_C::GetWarningText(bool HasAnimateItems, struct FText* WarningText)
+void UItemManagementMulchDetailsPanel_C::GetWarningText(bool HasAnimateItems, TArray<EItemRecyclingWarning>* Warnings, struct FText* WarningText)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementMulchDetailsPanel.ItemManagementMulchDetailsPanel_C.GetWarningText");
 
@@ -48,6 +49,8 @@ void UItemManagementMulchDetailsPanel_C::GetWarningText(bool HasAnimateItems, st
 
 	fn->FunctionFlags = flags;
 
+	if (Warnings != nullptr)
+		*Warnings = params.Warnings;
 	if (WarningText != nullptr)
 		*WarningText = params.WarningText;
 }
@@ -56,13 +59,15 @@ void UItemManagementMulchDetailsPanel_C::GetWarningText(bool HasAnimateItems, st
 // Function ItemManagementMulchDetailsPanel.ItemManagementMulchDetailsPanel_C.DialogResult_58BF1F8B4DC97D1C2902828F65095294
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemManagementMulchDetailsPanel_C::DialogResult_58BF1F8B4DC97D1C2902828F65095294(const struct FName& ResultName)
+void UItemManagementMulchDetailsPanel_C::DialogResult_58BF1F8B4DC97D1C2902828F65095294(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementMulchDetailsPanel.ItemManagementMulchDetailsPanel_C.DialogResult_58BF1F8B4DC97D1C2902828F65095294");
 
 	UItemManagementMulchDetailsPanel_C_DialogResult_58BF1F8B4DC97D1C2902828F65095294_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;

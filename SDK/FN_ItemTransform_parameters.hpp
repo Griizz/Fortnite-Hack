@@ -170,11 +170,6 @@ struct UItemTransform_C_OpenItemTransform_Params
 {
 };
 
-// Function ItemTransform.ItemTransform_C.Construct
-struct UItemTransform_C_Construct_Params
-{
-};
-
 // Function ItemTransform.ItemTransform_C.BndEvt__KeyScreen_K2Node_ComponentBoundEvent_6_OnKeySelected__DelegateSignature
 struct UItemTransform_C_BndEvt__KeyScreen_K2Node_ComponentBoundEvent_6_OnKeySelected__DelegateSignature_Params
 {
@@ -202,6 +197,11 @@ struct UItemTransform_C_BndEvt__KeyScreen_K2Node_ComponentBoundEvent_513_OnKeyCo
 struct UItemTransform_C_BndEvt__SlotScreen_K2Node_ComponentBoundEvent_598_OnTransformButtonUpdated__DelegateSignature_Params
 {
 	bool                                               TransformActive;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function ItemTransform.ItemTransform_C.Construct
+struct UItemTransform_C_Construct_Params
+{
 };
 
 // Function ItemTransform.ItemTransform_C.ExecuteUbergraph_ItemTransform

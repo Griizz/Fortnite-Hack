@@ -13,15 +13,15 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum EFortUIThemeColor.EFortUIThemeColor
-enum class EFortUIThemeColor
+enum class EFortUIThemeColor : uint8_t
 {
-	EFortUIThemeColor__NewEnumerator0 = 0,
-	EFortUIThemeColor__NewEnumerator1 = 1,
-	EFortUIThemeColor__NewEnumerator2 = 2,
-	EFortUIThemeColor__NewEnumerator3 = 3,
-	EFortUIThemeColor__NewEnumerator4 = 4,
-	EFortUIThemeColor__NewEnumerator5 = 5,
-	EFortUIThemeColor__EFortUIThemeColor_MAX = 6
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	NewEnumerator4                 = 4,
+	NewEnumerator5                 = 5,
+	EFortUIThemeColor_MAX          = 6
 };
 
 

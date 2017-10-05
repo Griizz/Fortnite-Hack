@@ -16,8 +16,9 @@ namespace SDK
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // TEnumAsByte<EItemDisplayStyle> QuickbarItemDisplayStyle       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// TArray<EFortItemCooldownType>  DesiredCooldownTypesSupported  (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 
-void UQuickbarSlotCooldown_C::Initialize(TEnumAsByte<EItemDisplayStyle> QuickbarItemDisplayStyle)
+void UQuickbarSlotCooldown_C::Initialize(TEnumAsByte<EItemDisplayStyle> QuickbarItemDisplayStyle, TArray<EFortItemCooldownType>* DesiredCooldownTypesSupported)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarSlotCooldown.QuickbarSlotCooldown_C.Initialize");
 
@@ -29,6 +30,9 @@ void UQuickbarSlotCooldown_C::Initialize(TEnumAsByte<EItemDisplayStyle> Quickbar
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	if (DesiredCooldownTypesSupported != nullptr)
+		*DesiredCooldownTypesSupported = params.DesiredCooldownTypesSupported;
 }
 
 
@@ -54,12 +58,15 @@ void UQuickbarSlotCooldown_C::Show_Countdown(bool Show)
 
 // Function QuickbarSlotCooldown.QuickbarSlotCooldown_C.OnCooldownStarted
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortItemCooldownType*         CooldownType                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarSlotCooldown_C::OnCooldownStarted()
+void UQuickbarSlotCooldown_C::OnCooldownStarted(EFortItemCooldownType* CooldownType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarSlotCooldown.QuickbarSlotCooldown_C.OnCooldownStarted");
 
 	UQuickbarSlotCooldown_C_OnCooldownStarted_Params params;
+	params.CooldownType = CooldownType;
 
 	auto flags = fn->FunctionFlags;
 
@@ -71,12 +78,15 @@ void UQuickbarSlotCooldown_C::OnCooldownStarted()
 
 // Function QuickbarSlotCooldown.QuickbarSlotCooldown_C.OnCooldownStopped
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortItemCooldownType*         CooldownType                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarSlotCooldown_C::OnCooldownStopped()
+void UQuickbarSlotCooldown_C::OnCooldownStopped(EFortItemCooldownType* CooldownType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarSlotCooldown.QuickbarSlotCooldown_C.OnCooldownStopped");
 
 	UQuickbarSlotCooldown_C_OnCooldownStopped_Params params;
+	params.CooldownType = CooldownType;
 
 	auto flags = fn->FunctionFlags;
 

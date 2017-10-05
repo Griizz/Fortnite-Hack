@@ -27,6 +27,8 @@ struct URewards_Header_C_SetQuestNameText_Params
 // Function Rewards_Header.Rewards_Header_C.PopulateFromRewardType
 struct URewards_Header_C_PopulateFromRewardType_Params
 {
+	EFrontEndRewardType                                Selection;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ECollectionBookRewardType                          CollectionBookRewardType;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       RewardDetailText;                                         // (CPF_Parm)
 };
 

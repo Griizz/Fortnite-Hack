@@ -31,7 +31,7 @@ public:
 	struct FFortMultiSizeBrush                         MBrush_Chamfer;                                           // 0x0C18(0x0360) (CPF_Edit, CPF_BlueprintVisible)
 	struct FFortMultiSizeBrush                         MBrush_Shadow;                                            // 0x0F78(0x0360) (CPF_Edit, CPF_BlueprintVisible)
 	struct FFortMultiSizeBrush                         MBrush_Icon;                                              // 0x12D8(0x0360) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      OverrideDefaultColor : 1;                                 // 0x1638(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               OverrideDefaultColor;                                     // 0x1638(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData02[0x3];                                       // 0x1639(0x0003) MISSED OFFSET
 	struct FLinearColor                                Color_Light;                                              // 0x163C(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FLinearColor                                Color_Medium;                                             // 0x164C(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -41,12 +41,12 @@ public:
 	struct FLinearColor                                Default_Color_Dark;                                       // 0x168C(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData03[0x4];                                       // 0x169C(0x0004) MISSED OFFSET
 	struct FFortMultiSizeBrush                         MBrush_Icon_Alt;                                          // 0x16A0(0x0360) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      UseAlternateIcon : 1;                                     // 0x1A00(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               UseAlternateIcon;                                         // 0x1A00(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData04[0x7];                                       // 0x1A01(0x0007) MISSED OFFSET
 	struct FFortMultiSizeBrush                         MBrush_Shadow_Alt;                                        // 0x1A08(0x0360) (CPF_Edit, CPF_BlueprintVisible)
 	struct FFortMultiSizeMargin                        MMargin_Alt;                                              // 0x1D68(0x0060) (CPF_Edit, CPF_BlueprintVisible)
 	struct FFortMultiSizeMargin                        MMargin;                                                  // 0x1DC8(0x0060) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      ShowTeamPowerRating : 1;                                  // 0x1E28(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               ShowTeamPowerRating;                                      // 0x1E28(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

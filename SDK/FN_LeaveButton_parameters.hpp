@@ -14,6 +14,17 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function LeaveButton.LeaveButton_C.IsInNeighborhood
+struct ULeaveButton_C_IsInNeighborhood_Params
+{
+	bool                                               bIsInNeighborhood;                                        // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function LeaveButton.LeaveButton_C.Update Style State
+struct ULeaveButton_C_Update_Style_State_Params
+{
+};
+
 // Function LeaveButton.LeaveButton_C.SetText
 struct ULeaveButton_C_SetText_Params
 {
@@ -57,18 +68,28 @@ struct ULeaveButton_C_GetLeaveActionText_Params
 // Function LeaveButton.LeaveButton_C.DialogResult_1E39F47546648367BB2F218F69311220
 struct ULeaveButton_C_DialogResult_1E39F47546648367BB2F218F69311220_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LeaveButton.LeaveButton_C.DialogResult_F5AF58094777CFEEC0BF28BEA620800C
 struct ULeaveButton_C_DialogResult_F5AF58094777CFEEC0BF28BEA620800C_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
-// Function LeaveButton.LeaveButton_C.DialogResult_9CCFD7A449420648C97D57A200B3396D
-struct ULeaveButton_C_DialogResult_9CCFD7A449420648C97D57A200B3396D_Params
+// Function LeaveButton.LeaveButton_C.DialogResult_574CB01D47DE8AEDA0EB2F9CFB146A3B
+struct ULeaveButton_C_DialogResult_574CB01D47DE8AEDA0EB2F9CFB146A3B_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function LeaveButton.LeaveButton_C.DialogResult_A0D25F7F4E82D325BF226E811F1D79AF
+struct ULeaveButton_C_DialogResult_A0D25F7F4E82D325BF226E811F1D79AF_Params
+{
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -103,6 +124,12 @@ struct ULeaveButton_C_BndEvt__Leave_K2Node_ComponentBoundEvent_90_CommonButtonCl
 // Function LeaveButton.LeaveButton_C.Destruct
 struct ULeaveButton_C_Destruct_Params
 {
+};
+
+// Function LeaveButton.LeaveButton_C.PreConstruct
+struct ULeaveButton_C_PreConstruct_Params
+{
+	bool*                                              IsDesignTime;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LeaveButton.LeaveButton_C.ExecuteUbergraph_LeaveButton

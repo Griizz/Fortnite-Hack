@@ -28,6 +28,7 @@ struct UPopupCenterMessageModalPanel_C_UpdateMatchTimerText_Params
 // Function PopupCenterMessageModalPanel.PopupCenterMessageModalPanel_C.UpdateState
 struct UPopupCenterMessageModalPanel_C_UpdateState_Params
 {
+	ECenterPopupMessageStateEnum                       NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function PopupCenterMessageModalPanel.PopupCenterMessageModalPanel_C.UpdateMatchTimer

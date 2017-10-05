@@ -19,8 +19,8 @@ class ACheckFrontEndDailyRewardsAction_C : public AFortScriptedAction
 public:
 	struct FPointerToUberGraphFrame                    UberGraphFrame;                                           // 0x03E8(0x0008) (CPF_Transient, CPF_DuplicateTransient)
 	class USceneComponent*                             DefaultSceneRoot;                                         // 0x03F0(0x0008) (CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bLastStateWasLoginScreen : 1;                             // 0x03F8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x03F9(0x0001) UNKNOWN PROPERTY: EnumProperty CheckFrontEndDailyRewardsAction.CheckFrontEndDailyRewardsAction_C.NewVar_1
+	bool                                               bLastStateWasLoginScreen;                                 // 0x03F8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	ESubGame                                           NewVar_1;                                                 // 0x03F9(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

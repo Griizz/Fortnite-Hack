@@ -573,15 +573,17 @@ void UCommonActivatablePanel::SetInputActionHandler(const struct FDataTableRowHa
 // Parameters:
 // class UDataTable*              DataTable                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   RowName                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EInputActionState              State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FScriptDelegate         DisabledCommitEvent            (CPF_Parm, CPF_ZeroConstructor)
 
-void UCommonActivatablePanel::SetActionHandlerStateWithDisabledCommitEvent(class UDataTable* DataTable, const struct FName& RowName, const struct FScriptDelegate& DisabledCommitEvent)
+void UCommonActivatablePanel::SetActionHandlerStateWithDisabledCommitEvent(class UDataTable* DataTable, const struct FName& RowName, EInputActionState State, const struct FScriptDelegate& DisabledCommitEvent)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonActivatablePanel.SetActionHandlerStateWithDisabledCommitEvent");
 
 	UCommonActivatablePanel_SetActionHandlerStateWithDisabledCommitEvent_Params params;
 	params.DataTable = DataTable;
 	params.RowName = RowName;
+	params.State = State;
 	params.DisabledCommitEvent = DisabledCommitEvent;
 
 	auto flags = fn->FunctionFlags;
@@ -597,14 +599,16 @@ void UCommonActivatablePanel::SetActionHandlerStateWithDisabledCommitEvent(class
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
 // struct FDataTableRowHandle     InputActionRow                 (CPF_Parm)
+// EInputActionState              State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FScriptDelegate         DisabledCommitEvent            (CPF_Parm, CPF_ZeroConstructor)
 
-void UCommonActivatablePanel::SetActionHandlerStateFromHandleWithDisabledCommitEvent(const struct FDataTableRowHandle& InputActionRow, const struct FScriptDelegate& DisabledCommitEvent)
+void UCommonActivatablePanel::SetActionHandlerStateFromHandleWithDisabledCommitEvent(const struct FDataTableRowHandle& InputActionRow, EInputActionState State, const struct FScriptDelegate& DisabledCommitEvent)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonActivatablePanel.SetActionHandlerStateFromHandleWithDisabledCommitEvent");
 
 	UCommonActivatablePanel_SetActionHandlerStateFromHandleWithDisabledCommitEvent_Params params;
 	params.InputActionRow = InputActionRow;
+	params.State = State;
 	params.DisabledCommitEvent = DisabledCommitEvent;
 
 	auto flags = fn->FunctionFlags;
@@ -620,13 +624,15 @@ void UCommonActivatablePanel::SetActionHandlerStateFromHandleWithDisabledCommitE
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
 // struct FDataTableRowHandle     InputActionRow                 (CPF_Parm)
+// EInputActionState              State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCommonActivatablePanel::SetActionHandlerStateFromHandle(const struct FDataTableRowHandle& InputActionRow)
+void UCommonActivatablePanel::SetActionHandlerStateFromHandle(const struct FDataTableRowHandle& InputActionRow, EInputActionState State)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonActivatablePanel.SetActionHandlerStateFromHandle");
 
 	UCommonActivatablePanel_SetActionHandlerStateFromHandle_Params params;
 	params.InputActionRow = InputActionRow;
+	params.State = State;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -642,14 +648,16 @@ void UCommonActivatablePanel::SetActionHandlerStateFromHandle(const struct FData
 // Parameters:
 // class UDataTable*              DataTable                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   RowName                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EInputActionState              State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCommonActivatablePanel::SetActionHandlerState(class UDataTable* DataTable, const struct FName& RowName)
+void UCommonActivatablePanel::SetActionHandlerState(class UDataTable* DataTable, const struct FName& RowName, EInputActionState State)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonActivatablePanel.SetActionHandlerState");
 
 	UCommonActivatablePanel_SetActionHandlerState_Params params;
 	params.DataTable = DataTable;
 	params.RowName = RowName;
+	params.State = State;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -3627,13 +3635,15 @@ void UCommonButtonStyle::GetButtonPadding(struct FMargin* OutButtonPadding)
 // DelegateFunction CommonUI.CommonCustomNavigation.OnCustomNavigationEvent__DelegateSignature
 // (FUNC_Public, FUNC_Delegate)
 // Parameters:
+// EUINavigation                  NavigationType                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-bool UCommonCustomNavigation::OnCustomNavigationEvent__DelegateSignature()
+bool UCommonCustomNavigation::OnCustomNavigationEvent__DelegateSignature(EUINavigation NavigationType)
 {
 	static auto fn = UObject::FindObject<UFunction>("DelegateFunction CommonUI.CommonCustomNavigation.OnCustomNavigationEvent__DelegateSignature");
 
 	UCommonCustomNavigation_OnCustomNavigationEvent__DelegateSignature_Params params;
+	params.NavigationType = NavigationType;
 
 	auto flags = fn->FunctionFlags;
 
@@ -4604,12 +4614,15 @@ void UCommonTextStyle::GetColor(struct FLinearColor* OutColor)
 
 // Function CommonUI.CommonUIContext.SetGamepadInputType
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// ECommonInputType               InGamepadInputType             (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCommonUIContext::SetGamepadInputType()
+void UCommonUIContext::SetGamepadInputType(ECommonInputType InGamepadInputType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonUIContext.SetGamepadInputType");
 
 	UCommonUIContext_SetGamepadInputType_Params params;
+	params.InGamepadInputType = InGamepadInputType;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -4752,14 +4765,16 @@ class UCommonInputManager* UCommonUIContext::GetInputManager()
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
 // Parameters:
 // struct FDataTableRowHandle     InputActionRowHandle           (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+// ECommonInputType               InputType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FSlateBrush             ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 
-struct FSlateBrush UCommonUIContext::GetInputActionButtonIcon(const struct FDataTableRowHandle& InputActionRowHandle)
+struct FSlateBrush UCommonUIContext::GetInputActionButtonIcon(const struct FDataTableRowHandle& InputActionRowHandle, ECommonInputType InputType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonUIContext.GetInputActionButtonIcon");
 
 	UCommonUIContext_GetInputActionButtonIcon_Params params;
 	params.InputActionRowHandle = InputActionRowHandle;
+	params.InputType = InputType;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -4774,8 +4789,10 @@ struct FSlateBrush UCommonUIContext::GetInputActionButtonIcon(const struct FData
 
 // Function CommonUI.CommonUIContext.GetCurrentInputType
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// ECommonInputType               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UCommonUIContext::GetCurrentInputType()
+ECommonInputType UCommonUIContext::GetCurrentInputType()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CommonUI.CommonUIContext.GetCurrentInputType");
 
@@ -4787,6 +4804,8 @@ void UCommonUIContext::GetCurrentInputType()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

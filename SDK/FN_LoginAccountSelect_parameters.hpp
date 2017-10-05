@@ -32,6 +32,11 @@ struct ULoginAccountSelect_C_BndEvt__XBoxLoginButton_K2Node_ComponentBoundEvent_
 	class UCommonButton*                               Button;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
+// Function LoginAccountSelect.LoginAccountSelect_C.OnActivated
+struct ULoginAccountSelect_C_OnActivated_Params
+{
+};
+
 // Function LoginAccountSelect.LoginAccountSelect_C.ExecuteUbergraph_LoginAccountSelect
 struct ULoginAccountSelect_C_ExecuteUbergraph_LoginAccountSelect_Params
 {

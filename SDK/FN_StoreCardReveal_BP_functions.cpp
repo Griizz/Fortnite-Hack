@@ -15,13 +15,15 @@ namespace SDK
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.RarityEnumToText
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortRarity                    InRarity                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   OutRarity                      (CPF_Parm, CPF_OutParm)
 
-void AStoreCardReveal_BP_C::RarityEnumToText(struct FText* OutRarity)
+void AStoreCardReveal_BP_C::RarityEnumToText(EFortRarity InRarity, struct FText* OutRarity)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.RarityEnumToText");
 
 	AStoreCardReveal_BP_C_RarityEnumToText_Params params;
+	params.InRarity = InRarity;
 
 	auto flags = fn->FunctionFlags;
 
@@ -373,6 +375,74 @@ void AStoreCardReveal_BP_C::TL_SelectedChoiceCardAnims__UpdateFunc()
 }
 
 
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__SpeedTimeBackUp__EventFunc
+// (FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::TL_SelectedChoiceCardAnims__SpeedTimeBackUp__EventFunc()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__SpeedTimeBackUp__EventFunc");
+
+	AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__SpeedTimeBackUp__EventFunc_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CameraFOV__EventFunc
+// (FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::TL_SelectedChoiceCardAnims__CameraFOV__EventFunc()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CameraFOV__EventFunc");
+
+	AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__CameraFOV__EventFunc_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CC-Phase2-Hide__EventFunc
+// (FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::TL_SelectedChoiceCardAnims__CC_Phase2_Hide__EventFunc()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CC-Phase2-Hide__EventFunc");
+
+	AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__CC_Phase2_Hide__EventFunc_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CC-Phase2__EventFunc
+// (FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::TL_SelectedChoiceCardAnims__CC_Phase2__EventFunc()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-SelectedChoiceCardAnims__CC-Phase2__EventFunc");
+
+	AStoreCardReveal_BP_C_TL_SelectedChoiceCardAnims__CC_Phase2__EventFunc_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-MouseoverCC-A__FinishedFunc
 // (FUNC_BlueprintEvent)
 
@@ -713,6 +783,23 @@ void AStoreCardReveal_BP_C::TL_CC_DataDiskBurns__UpdateFunc()
 }
 
 
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CC-DataDiskBurns__ChangeTexture__EventFunc
+// (FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::TL_CC_DataDiskBurns__ChangeTexture__EventFunc()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CC-DataDiskBurns__ChangeTexture__EventFunc");
+
+	AStoreCardReveal_BP_C_TL_CC_DataDiskBurns__ChangeTexture__EventFunc_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CardMoveToScreen__FinishedFunc
 // (FUNC_BlueprintEvent)
 
@@ -738,6 +825,46 @@ void AStoreCardReveal_BP_C::TL_CardMoveToScreen__UpdateFunc()
 	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.TL-CardMoveToScreen__UpdateFunc");
 
 	AStoreCardReveal_BP_C_TL_CardMoveToScreen__UpdateFunc_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B5C4EF30E6
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// class UObject*                 Loaded                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void AStoreCardReveal_BP_C::OnLoaded_EFC62B084995CBCCD64787B5C4EF30E6(class UObject* Loaded)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B5C4EF30E6");
+
+	AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B5C4EF30E6_Params params;
+	params.Loaded = Loaded;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7181AC990
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// class UObject*                 Loaded                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void AStoreCardReveal_BP_C::OnLoaded_90006C1C471D136EF3B142B7181AC990(class UObject* Loaded)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7181AC990");
+
+	AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B7181AC990_Params params;
+	params.Loaded = Loaded;
 
 	auto flags = fn->FunctionFlags;
 
@@ -787,36 +914,16 @@ void AStoreCardReveal_BP_C::InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_7(con
 }
 
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7DA628494
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B51198EA0F
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class UObject*                 Loaded                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AStoreCardReveal_BP_C::OnLoaded_90006C1C471D136EF3B142B7DA628494(class UObject* Loaded)
+void AStoreCardReveal_BP_C::OnLoaded_EFC62B084995CBCCD64787B51198EA0F(class UObject* Loaded)
 {
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7DA628494");
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B51198EA0F");
 
-	AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B7DA628494_Params params;
-	params.Loaded = Loaded;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B5D3E0A70B
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-// Parameters:
-// class UObject*                 Loaded                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void AStoreCardReveal_BP_C::OnLoaded_EFC62B084995CBCCD64787B5D3E0A70B(class UObject* Loaded)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B5D3E0A70B");
-
-	AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B5D3E0A70B_Params params;
+	AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B51198EA0F_Params params;
 	params.Loaded = Loaded;
 
 	auto flags = fn->FunctionFlags;
@@ -847,16 +954,16 @@ void AStoreCardReveal_BP_C::InpActEvt_Gamepad_RightTrigger_K2Node_InputKeyEvent_
 }
 
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B70F155E7D
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7CD6D1379
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class UObject*                 Loaded                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AStoreCardReveal_BP_C::OnLoaded_90006C1C471D136EF3B142B70F155E7D(class UObject* Loaded)
+void AStoreCardReveal_BP_C::OnLoaded_90006C1C471D136EF3B142B7CD6D1379(class UObject* Loaded)
 {
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B70F155E7D");
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_90006C1C471D136EF3B142B7CD6D1379");
 
-	AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B70F155E7D_Params params;
+	AStoreCardReveal_BP_C_OnLoaded_90006C1C471D136EF3B142B7CD6D1379_Params params;
 	params.Loaded = Loaded;
 
 	auto flags = fn->FunctionFlags;
@@ -911,26 +1018,6 @@ void AStoreCardReveal_BP_C::InpTchEvt_Pressed(TEnumAsByte<ETouchIndex> FingerInd
 }
 
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B506977DE2
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-// Parameters:
-// class UObject*                 Loaded                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void AStoreCardReveal_BP_C::OnLoaded_EFC62B084995CBCCD64787B506977DE2(class UObject* Loaded)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnLoaded_EFC62B084995CBCCD64787B506977DE2");
-
-	AStoreCardReveal_BP_C_OnLoaded_EFC62B084995CBCCD64787B506977DE2_Params params;
-	params.Loaded = Loaded;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_5
 // (FUNC_BlueprintEvent)
 // Parameters:
@@ -942,6 +1029,60 @@ void AStoreCardReveal_BP_C::InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_5(con
 
 	AStoreCardReveal_BP_C_InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_5_Params params;
 	params.Key = Key;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.InitiatePinata
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::InitiatePinata()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.InitiatePinata");
+
+	AStoreCardReveal_BP_C_InitiatePinata_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnStoreStateChanged
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortStoreState                NewStoreState                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void AStoreCardReveal_BP_C::OnStoreStateChanged(EFortStoreState NewStoreState)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnStoreStateChanged");
+
+	AStoreCardReveal_BP_C_OnStoreStateChanged_Params params;
+	params.NewStoreState = NewStoreState;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.StartPackOpen
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::StartPackOpen()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.StartPackOpen");
+
+	AStoreCardReveal_BP_C_StartPackOpen_Params params;
 
 	auto flags = fn->FunctionFlags;
 
@@ -968,14 +1109,14 @@ void AStoreCardReveal_BP_C::CardEnterStart()
 }
 
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.StartPackOpen
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.PackDestroyStart
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
-void AStoreCardReveal_BP_C::StartPackOpen()
+void AStoreCardReveal_BP_C::PackDestroyStart()
 {
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.StartPackOpen");
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.PackDestroyStart");
 
-	AStoreCardReveal_BP_C_StartPackOpen_Params params;
+	AStoreCardReveal_BP_C_PackDestroyStart_Params params;
 
 	auto flags = fn->FunctionFlags;
 
@@ -1061,40 +1202,6 @@ void AStoreCardReveal_BP_C::CardFrontRevealStart()
 	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.CardFrontRevealStart");
 
 	AStoreCardReveal_BP_C_CardFrontRevealStart_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnStoreStateChanged
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void AStoreCardReveal_BP_C::OnStoreStateChanged()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.OnStoreStateChanged");
-
-	AStoreCardReveal_BP_C_OnStoreStateChanged_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.InitiatePinata
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void AStoreCardReveal_BP_C::InitiatePinata()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.InitiatePinata");
-
-	AStoreCardReveal_BP_C_InitiatePinata_Params params;
 
 	auto flags = fn->FunctionFlags;
 
@@ -1258,23 +1365,6 @@ void AStoreCardReveal_BP_C::BndEvt__S_ChoiceCardB_K2Node_ComponentBoundEvent_1_C
 	AStoreCardReveal_BP_C_BndEvt__S_ChoiceCardB_K2Node_ComponentBoundEvent_1_ComponentOnClickedSignature__DelegateSignature_Params params;
 	params.TouchedComponent = TouchedComponent;
 	params.ButtonPressed = ButtonPressed;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.PackDestroyStart
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void AStoreCardReveal_BP_C::PackDestroyStart()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.PackDestroyStart");
-
-	AStoreCardReveal_BP_C_PackDestroyStart_Params params;
 
 	auto flags = fn->FunctionFlags;
 
@@ -1707,40 +1797,6 @@ void AStoreCardReveal_BP_C::InpAxisEvt_MoveRight_Gamepad_K2Node_InputAxisEvent_1
 }
 
 
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Gamepad Choice Left
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void AStoreCardReveal_BP_C::Handle_Gamepad_Choice_Left()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Gamepad Choice Left");
-
-	AStoreCardReveal_BP_C_Handle_Gamepad_Choice_Left_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Gamepad Choice Right
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void AStoreCardReveal_BP_C::Handle_Gamepad_Choice_Right()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Gamepad Choice Right");
-
-	AStoreCardReveal_BP_C_Handle_Gamepad_Choice_Right_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function StoreCardReveal_BP.StoreCardReveal_BP_C.Handle Input Mode Changed
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
@@ -1864,6 +1920,77 @@ void AStoreCardReveal_BP_C::CloseGamepadGate()
 	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.CloseGamepadGate");
 
 	AStoreCardReveal_BP_C_CloseGamepadGate_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.EndQuestionMarkAnim
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::EndQuestionMarkAnim()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.EndQuestionMarkAnim");
+
+	AStoreCardReveal_BP_C_EndQuestionMarkAnim_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.SetCCRarityColor
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::SetCCRarityColor()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.SetCCRarityColor");
+
+	AStoreCardReveal_BP_C_SetCCRarityColor_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.CCRarityColorReady
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void AStoreCardReveal_BP_C::CCRarityColorReady()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.CCRarityColorReady");
+
+	AStoreCardReveal_BP_C_CCRarityColorReady_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function StoreCardReveal_BP.StoreCardReveal_BP_C.InpAxisEvt_MoveRight_K2Node_InputAxisEvent_41
+// (FUNC_BlueprintEvent)
+// Parameters:
+// float                          AxisValue                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void AStoreCardReveal_BP_C::InpAxisEvt_MoveRight_K2Node_InputAxisEvent_41(float AxisValue)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function StoreCardReveal_BP.StoreCardReveal_BP_C.InpAxisEvt_MoveRight_K2Node_InputAxisEvent_41");
+
+	AStoreCardReveal_BP_C_InpAxisEvt_MoveRight_K2Node_InputAxisEvent_41_Params params;
+	params.AxisValue = AxisValue;
 
 	auto flags = fn->FunctionFlags;
 

@@ -23,6 +23,7 @@ struct AQosBeaconClient_ServerQosRequest_Params
 // Function Qos.QosBeaconClient.ClientQosResponse
 struct AQosBeaconClient_ClientQosResponse_Params
 {
+	EQosResponseType                                   Response;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 }

@@ -40,8 +40,9 @@ void UItemTransformKeyScreen_C::Determine_Tab_List_Title(const struct FName& Tab
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // struct FName                   TabNameID                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EConversionControlKeyRequest   RequestType                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemTransformKeyScreen_C::Determine_Key_Types_to_See(const struct FName& TabNameID)
+void UItemTransformKeyScreen_C::Determine_Key_Types_to_See(const struct FName& TabNameID, EConversionControlKeyRequest* RequestType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemTransformKeyScreen.ItemTransformKeyScreen_C.Determine Key Types to See");
 
@@ -53,6 +54,9 @@ void UItemTransformKeyScreen_C::Determine_Key_Types_to_See(const struct FName& T
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	if (RequestType != nullptr)
+		*RequestType = params.RequestType;
 }
 
 
@@ -171,12 +175,15 @@ void UItemTransformKeyScreen_C::SetupKeyList()
 
 // Function ItemTransformKeyScreen.ItemTransformKeyScreen_C.RebuildKeyList
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EConversionControlKeyRequest   RequestType                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemTransformKeyScreen_C::RebuildKeyList()
+void UItemTransformKeyScreen_C::RebuildKeyList(EConversionControlKeyRequest RequestType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemTransformKeyScreen.ItemTransformKeyScreen_C.RebuildKeyList");
 
 	UItemTransformKeyScreen_C_RebuildKeyList_Params params;
+	params.RequestType = RequestType;
 
 	auto flags = fn->FunctionFlags;
 

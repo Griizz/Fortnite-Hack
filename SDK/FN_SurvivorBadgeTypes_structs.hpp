@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum SurvivorBadgeTypes.SurvivorBadgeTypes
-enum class ESurvivorBadgeTypes
+enum class ESurvivorBadgeTypes : uint8_t
 {
-	SurvivorBadgeTypes__NewEnumerator0 = 0,
-	SurvivorBadgeTypes__NewEnumerator1 = 1,
-	SurvivorBadgeTypes__NewEnumerator2 = 2,
-	SurvivorBadgeTypes__SurvivorBadgeTypes_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	SurvivorBadgeTypes_MAX         = 3
 };
 
 

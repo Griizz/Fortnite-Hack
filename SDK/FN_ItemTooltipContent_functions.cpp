@@ -83,17 +83,19 @@ void UItemTooltipContent_C::SetDescriptionText()
 // Function ItemTooltipContent.ItemTooltipContent_C.Create Custom Integer Stat
 // (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortStatValueDisplayType      Display_Type                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   Label                          (CPF_Parm)
 // int                            Value                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            Comparison_Value               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           HigherIsBetter                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FFortDisplayAttribute   Display_Attribute              (CPF_Parm, CPF_OutParm)
 
-void UItemTooltipContent_C::Create_Custom_Integer_Stat(const struct FText& Label, int Value, int Comparison_Value, bool HigherIsBetter, struct FFortDisplayAttribute* Display_Attribute)
+void UItemTooltipContent_C::Create_Custom_Integer_Stat(EFortStatValueDisplayType Display_Type, const struct FText& Label, int Value, int Comparison_Value, bool HigherIsBetter, struct FFortDisplayAttribute* Display_Attribute)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemTooltipContent.ItemTooltipContent_C.Create Custom Integer Stat");
 
 	UItemTooltipContent_C_Create_Custom_Integer_Stat_Params params;
+	params.Display_Type = Display_Type;
 	params.Label = Label;
 	params.Value = Value;
 	params.Comparison_Value = Comparison_Value;

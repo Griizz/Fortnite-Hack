@@ -56,6 +56,7 @@ struct UMissionTrackerSubEntry_C_ShowObjectiveWidget_Params
 struct UMissionTrackerSubEntry_C_HanldeObjectiveVisiblityOverrideChanged_Params
 {
 	class AFortObjectiveBase*                          Objective;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortMissionVisibilityOverride                     New_Visibility_Override;                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MissionTrackerSubEntry.MissionTrackerSubEntry_C.CreateObjectiveContentWidget
@@ -91,6 +92,7 @@ struct UMissionTrackerSubEntry_C_HandleObjectiveVisibilityChanged_Params
 struct UMissionTrackerSubEntry_C_HandleObjectiveStatusChanged_Params
 {
 	class AFortObjectiveBase*                          Objective;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortObjectiveStatus                               NewStatus;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MissionTrackerSubEntry.MissionTrackerSubEntry_C.Setup

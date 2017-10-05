@@ -98,8 +98,10 @@ void UBasicRatingWidget_C::Update_Power_Rating_Value(int Rating)
 
 // Function BasicRatingWidget.BasicRatingWidget_C.GetBorderVisibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               Visibility                     (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UBasicRatingWidget_C::GetBorderVisibility()
+void UBasicRatingWidget_C::GetBorderVisibility(ESlateVisibility* Visibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function BasicRatingWidget.BasicRatingWidget_C.GetBorderVisibility");
 
@@ -110,6 +112,9 @@ void UBasicRatingWidget_C::GetBorderVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	if (Visibility != nullptr)
+		*Visibility = params.Visibility;
 }
 
 

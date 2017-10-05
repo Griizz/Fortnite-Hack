@@ -33,7 +33,7 @@ public:
 	float                                              Lifetime_Buffer;                                          // 0x03E4(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              SplineSystemDuration;                                     // 0x03E8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              LifetimeAfterCompletion;                                  // 0x03EC(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      KeepTickEnabledWhenCompleting : 1;                        // 0x03F0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               KeepTickEnabledWhenCompleting;                            // 0x03F0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x3];                                       // 0x03F1(0x0003) MISSED OFFSET
 	int                                                NumberOfSplineMeshesToUpdate;                             // 0x03F4(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Initial_Size;                                             // 0x03F8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -44,7 +44,7 @@ public:
 	TArray<class USplineMeshComponent*>                SplineMeshesHidden;                                       // 0x0418(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	TArray<float>                                      SplineTimestamps;                                         // 0x0428(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	int                                                ArrayIndex;                                               // 0x0438(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      SplineSystemActive : 1;                                   // 0x043C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               SplineSystemActive;                                       // 0x043C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData03[0x3];                                       // 0x043D(0x0003) MISSED OFFSET
 	float                                              CompletionTimestamp;                                      // 0x0440(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	float                                              LifetimeAdjusted;                                         // 0x0444(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -58,7 +58,7 @@ public:
 	float                                              Initial_Rotation__Roll_;                                  // 0x0480(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData05[0x4];                                       // 0x0484(0x0004) MISSED OFFSET
 	class UCurveFloat*                                 RotationOverLife;                                         // 0x0488(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      DebugMode : 1;                                            // 0x0490(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               DebugMode;                                                // 0x0490(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData06[0x3];                                       // 0x0491(0x0003) MISSED OFFSET
 	struct FVector                                     DebugPositionOffset;                                      // 0x0494(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	struct FRotator                                    DebugRotationRate;                                        // 0x04A0(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
@@ -66,7 +66,7 @@ public:
 	float                                              DebugPreviousTickTimestamp;                               // 0x04B0(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData07[0x4];                                       // 0x04B4(0x0004) MISSED OFFSET
 	struct FTimerHandle                                Spline_System_Duration_Event_Handle;                      // 0x04B8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      Use_Tick_Interval_LODs : 1;                               // 0x04C0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               Use_Tick_Interval_LODs;                                   // 0x04C0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData08[0x7];                                       // 0x04C1(0x0007) MISSED OFFSET
 	struct FTimerHandle                                Tick_Interval_Event_Handle;                               // 0x04C8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	float                                              Tick_Interval_LOD_Check_Rate;                             // 0x04D0(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -74,34 +74,34 @@ public:
 	TArray<int>                                        Tick_Interval_LOD_Distances;                              // 0x04D8(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
 	TArray<float>                                      Tick_Actor_Intervals;                                     // 0x04E8(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
 	int                                                LOD_Array_Index;                                          // 0x04F8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      Use_Recently_Rendered_LOD : 1;                            // 0x04FC(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               Use_Recently_Rendered_LOD;                                // 0x04FC(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData10[0x3];                                       // 0x04FD(0x0003) MISSED OFFSET
 	float                                              Recently_Rendered_Check_Rate;                             // 0x0500(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData11[0x4];                                       // 0x0504(0x0004) MISSED OFFSET
 	struct FTimerHandle                                Recently_Rendered_Event_Handle;                           // 0x0508(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      RecentlyRendered : 1;                                     // 0x0510(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               RecentlyRendered;                                         // 0x0510(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData12[0x3];                                       // 0x0511(0x0003) MISSED OFFSET
 	float                                              Recently_Rendered_Tolerance;                              // 0x0514(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     SplineDefaultUpVector;                                    // 0x0518(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
-	unsigned char                                      SplineDefaultUpVectorInWorldSpace : 1;                    // 0x0524(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               SplineDefaultUpVectorInWorldSpace;                        // 0x0524(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TEnumAsByte<En_SplineForwardAxes_01>               SplineMeshForwardAxis;                                    // 0x0525(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      CeaseAndDetachSplineUponCompletion : 1;                   // 0x0526(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      CanNewSplinePointsBeCreated : 1;                          // 0x0527(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      LinearColorOverLengthOfSpline : 1;                        // 0x0528(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               CeaseAndDetachSplineUponCompletion;                       // 0x0526(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               CanNewSplinePointsBeCreated;                              // 0x0527(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               LinearColorOverLengthOfSpline;                            // 0x0528(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData13[0x7];                                       // 0x0529(0x0007) MISSED OFFSET
 	TArray<int>                                        IndiciesToDelete;                                         // 0x0530(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	unsigned char                                      RedistributePointsAlongSplineWhenCreated : 1;             // 0x0540(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               RedistributePointsAlongSplineWhenCreated;                 // 0x0540(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData14[0x7];                                       // 0x0541(0x0007) MISSED OFFSET
 	class UMaterialInstanceDynamic*                    CurveBakeMID;                                             // 0x0548(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UTextureRenderTarget2D*                      RenderTarget;                                             // 0x0550(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector2D                                   RenderTextureResolution;                                  // 0x0558(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	TArray<class UCurveLinearColor*>                   LinearColorCurvesToBake;                                  // 0x0560(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      WriteBakedCurveDataToDisk : 1;                            // 0x0570(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               WriteBakedCurveDataToDisk;                                // 0x0570(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData15[0x7];                                       // 0x0571(0x0007) MISSED OFFSET
 	struct FString                                     File_Path;                                                // 0x0578(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
 	struct FString                                     File_Name;                                                // 0x0588(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
 	TArray<struct FLinearColor>                        LinearColorArray;                                         // 0x0598(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	unsigned char                                      UseCheapSplines : 1;                                      // 0x05A8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               UseCheapSplines;                                          // 0x05A8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData16[0x7];                                       // 0x05A9(0x0007) MISSED OFFSET
 	class UTexture*                                    LinearColorTexture;                                       // 0x05B0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 

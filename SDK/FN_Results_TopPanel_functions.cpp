@@ -14,12 +14,15 @@ namespace SDK
 
 // Function Results_TopPanel.Results_TopPanel_C.Initialize
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortCompletionResult          CompletionResult               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UResults_TopPanel_C::Initialize()
+void UResults_TopPanel_C::Initialize(EFortCompletionResult CompletionResult)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Results_TopPanel.Results_TopPanel_C.Initialize");
 
 	UResults_TopPanel_C_Initialize_Params params;
+	params.CompletionResult = CompletionResult;
 
 	auto flags = fn->FunctionFlags;
 

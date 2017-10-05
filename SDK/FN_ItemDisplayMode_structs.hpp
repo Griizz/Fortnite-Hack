@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum ItemDisplayMode.ItemDisplayMode
-enum class EItemDisplayMode
+enum class EItemDisplayMode : uint8_t
 {
-	ItemDisplayMode__NewEnumerator0 = 0,
-	ItemDisplayMode__NewEnumerator1 = 1,
-	ItemDisplayMode__NewEnumerator2 = 2,
-	ItemDisplayMode__ItemDisplayMode_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	ItemDisplayMode_MAX            = 3
 };
 
 

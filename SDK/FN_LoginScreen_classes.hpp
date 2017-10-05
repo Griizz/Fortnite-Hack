@@ -34,7 +34,7 @@ public:
 	class UStatusWidget_C*                             StatusWindow;                                             // 0x04A0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class USignInWidget_C*                             SignInWindow;                                             // 0x04A8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UCommonUserWidget*                           AccountLinkWindow;                                        // 0x04B0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bLoginMenuVisible : 1;                                    // 0x04B8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bLoginMenuVisible;                                        // 0x04B8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x04B9(0x0007) MISSED OFFSET
 	class ULoginResultWIdget_C*                        LoginResultWindow;                                        // 0x04C0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UEulaWidget_C*                               EulaWindow;                                               // 0x04C8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -75,12 +75,12 @@ public:
 	void ShowAccountLinkingWindow(bool InLinkedAccountNeedsPurchase);
 	void ShowStatusWindow(const struct FText& StatusText);
 	void ShowSignInWindow(bool DirectSignIn);
-	void DialogResult_EE7DC32F44B9651770AED08101A03510(const struct FName& ResultName);
-	void DialogResult_B952A8754B3836D2151B4981F531542E(const struct FName& ResultName);
+	void DialogResult_EE7DC32F44B9651770AED08101A03510(EFortDialogResult Result, const struct FName& ResultName);
+	void DialogResult_B952A8754B3836D2151B4981F531542E(EFortDialogResult Result, const struct FName& ResultName);
 	void Construct();
 	void OnPatchingComplete(bool* bProceed);
-	void OnEnterState();
-	void OnExitState();
+	void OnEnterState(EFortUIState* PreviousUIState);
+	void OnExitState(EFortUIState* NextUIState);
 	void HandleOnStartLogin(const struct FString& LoginEmail, const struct FString& LoginPassword);
 	void OnLoginFailed(struct FText* Reason);
 	void OnLoginSuceeded();
@@ -101,7 +101,7 @@ public:
 	void HandleViewOnlyClose();
 	void OnNeedsPurchaseOrAccountLinking(bool* bLinkedAccountNeedsPurchase);
 	void OnDisplayErrorComplete();
-	void HandleOnLoginAccountTypeSelected();
+	void HandleOnLoginAccountTypeSelected(EFortLoginAccountType LoginAccountType);
 	void OnPostLoginLogoutComplete(struct FText* Reason);
 	void OnShowLoginMessage(bool* bShow, struct FText* Tile, struct FText* Body);
 	void ExecuteUbergraph_LoginScreen(int EntryPoint);

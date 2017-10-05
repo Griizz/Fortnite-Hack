@@ -102,6 +102,7 @@ struct AFort_Entry_Music_Controller_BP_C_ReceiveBeginPlay_Params
 // Function Fort_Entry_Music_Controller_BP.Fort_Entry_Music_Controller_BP_C.On Sub Game Changed
 struct AFort_Entry_Music_Controller_BP_C_On_Sub_Game_Changed_Params
 {
+	ESubGame                                           SubGame;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Fort_Entry_Music_Controller_BP.Fort_Entry_Music_Controller_BP_C.Music_Lobby_Athena_FadeIn

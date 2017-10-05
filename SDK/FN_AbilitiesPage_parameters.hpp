@@ -64,6 +64,7 @@ struct UAbilitiesPage_C_OnActivated_Params
 // Function AbilitiesPage.AbilitiesPage_C.OnQuickbarContentsChanged
 struct UAbilitiesPage_C_OnQuickbarContentsChanged_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AbilitiesPage.AbilitiesPage_C.Construct

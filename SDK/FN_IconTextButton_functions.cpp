@@ -12,6 +12,26 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function IconTextButton.IconTextButton_C.SetTextInternal
+// (FUNC_Private, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// struct FText                   InButtonText                   (CPF_Parm)
+
+void UIconTextButton_C::SetTextInternal(const struct FText& InButtonText)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function IconTextButton.IconTextButton_C.SetTextInternal");
+
+	UIconTextButton_C_SetTextInternal_Params params;
+	params.InButtonText = InButtonText;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function IconTextButton.IconTextButton_C.SetInitialMouseKeyboardStyle
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
@@ -379,6 +399,23 @@ void UIconTextButton_C::Construct()
 	static auto fn = UObject::FindObject<UFunction>("Function IconTextButton.IconTextButton_C.Construct");
 
 	UIconTextButton_C_Construct_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function IconTextButton.IconTextButton_C.Destruct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UIconTextButton_C::Destruct()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function IconTextButton.IconTextButton_C.Destruct");
+
+	UIconTextButton_C_Destruct_Params params;
 
 	auto flags = fn->FunctionFlags;
 

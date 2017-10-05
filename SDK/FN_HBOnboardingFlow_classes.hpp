@@ -65,7 +65,7 @@ public:
 	void HandleClientEvent_HomebasePersonalized(class UObject* EventSource, class UObject* EventFocus, const struct FFortClientEvent& ClientEvent);
 	void StartOnboardingZone();
 	void StartFlow();
-	void RejoinCheckCompleted();
+	void RejoinCheckCompleted(ERejoinStatus RejoinStatus);
 	void HandleCheckExistingSession();
 	void HandleCheckOnboardingZoneComplete();
 	void HandleSwitchToHomeBase();

@@ -27,6 +27,7 @@ struct UGameplayTasksComponent_K2_RunGameplayTask_Params
 	unsigned char                                      Priority;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<class UClass*>                              AdditionalRequiredResources;                              // (CPF_Parm, CPF_ZeroConstructor)
 	TArray<class UClass*>                              AdditionalClaimedResources;                               // (CPF_Parm, CPF_ZeroConstructor)
+	EGameplayTaskRunResult                             ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function GameplayTasks.GameplayTask.ReadyForActivation

@@ -90,6 +90,7 @@ struct FChatMarkupStyle
 	float                                              SeperatorThickness;                                       // 0x0648(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FMargin                                     MarkupPadding;                                            // 0x064C(0x0010) (CPF_Edit)
 	struct FMargin                                     ButtonPadding;                                            // 0x065C(0x0010) (CPF_Edit)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x066C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct SocialTypes.ChatStyle
@@ -213,7 +214,8 @@ struct FProfanityData
 	struct FString                                     CountryCode;                                              // 0x0000(0x0010) (CPF_Edit, CPF_ZeroConstructor)
 	struct FString                                     ProfanityList;                                            // 0x0010(0x0010) (CPF_Edit, CPF_ZeroConstructor)
 	struct FString                                     WhiteList;                                                // 0x0020(0x0010) (CPF_Edit, CPF_ZeroConstructor)
-	unsigned char                                      bAutoAdd : 1;                                             // 0x0030(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bAutoAdd;                                                 // 0x0030(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0031(0x0007) MISSED OFFSET
 };
 
 // ScriptStruct SocialTypes.SocialSoundSchema

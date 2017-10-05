@@ -460,12 +460,15 @@ void UItemManagementInventoryPanel_C::HandleDifferentFrontendInventoryFilterSetB
 
 // Function ItemManagementInventoryPanel.ItemManagementInventoryPanel_C.HandleQuickBarChangedBP
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars*                QuickBarType                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemManagementInventoryPanel_C::HandleQuickBarChangedBP()
+void UItemManagementInventoryPanel_C::HandleQuickBarChangedBP(EFortQuickBars* QuickBarType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementInventoryPanel.ItemManagementInventoryPanel_C.HandleQuickBarChangedBP");
 
 	UItemManagementInventoryPanel_C_HandleQuickBarChangedBP_Params params;
+	params.QuickBarType = QuickBarType;
 
 	auto flags = fn->FunctionFlags;
 

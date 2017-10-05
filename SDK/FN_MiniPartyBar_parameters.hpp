@@ -23,6 +23,8 @@ struct UMiniPartyBar_C_Get_Banners_Tooltip_Widget_Params
 // Function MiniPartyBar.MiniPartyBar_C.HandlePartybarUIFeatureChanged
 struct UMiniPartyBar_C_HandlePartybarUIFeatureChanged_Params
 {
+	EFortUIFeature                                     Feature;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortUIFeatureState                                FeatureState;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MiniPartyBar.MiniPartyBar_C.Construct

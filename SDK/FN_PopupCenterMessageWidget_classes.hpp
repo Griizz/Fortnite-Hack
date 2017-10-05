@@ -28,7 +28,7 @@ public:
 	}
 
 
-	void OnModalDisplayed(class UCommonActivatablePanel** ModalPopup);
+	void OnModalDisplayed(ECenterPopupMessageStateEnum* NewState, class UCommonActivatablePanel** ModalPopup);
 	void Construct();
 	void UpdateStateEvent();
 	void Destruct();

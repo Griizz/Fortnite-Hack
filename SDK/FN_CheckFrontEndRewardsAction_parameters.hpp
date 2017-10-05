@@ -66,6 +66,7 @@ struct ACheckFrontEndRewardsAction_C_OpenFrontEndRewards_Params
 // Function CheckFrontEndRewardsAction.CheckFrontEndRewardsAction_C.PopulateUnseenQuests
 struct ACheckFrontEndRewardsAction_C_PopulateUnseenQuests_Params
 {
+	EFortQuestType                                     QuestType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CheckFrontEndRewardsAction.CheckFrontEndRewardsAction_C.GetCompletedQuests

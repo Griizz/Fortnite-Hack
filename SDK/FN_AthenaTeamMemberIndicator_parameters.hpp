@@ -17,13 +17,13 @@ namespace SDK
 // Function AthenaTeamMemberIndicator.AthenaTeamMemberIndicator_C.On Team Reviving Changed
 struct UAthenaTeamMemberIndicator_C_On_Team_Reviving_Changed_Params
 {
-	TArray<unsigned char>                              Team_Reviving;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<bool>                                       Team_Reviving;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
 // Function AthenaTeamMemberIndicator.AthenaTeamMemberIndicator_C.On Team DBNO Changed
 struct UAthenaTeamMemberIndicator_C_On_Team_DBNO_Changed_Params
 {
-	TArray<unsigned char>                              DBNOStates;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<bool>                                       DBNOStates;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
 // Function AthenaTeamMemberIndicator.AthenaTeamMemberIndicator_C.Construct

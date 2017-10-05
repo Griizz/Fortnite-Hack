@@ -13,26 +13,27 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum Party.EPartyType
-enum class EPartyType
+enum class EPartyType : uint8_t
 {
-	EPartyType__Public             = 0,
-	EPartyType__FriendsOnly        = 1,
-	EPartyType__Private            = 2,
-	EPartyType__EPartyType_MAX     = 3
+	Public                         = 0,
+	FriendsOnly                    = 1,
+	Private                        = 2,
+	EPartyType_MAX                 = 3
 };
 
 
 // Enum Party.EJoinPartyDenialReason
-enum class EJoinPartyDenialReason
+enum class EJoinPartyDenialReason : uint8_t
 {
-	EJoinPartyDenialReason__NoReason = 0,
-	EJoinPartyDenialReason__Busy   = 1,
-	EJoinPartyDenialReason__PartyFull = 2,
-	EJoinPartyDenialReason__GameFull = 3,
-	EJoinPartyDenialReason__NotPartyLeader = 4,
-	EJoinPartyDenialReason__PartyPrivate = 5,
-	EJoinPartyDenialReason__NeedsTutorial = 6,
-	EJoinPartyDenialReason__EJoinPartyDenialReason_MAX = 7
+	NoReason                       = 0,
+	Busy                           = 1,
+	PartyFull                      = 2,
+	GameFull                       = 3,
+	NotPartyLeader                 = 4,
+	PartyPrivate                   = 5,
+	NeedsTutorial                  = 6,
+	GameModeRestricted             = 7,
+	EJoinPartyDenialReason_MAX     = 8
 };
 
 
@@ -46,10 +47,11 @@ enum class EJoinPartyDenialReason
 struct FPartyState
 {
 	unsigned char                                      UnknownData00[0x8];                                       // 0x0000(0x0008) MISSED OFFSET
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0000(0x0001) UNKNOWN PROPERTY: EnumProperty Party.PartyState.PartyType
-	unsigned char                                      bLeaderFriendsOnly : 1;                                   // 0x0009(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bLeaderInvitesOnly : 1;                                   // 0x000A(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bInvitesDisabled : 1;                                     // 0x000B(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EPartyType                                         PartyType;                                                // 0x0008(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bLeaderFriendsOnly;                                       // 0x0009(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bLeaderInvitesOnly;                                       // 0x000A(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bInvitesDisabled;                                         // 0x000B(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x4];                                       // 0x000C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct Party.PartyMemberRepState

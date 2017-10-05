@@ -14,6 +14,12 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function IconTextButton.IconTextButton_C.SetTextInternal
+struct UIconTextButton_C_SetTextInternal_Params
+{
+	struct FText                                       InButtonText;                                             // (CPF_Parm)
+};
+
 // Function IconTextButton.IconTextButton_C.SetInitialMouseKeyboardStyle
 struct UIconTextButton_C_SetInitialMouseKeyboardStyle_Params
 {
@@ -123,6 +129,11 @@ struct UIconTextButton_C_OnActionComplete_Params
 
 // Function IconTextButton.IconTextButton_C.Construct
 struct UIconTextButton_C_Construct_Params
+{
+};
+
+// Function IconTextButton.IconTextButton_C.Destruct
+struct UIconTextButton_C_Destruct_Params
 {
 };
 

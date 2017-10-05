@@ -63,6 +63,7 @@ struct UHUD_C_HandleOnPointOfInterestAdded_Params
 // Function HUD.HUD_C.ShowPicker
 struct UHUD_C_ShowPicker_Params
 {
+	EFortPickerMode                                    Mode;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                InitialOption;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               IgnoreFirstAccept;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -75,6 +76,7 @@ struct UHUD_C_OnHordeTierCompleteWidgetFinished_Params
 // Function HUD.HUD_C.HandleHordeTierComplete
 struct UHUD_C_HandleHordeTierComplete_Params
 {
+	EFortCompletionResult                              Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function HUD.HUD_C.HandleFocusChat
@@ -149,6 +151,7 @@ struct UHUD_C_SetQuickbarSizes_Params
 // Function HUD.HUD_C.HandleQuickbarSlotFocusSlotChanged
 struct UHUD_C_HandleQuickbarSlotFocusSlotChanged_Params
 {
+	EFortQuickBars                                     Quickbar_Index;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -173,6 +176,7 @@ struct UHUD_C_OnConfirmed_0E0300084F8A9EB1D6CB5E836DBF8C7A_Params
 // Function HUD.HUD_C.OnEnterState
 struct UHUD_C_OnEnterState_Params
 {
+	EFortUIState*                                      PreviousUIState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function HUD.HUD_C.QuestsCompleted

@@ -53,6 +53,7 @@ struct UCollectionBookPageListWidget_C_PreConstruct_Params
 struct UCollectionBookPageListWidget_C_OnPageDetailsUpdated_Params
 {
 	int*                                               NumAvailableSlots;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCollectionBookState*                          State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CollectionBookPageListWidget.CollectionBookPageListWidget_C.OnSelectionChanged

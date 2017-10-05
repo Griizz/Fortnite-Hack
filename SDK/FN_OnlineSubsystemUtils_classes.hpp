@@ -6,8 +6,6 @@
 	#pragma pack(push, 0x8)
 #endif
 
-//#include "FN_OnlineSubsystem_structs.hpp"
-
 namespace SDK
 {
 //---------------------------------------------------------------------------
@@ -41,8 +39,8 @@ class AOnlineBeaconClient : public AOnlineBeacon
 public:
 	class AOnlineBeaconHostObject*                     BeaconOwner;                                              // 0x03B0(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UNetConnection*                              BeaconConnection;                                         // 0x03B8(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x03C0(0x0001) UNKNOWN PROPERTY: EnumProperty OnlineSubsystemUtils.OnlineBeaconClient.ConnectionState
-	unsigned char                                      UnknownData01[0x7F];                                      // 0x03C1(0x007F) MISSED OFFSET
+	EBeaconConnectionState                             ConnectionState;                                          // 0x03C0(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7F];                                      // 0x03C1(0x007F) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -123,8 +121,8 @@ class UOnlineSessionClient : public UOnlineSession
 {
 public:
 	unsigned char                                      UnknownData00[0x288];                                     // 0x0028(0x0288) MISSED OFFSET
-	unsigned char                                      bIsFromInvite : 1;                                        // 0x02B0(0x0001) (CPF_ZeroConstructor, CPF_Transient, CPF_IsPlainOldData)
-	unsigned char                                      bHandlingDisconnect : 1;                                  // 0x02B1(0x0001) (CPF_ZeroConstructor, CPF_Transient, CPF_IsPlainOldData)
+	bool                                               bIsFromInvite;                                            // 0x02B0(0x0001) (CPF_ZeroConstructor, CPF_Transient, CPF_IsPlainOldData)
+	bool                                               bHandlingDisconnect;                                      // 0x02B1(0x0001) (CPF_ZeroConstructor, CPF_Transient, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0xE];                                       // 0x02B2(0x000E) MISSED OFFSET
 
 	static UClass* StaticClass()
@@ -144,10 +142,10 @@ public:
 	unsigned char                                      UnknownData00[0xC0];                                      // 0x0440(0x00C0) MISSED OFFSET
 	struct FString                                     DestSessionId;                                            // 0x0500(0x0010) (CPF_ZeroConstructor)
 	struct FPartyReservation                           PendingReservation;                                       // 0x0510(0x0030)
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0540(0x0001) UNKNOWN PROPERTY: EnumProperty OnlineSubsystemUtils.PartyBeaconClient.RequestType
-	unsigned char                                      bPendingReservationSent : 1;                              // 0x0541(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bCancelReservation : 1;                                   // 0x0542(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData02[0x2D];                                      // 0x0543(0x002D) MISSED OFFSET
+	EClientRequestType                                 RequestType;                                              // 0x0540(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bPendingReservationSent;                                  // 0x0541(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bCancelReservation;                                       // 0x0542(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x2D];                                      // 0x0543(0x002D) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -173,10 +171,11 @@ class APartyBeaconHost : public AOnlineBeaconHostObject
 public:
 	class UPartyBeaconState*                           State;                                                    // 0x03B0(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x148];                                     // 0x03B8(0x0148) MISSED OFFSET
-	unsigned char                                      bLogoutOnSessionTimeout : 1;                              // 0x0500(0x0001) (CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bLogoutOnSessionTimeout;                                  // 0x0500(0x0001) (CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x3];                                       // 0x0501(0x0003) MISSED OFFSET
 	float                                              SessionTimeoutSecs;                                       // 0x0504(0x0004) (CPF_ZeroConstructor, CPF_Transient, CPF_Config, CPF_IsPlainOldData)
 	float                                              TravelSessionTimeoutSecs;                                 // 0x0508(0x0004) (CPF_ZeroConstructor, CPF_Transient, CPF_Config, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData02[0x4];                                       // 0x050C(0x0004) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -322,7 +321,7 @@ public:
 	}
 
 
-	//class UEndMatchCallbackProxy* STATIC_EndMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const TScriptInterface<class UTurnBasedMatchInterface>& MatchActor, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> LocalPlayerOutcome, TEnumAsByte<EMPMatchOutcome> OtherPlayersOutcome);
+	class UEndMatchCallbackProxy* STATIC_EndMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const TScriptInterface<class UTurnBasedMatchInterface>& MatchActor, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> LocalPlayerOutcome, TEnumAsByte<EMPMatchOutcome> OtherPlayersOutcome);
 };
 
 
@@ -642,7 +641,7 @@ public:
 class UOnlinePIESettings : public UDeveloperSettings
 {
 public:
-	unsigned char                                      bOnlinePIEEnabled : 1;                                    // 0x0038(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               bOnlinePIEEnabled;                                        // 0x0038(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0039(0x0007) MISSED OFFSET
 	TArray<struct FPIELoginSettingsInternal>           Logins;                                                   // 0x0040(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Config)
 
@@ -671,7 +670,7 @@ public:
 	}
 
 
-	//class UQuitMatchCallbackProxy* STATIC_QuitMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> Outcome, int TurnTimeoutInSeconds);
+	class UQuitMatchCallbackProxy* STATIC_QuitMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> Outcome, int TurnTimeoutInSeconds);
 };
 
 

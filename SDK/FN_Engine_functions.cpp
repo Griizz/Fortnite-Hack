@@ -1310,12 +1310,19 @@ struct FVector AActor::K2_GetActorLocation()
 
 // Function Engine.Actor.K2_DetachFromActor
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// EDetachmentRule                LocationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EDetachmentRule                RotationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EDetachmentRule                ScaleRule                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AActor::K2_DetachFromActor()
+void AActor::K2_DetachFromActor(EDetachmentRule LocationRule, EDetachmentRule RotationRule, EDetachmentRule ScaleRule)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.Actor.K2_DetachFromActor");
 
 	AActor_K2_DetachFromActor_Params params;
+	params.LocationRule = LocationRule;
+	params.RotationRule = RotationRule;
+	params.ScaleRule = ScaleRule;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -1370,15 +1377,21 @@ void AActor::K2_DestroyActor()
 // Parameters:
 // class USceneComponent*         Parent                         (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 // struct FName                   SocketName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                LocationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                RotationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                ScaleRule                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bWeldSimulatedBodies           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AActor::K2_AttachToComponent(class USceneComponent* Parent, const struct FName& SocketName, bool bWeldSimulatedBodies)
+void AActor::K2_AttachToComponent(class USceneComponent* Parent, const struct FName& SocketName, EAttachmentRule LocationRule, EAttachmentRule RotationRule, EAttachmentRule ScaleRule, bool bWeldSimulatedBodies)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.Actor.K2_AttachToComponent");
 
 	AActor_K2_AttachToComponent_Params params;
 	params.Parent = Parent;
 	params.SocketName = SocketName;
+	params.LocationRule = LocationRule;
+	params.RotationRule = RotationRule;
+	params.ScaleRule = ScaleRule;
 	params.bWeldSimulatedBodies = bWeldSimulatedBodies;
 
 	auto flags = fn->FunctionFlags;
@@ -1395,15 +1408,21 @@ void AActor::K2_AttachToComponent(class USceneComponent* Parent, const struct FN
 // Parameters:
 // class AActor*                  ParentActor                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   SocketName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                LocationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                RotationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                ScaleRule                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bWeldSimulatedBodies           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AActor::K2_AttachToActor(class AActor* ParentActor, const struct FName& SocketName, bool bWeldSimulatedBodies)
+void AActor::K2_AttachToActor(class AActor* ParentActor, const struct FName& SocketName, EAttachmentRule LocationRule, EAttachmentRule RotationRule, EAttachmentRule ScaleRule, bool bWeldSimulatedBodies)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.Actor.K2_AttachToActor");
 
 	AActor_K2_AttachToActor_Params params;
 	params.ParentActor = ParentActor;
 	params.SocketName = SocketName;
+	params.LocationRule = LocationRule;
+	params.RotationRule = RotationRule;
+	params.ScaleRule = ScaleRule;
 	params.bWeldSimulatedBodies = bWeldSimulatedBodies;
 
 	auto flags = fn->FunctionFlags;
@@ -3994,13 +4013,19 @@ struct FVector USceneComponent::K2_GetComponentLocation()
 // Function Engine.SceneComponent.K2_DetachFromComponent
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
+// EDetachmentRule                LocationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EDetachmentRule                RotationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EDetachmentRule                ScaleRule                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bCallModify                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void USceneComponent::K2_DetachFromComponent(bool bCallModify)
+void USceneComponent::K2_DetachFromComponent(EDetachmentRule LocationRule, EDetachmentRule RotationRule, EDetachmentRule ScaleRule, bool bCallModify)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.SceneComponent.K2_DetachFromComponent");
 
 	USceneComponent_K2_DetachFromComponent_Params params;
+	params.LocationRule = LocationRule;
+	params.RotationRule = RotationRule;
+	params.ScaleRule = ScaleRule;
 	params.bCallModify = bCallModify;
 
 	auto flags = fn->FunctionFlags;
@@ -4017,16 +4042,22 @@ void USceneComponent::K2_DetachFromComponent(bool bCallModify)
 // Parameters:
 // class USceneComponent*         Parent                         (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 // struct FName                   SocketName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                LocationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                RotationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                ScaleRule                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bWeldSimulatedBodies           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-bool USceneComponent::K2_AttachToComponent(class USceneComponent* Parent, const struct FName& SocketName, bool bWeldSimulatedBodies)
+bool USceneComponent::K2_AttachToComponent(class USceneComponent* Parent, const struct FName& SocketName, EAttachmentRule LocationRule, EAttachmentRule RotationRule, EAttachmentRule ScaleRule, bool bWeldSimulatedBodies)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.SceneComponent.K2_AttachToComponent");
 
 	USceneComponent_K2_AttachToComponent_Params params;
 	params.Parent = Parent;
 	params.SocketName = SocketName;
+	params.LocationRule = LocationRule;
+	params.RotationRule = RotationRule;
+	params.ScaleRule = ScaleRule;
 	params.bWeldSimulatedBodies = bWeldSimulatedBodies;
 
 	auto flags = fn->FunctionFlags;
@@ -6730,6 +6761,24 @@ void UPrimitiveComponent::AddAngularImpulse(const struct FVector& Impulse, const
 	params.Impulse = Impulse;
 	params.BoneName = BoneName;
 	params.bVelChange = bVelChange;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.WorldSettings.OnRep_WorldGravityZ
+// (FUNC_Native, FUNC_Public)
+
+void AWorldSettings::OnRep_WorldGravityZ()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.WorldSettings.OnRep_WorldGravityZ");
+
+	AWorldSettings_OnRep_WorldGravityZ_Params params;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -9532,16 +9581,18 @@ void UAnimInstance::Montage_Resume(class UAnimMontage* Montage)
 // Parameters:
 // class UAnimMontage*            MontageToPlay                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          InPlayRate                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EMontagePlayReturnType         ReturnValueType                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          InTimeToStartMontageAt         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-float UAnimInstance::Montage_Play(class UAnimMontage* MontageToPlay, float InPlayRate, float InTimeToStartMontageAt)
+float UAnimInstance::Montage_Play(class UAnimMontage* MontageToPlay, float InPlayRate, EMontagePlayReturnType ReturnValueType, float InTimeToStartMontageAt)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.AnimInstance.Montage_Play");
 
 	UAnimInstance_Montage_Play_Params params;
 	params.MontageToPlay = MontageToPlay;
 	params.InPlayRate = InPlayRate;
+	params.ReturnValueType = ReturnValueType;
 	params.InTimeToStartMontageAt = InTimeToStartMontageAt;
 
 	auto flags = fn->FunctionFlags;
@@ -10903,6 +10954,798 @@ void UBlueprintAsyncActionBase::Activate()
 }
 
 
+// Function Engine.MovementComponent.StopMovementImmediately
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+
+void UMovementComponent::StopMovementImmediately()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.StopMovementImmediately");
+
+	UMovementComponent_StopMovementImmediately_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SnapUpdatedComponentToPlane
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+
+void UMovementComponent::SnapUpdatedComponentToPlane()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SnapUpdatedComponentToPlane");
+
+	UMovementComponent_SnapUpdatedComponentToPlane_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SetUpdatedComponent
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// class USceneComponent*         NewUpdatedComponent            (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+
+void UMovementComponent::SetUpdatedComponent(class USceneComponent* NewUpdatedComponent)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetUpdatedComponent");
+
+	UMovementComponent_SetUpdatedComponent_Params params;
+	params.NewUpdatedComponent = NewUpdatedComponent;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SetPlaneConstraintOrigin
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
+// Parameters:
+// struct FVector                 PlaneOrigin                    (CPF_Parm, CPF_IsPlainOldData)
+
+void UMovementComponent::SetPlaneConstraintOrigin(const struct FVector& PlaneOrigin)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintOrigin");
+
+	UMovementComponent_SetPlaneConstraintOrigin_Params params;
+	params.PlaneOrigin = PlaneOrigin;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SetPlaneConstraintNormal
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
+// Parameters:
+// struct FVector                 PlaneNormal                    (CPF_Parm, CPF_IsPlainOldData)
+
+void UMovementComponent::SetPlaneConstraintNormal(const struct FVector& PlaneNormal)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintNormal");
+
+	UMovementComponent_SetPlaneConstraintNormal_Params params;
+	params.PlaneNormal = PlaneNormal;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SetPlaneConstraintFromVectors
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
+// Parameters:
+// struct FVector                 Forward                        (CPF_Parm, CPF_IsPlainOldData)
+// struct FVector                 Up                             (CPF_Parm, CPF_IsPlainOldData)
+
+void UMovementComponent::SetPlaneConstraintFromVectors(const struct FVector& Forward, const struct FVector& Up)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintFromVectors");
+
+	UMovementComponent_SetPlaneConstraintFromVectors_Params params;
+	params.Forward = Forward;
+	params.Up = Up;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SetPlaneConstraintEnabled
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// bool                           bEnabled                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UMovementComponent::SetPlaneConstraintEnabled(bool bEnabled)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintEnabled");
+
+	UMovementComponent_SetPlaneConstraintEnabled_Params params;
+	params.bEnabled = bEnabled;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.SetPlaneConstraintAxisSetting
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// EPlaneConstraintAxisSetting    NewAxisSetting                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UMovementComponent::SetPlaneConstraintAxisSetting(EPlaneConstraintAxisSetting NewAxisSetting)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintAxisSetting");
+
+	UMovementComponent_SetPlaneConstraintAxisSetting_Params params;
+	params.NewAxisSetting = NewAxisSetting;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.PhysicsVolumeChanged
+// (FUNC_Native, FUNC_Public)
+// Parameters:
+// class APhysicsVolume*          NewVolume                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UMovementComponent::PhysicsVolumeChanged(class APhysicsVolume* NewVolume)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.PhysicsVolumeChanged");
+
+	UMovementComponent_PhysicsVolumeChanged_Params params;
+	params.NewVolume = NewVolume;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.MovementComponent.K2_MoveUpdatedComponent
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable)
+// Parameters:
+// struct FVector                 Delta                          (CPF_Parm, CPF_IsPlainOldData)
+// struct FRotator                NewRotation                    (CPF_Parm, CPF_IsPlainOldData)
+// struct FHitResult              OutHit                         (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+// bool                           bSweep                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// bool                           bTeleport                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UMovementComponent::K2_MoveUpdatedComponent(const struct FVector& Delta, const struct FRotator& NewRotation, bool bSweep, bool bTeleport, struct FHitResult* OutHit)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.K2_MoveUpdatedComponent");
+
+	UMovementComponent_K2_MoveUpdatedComponent_Params params;
+	params.Delta = Delta;
+	params.NewRotation = NewRotation;
+	params.bSweep = bSweep;
+	params.bTeleport = bTeleport;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (OutHit != nullptr)
+		*OutHit = params.OutHit;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.K2_GetModifiedMaxSpeed
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+float UMovementComponent::K2_GetModifiedMaxSpeed()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.K2_GetModifiedMaxSpeed");
+
+	UMovementComponent_K2_GetModifiedMaxSpeed_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.K2_GetMaxSpeedModifier
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+float UMovementComponent::K2_GetMaxSpeedModifier()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.K2_GetMaxSpeedModifier");
+
+	UMovementComponent_K2_GetMaxSpeedModifier_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.IsExceedingMaxSpeed
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// float                          MaxSpeed                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UMovementComponent::IsExceedingMaxSpeed(float MaxSpeed)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.IsExceedingMaxSpeed");
+
+	UMovementComponent_IsExceedingMaxSpeed_Params params;
+	params.MaxSpeed = MaxSpeed;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.GetPlaneConstraintOrigin
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 ReturnValue                    (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+
+struct FVector UMovementComponent::GetPlaneConstraintOrigin()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPlaneConstraintOrigin");
+
+	UMovementComponent_GetPlaneConstraintOrigin_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.GetPlaneConstraintNormal
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 ReturnValue                    (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+
+struct FVector UMovementComponent::GetPlaneConstraintNormal()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPlaneConstraintNormal");
+
+	UMovementComponent_GetPlaneConstraintNormal_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.GetPlaneConstraintAxisSetting
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// EPlaneConstraintAxisSetting    ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+EPlaneConstraintAxisSetting UMovementComponent::GetPlaneConstraintAxisSetting()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPlaneConstraintAxisSetting");
+
+	UMovementComponent_GetPlaneConstraintAxisSetting_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.GetPhysicsVolume
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// class APhysicsVolume*          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+class APhysicsVolume* UMovementComponent::GetPhysicsVolume()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPhysicsVolume");
+
+	UMovementComponent_GetPhysicsVolume_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.GetMaxSpeed
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+float UMovementComponent::GetMaxSpeed()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetMaxSpeed");
+
+	UMovementComponent_GetMaxSpeed_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.GetGravityZ
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+float UMovementComponent::GetGravityZ()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetGravityZ");
+
+	UMovementComponent_GetGravityZ_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.ConstrainNormalToPlane
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 Normal                         (CPF_Parm, CPF_IsPlainOldData)
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UMovementComponent::ConstrainNormalToPlane(const struct FVector& Normal)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.ConstrainNormalToPlane");
+
+	UMovementComponent_ConstrainNormalToPlane_Params params;
+	params.Normal = Normal;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.ConstrainLocationToPlane
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 Location                       (CPF_Parm, CPF_IsPlainOldData)
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UMovementComponent::ConstrainLocationToPlane(const struct FVector& Location)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.ConstrainLocationToPlane");
+
+	UMovementComponent_ConstrainLocationToPlane_Params params;
+	params.Location = Location;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.MovementComponent.ConstrainDirectionToPlane
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 Direction                      (CPF_Parm, CPF_IsPlainOldData)
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UMovementComponent::ConstrainDirectionToPlane(const struct FVector& Direction)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.ConstrainDirectionToPlane");
+
+	UMovementComponent_ConstrainDirectionToPlane_Params params;
+	params.Direction = Direction;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.NavMovementComponent.StopMovementKeepPathing
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+
+void UNavMovementComponent::StopMovementKeepPathing()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.StopMovementKeepPathing");
+
+	UNavMovementComponent_StopMovementKeepPathing_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.NavMovementComponent.StopActiveMovement
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+
+void UNavMovementComponent::StopActiveMovement()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.StopActiveMovement");
+
+	UNavMovementComponent_StopActiveMovement_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Engine.NavMovementComponent.IsSwimming
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UNavMovementComponent::IsSwimming()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsSwimming");
+
+	UNavMovementComponent_IsSwimming_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.NavMovementComponent.IsMovingOnGround
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UNavMovementComponent::IsMovingOnGround()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsMovingOnGround");
+
+	UNavMovementComponent_IsMovingOnGround_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.NavMovementComponent.IsFlying
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UNavMovementComponent::IsFlying()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsFlying");
+
+	UNavMovementComponent_IsFlying_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.NavMovementComponent.IsFalling
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UNavMovementComponent::IsFalling()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsFalling");
+
+	UNavMovementComponent_IsFalling_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.NavMovementComponent.IsCrouching
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UNavMovementComponent::IsCrouching()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsCrouching");
+
+	UNavMovementComponent_IsCrouching_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.K2_GetInputVector
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UPawnMovementComponent::K2_GetInputVector()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.K2_GetInputVector");
+
+	UPawnMovementComponent_K2_GetInputVector_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.IsMoveInputIgnored
+// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UPawnMovementComponent::IsMoveInputIgnored()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.IsMoveInputIgnored");
+
+	UPawnMovementComponent_IsMoveInputIgnored_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.GetPendingInputVector
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UPawnMovementComponent::GetPendingInputVector()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.GetPendingInputVector");
+
+	UPawnMovementComponent_GetPendingInputVector_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.GetPawnOwner
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// class APawn*                   ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+class APawn* UPawnMovementComponent::GetPawnOwner()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.GetPawnOwner");
+
+	UPawnMovementComponent_GetPawnOwner_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.GetLastInputVector
+// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UPawnMovementComponent::GetLastInputVector()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.GetLastInputVector");
+
+	UPawnMovementComponent_GetLastInputVector_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.ConsumeInputVector
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
+// Parameters:
+// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+
+struct FVector UPawnMovementComponent::ConsumeInputVector()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.ConsumeInputVector");
+
+	UPawnMovementComponent_ConsumeInputVector_Params params;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+// Function Engine.PawnMovementComponent.AddInputVector
+// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
+// Parameters:
+// struct FVector                 WorldVector                    (CPF_Parm, CPF_IsPlainOldData)
+// bool                           bForce                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UPawnMovementComponent::AddInputVector(const struct FVector& WorldVector, bool bForce)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.AddInputVector");
+
+	UPawnMovementComponent_AddInputVector_Params params;
+	params.WorldVector = WorldVector;
+	params.bForce = bForce;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function Engine.CameraActor.GetAutoActivatePlayerIndex
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
 // Parameters:
@@ -11017,12 +11860,15 @@ void APlayerController::SwitchLevel(const struct FString& URL)
 
 // Function Engine.PlayerController.StopHapticEffect
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// EControllerHand                Hand                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void APlayerController::StopHapticEffect()
+void APlayerController::StopHapticEffect(EControllerHand Hand)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.PlayerController.StopHapticEffect");
 
 	APlayerController_StopHapticEffect_Params params;
+	params.Hand = Hand;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -11052,6 +11898,7 @@ void APlayerController::StartFire(unsigned char FireModeNum)
 
 	fn->FunctionFlags = flags;
 }
+
 
 // Function Engine.PlayerController.SetVirtualJoystickVisibility
 // (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
@@ -11152,14 +11999,16 @@ void APlayerController::SetMouseLocation(int X, int Y)
 // Parameters:
 // float                          Frequency                      (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          Amplitude                      (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EControllerHand                Hand                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void APlayerController::SetHapticsByValue(float Frequency, float Amplitude)
+void APlayerController::SetHapticsByValue(float Frequency, float Amplitude, EControllerHand Hand)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.PlayerController.SetHapticsByValue");
 
 	APlayerController_SetHapticsByValue_Params params;
 	params.Frequency = Frequency;
 	params.Amplitude = Amplitude;
+	params.Hand = Hand;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -11738,15 +12587,17 @@ bool APlayerController::ProjectWorldLocationToScreen(const struct FVector& World
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
 // class UHapticFeedbackEffect_Base* HapticEffect                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EControllerHand                Hand                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          Scale                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bLoop                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void APlayerController::PlayHapticEffect(class UHapticFeedbackEffect_Base* HapticEffect, float Scale, bool bLoop)
+void APlayerController::PlayHapticEffect(class UHapticFeedbackEffect_Base* HapticEffect, EControllerHand Hand, float Scale, bool bLoop)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.PlayerController.PlayHapticEffect");
 
 	APlayerController_PlayHapticEffect_Params params;
 	params.HapticEffect = HapticEffect;
+	params.Hand = Hand;
 	params.Scale = Scale;
 	params.bLoop = bLoop;
 
@@ -16740,7 +17591,7 @@ void UGameUserSettings::SetResolutionScaleNormalized(float NewScaleNormalized)
 }
 
 
-// Function Engine.GameUserSettings.SetProcessingQuality
+// Function Engine.GameUserSettings.SetPostProcessingQuality
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
 // int                            Value                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -17850,12 +18701,15 @@ void UNavigationSystem::SetMaxSimultaneousTileGenerationJobsCount(int MaxNumberO
 
 // Function Engine.NavigationSystem.SetGeometryGatheringMode
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// ENavDataGatheringModeConfig    NewMode                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UNavigationSystem::SetGeometryGatheringMode()
+void UNavigationSystem::SetGeometryGatheringMode(ENavDataGatheringModeConfig NewMode)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavigationSystem.SetGeometryGatheringMode");
 
 	UNavigationSystem_SetGeometryGatheringMode_Params params;
+	params.NewMode = NewMode;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -18465,791 +19319,6 @@ void ALevelScriptActor::LevelReset()
 	ALevelScriptActor_LevelReset_Params params;
 
 	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.StopMovementImmediately
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-
-void UMovementComponent::StopMovementImmediately()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.StopMovementImmediately");
-
-	UMovementComponent_StopMovementImmediately_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SnapUpdatedComponentToPlane
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-
-void UMovementComponent::SnapUpdatedComponentToPlane()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SnapUpdatedComponentToPlane");
-
-	UMovementComponent_SnapUpdatedComponentToPlane_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SetUpdatedComponent
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-// Parameters:
-// class USceneComponent*         NewUpdatedComponent            (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
-
-void UMovementComponent::SetUpdatedComponent(class USceneComponent* NewUpdatedComponent)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetUpdatedComponent");
-
-	UMovementComponent_SetUpdatedComponent_Params params;
-	params.NewUpdatedComponent = NewUpdatedComponent;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SetPlaneConstraintOrigin
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
-// Parameters:
-// struct FVector                 PlaneOrigin                    (CPF_Parm, CPF_IsPlainOldData)
-
-void UMovementComponent::SetPlaneConstraintOrigin(const struct FVector& PlaneOrigin)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintOrigin");
-
-	UMovementComponent_SetPlaneConstraintOrigin_Params params;
-	params.PlaneOrigin = PlaneOrigin;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SetPlaneConstraintNormal
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
-// Parameters:
-// struct FVector                 PlaneNormal                    (CPF_Parm, CPF_IsPlainOldData)
-
-void UMovementComponent::SetPlaneConstraintNormal(const struct FVector& PlaneNormal)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintNormal");
-
-	UMovementComponent_SetPlaneConstraintNormal_Params params;
-	params.PlaneNormal = PlaneNormal;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SetPlaneConstraintFromVectors
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
-// Parameters:
-// struct FVector                 Forward                        (CPF_Parm, CPF_IsPlainOldData)
-// struct FVector                 Up                             (CPF_Parm, CPF_IsPlainOldData)
-
-void UMovementComponent::SetPlaneConstraintFromVectors(const struct FVector& Forward, const struct FVector& Up)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintFromVectors");
-
-	UMovementComponent_SetPlaneConstraintFromVectors_Params params;
-	params.Forward = Forward;
-	params.Up = Up;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SetPlaneConstraintEnabled
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-// Parameters:
-// bool                           bEnabled                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void UMovementComponent::SetPlaneConstraintEnabled(bool bEnabled)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintEnabled");
-
-	UMovementComponent_SetPlaneConstraintEnabled_Params params;
-	params.bEnabled = bEnabled;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.SetPlaneConstraintAxisSetting
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-
-void UMovementComponent::SetPlaneConstraintAxisSetting()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.SetPlaneConstraintAxisSetting");
-
-	UMovementComponent_SetPlaneConstraintAxisSetting_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.PhysicsVolumeChanged
-// (FUNC_Native, FUNC_Public)
-// Parameters:
-// class APhysicsVolume*          NewVolume                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void UMovementComponent::PhysicsVolumeChanged(class APhysicsVolume* NewVolume)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.PhysicsVolumeChanged");
-
-	UMovementComponent_PhysicsVolumeChanged_Params params;
-	params.NewVolume = NewVolume;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.K2_MoveUpdatedComponent
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable)
-// Parameters:
-// struct FVector                 Delta                          (CPF_Parm, CPF_IsPlainOldData)
-// struct FRotator                NewRotation                    (CPF_Parm, CPF_IsPlainOldData)
-// struct FHitResult              OutHit                         (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-// bool                           bSweep                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// bool                           bTeleport                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UMovementComponent::K2_MoveUpdatedComponent(const struct FVector& Delta, const struct FRotator& NewRotation, bool bSweep, bool bTeleport, struct FHitResult* OutHit)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.K2_MoveUpdatedComponent");
-
-	UMovementComponent_K2_MoveUpdatedComponent_Params params;
-	params.Delta = Delta;
-	params.NewRotation = NewRotation;
-	params.bSweep = bSweep;
-	params.bTeleport = bTeleport;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	if (OutHit != nullptr)
-		*OutHit = params.OutHit;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.K2_GetModifiedMaxSpeed
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-float UMovementComponent::K2_GetModifiedMaxSpeed()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.K2_GetModifiedMaxSpeed");
-
-	UMovementComponent_K2_GetModifiedMaxSpeed_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.K2_GetMaxSpeedModifier
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-float UMovementComponent::K2_GetMaxSpeedModifier()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.K2_GetMaxSpeedModifier");
-
-	UMovementComponent_K2_GetMaxSpeedModifier_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.IsExceedingMaxSpeed
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// float                          MaxSpeed                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UMovementComponent::IsExceedingMaxSpeed(float MaxSpeed)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.IsExceedingMaxSpeed");
-
-	UMovementComponent_IsExceedingMaxSpeed_Params params;
-	params.MaxSpeed = MaxSpeed;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.GetPlaneConstraintOrigin
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 ReturnValue                    (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-
-struct FVector UMovementComponent::GetPlaneConstraintOrigin()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPlaneConstraintOrigin");
-
-	UMovementComponent_GetPlaneConstraintOrigin_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.GetPlaneConstraintNormal
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 ReturnValue                    (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-
-struct FVector UMovementComponent::GetPlaneConstraintNormal()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPlaneConstraintNormal");
-
-	UMovementComponent_GetPlaneConstraintNormal_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.GetPlaneConstraintAxisSetting
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-
-void UMovementComponent::GetPlaneConstraintAxisSetting()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPlaneConstraintAxisSetting");
-
-	UMovementComponent_GetPlaneConstraintAxisSetting_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.MovementComponent.GetPhysicsVolume
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// class APhysicsVolume*          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-class APhysicsVolume* UMovementComponent::GetPhysicsVolume()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetPhysicsVolume");
-
-	UMovementComponent_GetPhysicsVolume_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.GetMaxSpeed
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-float UMovementComponent::GetMaxSpeed()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetMaxSpeed");
-
-	UMovementComponent_GetMaxSpeed_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.GetGravityZ
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// float                          ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-float UMovementComponent::GetGravityZ()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.GetGravityZ");
-
-	UMovementComponent_GetGravityZ_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.ConstrainNormalToPlane
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 Normal                         (CPF_Parm, CPF_IsPlainOldData)
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UMovementComponent::ConstrainNormalToPlane(const struct FVector& Normal)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.ConstrainNormalToPlane");
-
-	UMovementComponent_ConstrainNormalToPlane_Params params;
-	params.Normal = Normal;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.ConstrainLocationToPlane
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 Location                       (CPF_Parm, CPF_IsPlainOldData)
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UMovementComponent::ConstrainLocationToPlane(const struct FVector& Location)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.ConstrainLocationToPlane");
-
-	UMovementComponent_ConstrainLocationToPlane_Params params;
-	params.Location = Location;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.MovementComponent.ConstrainDirectionToPlane
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 Direction                      (CPF_Parm, CPF_IsPlainOldData)
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UMovementComponent::ConstrainDirectionToPlane(const struct FVector& Direction)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.MovementComponent.ConstrainDirectionToPlane");
-
-	UMovementComponent_ConstrainDirectionToPlane_Params params;
-	params.Direction = Direction;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.NavMovementComponent.StopMovementKeepPathing
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-
-void UNavMovementComponent::StopMovementKeepPathing()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.StopMovementKeepPathing");
-
-	UNavMovementComponent_StopMovementKeepPathing_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.NavMovementComponent.StopActiveMovement
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
-
-void UNavMovementComponent::StopActiveMovement()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.StopActiveMovement");
-
-	UNavMovementComponent_StopActiveMovement_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function Engine.NavMovementComponent.IsSwimming
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UNavMovementComponent::IsSwimming()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsSwimming");
-
-	UNavMovementComponent_IsSwimming_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.NavMovementComponent.IsMovingOnGround
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UNavMovementComponent::IsMovingOnGround()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsMovingOnGround");
-
-	UNavMovementComponent_IsMovingOnGround_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.NavMovementComponent.IsFlying
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UNavMovementComponent::IsFlying()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsFlying");
-
-	UNavMovementComponent_IsFlying_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.NavMovementComponent.IsFalling
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UNavMovementComponent::IsFalling()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsFalling");
-
-	UNavMovementComponent_IsFalling_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.NavMovementComponent.IsCrouching
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UNavMovementComponent::IsCrouching()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.NavMovementComponent.IsCrouching");
-
-	UNavMovementComponent_IsCrouching_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.K2_GetInputVector
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UPawnMovementComponent::K2_GetInputVector()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.K2_GetInputVector");
-
-	UPawnMovementComponent_K2_GetInputVector_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.IsMoveInputIgnored
-// (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-bool UPawnMovementComponent::IsMoveInputIgnored()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.IsMoveInputIgnored");
-
-	UPawnMovementComponent_IsMoveInputIgnored_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.GetPendingInputVector
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UPawnMovementComponent::GetPendingInputVector()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.GetPendingInputVector");
-
-	UPawnMovementComponent_GetPendingInputVector_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.GetPawnOwner
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// class APawn*                   ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-
-class APawn* UPawnMovementComponent::GetPawnOwner()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.GetPawnOwner");
-
-	UPawnMovementComponent_GetPawnOwner_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.GetLastInputVector
-// (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
-// Parameters:
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UPawnMovementComponent::GetLastInputVector()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.GetLastInputVector");
-
-	UPawnMovementComponent_GetLastInputVector_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.ConsumeInputVector
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
-// Parameters:
-// struct FVector                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-
-struct FVector UPawnMovementComponent::ConsumeInputVector()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.ConsumeInputVector");
-
-	UPawnMovementComponent_ConsumeInputVector_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	return params.ReturnValue;
-}
-
-
-// Function Engine.PawnMovementComponent.AddInputVector
-// (FUNC_Native, FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable)
-// Parameters:
-// struct FVector                 WorldVector                    (CPF_Parm, CPF_IsPlainOldData)
-// bool                           bForce                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void UPawnMovementComponent::AddInputVector(const struct FVector& WorldVector, bool bForce)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.PawnMovementComponent.AddInputVector");
-
-	UPawnMovementComponent_AddInputVector_Params params;
-	params.WorldVector = WorldVector;
-	params.bForce = bForce;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
 
 	UObject::ProcessEvent(fn, &params);
 
@@ -23912,24 +23981,6 @@ void AHUD::AddDebugText(const struct FString& DebugText, class AActor* SrcActor,
 }
 
 
-// Function Engine.WorldSettings.OnRep_WorldGravityZ
-// (FUNC_Native, FUNC_Public)
-
-void AWorldSettings::OnRep_WorldGravityZ()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Engine.WorldSettings.OnRep_WorldGravityZ");
-
-	AWorldSettings_OnRep_WorldGravityZ_Params params;
-
-	auto flags = fn->FunctionFlags;
-	fn->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function Engine.InstancedStaticMeshComponent.UpdateInstanceTransform
 // (FUNC_Native, FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable)
 // Parameters:
@@ -26084,14 +26135,20 @@ void UParticleSystemComponent::SetAutoAttachParams(class USceneComponent* Parent
 // Parameters:
 // class USceneComponent*         Parent                         (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 // struct FName                   SocketName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                LocationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                RotationRule                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAttachmentRule                ScaleRule                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UParticleSystemComponent::SetAutoAttachmentParameters(class USceneComponent* Parent, const struct FName& SocketName)
+void UParticleSystemComponent::SetAutoAttachmentParameters(class USceneComponent* Parent, const struct FName& SocketName, EAttachmentRule LocationRule, EAttachmentRule RotationRule, EAttachmentRule ScaleRule)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.ParticleSystemComponent.SetAutoAttachmentParameters");
 
 	UParticleSystemComponent_SetAutoAttachmentParameters_Params params;
 	params.Parent = Parent;
 	params.SocketName = SocketName;
+	params.LocationRule = LocationRule;
+	params.RotationRule = RotationRule;
+	params.ScaleRule = ScaleRule;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -35261,12 +35318,15 @@ int UStereoLayerComponent::GetPriority()
 
 // Function Engine.WindDirectionalSourceComponent.SetWindType
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// EWindSourceType                InNewType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UWindDirectionalSourceComponent::SetWindType()
+void UWindDirectionalSourceComponent::SetWindType(EWindSourceType InNewType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.WindDirectionalSourceComponent.SetWindType");
 
 	UWindDirectionalSourceComponent_SetWindType_Params params;
+	params.InNewType = InNewType;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -44671,10 +44731,11 @@ class AActor* UGameplayStatics::STATIC_BeginSpawningActorFromBlueprint(class UOb
 // class UObject*                 WorldContextObject             (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UClass*                  ActorClass                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FTransform              SpawnTransform                 (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+// ESpawnActorCollisionHandlingMethod CollisionHandlingOverride      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class AActor*                  Owner                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class AActor*                  ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class AActor* UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(class UObject* WorldContextObject, class UClass* ActorClass, const struct FTransform& SpawnTransform, class AActor* Owner)
+class AActor* UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(class UObject* WorldContextObject, class UClass* ActorClass, const struct FTransform& SpawnTransform, ESpawnActorCollisionHandlingMethod CollisionHandlingOverride, class AActor* Owner)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.GameplayStatics.BeginDeferredActorSpawnFromClass");
 
@@ -44682,6 +44743,7 @@ class AActor* UGameplayStatics::STATIC_BeginDeferredActorSpawnFromClass(class UO
 	params.WorldContextObject = WorldContextObject;
 	params.ActorClass = ActorClass;
 	params.SpawnTransform = SpawnTransform;
+	params.CollisionHandlingOverride = CollisionHandlingOverride;
 	params.Owner = Owner;
 
 	auto flags = fn->FunctionFlags;
@@ -60565,9 +60627,10 @@ void UMeshVertexPainterKismetLibrary::STATIC_PaintVerticesSingleColor(class USta
 // class UStaticMeshComponent*    StaticMeshComponent            (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 // struct FLinearColor            StartColor                     (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
 // struct FLinearColor            EndColor                       (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+// EVertexPaintAxis               Axis                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bConvertToSRGB                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMeshVertexPainterKismetLibrary::STATIC_PaintVerticesLerpAlongAxis(class UStaticMeshComponent* StaticMeshComponent, const struct FLinearColor& StartColor, const struct FLinearColor& EndColor, bool bConvertToSRGB)
+void UMeshVertexPainterKismetLibrary::STATIC_PaintVerticesLerpAlongAxis(class UStaticMeshComponent* StaticMeshComponent, const struct FLinearColor& StartColor, const struct FLinearColor& EndColor, EVertexPaintAxis Axis, bool bConvertToSRGB)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Engine.MeshVertexPainterKismetLibrary.PaintVerticesLerpAlongAxis");
 
@@ -60575,6 +60638,7 @@ void UMeshVertexPainterKismetLibrary::STATIC_PaintVerticesLerpAlongAxis(class US
 	params.StaticMeshComponent = StaticMeshComponent;
 	params.StartColor = StartColor;
 	params.EndColor = EndColor;
+	params.Axis = Axis;
 	params.bConvertToSRGB = bConvertToSRGB;
 
 	auto flags = fn->FunctionFlags;

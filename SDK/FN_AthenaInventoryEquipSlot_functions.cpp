@@ -255,12 +255,15 @@ void UAthenaInventoryEquipSlot_C::Tick(struct FGeometry* MyGeometry, float* InDe
 
 // Function AthenaInventoryEquipSlot.AthenaInventoryEquipSlot_C.OnQuickbarContentsChanged_Event_1
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaInventoryEquipSlot_C::OnQuickbarContentsChanged_Event_1()
+void UAthenaInventoryEquipSlot_C::OnQuickbarContentsChanged_Event_1(EFortQuickBars QuickbarIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaInventoryEquipSlot.AthenaInventoryEquipSlot_C.OnQuickbarContentsChanged_Event_1");
 
 	UAthenaInventoryEquipSlot_C_OnQuickbarContentsChanged_Event_1_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 
 	auto flags = fn->FunctionFlags;
 

@@ -35,12 +35,15 @@ void AQosBeaconClient::ServerQosRequest(const struct FString& InSessionId)
 
 // Function Qos.QosBeaconClient.ClientQosResponse
 // (FUNC_Net, FUNC_NetReliable, FUNC_Native, FUNC_Event, FUNC_Protected, FUNC_NetClient)
+// Parameters:
+// EQosResponseType               Response                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AQosBeaconClient::ClientQosResponse()
+void AQosBeaconClient::ClientQosResponse(EQosResponseType Response)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Qos.QosBeaconClient.ClientQosResponse");
 
 	AQosBeaconClient_ClientQosResponse_Params params;
+	params.Response = Response;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;

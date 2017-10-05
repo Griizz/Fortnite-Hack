@@ -29,6 +29,7 @@ struct UAnnouncement_Tutorial_C_CheckContinueTutorial_Params
 struct UAnnouncement_Tutorial_C_GetLightboxVisibility_Params
 {
 	struct FFortClientAnnouncementData_Tutorial        FortClientAnnouncementData_Tutorial;                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function Announcement_Tutorial.Announcement_Tutorial_C.RefreshTextLines

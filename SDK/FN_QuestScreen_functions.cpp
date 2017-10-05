@@ -12,6 +12,30 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function QuestScreen.QuestScreen_C.ShouldShowPlayQuest
+// (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// class UFortQuestItem*          Quest                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// bool                           ShouldShowPlay                 (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UQuestScreen_C::ShouldShowPlayQuest(class UFortQuestItem* Quest, bool* ShouldShowPlay)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function QuestScreen.QuestScreen_C.ShouldShowPlayQuest");
+
+	UQuestScreen_C_ShouldShowPlayQuest_Params params;
+	params.Quest = Quest;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (ShouldShowPlay != nullptr)
+		*ShouldShowPlay = params.ShouldShowPlay;
+}
+
+
 // Function QuestScreen.QuestScreen_C.Toggle Disable Claim Reward Button
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
@@ -604,12 +628,15 @@ void UQuestScreen_C::PlayerPartyStateChanged(const struct FFortTeamMemberInfo& P
 
 // Function QuestScreen.QuestScreen_C.OnClientPartyStateChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortPartyState                PartyState                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuestScreen_C::OnClientPartyStateChanged()
+void UQuestScreen_C::OnClientPartyStateChanged(EFortPartyState PartyState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuestScreen.QuestScreen_C.OnClientPartyStateChanged");
 
 	UQuestScreen_C_OnClientPartyStateChanged_Params params;
+	params.PartyState = PartyState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -621,12 +648,15 @@ void UQuestScreen_C::OnClientPartyStateChanged()
 
 // Function QuestScreen.QuestScreen_C.OnMatchamkingComplete
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EMatchmakingCompleteResult     Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuestScreen_C::OnMatchamkingComplete()
+void UQuestScreen_C::OnMatchamkingComplete(EMatchmakingCompleteResult Result)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuestScreen.QuestScreen_C.OnMatchamkingComplete");
 
 	UQuestScreen_C_OnMatchamkingComplete_Params params;
+	params.Result = Result;
 
 	auto flags = fn->FunctionFlags;
 

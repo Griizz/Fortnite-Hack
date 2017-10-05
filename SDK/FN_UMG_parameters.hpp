@@ -54,6 +54,7 @@ struct UBrushBinding_GetValue_Params
 // Function UMG.CheckedStateBinding.GetValue
 struct UCheckedStateBinding_GetValue_Params
 {
+	ECheckBoxState                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function UMG.ColorBinding.GetSlateValue
@@ -101,6 +102,7 @@ struct UTextBinding_GetStringValue_Params
 // Function UMG.VisibilityBinding.GetValue
 struct UVisibilityBinding_GetValue_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function UMG.WidgetBinding.GetValue
@@ -195,6 +197,7 @@ struct USlateBlueprintLibrary_AbsoluteToLocal_Params
 // Function UMG.Widget.SetVisibility
 struct UWidget_SetVisibility_Params
 {
+	ESlateVisibility                                   InVisibility;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function UMG.Widget.SetUserFocus
@@ -254,6 +257,8 @@ struct UWidget_SetRenderAngle_Params
 // Function UMG.Widget.SetNavigationRule
 struct UWidget_SetNavigationRule_Params
 {
+	EUINavigation                                      Direction;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EUINavigationRule                                  Rule;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       WidgetToFocus;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -277,6 +282,7 @@ struct UWidget_SetCursor_Params
 // Function UMG.Widget.SetAllNavigationRules
 struct UWidget_SetAllNavigationRules_Params
 {
+	EUINavigationRule                                  Rule;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       WidgetToFocus;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -368,6 +374,7 @@ struct UWidget_GetWidget__DelegateSignature_Params
 // Function UMG.Widget.GetVisibility
 struct UWidget_GetVisibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // DelegateFunction UMG.Widget.GetText__DelegateSignature
@@ -379,6 +386,7 @@ struct UWidget_GetText__DelegateSignature_Params
 // DelegateFunction UMG.Widget.GetSlateVisibility__DelegateSignature
 struct UWidget_GetSlateVisibility__DelegateSignature_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // DelegateFunction UMG.Widget.GetSlateColor__DelegateSignature
@@ -444,6 +452,7 @@ struct UWidget_GetDesiredSize_Params
 // DelegateFunction UMG.Widget.GetCheckBoxState__DelegateSignature
 struct UWidget_GetCheckBoxState__DelegateSignature_Params
 {
+	ECheckBoxState                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function UMG.Widget.GetCachedGeometry
@@ -1939,6 +1948,7 @@ struct UCheckBox_SetIsChecked_Params
 // Function UMG.CheckBox.SetCheckedState
 struct UCheckBox_SetCheckedState_Params
 {
+	ECheckBoxState                                     InCheckedState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function UMG.CheckBox.IsPressed
@@ -1956,6 +1966,7 @@ struct UCheckBox_IsChecked_Params
 // Function UMG.CheckBox.GetCheckedState
 struct UCheckBox_GetCheckedState_Params
 {
+	ECheckBoxState                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function UMG.InvalidationBox.SetCanCache
@@ -2213,6 +2224,7 @@ struct UScrollBox_ScrollWidgetIntoView_Params
 {
 	class UWidget*                                     WidgetToFind;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	bool                                               AnimateScroll;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDescendantScrollDestination                       ScrollDesintion;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function UMG.ScrollBox.ScrollToStart
@@ -2689,6 +2701,7 @@ struct UWidgetBlueprintLibrary_SetInputMode_UIOnlyEx_Params
 {
 	class APlayerController*                           Target;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UWidget*                                     InWidgetToFocus;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+	EMouseLockMode                                     InMouseLockMode;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function UMG.WidgetBlueprintLibrary.SetInputMode_UIOnly
@@ -2710,6 +2723,7 @@ struct UWidgetBlueprintLibrary_SetInputMode_GameAndUIEx_Params
 {
 	class APlayerController*                           Target;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UWidget*                                     InWidgetToFocus;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+	EMouseLockMode                                     InMouseLockMode;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bHideCursorDuringCapture;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

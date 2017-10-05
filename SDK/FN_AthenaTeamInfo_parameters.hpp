@@ -22,7 +22,7 @@ struct UAthenaTeamInfo_C_HandleTeamMemberRemoved_Params
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamRevivingChanged
 struct UAthenaTeamInfo_C_HandleTeamRevivingChanged_Params
 {
-	TArray<unsigned char>                              TeamReviving;                                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<bool>                                       TeamReviving;                                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamMemberPlayerNamesChanged
@@ -33,13 +33,13 @@ struct UAthenaTeamInfo_C_HandleTeamMemberPlayerNamesChanged_Params
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamDeadChanged
 struct UAthenaTeamInfo_C_HandleTeamDeadChanged_Params
 {
-	TArray<unsigned char>                              TeamDead;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<bool>                                       TeamDead;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamDBNOChanged
 struct UAthenaTeamInfo_C_HandleTeamDBNOChanged_Params
 {
-	TArray<unsigned char>                              TeamDBNO;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<bool>                                       TeamDBNO;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
 // Function AthenaTeamInfo.AthenaTeamInfo_C.HandleTeamMemberAdded

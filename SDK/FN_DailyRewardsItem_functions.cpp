@@ -12,26 +12,6 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
-// Function DailyRewardsItem.DailyRewardsItem_C.SetCardSize
-// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-// Parameters:
-// TEnumAsByte<EFortBrushSize>    CardSize                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void UDailyRewardsItem_C::SetCardSize(TEnumAsByte<EFortBrushSize> CardSize)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function DailyRewardsItem.DailyRewardsItem_C.SetCardSize");
-
-	UDailyRewardsItem_C_SetCardSize_Params params;
-	params.CardSize = CardSize;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function DailyRewardsItem.DailyRewardsItem_C.Construct
 // (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
 

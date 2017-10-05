@@ -14,6 +14,11 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.UpdateComparisonVisibility
+struct UFortHeroSupportPerkWidget_C_UpdateComparisonVisibility_Params
+{
+};
+
 // Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.UpdateEmptyVisibility
 struct UFortHeroSupportPerkWidget_C_UpdateEmptyVisibility_Params
 {
@@ -38,6 +43,7 @@ struct UFortHeroSupportPerkWidget_C_UpdateVisibility_Params
 struct UFortHeroSupportPerkWidget_C_Update_Params
 {
 	bool                                               DisplayedOutsideOfHeroSquad;                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortSupportBonusType                              TargetedSupportType;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.OnHeroUpdated
@@ -52,6 +58,11 @@ struct UFortHeroSupportPerkWidget_C_OnSupportTypeUpdated_Params
 
 // Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.Construct
 struct UFortHeroSupportPerkWidget_C_Construct_Params
+{
+};
+
+// Function FortHeroSupportPerkWidget.FortHeroSupportPerkWidget_C.OnStateChanged
+struct UFortHeroSupportPerkWidget_C_OnStateChanged_Params
 {
 };
 

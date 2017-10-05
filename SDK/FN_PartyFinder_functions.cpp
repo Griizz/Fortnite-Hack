@@ -112,8 +112,9 @@ void UPartyFinder_C::SendInvite()
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
 // class UFortSocialItem*         PartyFinderItem                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UPartyFinder_C::GetFinderItemVisibility(class UFortSocialItem* PartyFinderItem)
+ESlateVisibility UPartyFinder_C::GetFinderItemVisibility(class UFortSocialItem* PartyFinderItem)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function PartyFinder.PartyFinder_C.GetFinderItemVisibility");
 
@@ -125,6 +126,8 @@ void UPartyFinder_C::GetFinderItemVisibility(class UFortSocialItem* PartyFinderI
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -174,12 +177,15 @@ void UPartyFinder_C::HandleSocialListChanged(bool bExpandAll, TArray<class UFort
 
 // Function PartyFinder.PartyFinder_C.HandlePartyTransitionStarted
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortPartyTransition           Transition                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UPartyFinder_C::HandlePartyTransitionStarted()
+void UPartyFinder_C::HandlePartyTransitionStarted(EFortPartyTransition Transition)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function PartyFinder.PartyFinder_C.HandlePartyTransitionStarted");
 
 	UPartyFinder_C_HandlePartyTransitionStarted_Params params;
+	params.Transition = Transition;
 
 	auto flags = fn->FunctionFlags;
 
@@ -209,13 +215,15 @@ void UPartyFinder_C::BindDelegates()
 // Function PartyFinder.PartyFinder_C.DialogResult_9763B6F5495998E5B2E944A5F646709C
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UPartyFinder_C::DialogResult_9763B6F5495998E5B2E944A5F646709C(const struct FName& ResultName)
+void UPartyFinder_C::DialogResult_9763B6F5495998E5B2E944A5F646709C(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function PartyFinder.PartyFinder_C.DialogResult_9763B6F5495998E5B2E944A5F646709C");
 
 	UPartyFinder_C_DialogResult_9763B6F5495998E5B2E944A5F646709C_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;

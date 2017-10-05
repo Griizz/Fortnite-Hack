@@ -14,12 +14,15 @@ namespace SDK
 
 // Function StatNumericTextBlock.StatNumericTextBlock_C.SetComparisonState
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortBuffState                 Buff_State                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UStatNumericTextBlock_C::SetComparisonState()
+void UStatNumericTextBlock_C::SetComparisonState(EFortBuffState Buff_State)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function StatNumericTextBlock.StatNumericTextBlock_C.SetComparisonState");
 
 	UStatNumericTextBlock_C_SetComparisonState_Params params;
+	params.Buff_State = Buff_State;
 
 	auto flags = fn->FunctionFlags;
 

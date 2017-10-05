@@ -53,15 +53,16 @@ public:
 	struct FEventReply On_ItemWidgetHolder_MouseButtonDown(const struct FGeometry& MyGeometry, const struct FPointerEvent& MouseEvent);
 	void UpdateStyle();
 	void UpdateMulchStateBox();
-	void HandleItemMulchStateChanged();
 	void HandleDifferentItemManagementModeSetBP();
 	void OnHovered();
 	void OnUnhovered();
 	void HandleHasItemToDetailChanged();
 	void HandleHasItemToCompareDetailsWithChanged();
+	void HandleItemMulchStateChanged();
 	void HandleEquipSlotChanged(int* EquipSlot);
 	void OnDragCancelled(struct FPointerEvent* PointerEvent, class UDragDropOperation** Operation);
 	void OnSelected();
+	void Construct();
 	void ExecuteUbergraph_ItemManangementItemTileButton(int EntryPoint);
 };
 

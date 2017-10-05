@@ -32,7 +32,7 @@ public:
 	}
 
 
-	void AlertPlayer(struct FText* DetailText);
+	void AlertPlayer(EAthenaPlayerActionAlert* Alert, struct FText* DetailText);
 	void OnAnimationFinished(class UWidgetAnimation** Animation);
 	void ExecuteUbergraph_AthenaPlayerActionAlert(int EntryPoint);
 };

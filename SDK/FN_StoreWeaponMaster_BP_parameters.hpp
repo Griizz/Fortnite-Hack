@@ -19,6 +19,12 @@ struct AStoreWeaponMaster_BP_C_UserConstructionScript_Params
 {
 };
 
+// Function StoreWeaponMaster_BP.StoreWeaponMaster_BP_C.OnLoaded_F90E39F1410BE83EB4E318A6426EF786
+struct AStoreWeaponMaster_BP_C_OnLoaded_F90E39F1410BE83EB4E318A6426EF786_Params
+{
+	class UObject*                                     Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function StoreWeaponMaster_BP.StoreWeaponMaster_BP_C.ReceiveBeginPlay
 struct AStoreWeaponMaster_BP_C_ReceiveBeginPlay_Params
 {

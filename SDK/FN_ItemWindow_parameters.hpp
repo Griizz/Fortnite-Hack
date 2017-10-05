@@ -24,6 +24,7 @@ struct UItemWindow_C_Set_Description_Text_Params
 // Function ItemWindow.ItemWindow_C.InternalToExternalRarity
 struct UItemWindow_C_InternalToExternalRarity_Params
 {
+	EFortRarity                                        InRarity;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ExternalRarity;                                           // (CPF_Parm, CPF_OutParm)
 };
 

@@ -91,6 +91,7 @@ struct UAthenaInventoryEquipSlot_C_Tick_Params
 // Function AthenaInventoryEquipSlot.AthenaInventoryEquipSlot_C.OnQuickbarContentsChanged_Event_1
 struct UAthenaInventoryEquipSlot_C_OnQuickbarContentsChanged_Event_1_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AthenaInventoryEquipSlot.AthenaInventoryEquipSlot_C.ExecuteUbergraph_AthenaInventoryEquipSlot

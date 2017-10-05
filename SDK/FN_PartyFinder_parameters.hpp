@@ -46,6 +46,7 @@ struct UPartyFinder_C_SendInvite_Params
 struct UPartyFinder_C_GetFinderItemVisibility_Params
 {
 	class UFortSocialItem*                             PartyFinderItem;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function PartyFinder.PartyFinder_C.UpdateDetails
@@ -64,6 +65,7 @@ struct UPartyFinder_C_HandleSocialListChanged_Params
 // Function PartyFinder.PartyFinder_C.HandlePartyTransitionStarted
 struct UPartyFinder_C_HandlePartyTransitionStarted_Params
 {
+	EFortPartyTransition                               Transition;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function PartyFinder.PartyFinder_C.BindDelegates
@@ -74,6 +76,7 @@ struct UPartyFinder_C_BindDelegates_Params
 // Function PartyFinder.PartyFinder_C.DialogResult_9763B6F5495998E5B2E944A5F646709C
 struct UPartyFinder_C_DialogResult_9763B6F5495998E5B2E944A5F646709C_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

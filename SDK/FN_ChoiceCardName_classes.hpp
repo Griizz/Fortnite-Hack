@@ -29,7 +29,7 @@ public:
 	}
 
 
-	void UpdateText(const struct FText& DisplayText);
+	void UpdateText(const struct FText& DisplayText, EFortRarity Rarity);
 };
 
 

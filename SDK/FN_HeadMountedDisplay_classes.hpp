@@ -18,12 +18,12 @@ class UMotionControllerComponent : public UPrimitiveComponent
 {
 public:
 	int                                                PlayerIndex;                                              // 0x0670(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0674(0x0001) UNKNOWN PROPERTY: EnumProperty HeadMountedDisplay.MotionControllerComponent.Hand
-	unsigned char                                      UnknownData01[0x3];                                       // 0x0675(0x0003) MISSED OFFSET
+	EControllerHand                                    Hand;                                                     // 0x0674(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0675(0x0003) MISSED OFFSET
 	unsigned char                                      bDisableLowLatencyUpdate : 1;                             // 0x0678(0x0001) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      UnknownData02[0x3];                                       // 0x0679(0x0003) MISSED OFFSET
-	unsigned char                                      UnknownData03[0x1];                                       // 0x0679(0x0001) UNKNOWN PROPERTY: EnumProperty HeadMountedDisplay.MotionControllerComponent.CurrentTrackingStatus
-	unsigned char                                      UnknownData04[0x13];                                      // 0x067D(0x0013) MISSED OFFSET
+	unsigned char                                      UnknownData01[0x3];                                       // 0x0679(0x0003) MISSED OFFSET
+	ETrackingStatus                                    CurrentTrackingStatus;                                    // 0x067C(0x0001) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData02[0x13];                                      // 0x067D(0x0013) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

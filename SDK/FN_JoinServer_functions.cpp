@@ -180,13 +180,15 @@ void UJoinServer_C::ShowTutorialCanceled()
 // Function JoinServer.JoinServer_C.GetMatchmakingError
 // (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EMatchmakingCompleteResult     MatchMakingError               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   ErrorText                      (CPF_Parm, CPF_OutParm)
 
-void UJoinServer_C::GetMatchmakingError(struct FText* ErrorText)
+void UJoinServer_C::GetMatchmakingError(EMatchmakingCompleteResult MatchMakingError, struct FText* ErrorText)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function JoinServer.JoinServer_C.GetMatchmakingError");
 
 	UJoinServer_C_GetMatchmakingError_Params params;
+	params.MatchMakingError = MatchMakingError;
 
 	auto flags = fn->FunctionFlags;
 
@@ -255,12 +257,15 @@ void UJoinServer_C::StartTutorialMatchmakingFlow()
 
 // Function JoinServer.JoinServer_C.HandleEnterState
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState                   PreviousState                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UJoinServer_C::HandleEnterState()
+void UJoinServer_C::HandleEnterState(EFortUIState PreviousState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function JoinServer.JoinServer_C.HandleEnterState");
 
 	UJoinServer_C_HandleEnterState_Params params;
+	params.PreviousState = PreviousState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -311,12 +316,15 @@ void UJoinServer_C::HandleMatchmakingStateChange(TEnumAsByte<EMatchmakingState> 
 
 // Function JoinServer.JoinServer_C.HandleMatchmakingComplete
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EMatchmakingCompleteResult     Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UJoinServer_C::HandleMatchmakingComplete()
+void UJoinServer_C::HandleMatchmakingComplete(EMatchmakingCompleteResult Result)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function JoinServer.JoinServer_C.HandleMatchmakingComplete");
 
 	UJoinServer_C_HandleMatchmakingComplete_Params params;
+	params.Result = Result;
 
 	auto flags = fn->FunctionFlags;
 
@@ -346,13 +354,15 @@ void UJoinServer_C::Initialize()
 // Function JoinServer.JoinServer_C.DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UJoinServer_C::DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF(const struct FName& ResultName)
+void UJoinServer_C::DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function JoinServer.JoinServer_C.DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF");
 
 	UJoinServer_C_DialogResult_B65B7C6342A70AAA7E4C689EE8A624BF_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -566,12 +576,15 @@ void UJoinServer_C::Construct()
 
 // Function JoinServer.JoinServer_C.OnEnterState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  PreviousUIState                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UJoinServer_C::OnEnterState()
+void UJoinServer_C::OnEnterState(EFortUIState* PreviousUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function JoinServer.JoinServer_C.OnEnterState");
 
 	UJoinServer_C_OnEnterState_Params params;
+	params.PreviousUIState = PreviousUIState;
 
 	auto flags = fn->FunctionFlags;
 

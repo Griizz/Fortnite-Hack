@@ -29,10 +29,10 @@ public:
 
 
 	void HandleTeamMemberRemoved();
-	void HandleTeamRevivingChanged(TArray<unsigned char>* TeamReviving);
+	void HandleTeamRevivingChanged(TArray<bool>* TeamReviving);
 	void HandleTeamMemberPlayerNamesChanged();
-	void HandleTeamDeadChanged(TArray<unsigned char>* TeamDead);
-	void HandleTeamDBNOChanged(TArray<unsigned char>* TeamDBNO);
+	void HandleTeamDeadChanged(TArray<bool>* TeamDead);
+	void HandleTeamDBNOChanged(TArray<bool>* TeamDBNO);
 	void HandleTeamMemberAdded();
 	void HandleTeamHitInfoChanged(TArray<float>* HealthFractions, TArray<float>* ShieldFractions);
 	void ClearContents();

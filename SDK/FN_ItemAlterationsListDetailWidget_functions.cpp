@@ -12,6 +12,26 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.SetState
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortAlterationWidgetState     State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UItemAlterationsListDetailWidget_C::SetState(EFortAlterationWidgetState State)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.SetState");
+
+	UItemAlterationsListDetailWidget_C_SetState_Params params;
+	params.State = State;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.HandlePostDifferentItemToDetailSet
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 
@@ -20,6 +40,23 @@ void UItemAlterationsListDetailWidget_C::HandlePostDifferentItemToDetailSet()
 	static auto fn = UObject::FindObject<UFunction>("Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.HandlePostDifferentItemToDetailSet");
 
 	UItemAlterationsListDetailWidget_C_HandlePostDifferentItemToDetailSet_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.HandlePostDifferentItemToCompareWithSet
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void UItemAlterationsListDetailWidget_C::HandlePostDifferentItemToCompareWithSet()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.HandlePostDifferentItemToCompareWithSet");
+
+	UItemAlterationsListDetailWidget_C_HandlePostDifferentItemToCompareWithSet_Params params;
 
 	auto flags = fn->FunctionFlags;
 

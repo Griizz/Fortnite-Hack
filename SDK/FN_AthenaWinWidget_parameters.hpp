@@ -20,6 +20,12 @@ struct UAthenaWinWidget_C_BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_Comm
 	class UCommonButton*                               Button;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
+// Function AthenaWinWidget.AthenaWinWidget_C.PreConstruct
+struct UAthenaWinWidget_C_PreConstruct_Params
+{
+	bool*                                              IsDesignTime;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function AthenaWinWidget.AthenaWinWidget_C.ExecuteUbergraph_AthenaWinWidget
 struct UAthenaWinWidget_C_ExecuteUbergraph_AthenaWinWidget_Params
 {

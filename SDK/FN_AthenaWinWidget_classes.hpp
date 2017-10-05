@@ -41,6 +41,7 @@ public:
 
 
 	void BndEvt__LeaveButton_K2Node_ComponentBoundEvent_76_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
+	void PreConstruct(bool* IsDesignTime);
 	void ExecuteUbergraph_AthenaWinWidget(int EntryPoint);
 };
 

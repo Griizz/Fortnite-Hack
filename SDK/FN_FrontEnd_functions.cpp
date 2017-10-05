@@ -12,23 +12,6 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
-// Function Frontend.FrontEnd_C.EnableTutorial
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void AFrontEnd_C::EnableTutorial()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function Frontend.FrontEnd_C.EnableTutorial");
-
-	AFrontEnd_C_EnableTutorial_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function Frontend.FrontEnd_C.OnMatchStarted
 // (FUNC_BlueprintAuthorityOnly, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
 
@@ -54,6 +37,23 @@ void AFrontEnd_C::ReceiveBeginPlay()
 	static auto fn = UObject::FindObject<UFunction>("Function Frontend.FrontEnd_C.ReceiveBeginPlay");
 
 	AFrontEnd_C_ReceiveBeginPlay_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function Frontend.FrontEnd_C.EnableTutorial
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void AFrontEnd_C::EnableTutorial()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Frontend.FrontEnd_C.EnableTutorial");
+
+	AFrontEnd_C_EnableTutorial_Params params;
 
 	auto flags = fn->FunctionFlags;
 

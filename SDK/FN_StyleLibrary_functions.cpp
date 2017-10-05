@@ -51,10 +51,10 @@ void UStyleLibrary_C::STATIC_Get_Conning_Color_For_Specific_Difficulty(int Diffi
 // class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FLinearColor            Difficulty_Linear_Color        (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
 // bool                           Success                        (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// struct FString                 ToolTipText                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+// struct FText                   ToolTipText                    (CPF_Parm, CPF_OutParm)
 // int                            DifficultyValue                (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UStyleLibrary_C::STATIC_Get_Conning_Color_From_Difficulty_Value(int Player_Skill_Level, float Content_Difficulty_Level, const struct FGameDifficultyInfo& Game_Difficulty_Info, int Content_Skill_Points, class UObject* __WorldContext, struct FLinearColor* Difficulty_Linear_Color, bool* Success, struct FString* ToolTipText, int* DifficultyValue)
+void UStyleLibrary_C::STATIC_Get_Conning_Color_From_Difficulty_Value(int Player_Skill_Level, float Content_Difficulty_Level, const struct FGameDifficultyInfo& Game_Difficulty_Info, int Content_Skill_Points, class UObject* __WorldContext, struct FLinearColor* Difficulty_Linear_Color, bool* Success, struct FText* ToolTipText, int* DifficultyValue)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function StyleLibrary.StyleLibrary_C.Get Conning Color From Difficulty Value");
 
@@ -139,16 +139,20 @@ void UStyleLibrary_C::STATIC_ResizeBrush(TEnumAsByte<EFortBrushSize> BrushSize, 
 // Function StyleLibrary.StyleLibrary_C.Get Base & Buff Colors
 // (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortStatValueDisplayType      Display_Type                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortBuffState                 Buff_State                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FFortUIStylesheet       Stylesheet                     (CPF_Parm)
 // class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FLinearColor            Base                           (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
 // struct FLinearColor            buff                           (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
 
-void UStyleLibrary_C::STATIC_Get_Base___Buff_Colors(const struct FFortUIStylesheet& Stylesheet, class UObject* __WorldContext, struct FLinearColor* Base, struct FLinearColor* buff)
+void UStyleLibrary_C::STATIC_Get_Base___Buff_Colors(EFortStatValueDisplayType Display_Type, EFortBuffState Buff_State, const struct FFortUIStylesheet& Stylesheet, class UObject* __WorldContext, struct FLinearColor* Base, struct FLinearColor* buff)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function StyleLibrary.StyleLibrary_C.Get Base & Buff Colors");
 
 	UStyleLibrary_C_Get_Base___Buff_Colors_Params params;
+	params.Display_Type = Display_Type;
+	params.Buff_State = Buff_State;
 	params.Stylesheet = Stylesheet;
 	params.__WorldContext = __WorldContext;
 

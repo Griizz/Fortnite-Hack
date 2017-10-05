@@ -30,8 +30,8 @@ public:
 	}
 
 
-	void Get_RegionNews_Visibility();
-	void Get_PlatformNews_Visibility();
+	ESlateVisibility Get_RegionNews_Visibility();
+	ESlateVisibility Get_PlatformNews_Visibility();
 	void Construct();
 	void ExecuteUbergraph_AthenaNews(int EntryPoint);
 };

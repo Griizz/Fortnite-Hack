@@ -13,13 +13,13 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum ECardinalDirection.ECardinalDirection
-enum class ECardinalDirection
+enum class ECardinalDirection : uint8_t
 {
-	ECardinalDirection__NewEnumerator0 = 0,
-	ECardinalDirection__NewEnumerator2 = 1,
-	ECardinalDirection__NewEnumerator1 = 2,
-	ECardinalDirection__NewEnumerator3 = 3,
-	ECardinalDirection__ECardinalDirection_MAX = 4
+	NewEnumerator0                 = 0,
+	NewEnumerator2                 = 1,
+	NewEnumerator1                 = 2,
+	NewEnumerator3                 = 3,
+	ECardinalDirection_MAX         = 4
 };
 
 

@@ -28,7 +28,7 @@ public:
 	class UMovieWidget_C*                              MovieWidget;                                              // 0x0430(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UFortMediaSubtitlesPlayer*                   SubtitlesPlayer;                                          // 0x0438(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UMediaSoundWave*                             CinematicMediaSoundWave;                                  // 0x0440(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bFinished : 1;                                            // 0x0448(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bFinished;                                                // 0x0448(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -53,8 +53,8 @@ public:
 	void HandleEndReached();
 	void HandleClientEvent_SkipCinematic(class UObject* EventSource, class UObject* EventFocus, const struct FFortClientEvent& ClientEvent);
 	void PushContentWidgetInternal(class UWidget** Widget, struct FContentPushState* State);
-	void OnEnterState();
-	void OnExitState();
+	void OnEnterState(EFortUIState* PreviousUIState);
+	void OnExitState(EFortUIState* NextUIState);
 	void OnMediaEvent();
 	void ExecuteUbergraph_Cinematic(int EntryPoint);
 };

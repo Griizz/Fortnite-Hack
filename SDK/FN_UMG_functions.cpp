@@ -145,8 +145,10 @@ struct FSlateBrush UBrushBinding::GetValue()
 
 // Function UMG.CheckedStateBinding.GetValue
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_Const)
+// Parameters:
+// ECheckBoxState                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UCheckedStateBinding::GetValue()
+ECheckBoxState UCheckedStateBinding::GetValue()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.CheckedStateBinding.GetValue");
 
@@ -158,6 +160,8 @@ void UCheckedStateBinding::GetValue()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -317,8 +321,10 @@ struct FString UTextBinding::GetStringValue()
 
 // Function UMG.VisibilityBinding.GetValue
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_Const)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UVisibilityBinding::GetValue()
+ESlateVisibility UVisibilityBinding::GetValue()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.VisibilityBinding.GetValue");
 
@@ -330,6 +336,8 @@ void UVisibilityBinding::GetValue()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -630,12 +638,15 @@ struct FVector2D USlateBlueprintLibrary::STATIC_AbsoluteToLocal(const struct FGe
 
 // Function UMG.Widget.SetVisibility
 // (FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// ESlateVisibility               InVisibility                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UWidget::SetVisibility()
+void UWidget::SetVisibility(ESlateVisibility InVisibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.Widget.SetVisibility");
 
 	UWidget_SetVisibility_Params params;
+	params.InVisibility = InVisibility;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -838,13 +849,17 @@ void UWidget::SetRenderAngle(float Angle)
 // Function UMG.Widget.SetNavigationRule
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
+// EUINavigation                  Direction                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EUINavigationRule              Rule                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   WidgetToFocus                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UWidget::SetNavigationRule(const struct FName& WidgetToFocus)
+void UWidget::SetNavigationRule(EUINavigation Direction, EUINavigationRule Rule, const struct FName& WidgetToFocus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.Widget.SetNavigationRule");
 
 	UWidget_SetNavigationRule_Params params;
+	params.Direction = Direction;
+	params.Rule = Rule;
 	params.WidgetToFocus = WidgetToFocus;
 
 	auto flags = fn->FunctionFlags;
@@ -919,13 +934,15 @@ void UWidget::SetCursor(TEnumAsByte<EMouseCursor> InCursor)
 // Function UMG.Widget.SetAllNavigationRules
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
+// EUINavigationRule              Rule                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   WidgetToFocus                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UWidget::SetAllNavigationRules(const struct FName& WidgetToFocus)
+void UWidget::SetAllNavigationRules(EUINavigationRule Rule, const struct FName& WidgetToFocus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.Widget.SetAllNavigationRules");
 
 	UWidget_SetAllNavigationRules_Params params;
+	params.Rule = Rule;
 	params.WidgetToFocus = WidgetToFocus;
 
 	auto flags = fn->FunctionFlags;
@@ -1240,8 +1257,10 @@ class UWidget* UWidget::GetWidget__DelegateSignature()
 
 // Function UMG.Widget.GetVisibility
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UWidget::GetVisibility()
+ESlateVisibility UWidget::GetVisibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.Widget.GetVisibility");
 
@@ -1253,6 +1272,8 @@ void UWidget::GetVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -1279,8 +1300,10 @@ struct FText UWidget::GetText__DelegateSignature()
 
 // DelegateFunction UMG.Widget.GetSlateVisibility__DelegateSignature
 // (FUNC_Public, FUNC_Delegate)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UWidget::GetSlateVisibility__DelegateSignature()
+ESlateVisibility UWidget::GetSlateVisibility__DelegateSignature()
 {
 	static auto fn = UObject::FindObject<UFunction>("DelegateFunction UMG.Widget.GetSlateVisibility__DelegateSignature");
 
@@ -1291,6 +1314,8 @@ void UWidget::GetSlateVisibility__DelegateSignature()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -1510,8 +1535,10 @@ struct FVector2D UWidget::GetDesiredSize()
 
 // DelegateFunction UMG.Widget.GetCheckBoxState__DelegateSignature
 // (FUNC_Public, FUNC_Delegate)
+// Parameters:
+// ECheckBoxState                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UWidget::GetCheckBoxState__DelegateSignature()
+ECheckBoxState UWidget::GetCheckBoxState__DelegateSignature()
 {
 	static auto fn = UObject::FindObject<UFunction>("DelegateFunction UMG.Widget.GetCheckBoxState__DelegateSignature");
 
@@ -1522,6 +1549,8 @@ void UWidget::GetCheckBoxState__DelegateSignature()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -6639,12 +6668,15 @@ void UCheckBox::SetIsChecked(bool InIsChecked)
 
 // Function UMG.CheckBox.SetCheckedState
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
+// Parameters:
+// ECheckBoxState                 InCheckedState                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCheckBox::SetCheckedState()
+void UCheckBox::SetCheckedState(ECheckBoxState InCheckedState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.CheckBox.SetCheckedState");
 
 	UCheckBox_SetCheckedState_Params params;
+	params.InCheckedState = InCheckedState;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -6701,8 +6733,10 @@ bool UCheckBox::IsChecked()
 
 // Function UMG.CheckBox.GetCheckedState
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
+// Parameters:
+// ECheckBoxState                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UCheckBox::GetCheckedState()
+ECheckBoxState UCheckBox::GetCheckedState()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.CheckBox.GetCheckedState");
 
@@ -6714,6 +6748,8 @@ void UCheckBox::GetCheckedState()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
@@ -7604,14 +7640,16 @@ void UScrollBox::SetScrollOffset(float NewScrollOffset)
 // Parameters:
 // class UWidget*                 WidgetToFind                   (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 // bool                           AnimateScroll                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EDescendantScrollDestination   ScrollDesintion                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UScrollBox::ScrollWidgetIntoView(class UWidget* WidgetToFind, bool AnimateScroll)
+void UScrollBox::ScrollWidgetIntoView(class UWidget* WidgetToFind, bool AnimateScroll, EDescendantScrollDestination ScrollDesintion)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.ScrollBox.ScrollWidgetIntoView");
 
 	UScrollBox_ScrollWidgetIntoView_Params params;
 	params.WidgetToFind = WidgetToFind;
 	params.AnimateScroll = AnimateScroll;
+	params.ScrollDesintion = ScrollDesintion;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -9271,14 +9309,16 @@ struct FEventReply UWidgetBlueprintLibrary::STATIC_SetMousePosition(const struct
 // Parameters:
 // class APlayerController*       Target                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UWidget*                 InWidgetToFocus                (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+// EMouseLockMode                 InMouseLockMode                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UWidgetBlueprintLibrary::STATIC_SetInputMode_UIOnlyEx(class APlayerController* Target, class UWidget* InWidgetToFocus)
+void UWidgetBlueprintLibrary::STATIC_SetInputMode_UIOnlyEx(class APlayerController* Target, class UWidget* InWidgetToFocus, EMouseLockMode InMouseLockMode)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.WidgetBlueprintLibrary.SetInputMode_UIOnlyEx");
 
 	UWidgetBlueprintLibrary_SetInputMode_UIOnlyEx_Params params;
 	params.Target = Target;
 	params.InWidgetToFocus = InWidgetToFocus;
+	params.InMouseLockMode = InMouseLockMode;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -9340,15 +9380,17 @@ void UWidgetBlueprintLibrary::STATIC_SetInputMode_GameOnly(class APlayerControll
 // Parameters:
 // class APlayerController*       Target                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UWidget*                 InWidgetToFocus                (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+// EMouseLockMode                 InMouseLockMode                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bHideCursorDuringCapture       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UWidgetBlueprintLibrary::STATIC_SetInputMode_GameAndUIEx(class APlayerController* Target, class UWidget* InWidgetToFocus, bool bHideCursorDuringCapture)
+void UWidgetBlueprintLibrary::STATIC_SetInputMode_GameAndUIEx(class APlayerController* Target, class UWidget* InWidgetToFocus, EMouseLockMode InMouseLockMode, bool bHideCursorDuringCapture)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function UMG.WidgetBlueprintLibrary.SetInputMode_GameAndUIEx");
 
 	UWidgetBlueprintLibrary_SetInputMode_GameAndUIEx_Params params;
 	params.Target = Target;
 	params.InWidgetToFocus = InWidgetToFocus;
+	params.InMouseLockMode = InMouseLockMode;
 	params.bHideCursorDuringCapture = bHideCursorDuringCapture;
 
 	auto flags = fn->FunctionFlags;

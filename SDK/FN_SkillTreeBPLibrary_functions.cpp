@@ -15,14 +15,16 @@ namespace SDK
 // Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeIconSizeByMagnitude
 // (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortHomebaseNodeMagnitude     Node_Magnitude                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // TEnumAsByte<EFortBrushSize>    Icon_Size                      (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeIconSizeByMagnitude(class UObject* __WorldContext, TEnumAsByte<EFortBrushSize>* Icon_Size)
+void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeIconSizeByMagnitude(EFortHomebaseNodeMagnitude Node_Magnitude, class UObject* __WorldContext, TEnumAsByte<EFortBrushSize>* Icon_Size)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeIconSizeByMagnitude");
 
 	USkillTreeBPLibrary_C_GetSkillTreeNodeIconSizeByMagnitude_Params params;
+	params.Node_Magnitude = Node_Magnitude;
 	params.__WorldContext = __WorldContext;
 
 	auto flags = fn->FunctionFlags;
@@ -39,15 +41,17 @@ void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeIconSizeByMagnitude(class UOb
 // Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeShapeByDisplayType
 // (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortHomebaseNodeDisplayType   Display_Type                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           IsSquare                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           IsExitNode                     (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeShapeByDisplayType(class UObject* __WorldContext, bool* IsSquare, bool* IsExitNode)
+void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeShapeByDisplayType(EFortHomebaseNodeDisplayType Display_Type, class UObject* __WorldContext, bool* IsSquare, bool* IsExitNode)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeShapeByDisplayType");
 
 	USkillTreeBPLibrary_C_GetSkillTreeNodeShapeByDisplayType_Params params;
+	params.Display_Type = Display_Type;
 	params.__WorldContext = __WorldContext;
 
 	auto flags = fn->FunctionFlags;
@@ -66,15 +70,19 @@ void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeShapeByDisplayType(class UObj
 // Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeSizeByMagnitude
 // (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortHomebaseNodeMagnitude     Node_Magnitude                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortHomebaseNodeDisplayType   Display_Type                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UObject*                 World_Context                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          Size                           (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeSizeByMagnitude(class UObject* World_Context, class UObject* __WorldContext, float* Size)
+void USkillTreeBPLibrary_C::STATIC_GetSkillTreeNodeSizeByMagnitude(EFortHomebaseNodeMagnitude Node_Magnitude, EFortHomebaseNodeDisplayType Display_Type, class UObject* World_Context, class UObject* __WorldContext, float* Size)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function SkillTreeBPLibrary.SkillTreeBPLibrary_C.GetSkillTreeNodeSizeByMagnitude");
 
 	USkillTreeBPLibrary_C_GetSkillTreeNodeSizeByMagnitude_Params params;
+	params.Node_Magnitude = Node_Magnitude;
+	params.Display_Type = Display_Type;
 	params.World_Context = World_Context;
 	params.__WorldContext = __WorldContext;
 

@@ -43,6 +43,11 @@ struct UPerksList_C_OnHeroChanged_Params
 {
 };
 
+// Function PerksList.PerksList_C.OnStateChanged
+struct UPerksList_C_OnStateChanged_Params
+{
+};
+
 // Function PerksList.PerksList_C.ExecuteUbergraph_PerksList
 struct UPerksList_C_ExecuteUbergraph_PerksList_Params
 {

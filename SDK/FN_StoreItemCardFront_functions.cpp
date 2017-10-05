@@ -111,12 +111,15 @@ void UStoreItemCardFront_C::Construct()
 
 // Function StoreItemCardFront.StoreItemCardFront_C.OnFortStoreStateChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortStoreState                NewStoreState                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UStoreItemCardFront_C::OnFortStoreStateChanged()
+void UStoreItemCardFront_C::OnFortStoreStateChanged(EFortStoreState NewStoreState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function StoreItemCardFront.StoreItemCardFront_C.OnFortStoreStateChanged");
 
 	UStoreItemCardFront_C_OnFortStoreStateChanged_Params params;
+	params.NewStoreState = NewStoreState;
 
 	auto flags = fn->FunctionFlags;
 

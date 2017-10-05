@@ -27,9 +27,9 @@ public:
 	}
 
 
-	void EnableTutorial();
 	void OnMatchStarted();
 	void ReceiveBeginPlay();
+	void EnableTutorial();
 	void ExecuteUbergraph_FrontEnd(int EntryPoint);
 };
 

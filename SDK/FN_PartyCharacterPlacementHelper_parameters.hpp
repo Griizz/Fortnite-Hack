@@ -80,6 +80,8 @@ struct APartyCharacterPlacementHelper_C_OnTeamMemberAdded_Params
 // Function PartyCharacterPlacementHelper.PartyCharacterPlacementHelper_C.OnFrontEndCameraChanged
 struct APartyCharacterPlacementHelper_C_OnFrontEndCameraChanged_Params
 {
+	EFrontEndCamera                                    NewCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFrontEndCamera                                    OldCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function PartyCharacterPlacementHelper.PartyCharacterPlacementHelper_C.OnLobbyStarted

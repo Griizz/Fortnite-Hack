@@ -14,11 +14,6 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
-// Function Frontend.FrontEnd_C.EnableTutorial
-struct AFrontEnd_C_EnableTutorial_Params
-{
-};
-
 // Function Frontend.FrontEnd_C.OnMatchStarted
 struct AFrontEnd_C_OnMatchStarted_Params
 {
@@ -26,6 +21,11 @@ struct AFrontEnd_C_OnMatchStarted_Params
 
 // Function Frontend.FrontEnd_C.ReceiveBeginPlay
 struct AFrontEnd_C_ReceiveBeginPlay_Params
+{
+};
+
+// Function Frontend.FrontEnd_C.EnableTutorial
+struct AFrontEnd_C_EnableTutorial_Params
 {
 };
 

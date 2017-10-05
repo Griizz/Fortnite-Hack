@@ -27,7 +27,7 @@ public:
 	int                                                PlayerID;                                                 // 0x03C0(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x4];                                       // 0x03C4(0x0004) MISSED OFFSET
 	class UStaticMesh*                                 Mesh;                                                     // 0x03C8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bIsPlayerSelected : 1;                                    // 0x03D0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsPlayerSelected;                                        // 0x03D0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x03D1(0x0007) MISSED OFFSET
 	struct FScriptMulticastDelegate                    NewEventDispatcher_1;                                     // 0x03D8(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 
@@ -43,7 +43,7 @@ public:
 	void OnTeamMemberStateChanged(const struct FFortTeamMemberInfo& TeamMemberInfo);
 	void OnTeamMemberRemoved(int TeamMemberInfo);
 	void OnTeamMemberAdded(const struct FFortTeamMemberInfo& TeamMemberInfo);
-	void OnFrontEndCameraChanged();
+	void OnFrontEndCameraChanged(EFrontEndCamera NewCamera, EFrontEndCamera OldCamera);
 	void OnLobbyStarted();
 	void Initialize();
 	void InitializeContextEvents();

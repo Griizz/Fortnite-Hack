@@ -17,16 +17,19 @@ namespace SDK
 // Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Text Visibility
 struct UTooltip_Item_C_Get_Tooltip_Header_Text_Visibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Icon Visibility
 struct UTooltip_Item_C_Get_Tooltip_Header_Icon_Visibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function Tooltip-Item.Tooltip-Item_C.Get Tooltip Header Visibility
 struct UTooltip_Item_C_Get_Tooltip_Header_Visibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function Tooltip-Item.Tooltip-Item_C.Get Theme Color [Normal]

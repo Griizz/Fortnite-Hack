@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum EFortUITheme.EFortUITheme
-enum class EFortUITheme
+enum class EFortUITheme : uint8_t
 {
-	EFortUITheme__NewEnumerator0   = 0,
-	EFortUITheme__NewEnumerator9   = 1,
-	EFortUITheme__NewEnumerator10  = 2,
-	EFortUITheme__EFortUITheme_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator9                 = 1,
+	NewEnumerator10                = 2,
+	EFortUITheme_MAX               = 3
 };
 
 

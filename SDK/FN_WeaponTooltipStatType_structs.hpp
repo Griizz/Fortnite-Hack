@@ -13,16 +13,16 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum WeaponTooltipStatType.WeaponTooltipStatType
-enum class EWeaponTooltipStatType
+enum class EWeaponTooltipStatType : uint8_t
 {
-	WeaponTooltipStatType__NewEnumerator0 = 0,
-	WeaponTooltipStatType__NewEnumerator5 = 1,
-	WeaponTooltipStatType__NewEnumerator3 = 2,
-	WeaponTooltipStatType__NewEnumerator1 = 3,
-	WeaponTooltipStatType__NewEnumerator7 = 4,
-	WeaponTooltipStatType__NewEnumerator8 = 5,
-	WeaponTooltipStatType__NewEnumerator9 = 6,
-	WeaponTooltipStatType__WeaponTooltipStatType_MAX = 7
+	NewEnumerator0                 = 0,
+	NewEnumerator5                 = 1,
+	NewEnumerator3                 = 2,
+	NewEnumerator1                 = 3,
+	NewEnumerator7                 = 4,
+	NewEnumerator8                 = 5,
+	NewEnumerator9                 = 6,
+	WeaponTooltipStatType_MAX      = 7
 };
 
 

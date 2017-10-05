@@ -86,6 +86,8 @@ struct ABP_Hex_PARENT_C_OnInitializeTile_Params
 // Function BP_Hex_PARENT.BP_Hex_PARENT_C.HandleFrontendCameraChanged
 struct ABP_Hex_PARENT_C_HandleFrontendCameraChanged_Params
 {
+	EFrontEndCamera                                    NewCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFrontEndCamera                                    OldCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BP_Hex_PARENT.BP_Hex_PARENT_C.OnMarkedQuestChanged

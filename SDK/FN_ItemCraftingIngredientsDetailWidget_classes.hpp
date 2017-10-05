@@ -28,6 +28,7 @@ public:
 
 
 	void HandlePostDifferentItemToDetailSet();
+	void HandlePostDifferentItemToCompareWithSet();
 	void ExecuteUbergraph_ItemCraftingIngredientsDetailWidget(int EntryPoint);
 };
 

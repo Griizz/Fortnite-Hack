@@ -41,7 +41,7 @@ public:
 
 
 	void RegisterInspectUpgrade();
-	void HandleQuickbarContentsChanged();
+	void HandleQuickbarContentsChanged(EFortQuickBars QuickbarIndex);
 	void RegisterLeaveInventory();
 	void RefreshMulchAction();
 	void ForceRefreshTab(class UHorizontalTabList_C* TabList);

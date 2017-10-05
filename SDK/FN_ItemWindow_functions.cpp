@@ -37,13 +37,15 @@ void UItemWindow_C::Set_Description_Text(class UFortItemDefinition* Item_Definit
 // Function ItemWindow.ItemWindow_C.InternalToExternalRarity
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// EFortRarity                    InRarity                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   ExternalRarity                 (CPF_Parm, CPF_OutParm)
 
-void UItemWindow_C::InternalToExternalRarity(struct FText* ExternalRarity)
+void UItemWindow_C::InternalToExternalRarity(EFortRarity InRarity, struct FText* ExternalRarity)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemWindow.ItemWindow_C.InternalToExternalRarity");
 
 	UItemWindow_C_InternalToExternalRarity_Params params;
+	params.InRarity = InRarity;
 
 	auto flags = fn->FunctionFlags;
 

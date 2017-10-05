@@ -156,6 +156,7 @@ struct AHBOnboardingFlow_C_StartFlow_Params
 // Function HBOnboardingFlow.HBOnboardingFlow_C.RejoinCheckCompleted
 struct AHBOnboardingFlow_C_RejoinCheckCompleted_Params
 {
+	ERejoinStatus                                      RejoinStatus;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function HBOnboardingFlow.HBOnboardingFlow_C.HandleCheckExistingSession

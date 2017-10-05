@@ -24,6 +24,7 @@ struct UCollectionBookSectionTileRewardWidget_C_SetSlotCompletionRatio_Params
 // Function CollectionBookSectionTileRewardWidget.CollectionBookSectionTileRewardWidget_C.OnRewardStatusChanged
 struct UCollectionBookSectionTileRewardWidget_C_OnRewardStatusChanged_Params
 {
+	ECollectionBookRewardStatus*                       NewStatus;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CollectionBookSectionTileRewardWidget.CollectionBookSectionTileRewardWidget_C.ExecuteUbergraph_CollectionBookSectionTileRewardWidget

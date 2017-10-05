@@ -485,12 +485,15 @@ void AHBOnboardingFlow_C::StartFlow()
 
 // Function HBOnboardingFlow.HBOnboardingFlow_C.RejoinCheckCompleted
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ERejoinStatus                  RejoinStatus                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void AHBOnboardingFlow_C::RejoinCheckCompleted()
+void AHBOnboardingFlow_C::RejoinCheckCompleted(ERejoinStatus RejoinStatus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HBOnboardingFlow.HBOnboardingFlow_C.RejoinCheckCompleted");
 
 	AHBOnboardingFlow_C_RejoinCheckCompleted_Params params;
+	params.RejoinStatus = RejoinStatus;
 
 	auto flags = fn->FunctionFlags;
 

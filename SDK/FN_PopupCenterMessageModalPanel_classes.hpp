@@ -35,7 +35,7 @@ public:
 
 	void LeaveZone();
 	void UpdateMatchTimerText(bool* StopTimer);
-	void UpdateState();
+	void UpdateState(ECenterPopupMessageStateEnum NewState);
 	void UpdateMatchTimer();
 	void StartMatchTimer();
 	void OnActivated();

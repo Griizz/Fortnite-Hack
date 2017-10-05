@@ -261,13 +261,15 @@ void URadialPicker_C::GetOptionPosition(int Option, struct FVector2D* Position)
 // Function RadialPicker.RadialPicker_C.InitializePicker
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortPickerMode                PickerMode                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            InitialOption                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void URadialPicker_C::InitializePicker(int InitialOption)
+void URadialPicker_C::InitializePicker(EFortPickerMode PickerMode, int InitialOption)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function RadialPicker.RadialPicker_C.InitializePicker");
 
 	URadialPicker_C_InitializePicker_Params params;
+	params.PickerMode = PickerMode;
 	params.InitialOption = InitialOption;
 
 	auto flags = fn->FunctionFlags;
@@ -379,6 +381,23 @@ void URadialPicker_C::AcceptChosenOption(int PickerOption)
 
 	URadialPicker_C_AcceptChosenOption_Params params;
 	params.PickerOption = PickerOption;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function RadialPicker.RadialPicker_C.OnPickerRefreshItems
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void URadialPicker_C::OnPickerRefreshItems()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function RadialPicker.RadialPicker_C.OnPickerRefreshItems");
+
+	URadialPicker_C_OnPickerRefreshItems_Params params;
 
 	auto flags = fn->FunctionFlags;
 

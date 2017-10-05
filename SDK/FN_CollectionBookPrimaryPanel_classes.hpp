@@ -18,7 +18,7 @@ class UCollectionBookPrimaryPanel_C : public UFortCollectionBookPrimaryPanel
 {
 public:
 	struct FPointerToUberGraphFrame                    UberGraphFrame;                                           // 0x04A0(0x0008) (CPF_Transient, CPF_DuplicateTransient)
-	unsigned char                                      CanShowCollectionBookHelp : 1;                            // 0x04A8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               CanShowCollectionBookHelp;                                // 0x04A8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

@@ -94,6 +94,7 @@ struct UTopBar_C_HandleSwitchProfileAction_Params
 // Function TopBar.TopBar_C.HandleFeatureSwitchOp
 struct UTopBar_C_HandleFeatureSwitchOp_Params
 {
+	EFortUIFeature                                     Feature;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function TopBar.TopBar_C.UnbindNavigationDelegates
@@ -146,6 +147,7 @@ struct UTopBar_C_OpenMainMenu_Params
 // Function TopBar.TopBar_C.DialogResult_32D813B145A5E184B01A15AABE16B774
 struct UTopBar_C_DialogResult_32D813B145A5E184B01A15AABE16B774_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

@@ -12,6 +12,28 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function ItemPerksListDetailWidget.ItemPerksListDetailWidget_C.SetState
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortPerksWidgetState          InState                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// class UFortHero*               InEvolutionOption              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UItemPerksListDetailWidget_C::SetState(EFortPerksWidgetState InState, class UFortHero* InEvolutionOption)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemPerksListDetailWidget.ItemPerksListDetailWidget_C.SetState");
+
+	UItemPerksListDetailWidget_C_SetState_Params params;
+	params.InState = InState;
+	params.InEvolutionOption = InEvolutionOption;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ItemPerksListDetailWidget.ItemPerksListDetailWidget_C.HandlePostDifferentItemToDetailSet
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 

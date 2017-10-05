@@ -14,12 +14,15 @@ namespace SDK
 
 // Function ItemManagementScreen.ItemManagementScreen_C.ShowCraftError
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortCraftFailCause            FailCause                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemManagementScreen_C::ShowCraftError()
+void UItemManagementScreen_C::ShowCraftError(EFortCraftFailCause FailCause)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.ShowCraftError");
 
 	UItemManagementScreen_C_ShowCraftError_Params params;
+	params.FailCause = FailCause;
 
 	auto flags = fn->FunctionFlags;
 
@@ -180,33 +183,18 @@ void UItemManagementScreen_C::HandleClose()
 }
 
 
-// Function ItemManagementScreen.ItemManagementScreen_C.OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA
-// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
-
-void UItemManagementScreen_C::OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA");
-
-	UItemManagementScreen_C_OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function ItemManagementScreen.ItemManagementScreen_C.DialogResult_EF030FF4438BB62E1CCFDFBCCE5EFA40
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UItemManagementScreen_C::DialogResult_EF030FF4438BB62E1CCFDFBCCE5EFA40(const struct FName& ResultName)
+void UItemManagementScreen_C::DialogResult_EF030FF4438BB62E1CCFDFBCCE5EFA40(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.DialogResult_EF030FF4438BB62E1CCFDFBCCE5EFA40");
 
 	UItemManagementScreen_C_DialogResult_EF030FF4438BB62E1CCFDFBCCE5EFA40_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -217,54 +205,14 @@ void UItemManagementScreen_C::DialogResult_EF030FF4438BB62E1CCFDFBCCE5EFA40(cons
 }
 
 
-// Function ItemManagementScreen.ItemManagementScreen_C.OnActivated
-// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+// Function ItemManagementScreen.ItemManagementScreen_C.OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 
-void UItemManagementScreen_C::OnActivated()
+void UItemManagementScreen_C::OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA()
 {
-	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.OnActivated");
+	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA");
 
-	UItemManagementScreen_C_OnActivated_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function ItemManagementScreen.ItemManagementScreen_C.HandleInspectItemBP
-// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
-// Parameters:
-// class UFortItem**              Item                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void UItemManagementScreen_C::HandleInspectItemBP(class UFortItem** Item)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.HandleInspectItemBP");
-
-	UItemManagementScreen_C_HandleInspectItemBP_Params params;
-	params.Item = Item;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function ItemManagementScreen.ItemManagementScreen_C.HandleConsumeItemBP
-// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
-// Parameters:
-// class UFortConsumableAccountItem** ConsumableItem                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-
-void UItemManagementScreen_C::HandleConsumeItemBP(class UFortConsumableAccountItem** ConsumableItem)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.HandleConsumeItemBP");
-
-	UItemManagementScreen_C_HandleConsumeItemBP_Params params;
-	params.ConsumableItem = ConsumableItem;
+	UItemManagementScreen_C_OnMCPRequestComplete_D020DD864A3EFC9A31973C87076269CA_Params params;
 
 	auto flags = fn->FunctionFlags;
 
@@ -339,6 +287,63 @@ void UItemManagementScreen_C::CraftabilityRefresh()
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.CraftabilityRefresh");
 
 	UItemManagementScreen_C_CraftabilityRefresh_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemManagementScreen.ItemManagementScreen_C.HandleConsumeItemBP
+// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// class UFortConsumableAccountItem** ConsumableItem                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UItemManagementScreen_C::HandleConsumeItemBP(class UFortConsumableAccountItem** ConsumableItem)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.HandleConsumeItemBP");
+
+	UItemManagementScreen_C_HandleConsumeItemBP_Params params;
+	params.ConsumableItem = ConsumableItem;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemManagementScreen.ItemManagementScreen_C.OnActivated
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void UItemManagementScreen_C::OnActivated()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.OnActivated");
+
+	UItemManagementScreen_C_OnActivated_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemManagementScreen.ItemManagementScreen_C.HandleInspectItemBP
+// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// class UFortItem**              Item                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UItemManagementScreen_C::HandleInspectItemBP(class UFortItem** Item)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemManagementScreen.ItemManagementScreen_C.HandleInspectItemBP");
+
+	UItemManagementScreen_C_HandleInspectItemBP_Params params;
+	params.Item = Item;
 
 	auto flags = fn->FunctionFlags;
 

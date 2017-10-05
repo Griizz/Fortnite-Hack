@@ -13,13 +13,13 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum EIntTypes.EIntTypes
-enum class EIntTypes
+enum class EIntTypes : uint8_t
 {
-	EIntTypes__NewEnumerator4      = 0,
-	EIntTypes__NewEnumerator5      = 1,
-	EIntTypes__NewEnumerator6      = 2,
-	EIntTypes__NewEnumerator7      = 3,
-	EIntTypes__EIntTypes_MAX       = 4
+	NewEnumerator4                 = 0,
+	NewEnumerator5                 = 1,
+	NewEnumerator6                 = 2,
+	NewEnumerator7                 = 3,
+	EIntTypes_MAX                  = 4
 };
 
 

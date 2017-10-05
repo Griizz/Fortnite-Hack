@@ -113,6 +113,7 @@ struct UAthenaInventoryPanel_C_UpdateEquipSlots_Params
 // Function AthenaInventoryPanel.AthenaInventoryPanel_C.HandleQuickBarChangedBP
 struct UAthenaInventoryPanel_C_HandleQuickBarChangedBP_Params
 {
+	EFortQuickBars*                                    QuickBarType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AthenaInventoryPanel.AthenaInventoryPanel_C.OnActivated

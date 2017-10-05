@@ -129,8 +129,10 @@ void UHeroSquadManagementScreen_C::HandleClosePicker(bool* bPassThrough)
 
 // Function HeroSquadManagementScreen.HeroSquadManagementScreen_C.GetInZoneVisibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UHeroSquadManagementScreen_C::GetInZoneVisibility()
+ESlateVisibility UHeroSquadManagementScreen_C::GetInZoneVisibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function HeroSquadManagementScreen.HeroSquadManagementScreen_C.GetInZoneVisibility");
 
@@ -141,6 +143,8 @@ void UHeroSquadManagementScreen_C::GetInZoneVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

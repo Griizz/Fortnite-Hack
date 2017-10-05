@@ -15,13 +15,15 @@ namespace SDK
 // Function PopupCenterMessageWidget.PopupCenterMessageWidget_C.OnModalDisplayed
 // (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 // Parameters:
+// ECenterPopupMessageStateEnum*  NewState                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCommonActivatablePanel** ModalPopup                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UPopupCenterMessageWidget_C::OnModalDisplayed(class UCommonActivatablePanel** ModalPopup)
+void UPopupCenterMessageWidget_C::OnModalDisplayed(ECenterPopupMessageStateEnum* NewState, class UCommonActivatablePanel** ModalPopup)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function PopupCenterMessageWidget.PopupCenterMessageWidget_C.OnModalDisplayed");
 
 	UPopupCenterMessageWidget_C_OnModalDisplayed_Params params;
+	params.NewState = NewState;
 	params.ModalPopup = ModalPopup;
 
 	auto flags = fn->FunctionFlags;

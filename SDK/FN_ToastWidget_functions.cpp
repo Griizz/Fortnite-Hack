@@ -14,8 +14,10 @@ namespace SDK
 
 // Function ToastWidget.ToastWidget_C.GetOpenButtonVisibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UToastWidget_C::GetOpenButtonVisibility()
+ESlateVisibility UToastWidget_C::GetOpenButtonVisibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ToastWidget.ToastWidget_C.GetOpenButtonVisibility");
 
@@ -26,6 +28,8 @@ void UToastWidget_C::GetOpenButtonVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

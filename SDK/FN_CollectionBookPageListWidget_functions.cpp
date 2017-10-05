@@ -133,13 +133,15 @@ void UCollectionBookPageListWidget_C::PreConstruct(bool* IsDesignTime)
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 // Parameters:
 // int*                           NumAvailableSlots              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortCollectionBookState*      State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCollectionBookPageListWidget_C::OnPageDetailsUpdated(int* NumAvailableSlots)
+void UCollectionBookPageListWidget_C::OnPageDetailsUpdated(int* NumAvailableSlots, EFortCollectionBookState* State)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CollectionBookPageListWidget.CollectionBookPageListWidget_C.OnPageDetailsUpdated");
 
 	UCollectionBookPageListWidget_C_OnPageDetailsUpdated_Params params;
 	params.NumAvailableSlots = NumAvailableSlots;
+	params.State = State;
 
 	auto flags = fn->FunctionFlags;
 

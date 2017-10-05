@@ -66,6 +66,7 @@ class USocialChatChromeMarginsDataAsset : public UDataAsset
 {
 public:
 	struct FChatChromeMargins                          Style;                                                    // 0x0028(0x0064) (CPF_Edit)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x008C(0x0004) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

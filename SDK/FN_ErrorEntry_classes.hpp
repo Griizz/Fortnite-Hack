@@ -32,7 +32,7 @@ public:
 
 	void Center_on_Widget(bool* Did_Center);
 	void SetErrorInfo(const struct FFortErrorInfo& ErrorInfo);
-	void GetButtonVisibility();
+	void GetButtonVisibility(ESlateVisibility* NewParam);
 	void Construct();
 	void BndEvt__IconTextButton_K2Node_ComponentBoundEvent_65_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void ExecuteUbergraph_ErrorEntry(int EntryPoint);

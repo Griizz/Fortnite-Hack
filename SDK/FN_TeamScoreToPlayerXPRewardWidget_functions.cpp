@@ -15,14 +15,14 @@ namespace SDK
 // Function TeamScoreToPlayerXPRewardWidget.TeamScoreToPlayerXPRewardWidget_C.Initialize
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// struct FFortUIXpInfo           XPInfo                         (CPF_Parm)
+// struct FFortUIXpInfo           XPinfo                         (CPF_Parm)
 
-void UTeamScoreToPlayerXPRewardWidget_C::Initialize(const struct FFortUIXpInfo& XPInfo)
+void UTeamScoreToPlayerXPRewardWidget_C::Initialize(const struct FFortUIXpInfo& XPinfo)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function TeamScoreToPlayerXPRewardWidget.TeamScoreToPlayerXPRewardWidget_C.Initialize");
 
 	UTeamScoreToPlayerXPRewardWidget_C_Initialize_Params params;
-	params.XPInfo = XPInfo;
+	params.XPinfo = XPinfo;
 
 	auto flags = fn->FunctionFlags;
 

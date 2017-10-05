@@ -35,13 +35,13 @@ public:
 	struct FScriptMulticastDelegate                    OnMissionStatsClicked;                                    // 0x0320(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 	struct FScriptMulticastDelegate                    OnExitClicked;                                            // 0x0330(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 	class USoundBase*                                  ExitButtonIntro;                                          // 0x0340(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bExitTimeFinished : 1;                                    // 0x0348(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bExitTimeFinished;                                        // 0x0348(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0349(0x0007) MISSED OFFSET
 	struct FText                                       ExitingText;                                              // 0x0350(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FScriptMulticastDelegate                    OnAddFriendClicked;                                       // 0x0368(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 	struct FScriptMulticastDelegate                    OnUpVoteClicked;                                          // 0x0378(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
-	unsigned char                                      bIsSolo : 1;                                              // 0x0388(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0389(0x0001) UNKNOWN PROPERTY: EnumProperty Results_TeleportPad.Results_TeleportPad_C.CompletionResult
+	bool                                               bIsSolo;                                                  // 0x0388(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	EFortCompletionResult                              CompletionResult;                                         // 0x0389(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -54,7 +54,7 @@ public:
 	void Enable();
 	void Disable();
 	void Focus();
-	void Initialize(class UFortUIScoreReport* InScoreReport);
+	void Initialize(class UFortUIScoreReport* InScoreReport, EFortCompletionResult CompletionResult);
 	void Team_Score_Screen_Intro();
 	void Team_Score_Screen_Outro();
 	void Teleport_Pad_Screen_Intro();

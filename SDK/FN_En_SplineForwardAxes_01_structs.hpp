@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum En_SplineForwardAxes_01.En_SplineForwardAxes_01
-enum class En_SplineForwardAxes_01
+enum class En_SplineForwardAxes_01 : uint8_t
 {
-	En_SplineForwardAxes_01__NewEnumerator0 = 0,
-	En_SplineForwardAxes_01__NewEnumerator1 = 1,
-	En_SplineForwardAxes_01__NewEnumerator2 = 2,
-	En_SplineForwardAxes_01__En_SplineForwardAxes_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	En_SplineForwardAxes_MAX       = 3
 };
 
 

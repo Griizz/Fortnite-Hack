@@ -22,11 +22,13 @@ struct UQuickbarSlot_C_UpdateItemCardsVisibility_Params
 // Function QuickbarSlot.QuickbarSlot_C.OnCooldownStopped
 struct UQuickbarSlot_C_OnCooldownStopped_Params
 {
+	EFortItemCooldownType                              CooldownType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuickbarSlot.QuickbarSlot_C.OnCooldownStarted
 struct UQuickbarSlot_C_OnCooldownStarted_Params
 {
+	EFortItemCooldownType                              CooldownType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuickbarSlot.QuickbarSlot_C.InitializeCooldowns

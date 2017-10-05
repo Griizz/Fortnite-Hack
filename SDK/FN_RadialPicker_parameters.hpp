@@ -89,6 +89,7 @@ struct URadialPicker_C_GetOptionPosition_Params
 // Function RadialPicker.RadialPicker_C.InitializePicker
 struct URadialPicker_C_InitializePicker_Params
 {
+	EFortPickerMode                                    PickerMode;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                InitialOption;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -123,6 +124,11 @@ struct URadialPicker_C_ClosePicker_Params
 struct URadialPicker_C_AcceptChosenOption_Params
 {
 	int                                                PickerOption;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function RadialPicker.RadialPicker_C.OnPickerRefreshItems
+struct URadialPicker_C_OnPickerRefreshItems_Params
+{
 };
 
 // Function RadialPicker.RadialPicker_C.ExecuteUbergraph_RadialPicker

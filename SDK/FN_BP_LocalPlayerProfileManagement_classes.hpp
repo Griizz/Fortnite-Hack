@@ -39,8 +39,8 @@ public:
 
 	void Update_Bang_State();
 	void UpdateBannerEditorButton();
-	void Get_LeavePartyButton_Visibility_1();
-	void Get_ViewProfileButton_Visibility_1();
+	ESlateVisibility Get_LeavePartyButton_Visibility_1();
+	ESlateVisibility Get_ViewProfileButton_Visibility_1();
 	void UpdateBannerIconAndColor(const struct FName& InBannerIconId, const struct FName& InBannerColorId);
 	void OnWidgetDeactivated();
 	void OnWidgetActivated();

@@ -35,8 +35,9 @@ void UTalkingHeadWidget_C::HandleTalkingHeadEnd()
 // class UTexture2D*              Image                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   Title                          (CPF_Parm)
 // struct FText                   Subtitle                       (CPF_Parm)
+// EFortAnnouncementDisplayPreference DisplayPreference              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UTalkingHeadWidget_C::HandleTalkingHeadBegin(class UTexture2D* Image, const struct FText& Title, const struct FText& Subtitle)
+void UTalkingHeadWidget_C::HandleTalkingHeadBegin(class UTexture2D* Image, const struct FText& Title, const struct FText& Subtitle, EFortAnnouncementDisplayPreference DisplayPreference)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function TalkingHeadWidget.TalkingHeadWidget_C.HandleTalkingHeadBegin");
 
@@ -44,6 +45,7 @@ void UTalkingHeadWidget_C::HandleTalkingHeadBegin(class UTexture2D* Image, const
 	params.Image = Image;
 	params.Title = Title;
 	params.Subtitle = Subtitle;
+	params.DisplayPreference = DisplayPreference;
 
 	auto flags = fn->FunctionFlags;
 

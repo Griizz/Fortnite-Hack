@@ -22,6 +22,7 @@ struct UItemManagementDetailsModeBox_C_RegisterInspectUpgrade_Params
 // Function ItemManagementDetailsModeBox.ItemManagementDetailsModeBox_C.HandleQuickbarContentsChanged
 struct UItemManagementDetailsModeBox_C_HandleQuickbarContentsChanged_Params
 {
+	EFortQuickBars                                     QuickbarIndex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ItemManagementDetailsModeBox.ItemManagementDetailsModeBox_C.RegisterLeaveInventory

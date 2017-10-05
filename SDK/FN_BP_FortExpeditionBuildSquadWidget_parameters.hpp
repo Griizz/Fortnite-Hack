@@ -37,6 +37,7 @@ struct UBP_FortExpeditionBuildSquadWidget_C_Get_Bonus_Display_Name_and_Brush_Par
 {
 	struct FGameplayTag                                Tag;                                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 	bool                                               Condition;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortRarity                                        Rarity;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FSlateBrush                                 OutBrush_Brush_M;                                         // (CPF_Parm, CPF_OutParm)
 	struct FText                                       OutDisplayName;                                           // (CPF_Parm, CPF_OutParm)
 	struct FLinearColor                                OutRarityColor;                                           // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
@@ -73,6 +74,7 @@ struct UBP_FortExpeditionBuildSquadWidget_C_Get_Selected_Slot__SAFE__Params
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Get Purchase Slot State
 struct UBP_FortExpeditionBuildSquadWidget_C_Get_Purchase_Slot_State_Params
 {
+	EInputActionState                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Handle Purchase Slot
@@ -84,33 +86,40 @@ struct UBP_FortExpeditionBuildSquadWidget_C_Handle_Purchase_Slot_Params
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Determine Buff Arrow Angle for Preview State
 struct UBP_FortExpeditionBuildSquadWidget_C_Determine_Buff_Arrow_Angle_for_Preview_State_Params
 {
+	EFortBuffState                                     Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Determine Buff Arrow Color for Preview State
 struct UBP_FortExpeditionBuildSquadWidget_C_Determine_Buff_Arrow_Color_for_Preview_State_Params
 {
+	EFortBuffState                                     Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Update Chance Buff Arrow for Preview
 struct UBP_FortExpeditionBuildSquadWidget_C_Update_Chance_Buff_Arrow_for_Preview_Params
 {
+	EFortBuffState                                     Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Update Rating Buff Arrow for Preview
 struct UBP_FortExpeditionBuildSquadWidget_C_Update_Rating_Buff_Arrow_for_Preview_Params
 {
+	EFortBuffState                                     Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Determine Buff Arrow Visiblity From Preview State
 struct UBP_FortExpeditionBuildSquadWidget_C_Determine_Buff_Arrow_Visiblity_From_Preview_State_Params
 {
+	EFortBuffState                                     Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Determine Text Style from Preview State
 struct UBP_FortExpeditionBuildSquadWidget_C_Determine_Text_Style_from_Preview_State_Params
 {
+	EFortBuffState                                     Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UClass*                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -126,6 +135,7 @@ struct UBP_FortExpeditionBuildSquadWidget_C_Determine_Preview_State_Params
 {
 	float                                              Preview;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Current;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortBuffState                                     State;                                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Update For Preview
@@ -143,11 +153,13 @@ struct UBP_FortExpeditionBuildSquadWidget_C_Handle_Back_with_Squad_Clear_Params
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Get Slot Item State
 struct UBP_FortExpeditionBuildSquadWidget_C_Get_Slot_Item_State_Params
 {
+	EInputActionState                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Get Open Picker State
 struct UBP_FortExpeditionBuildSquadWidget_C_Get_Open_Picker_State_Params
 {
+	EInputActionState                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.Update Vehicle Selected
@@ -347,6 +359,7 @@ struct UBP_FortExpeditionBuildSquadWidget_C_Handle_Back_Params
 // Function BP_FortExpeditionBuildSquadWidget.BP_FortExpeditionBuildSquadWidget_C.DialogResult_B738291040F33B805332A7B633B3ACBD
 struct UBP_FortExpeditionBuildSquadWidget_C_DialogResult_B738291040F33B805332A7B633B3ACBD_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWaitingForLatentActionCompletion;                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortDialogExternalLatentActionHandle       WaitingDialogHandle;                                      // (CPF_Parm)

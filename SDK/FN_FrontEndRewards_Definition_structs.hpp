@@ -16,8 +16,8 @@ namespace SDK
 // 0x0048
 struct FFrontEndRewards_Definition
 {
-	unsigned char                                      ShowMissionRewards_1_C7BDE40E456913658E82C99BDF716FD0 : 1;// 0x0000(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      ShowMissionAlertRewards_16_45DFCE744858A450CF7A6F8DDB3019E2 : 1;// 0x0001(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ShowMissionRewards_1_C7BDE40E456913658E82C99BDF716FD0;    // 0x0000(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ShowMissionAlertRewards_16_45DFCE744858A450CF7A6F8DDB3019E2;// 0x0001(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x6];                                       // 0x0002(0x0006) MISSED OFFSET
 	TArray<class UFortQuestItem*>                      CompletedQuests_5_F0B57A5444C985942CB6438097704985;       // 0x0008(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
 	TArray<class UFortQuestItem*>                      NewQuests_7_9B70ABD44C42EFEED67C05BAA7B44AC7;             // 0x0018(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)

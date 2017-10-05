@@ -37,7 +37,7 @@ public:
 	TArray<class UIconTextButton_C*>                   ConfirmButtons;                                           // 0x0600(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	class UIconTextButton_C*                           DeclineButton;                                            // 0x0610(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	TArray<struct FName>                               ResultNames;                                              // 0x0618(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	unsigned char                                      bShowingConfirmation : 1;                                 // 0x0628(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bShowingConfirmation;                                     // 0x0628(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x3];                                       // 0x0629(0x0003) MISSED OFFSET
 	struct FMargin                                     ButtonBoxPadding;                                         // 0x062C(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FMargin                                     ButtonBoxPadding_VerticalBox;                             // 0x063C(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
@@ -47,8 +47,8 @@ public:
 	struct FName                                       WaitThrobberColorParamName;                               // 0x0670(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FLinearColor                                WaitThrobberColor;                                        // 0x0678(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FFortDialogExternalLatentActionHandle       WaitingForLatentActionHandle;                             // 0x0688(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      bShowLightBoxAnims : 1;                                   // 0x068C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bShouldTriggerCameraModeOnClose : 1;                      // 0x068D(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bShowLightBoxAnims;                                       // 0x068C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bShouldTriggerCameraModeOnClose;                          // 0x068D(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

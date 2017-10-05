@@ -19,6 +19,7 @@ struct UCollectionBookPageDetailsWidget_C_OnPageProgressionUpdated_Params
 {
 	int*                                               TotalFilledSlots;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int*                                               TotalSlots;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCollectionBookState*                          State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CollectionBookPageDetailsWidget.CollectionBookPageDetailsWidget_C.ExecuteUbergraph_CollectionBookPageDetailsWidget

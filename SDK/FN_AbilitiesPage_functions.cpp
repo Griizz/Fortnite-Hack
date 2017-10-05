@@ -174,12 +174,15 @@ void UAbilitiesPage_C::OnActivated()
 
 // Function AbilitiesPage.AbilitiesPage_C.OnQuickbarContentsChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAbilitiesPage_C::OnQuickbarContentsChanged()
+void UAbilitiesPage_C::OnQuickbarContentsChanged(EFortQuickBars QuickbarIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AbilitiesPage.AbilitiesPage_C.OnQuickbarContentsChanged");
 
 	UAbilitiesPage_C_OnQuickbarContentsChanged_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 
 	auto flags = fn->FunctionFlags;
 

@@ -13,14 +13,14 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum En_ShellTypes_01.En_ShellTypes_01
-enum class En_ShellTypes_01
+enum class En_ShellTypes_01 : uint8_t
 {
-	En_ShellTypes_01__NewEnumerator0 = 0,
-	En_ShellTypes_01__NewEnumerator1 = 1,
-	En_ShellTypes_01__NewEnumerator2 = 2,
-	En_ShellTypes_01__NewEnumerator3 = 3,
-	En_ShellTypes_01__NewEnumerator4 = 4,
-	En_ShellTypes_01__En_ShellTypes_MAX = 5
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	NewEnumerator4                 = 4,
+	En_ShellTypes_MAX              = 5
 };
 
 

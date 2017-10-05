@@ -35,7 +35,7 @@ public:
 
 
 	void SetSlotCompletionRatio(int NumSlotted, int NumSlots);
-	void OnRewardStatusChanged();
+	void OnRewardStatusChanged(ECollectionBookRewardStatus* NewStatus);
 	void ExecuteUbergraph_CollectionBookSectionTileRewardWidget(int EntryPoint);
 };
 

@@ -49,13 +49,13 @@ public:
 	void Update();
 	void HideObjectiveCompletionIcon();
 	void ShowObjectiveWidget();
-	void HanldeObjectiveVisiblityOverrideChanged(class AFortObjectiveBase* Objective);
+	void HanldeObjectiveVisiblityOverrideChanged(class AFortObjectiveBase* Objective, EFortMissionVisibilityOverride New_Visibility_Override);
 	void CreateObjectiveContentWidget();
 	void StartEndingAnimations(class UWidgetAnimation* Animation);
 	void HideObjectiveWidget();
 	void HandleUpdate(class AFortMissionState* Objective);
 	void HandleObjectiveVisibilityChanged(class AFortObjectiveBase* Objective, bool NewVisibility);
-	void HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective);
+	void HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective, EFortObjectiveStatus NewStatus);
 	void Setup(class AFortObjectiveBase* Objective);
 	void OnObjectiveSet();
 	void OnHiddenByHeightConstraintChanged();

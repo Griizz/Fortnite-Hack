@@ -36,6 +36,7 @@ struct UQuestTalkingHeadWidget_C_HandleTalkingHeadBegin_Params
 	class UTexture2D*                                  Image;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       Title;                                                    // (CPF_Parm)
 	struct FText                                       Subtitle;                                                 // (CPF_Parm)
+	EFortAnnouncementDisplayPreference                 DisplayPreference;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function QuestTalkingHeadWidget.QuestTalkingHeadWidget_C.SetTalkingHeadSubtitle

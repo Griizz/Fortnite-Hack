@@ -12,6 +12,27 @@ namespace SDK
 //Script Structs
 //---------------------------------------------------------------------------
 
+// ScriptStruct McpProfileSys.BaseUrlContext
+// 0x0070
+struct FBaseUrlContext
+{
+	unsigned char                                      UnknownData00[0x70];                                      // 0x0000(0x0070) MISSED OFFSET
+};
+
+// ScriptStruct McpProfileSys.DedicatedServerUrlContext
+// 0x0000 (0x0070 - 0x0070)
+struct FDedicatedServerUrlContext : public FBaseUrlContext
+{
+
+};
+
+// ScriptStruct McpProfileSys.ClientUrlContext
+// 0x0000 (0x0070 - 0x0070)
+struct FClientUrlContext : public FBaseUrlContext
+{
+
+};
+
 // ScriptStruct McpProfileSys.ProfileEntry
 // 0x0018
 struct FProfileEntry
@@ -78,6 +99,7 @@ struct FProfileUpdateSingle
 	struct FDateTime                                   LockExpiration;                                           // 0x0030(0x0008)
 	TArray<struct FJsonObjectWrapper>                  Notifications;                                            // 0x0038(0x0010) (CPF_ZeroConstructor)
 	int                                                ProfileCommandRevision;                                   // 0x0048(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x004C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct McpProfileSys.ProfileUpdate
@@ -91,30 +113,9 @@ struct FProfileUpdate : public FProfileUpdateSingle
 	unsigned char                                      UnknownData01[0xD0];                                      // 0x0070(0x00D0) MISSED OFFSET
 };
 
-// ScriptStruct McpProfileSys.BaseUrlContext
-// 0x0070
-struct FBaseUrlContext
-{
-	unsigned char                                      UnknownData00[0x70];                                      // 0x0000(0x0070) MISSED OFFSET
-};
-
 // ScriptStruct McpProfileSys.PublicUrlContext
 // 0x0000 (0x0070 - 0x0070)
 struct FPublicUrlContext : public FBaseUrlContext
-{
-
-};
-
-// ScriptStruct McpProfileSys.ClientUrlContext
-// 0x0000 (0x0070 - 0x0070)
-struct FClientUrlContext : public FBaseUrlContext
-{
-
-};
-
-// ScriptStruct McpProfileSys.DedicatedServerUrlContext
-// 0x0000 (0x0070 - 0x0070)
-struct FDedicatedServerUrlContext : public FBaseUrlContext
 {
 
 };
@@ -143,6 +144,7 @@ struct FMcpChangeQuantityRequest
 {
 	struct FString                                     ItemId;                                                   // 0x0000(0x0010) (CPF_ZeroConstructor)
 	int                                                DeltaQuantity;                                            // 0x0010(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0014(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct McpProfileSys.McpChangeAttributesRequest

@@ -32,7 +32,7 @@ public:
 	void UpdatePlayButtonState();
 	void UpdateButtonStates();
 	void HandleOnEndSpokenDialog();
-	void HandleOnBeginSpokenDialog(class UTexture2D* Image, const struct FText& Title, const struct FText& Subtitle);
+	void HandleOnBeginSpokenDialog(class UTexture2D* Image, const struct FText& Title, const struct FText& Subtitle, EFortAnnouncementDisplayPreference DisplayPreference);
 	void Setup();
 	void Construct();
 	void HandleCurrentQuestChangedBP();

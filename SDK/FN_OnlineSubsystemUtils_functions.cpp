@@ -428,27 +428,27 @@ class UDestroySessionCallbackProxy* UDestroySessionCallbackProxy::STATIC_Destroy
 // TEnumAsByte<EMPMatchOutcome>   OtherPlayersOutcome            (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UEndMatchCallbackProxy*  ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-//class UEndMatchCallbackProxy* UEndMatchCallbackProxy::STATIC_EndMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const TScriptInterface<class UTurnBasedMatchInterface>& MatchActor, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> LocalPlayerOutcome, TEnumAsByte<EMPMatchOutcome> OtherPlayersOutcome)
-//{
-//	static auto fn = UObject::FindObject<UFunction>("Function OnlineSubsystemUtils.EndMatchCallbackProxy.EndMatch");
-//
-//	UEndMatchCallbackProxy_EndMatch_Params params;
-//	params.WorldContextObject = WorldContextObject;
-//	params.PlayerController = PlayerController;
-//	params.MatchActor = MatchActor;
-//	params.MatchID = MatchID;
-//	params.LocalPlayerOutcome = LocalPlayerOutcome;
-//	params.OtherPlayersOutcome = OtherPlayersOutcome;
-//
-//	auto flags = fn->FunctionFlags;
-//	fn->FunctionFlags |= 0x400;
-//
-//	UObject::ProcessEvent(fn, &params);
-//
-//	fn->FunctionFlags = flags;
-//
-//	return params.ReturnValue;
-//}
+class UEndMatchCallbackProxy* UEndMatchCallbackProxy::STATIC_EndMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const TScriptInterface<class UTurnBasedMatchInterface>& MatchActor, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> LocalPlayerOutcome, TEnumAsByte<EMPMatchOutcome> OtherPlayersOutcome)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function OnlineSubsystemUtils.EndMatchCallbackProxy.EndMatch");
+
+	UEndMatchCallbackProxy_EndMatch_Params params;
+	params.WorldContextObject = WorldContextObject;
+	params.PlayerController = PlayerController;
+	params.MatchActor = MatchActor;
+	params.MatchID = MatchID;
+	params.LocalPlayerOutcome = LocalPlayerOutcome;
+	params.OtherPlayersOutcome = OtherPlayersOutcome;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
 
 
 // Function OnlineSubsystemUtils.EndTurnCallbackProxy.EndTurn
@@ -901,26 +901,26 @@ void ATestBeaconClient::ClientPing()
 // int                            TurnTimeoutInSeconds           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UQuitMatchCallbackProxy* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-//class UQuitMatchCallbackProxy* UQuitMatchCallbackProxy::STATIC_QuitMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> Outcome, int TurnTimeoutInSeconds)
-//{
-//	static auto fn = UObject::FindObject<UFunction>("Function OnlineSubsystemUtils.QuitMatchCallbackProxy.QuitMatch");
-//
-//	UQuitMatchCallbackProxy_QuitMatch_Params params;
-//	params.WorldContextObject = WorldContextObject;
-//	params.PlayerController = PlayerController;
-//	params.MatchID = MatchID;
-//	params.Outcome = Outcome;
-//	params.TurnTimeoutInSeconds = TurnTimeoutInSeconds;
-//
-//	auto flags = fn->FunctionFlags;
-//	fn->FunctionFlags |= 0x400;
-//
-//	UObject::ProcessEvent(fn, &params);
-//
-//	fn->FunctionFlags = flags;
-//
-//	return params.ReturnValue;
-//}
+class UQuitMatchCallbackProxy* UQuitMatchCallbackProxy::STATIC_QuitMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, const struct FString& MatchID, TEnumAsByte<EMPMatchOutcome> Outcome, int TurnTimeoutInSeconds)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function OnlineSubsystemUtils.QuitMatchCallbackProxy.QuitMatch");
+
+	UQuitMatchCallbackProxy_QuitMatch_Params params;
+	params.WorldContextObject = WorldContextObject;
+	params.PlayerController = PlayerController;
+	params.MatchID = MatchID;
+	params.Outcome = Outcome;
+	params.TurnTimeoutInSeconds = TurnTimeoutInSeconds;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
 
 
 // Function OnlineSubsystemUtils.ShowLoginUICallbackProxy.ShowExternalLoginUI

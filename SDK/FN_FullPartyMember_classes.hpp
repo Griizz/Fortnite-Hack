@@ -46,7 +46,7 @@ public:
 	struct FVector2D                                   Dimensions;                                               // 0x04B8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	struct FName                                       DeclineAction;                                            // 0x04C0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FText                                       LocalPlayerActionsTitle;                                  // 0x04C8(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      bLocalPlayerAlone : 1;                                    // 0x04E0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bLocalPlayerAlone;                                        // 0x04E0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x04E1(0x0007) MISSED OFFSET
 	class UBP_LocalPlayerProfileModal_C*               NewLocalPlayerWidget;                                     // 0x04E8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UClass*                                      Modified_Power;                                           // 0x04F0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -60,13 +60,13 @@ public:
 
 	void UpdateBang();
 	void HighlightEmptyBanner(bool BannerIsHighlighted);
-	void SetSecondaryStatDisplayVisibility();
+	void SetSecondaryStatDisplayVisibility(ESlateVisibility InVisibility);
 	void SetStatDisplayStyle(class UClass* InStyle);
 	void UpdateHomebaseRating();
 	void UpdateStatDisplays();
 	void InitializeConnectedWidget(class UFullPartyMemberConnected_C* ConnectedWidget);
 	void MakeLocalPlayerConfirmActions(bool LocalPlayerAlone, TArray<struct FConfirmationDialogAction>* OutConfirmActions);
-	void HandleLocalPlayerActionsResult(const struct FName& ResultName);
+	void HandleLocalPlayerActionsResult(EFortDialogResult Result, const struct FName& ResultName);
 	void UpdateLocalPlayerAction();
 	class UFullPartyMemberConnected_C* DuplicateConnectedWidget();
 	void Initialize();
@@ -75,7 +75,7 @@ public:
 	void ShowConnecting();
 	void ShowOpen();
 	void UpdateMemberInfo(const struct FFortTeamMemberInfo& NewMemberInfo);
-	void DialogResult_1F64669049EA0B1762273C8ED9CBB619(const struct FName& ResultName);
+	void DialogResult_1F64669049EA0B1762273C8ED9CBB619(EFortDialogResult Result, const struct FName& ResultName);
 	void Construct();
 	void PreConstruct(bool* IsDesignTime);
 	void OnClicked();

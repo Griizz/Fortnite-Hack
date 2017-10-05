@@ -98,6 +98,7 @@ struct UFeedback_RateExperience_C_BndEvt__1Star_K2Node_ComponentBoundEvent_944_O
 // Function Feedback_RateExperience.Feedback_RateExperience_C.OnClientPartyStateChanged
 struct UFeedback_RateExperience_C_OnClientPartyStateChanged_Params
 {
+	EFortPartyState                                    PartyState;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Feedback_RateExperience.Feedback_RateExperience_C.OnStarButtonClicked

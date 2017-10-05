@@ -46,31 +46,6 @@ void UItemDetailsHeader_C::UpdateItemsForWidgets()
 }
 
 
-// Function ItemDetailsHeader.ItemDetailsHeader_C.FormatItemDisplayTags
-// (FUNC_Private, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
-// Parameters:
-// TArray<struct FText>           TagTexts                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-// struct FText                   FormatedText                   (CPF_Parm, CPF_OutParm)
-
-void UItemDetailsHeader_C::FormatItemDisplayTags(TArray<struct FText>* TagTexts, struct FText* FormatedText)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemDetailsHeader.ItemDetailsHeader_C.FormatItemDisplayTags");
-
-	UItemDetailsHeader_C_FormatItemDisplayTags_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-
-	if (TagTexts != nullptr)
-		*TagTexts = params.TagTexts;
-	if (FormatedText != nullptr)
-		*FormatedText = params.FormatedText;
-}
-
-
 // Function ItemDetailsHeader.ItemDetailsHeader_C.Construct
 // (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
 
@@ -79,40 +54,6 @@ void UItemDetailsHeader_C::Construct()
 	static auto fn = UObject::FindObject<UFunction>("Function ItemDetailsHeader.ItemDetailsHeader_C.Construct");
 
 	UItemDetailsHeader_C_Construct_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function ItemDetailsHeader.ItemDetailsHeader_C.HandlePostDifferentItemToDetailSet
-// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
-
-void UItemDetailsHeader_C::HandlePostDifferentItemToDetailSet()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemDetailsHeader.ItemDetailsHeader_C.HandlePostDifferentItemToDetailSet");
-
-	UItemDetailsHeader_C_HandlePostDifferentItemToDetailSet_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
-// Function ItemDetailsHeader.ItemDetailsHeader_C.HandlePostDifferentItemToCompareWithSet
-// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
-
-void UItemDetailsHeader_C::HandlePostDifferentItemToCompareWithSet()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemDetailsHeader.ItemDetailsHeader_C.HandlePostDifferentItemToCompareWithSet");
-
-	UItemDetailsHeader_C_HandlePostDifferentItemToCompareWithSet_Params params;
 
 	auto flags = fn->FunctionFlags;
 
@@ -133,6 +74,40 @@ void UItemDetailsHeader_C::PreConstruct(bool* IsDesignTime)
 
 	UItemDetailsHeader_C_PreConstruct_Params params;
 	params.IsDesignTime = IsDesignTime;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemDetailsHeader.ItemDetailsHeader_C.HandleDifferentItemToDetailSet
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void UItemDetailsHeader_C::HandleDifferentItemToDetailSet()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemDetailsHeader.ItemDetailsHeader_C.HandleDifferentItemToDetailSet");
+
+	UItemDetailsHeader_C_HandleDifferentItemToDetailSet_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemDetailsHeader.ItemDetailsHeader_C.HandleDifferentItemToCompareSet
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void UItemDetailsHeader_C::HandleDifferentItemToCompareSet()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemDetailsHeader.ItemDetailsHeader_C.HandleDifferentItemToCompareSet");
+
+	UItemDetailsHeader_C_HandleDifferentItemToCompareSet_Params params;
 
 	auto flags = fn->FunctionFlags;
 

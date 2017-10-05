@@ -13,14 +13,14 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum Rejoin.ERejoinStatus
-enum class ERejoinStatus
+enum class ERejoinStatus : uint8_t
 {
-	ERejoinStatus__NoMatchToRejoin = 0,
-	ERejoinStatus__RejoinAvailable = 1,
-	ERejoinStatus__UpdatingStatus  = 2,
-	ERejoinStatus__NeedsRecheck    = 3,
-	ERejoinStatus__NoMatchToRejoin_MatchEnded = 4,
-	ERejoinStatus__ERejoinStatus_MAX = 5
+	NoMatchToRejoin                = 0,
+	RejoinAvailable                = 1,
+	UpdatingStatus                 = 2,
+	NeedsRecheck                   = 3,
+	NoMatchToRejoin_MatchEnded     = 4,
+	ERejoinStatus_MAX              = 5
 };
 
 

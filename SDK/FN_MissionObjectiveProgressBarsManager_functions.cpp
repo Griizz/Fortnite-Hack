@@ -80,13 +80,15 @@ void UMissionObjectiveProgressBarsManager_C::HandleObjectiveVisibilityChanged(cl
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class AFortObjectiveBase*      Objective                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortObjectiveStatus           New_Status                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMissionObjectiveProgressBarsManager_C::HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective)
+void UMissionObjectiveProgressBarsManager_C::HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective, EFortObjectiveStatus New_Status)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MissionObjectiveProgressBarsManager.MissionObjectiveProgressBarsManager_C.HandleObjectiveStatusChanged");
 
 	UMissionObjectiveProgressBarsManager_C_HandleObjectiveStatusChanged_Params params;
 	params.Objective = Objective;
+	params.New_Status = New_Status;
 
 	auto flags = fn->FunctionFlags;
 

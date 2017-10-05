@@ -249,11 +249,11 @@ public:
 class UGameplayTagsSettings : public UGameplayTagsList
 {
 public:
-	unsigned char                                      ImportTagsFromConfig : 1;                                 // 0x0048(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
-	unsigned char                                      WarnOnInvalidTags : 1;                                    // 0x0049(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               ImportTagsFromConfig;                                     // 0x0048(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               WarnOnInvalidTags;                                        // 0x0049(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x6];                                       // 0x004A(0x0006) MISSED OFFSET
 	TArray<struct FGameplayTagCategoryRemap>           CategoryRemapping;                                        // 0x0050(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Config)
-	unsigned char                                      FastReplication : 1;                                      // 0x0060(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
+	bool                                               FastReplication;                                          // 0x0060(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_Config, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x0061(0x0007) MISSED OFFSET
 	TArray<struct FStringAssetReference>               GameplayTagTableList;                                     // 0x0068(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Config)
 	TArray<struct FGameplayTagRedirect>                GameplayTagRedirects;                                     // 0x0078(0x0010) (CPF_Edit, CPF_ZeroConstructor, CPF_Config)

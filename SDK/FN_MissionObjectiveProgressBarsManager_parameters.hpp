@@ -37,6 +37,7 @@ struct UMissionObjectiveProgressBarsManager_C_HandleObjectiveVisibilityChanged_P
 struct UMissionObjectiveProgressBarsManager_C_HandleObjectiveStatusChanged_Params
 {
 	class AFortObjectiveBase*                          Objective;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortObjectiveStatus                               New_Status;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MissionObjectiveProgressBarsManager.MissionObjectiveProgressBarsManager_C.CreateProgressBarWidget

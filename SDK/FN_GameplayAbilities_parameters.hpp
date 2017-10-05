@@ -1490,6 +1490,7 @@ struct UAbilityTask_ApplyRootMotionConstantForce_ApplyRootMotionConstantForce_Pa
 	float                                              Duration;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bIsAdditive;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveFloat*                                 StrengthOverTime;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ERootMotionFinishVelocityMode                      VelocityOnFinishMode;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     SetVelocityOnFinish;                                      // (CPF_Parm, CPF_IsPlainOldData)
 	float                                              ClampVelocityOnFinish;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UAbilityTask_ApplyRootMotionConstantForce*   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
@@ -1517,6 +1518,7 @@ struct UAbilityTask_ApplyRootMotionJumpForce_ApplyRootMotionJumpForce_Params
 	float                                              Duration;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              MinimumLandedTriggerTime;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bFinishOnLanded;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ERootMotionFinishVelocityMode                      VelocityOnFinishMode;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     SetVelocityOnFinish;                                      // (CPF_Parm, CPF_IsPlainOldData)
 	float                                              ClampVelocityOnFinish;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveVector*                                PathOffsetCurve;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -1536,6 +1538,7 @@ struct UAbilityTask_ApplyRootMotionMoveToActorForce_ApplyRootMotionMoveToActorFo
 	struct FName                                       TaskInstanceName;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class AActor*                                      TargetActor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     TargetLocationOffset;                                     // (CPF_Parm, CPF_IsPlainOldData)
+	ERootMotionMoveToActorTargetOffsetType             OffsetAlignment;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Duration;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveFloat*                                 TargetLerpSpeedHorizontal;                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveFloat*                                 TargetLerpSpeedVertical;                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -1544,6 +1547,7 @@ struct UAbilityTask_ApplyRootMotionMoveToActorForce_ApplyRootMotionMoveToActorFo
 	bool                                               bRestrictSpeedToExpected;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveVector*                                PathOffsetCurve;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveFloat*                                 TimeMappingCurve;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ERootMotionFinishVelocityMode                      VelocityOnFinishMode;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     SetVelocityOnFinish;                                      // (CPF_Parm, CPF_IsPlainOldData)
 	float                                              ClampVelocityOnFinish;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bDisableDestinationReachedInterrupt;                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -1561,6 +1565,7 @@ struct UAbilityTask_ApplyRootMotionMoveToForce_ApplyRootMotionMoveToForce_Params
 	TEnumAsByte<EMovementMode>                         MovementMode;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bRestrictSpeedToExpected;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UCurveVector*                                PathOffsetCurve;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ERootMotionFinishVelocityMode                      VelocityOnFinishMode;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     SetVelocityOnFinish;                                      // (CPF_Parm, CPF_IsPlainOldData)
 	float                                              ClampVelocityOnFinish;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UAbilityTask_ApplyRootMotionMoveToForce*     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
@@ -1583,6 +1588,7 @@ struct UAbilityTask_ApplyRootMotionRadialForce_ApplyRootMotionRadialForce_Params
 	class UCurveFloat*                                 StrengthOverTime;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bUseFixedWorldDirection;                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FRotator                                    FixedWorldDirection;                                      // (CPF_Parm, CPF_IsPlainOldData)
+	ERootMotionFinishVelocityMode                      VelocityOnFinishMode;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector                                     SetVelocityOnFinish;                                      // (CPF_Parm, CPF_IsPlainOldData)
 	float                                              ClampVelocityOnFinish;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UAbilityTask_ApplyRootMotionRadialForce*     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
@@ -1604,6 +1610,7 @@ struct UAbilityTask_MoveToLocation_MoveToLocation_Params
 struct UAbilityTask_NetworkSyncPoint_WaitNetSync_Params
 {
 	class UGameplayAbility*                            OwningAbility;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAbilityTaskNetSyncType                            SyncType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UAbilityTask_NetworkSyncPoint*               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 

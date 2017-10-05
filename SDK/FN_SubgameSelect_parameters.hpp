@@ -41,6 +41,7 @@ struct USubgameSelect_C_Construct_Params
 // Function SubgameSelect.SubgameSelect_C.OnEnterState
 struct USubgameSelect_C_OnEnterState_Params
 {
+	EFortUIState*                                      PreviousUIState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function SubgameSelect.SubgameSelect_C.PushContentWidgetInternal

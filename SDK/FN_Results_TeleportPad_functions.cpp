@@ -89,13 +89,15 @@ void UResults_TeleportPad_C::Focus()
 // (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class UFortUIScoreReport*      InScoreReport                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortCompletionResult          CompletionResult               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UResults_TeleportPad_C::Initialize(class UFortUIScoreReport* InScoreReport)
+void UResults_TeleportPad_C::Initialize(class UFortUIScoreReport* InScoreReport, EFortCompletionResult CompletionResult)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Results_TeleportPad.Results_TeleportPad_C.Initialize");
 
 	UResults_TeleportPad_C_Initialize_Params params;
 	params.InScoreReport = InScoreReport;
+	params.CompletionResult = CompletionResult;
 
 	auto flags = fn->FunctionFlags;
 

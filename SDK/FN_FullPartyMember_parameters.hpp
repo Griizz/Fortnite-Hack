@@ -28,6 +28,7 @@ struct UFullPartyMember_C_HighlightEmptyBanner_Params
 // Function FullPartyMember.FullPartyMember_C.SetSecondaryStatDisplayVisibility
 struct UFullPartyMember_C_SetSecondaryStatDisplayVisibility_Params
 {
+	ESlateVisibility                                   InVisibility;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FullPartyMember.FullPartyMember_C.SetStatDisplayStyle
@@ -62,6 +63,7 @@ struct UFullPartyMember_C_MakeLocalPlayerConfirmActions_Params
 // Function FullPartyMember.FullPartyMember_C.HandleLocalPlayerActionsResult
 struct UFullPartyMember_C_HandleLocalPlayerActionsResult_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -111,6 +113,7 @@ struct UFullPartyMember_C_UpdateMemberInfo_Params
 // Function FullPartyMember.FullPartyMember_C.DialogResult_1F64669049EA0B1762273C8ED9CBB619
 struct UFullPartyMember_C_DialogResult_1F64669049EA0B1762273C8ED9CBB619_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

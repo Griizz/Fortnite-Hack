@@ -32,7 +32,7 @@ public:
 	struct FName                                       rowNamePinQuest;                                          // 0x0440(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FName                                       rowNameStopConversation;                                  // 0x0448(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UCommonButton*                               PreviousEntry;                                            // 0x0450(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      isFrontEnd_ : 1;                                          // 0x0458(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               isFrontEnd_;                                              // 0x0458(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0459(0x0007) MISSED OFFSET
 	struct FScriptMulticastDelegate                    CloseJournal;                                             // 0x0460(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 	struct FName                                       rowNameUnpinQuest;                                        // 0x0470(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -41,7 +41,7 @@ public:
 	class UFortQuestItem*                              InitialQuestToSelect;                                     // 0x0488(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FTimerHandle                                UpdatePendingSeenItemTimerHandle;                         // 0x0490(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	TArray<class UQuestTreeEntry_C*>                   QuestButtons;                                             // 0x0498(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	unsigned char                                      bDisableClaimRewardButton : 1;                            // 0x04A8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bDisableClaimRewardButton;                                // 0x04A8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
@@ -50,6 +50,7 @@ public:
 	}
 
 
+	void ShouldShowPlayQuest(class UFortQuestItem* Quest, bool* ShouldShowPlay);
 	void Toggle_Disable_Claim_Reward_Button(bool ToDisable);
 	void HandleInventory(bool* PassThrough);
 	void Update_Category_Buttons_Bang_State();
@@ -80,8 +81,8 @@ public:
 	void OnDeactivated();
 	void BndEvt__QuestsTreeView_K2Node_ComponentBoundEvent_200_OnListViewItemWidgetDestroyed__DelegateSignature(class UUserWidget* Widget);
 	void PlayerPartyStateChanged(const struct FFortTeamMemberInfo& PlayerInfo);
-	void OnClientPartyStateChanged();
-	void OnMatchamkingComplete();
+	void OnClientPartyStateChanged(EFortPartyState PartyState);
+	void OnMatchamkingComplete(EMatchmakingCompleteResult Result);
 	void OnMatchmakingStarted();
 	void OnPartyLeft();
 	void Construct();

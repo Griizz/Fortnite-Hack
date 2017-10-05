@@ -27,7 +27,9 @@ public:
 	}
 
 
+	void SetState(EFortAlterationWidgetState State);
 	void HandlePostDifferentItemToDetailSet();
+	void HandlePostDifferentItemToCompareWithSet();
 	void ExecuteUbergraph_ItemAlterationsListDetailWidget(int EntryPoint);
 };
 

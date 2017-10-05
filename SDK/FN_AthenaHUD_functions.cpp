@@ -187,14 +187,16 @@ void UAthenaHUD_C::HandleOnPointOfInterestAdded(class AActor* PointOfInterest, c
 // Function AthenaHUD.AthenaHUD_C.ShowPicker
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortPickerMode                Mode                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            InitialOption                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           IgnoreFirstAccept              (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaHUD_C::ShowPicker(int InitialOption, bool IgnoreFirstAccept)
+void UAthenaHUD_C::ShowPicker(EFortPickerMode Mode, int InitialOption, bool IgnoreFirstAccept)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaHUD.AthenaHUD_C.ShowPicker");
 
 	UAthenaHUD_C_ShowPicker_Params params;
+	params.Mode = Mode;
 	params.InitialOption = InitialOption;
 	params.IgnoreFirstAccept = IgnoreFirstAccept;
 
@@ -409,13 +411,15 @@ void UAthenaHUD_C::SetQuickbarSizes()
 // Function AthenaHUD.AthenaHUD_C.HandleQuickbarSlotFocusSlotChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortQuickBars                 Quickbar_Index                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            Slot                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaHUD_C::HandleQuickbarSlotFocusSlotChanged(int Slot)
+void UAthenaHUD_C::HandleQuickbarSlotFocusSlotChanged(EFortQuickBars Quickbar_Index, int Slot)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaHUD.AthenaHUD_C.HandleQuickbarSlotFocusSlotChanged");
 
 	UAthenaHUD_C_HandleQuickbarSlotFocusSlotChanged_Params params;
+	params.Quickbar_Index = Quickbar_Index;
 	params.Slot = Slot;
 
 	auto flags = fn->FunctionFlags;
@@ -503,12 +507,15 @@ void UAthenaHUD_C::Construct()
 
 // Function AthenaHUD.AthenaHUD_C.OnEnterState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  PreviousUIState                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UAthenaHUD_C::OnEnterState()
+void UAthenaHUD_C::OnEnterState(EFortUIState* PreviousUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaHUD.AthenaHUD_C.OnEnterState");
 
 	UAthenaHUD_C_OnEnterState_Params params;
+	params.PreviousUIState = PreviousUIState;
 
 	auto flags = fn->FunctionFlags;
 

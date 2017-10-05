@@ -25,7 +25,7 @@ public:
 	int                                                AchievedCount;                                            // 0x0260(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x4];                                       // 0x0264(0x0004) MISSED OFFSET
 	struct FSlateBrush                                 IconBrush;                                                // 0x0268(0x0090) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      bShowSideIcon : 1;                                        // 0x02F8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bShowSideIcon;                                            // 0x02F8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x3];                                       // 0x02F9(0x0003) MISSED OFFSET
 	struct FLinearColor                                BarColor;                                                 // 0x02FC(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	float                                              BarHeightOverride;                                        // 0x030C(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)

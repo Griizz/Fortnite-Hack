@@ -54,6 +54,7 @@ struct UDefaultObjectiveContentWidget_C_Setup_Params
 struct UDefaultObjectiveContentWidget_C_HandleObjectiveStatusChanged_Params
 {
 	class AFortObjectiveBase*                          Objective;                                                // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortObjectiveStatus                               NewStatus;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function DefaultObjectiveContentWidget.DefaultObjectiveContentWidget_C.HandleObjectiveVisibilityChanged

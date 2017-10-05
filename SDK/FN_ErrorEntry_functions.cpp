@@ -56,8 +56,10 @@ void UErrorEntry_C::SetErrorInfo(const struct FFortErrorInfo& ErrorInfo)
 
 // Function ErrorEntry.ErrorEntry_C.GetButtonVisibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               NewParam                       (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UErrorEntry_C::GetButtonVisibility()
+void UErrorEntry_C::GetButtonVisibility(ESlateVisibility* NewParam)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ErrorEntry.ErrorEntry_C.GetButtonVisibility");
 
@@ -68,6 +70,9 @@ void UErrorEntry_C::GetButtonVisibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	if (NewParam != nullptr)
+		*NewParam = params.NewParam;
 }
 
 

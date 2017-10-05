@@ -14,8 +14,10 @@ namespace SDK
 
 // Function AthenaNews.AthenaNews_C.Get_RegionNews_Visibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UAthenaNews_C::Get_RegionNews_Visibility()
+ESlateVisibility UAthenaNews_C::Get_RegionNews_Visibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaNews.AthenaNews_C.Get_RegionNews_Visibility");
 
@@ -26,13 +28,17 @@ void UAthenaNews_C::Get_RegionNews_Visibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 
 // Function AthenaNews.AthenaNews_C.Get_PlatformNews_Visibility
 // (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// Parameters:
+// ESlateVisibility               ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-void UAthenaNews_C::Get_PlatformNews_Visibility()
+ESlateVisibility UAthenaNews_C::Get_PlatformNews_Visibility()
 {
 	static auto fn = UObject::FindObject<UFunction>("Function AthenaNews.AthenaNews_C.Get_PlatformNews_Visibility");
 
@@ -43,6 +49,8 @@ void UAthenaNews_C::Get_PlatformNews_Visibility()
 	UObject::ProcessEvent(fn, &params);
 
 	fn->FunctionFlags = flags;
+
+	return params.ReturnValue;
 }
 
 

@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass PBWA_W1_BalconyO.PBWA_W1_BalconyO_C
-// 0x0000 (0x0FC0 - 0x0FC0)
+// 0x0000 (0x0FD0 - 0x0FD0)
 class APBWA_W1_BalconyO_C : public ABuildingFloor
 {
 public:

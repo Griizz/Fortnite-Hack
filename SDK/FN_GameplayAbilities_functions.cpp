@@ -4886,11 +4886,12 @@ struct FGameplayAbilityTargetDataHandle UAbilitySystemBlueprintLibrary::STATIC_A
 // float                          Duration                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bIsAdditive                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveFloat*             StrengthOverTime               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ERootMotionFinishVelocityMode  VelocityOnFinishMode           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FVector                 SetVelocityOnFinish            (CPF_Parm, CPF_IsPlainOldData)
 // float                          ClampVelocityOnFinish          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UAbilityTask_ApplyRootMotionConstantForce* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class UAbilityTask_ApplyRootMotionConstantForce* UAbilityTask_ApplyRootMotionConstantForce::STATIC_ApplyRootMotionConstantForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FVector& WorldDirection, float Strength, float Duration, bool bIsAdditive, class UCurveFloat* StrengthOverTime, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish)
+class UAbilityTask_ApplyRootMotionConstantForce* UAbilityTask_ApplyRootMotionConstantForce::STATIC_ApplyRootMotionConstantForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FVector& WorldDirection, float Strength, float Duration, bool bIsAdditive, class UCurveFloat* StrengthOverTime, ERootMotionFinishVelocityMode VelocityOnFinishMode, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function GameplayAbilities.AbilityTask_ApplyRootMotionConstantForce.ApplyRootMotionConstantForce");
 
@@ -4902,6 +4903,7 @@ class UAbilityTask_ApplyRootMotionConstantForce* UAbilityTask_ApplyRootMotionCon
 	params.Duration = Duration;
 	params.bIsAdditive = bIsAdditive;
 	params.StrengthOverTime = StrengthOverTime;
+	params.VelocityOnFinishMode = VelocityOnFinishMode;
 	params.SetVelocityOnFinish = SetVelocityOnFinish;
 	params.ClampVelocityOnFinish = ClampVelocityOnFinish;
 
@@ -4966,13 +4968,14 @@ void UAbilityTask_ApplyRootMotionJumpForce::Finish()
 // float                          Duration                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          MinimumLandedTriggerTime       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bFinishOnLanded                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ERootMotionFinishVelocityMode  VelocityOnFinishMode           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FVector                 SetVelocityOnFinish            (CPF_Parm, CPF_IsPlainOldData)
 // float                          ClampVelocityOnFinish          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveVector*            PathOffsetCurve                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveFloat*             TimeMappingCurve               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UAbilityTask_ApplyRootMotionJumpForce* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class UAbilityTask_ApplyRootMotionJumpForce* UAbilityTask_ApplyRootMotionJumpForce::STATIC_ApplyRootMotionJumpForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FRotator& Rotation, float Distance, float Height, float Duration, float MinimumLandedTriggerTime, bool bFinishOnLanded, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish, class UCurveVector* PathOffsetCurve, class UCurveFloat* TimeMappingCurve)
+class UAbilityTask_ApplyRootMotionJumpForce* UAbilityTask_ApplyRootMotionJumpForce::STATIC_ApplyRootMotionJumpForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FRotator& Rotation, float Distance, float Height, float Duration, float MinimumLandedTriggerTime, bool bFinishOnLanded, ERootMotionFinishVelocityMode VelocityOnFinishMode, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish, class UCurveVector* PathOffsetCurve, class UCurveFloat* TimeMappingCurve)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function GameplayAbilities.AbilityTask_ApplyRootMotionJumpForce.ApplyRootMotionJumpForce");
 
@@ -4985,6 +4988,7 @@ class UAbilityTask_ApplyRootMotionJumpForce* UAbilityTask_ApplyRootMotionJumpFor
 	params.Duration = Duration;
 	params.MinimumLandedTriggerTime = MinimumLandedTriggerTime;
 	params.bFinishOnLanded = bFinishOnLanded;
+	params.VelocityOnFinishMode = VelocityOnFinishMode;
 	params.SetVelocityOnFinish = SetVelocityOnFinish;
 	params.ClampVelocityOnFinish = ClampVelocityOnFinish;
 	params.PathOffsetCurve = PathOffsetCurve;
@@ -5026,6 +5030,7 @@ void UAbilityTask_ApplyRootMotionMoveToActorForce::OnRep_TargetLocation()
 // struct FName                   TaskInstanceName               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class AActor*                  TargetActor                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FVector                 TargetLocationOffset           (CPF_Parm, CPF_IsPlainOldData)
+// ERootMotionMoveToActorTargetOffsetType OffsetAlignment                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // float                          Duration                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveFloat*             TargetLerpSpeedHorizontal      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveFloat*             TargetLerpSpeedVertical        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -5034,12 +5039,13 @@ void UAbilityTask_ApplyRootMotionMoveToActorForce::OnRep_TargetLocation()
 // bool                           bRestrictSpeedToExpected       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveVector*            PathOffsetCurve                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveFloat*             TimeMappingCurve               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ERootMotionFinishVelocityMode  VelocityOnFinishMode           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FVector                 SetVelocityOnFinish            (CPF_Parm, CPF_IsPlainOldData)
 // float                          ClampVelocityOnFinish          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bDisableDestinationReachedInterrupt (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UAbilityTask_ApplyRootMotionMoveToActorForce* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class UAbilityTask_ApplyRootMotionMoveToActorForce* UAbilityTask_ApplyRootMotionMoveToActorForce::STATIC_ApplyRootMotionMoveToActorForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, class AActor* TargetActor, const struct FVector& TargetLocationOffset, float Duration, class UCurveFloat* TargetLerpSpeedHorizontal, class UCurveFloat* TargetLerpSpeedVertical, bool bSetNewMovementMode, TEnumAsByte<EMovementMode> MovementMode, bool bRestrictSpeedToExpected, class UCurveVector* PathOffsetCurve, class UCurveFloat* TimeMappingCurve, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish, bool bDisableDestinationReachedInterrupt)
+class UAbilityTask_ApplyRootMotionMoveToActorForce* UAbilityTask_ApplyRootMotionMoveToActorForce::STATIC_ApplyRootMotionMoveToActorForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, class AActor* TargetActor, const struct FVector& TargetLocationOffset, ERootMotionMoveToActorTargetOffsetType OffsetAlignment, float Duration, class UCurveFloat* TargetLerpSpeedHorizontal, class UCurveFloat* TargetLerpSpeedVertical, bool bSetNewMovementMode, TEnumAsByte<EMovementMode> MovementMode, bool bRestrictSpeedToExpected, class UCurveVector* PathOffsetCurve, class UCurveFloat* TimeMappingCurve, ERootMotionFinishVelocityMode VelocityOnFinishMode, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish, bool bDisableDestinationReachedInterrupt)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function GameplayAbilities.AbilityTask_ApplyRootMotionMoveToActorForce.ApplyRootMotionMoveToActorForce");
 
@@ -5048,6 +5054,7 @@ class UAbilityTask_ApplyRootMotionMoveToActorForce* UAbilityTask_ApplyRootMotion
 	params.TaskInstanceName = TaskInstanceName;
 	params.TargetActor = TargetActor;
 	params.TargetLocationOffset = TargetLocationOffset;
+	params.OffsetAlignment = OffsetAlignment;
 	params.Duration = Duration;
 	params.TargetLerpSpeedHorizontal = TargetLerpSpeedHorizontal;
 	params.TargetLerpSpeedVertical = TargetLerpSpeedVertical;
@@ -5056,6 +5063,7 @@ class UAbilityTask_ApplyRootMotionMoveToActorForce* UAbilityTask_ApplyRootMotion
 	params.bRestrictSpeedToExpected = bRestrictSpeedToExpected;
 	params.PathOffsetCurve = PathOffsetCurve;
 	params.TimeMappingCurve = TimeMappingCurve;
+	params.VelocityOnFinishMode = VelocityOnFinishMode;
 	params.SetVelocityOnFinish = SetVelocityOnFinish;
 	params.ClampVelocityOnFinish = ClampVelocityOnFinish;
 	params.bDisableDestinationReachedInterrupt = bDisableDestinationReachedInterrupt;
@@ -5082,11 +5090,12 @@ class UAbilityTask_ApplyRootMotionMoveToActorForce* UAbilityTask_ApplyRootMotion
 // TEnumAsByte<EMovementMode>     MovementMode                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bRestrictSpeedToExpected       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UCurveVector*            PathOffsetCurve                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ERootMotionFinishVelocityMode  VelocityOnFinishMode           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FVector                 SetVelocityOnFinish            (CPF_Parm, CPF_IsPlainOldData)
 // float                          ClampVelocityOnFinish          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UAbilityTask_ApplyRootMotionMoveToForce* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class UAbilityTask_ApplyRootMotionMoveToForce* UAbilityTask_ApplyRootMotionMoveToForce::STATIC_ApplyRootMotionMoveToForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FVector& TargetLocation, float Duration, bool bSetNewMovementMode, TEnumAsByte<EMovementMode> MovementMode, bool bRestrictSpeedToExpected, class UCurveVector* PathOffsetCurve, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish)
+class UAbilityTask_ApplyRootMotionMoveToForce* UAbilityTask_ApplyRootMotionMoveToForce::STATIC_ApplyRootMotionMoveToForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FVector& TargetLocation, float Duration, bool bSetNewMovementMode, TEnumAsByte<EMovementMode> MovementMode, bool bRestrictSpeedToExpected, class UCurveVector* PathOffsetCurve, ERootMotionFinishVelocityMode VelocityOnFinishMode, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function GameplayAbilities.AbilityTask_ApplyRootMotionMoveToForce.ApplyRootMotionMoveToForce");
 
@@ -5099,6 +5108,7 @@ class UAbilityTask_ApplyRootMotionMoveToForce* UAbilityTask_ApplyRootMotionMoveT
 	params.MovementMode = MovementMode;
 	params.bRestrictSpeedToExpected = bRestrictSpeedToExpected;
 	params.PathOffsetCurve = PathOffsetCurve;
+	params.VelocityOnFinishMode = VelocityOnFinishMode;
 	params.SetVelocityOnFinish = SetVelocityOnFinish;
 	params.ClampVelocityOnFinish = ClampVelocityOnFinish;
 
@@ -5130,11 +5140,12 @@ class UAbilityTask_ApplyRootMotionMoveToForce* UAbilityTask_ApplyRootMotionMoveT
 // class UCurveFloat*             StrengthOverTime               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bUseFixedWorldDirection        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FRotator                FixedWorldDirection            (CPF_Parm, CPF_IsPlainOldData)
+// ERootMotionFinishVelocityMode  VelocityOnFinishMode           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FVector                 SetVelocityOnFinish            (CPF_Parm, CPF_IsPlainOldData)
 // float                          ClampVelocityOnFinish          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UAbilityTask_ApplyRootMotionRadialForce* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class UAbilityTask_ApplyRootMotionRadialForce* UAbilityTask_ApplyRootMotionRadialForce::STATIC_ApplyRootMotionRadialForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FVector& Location, class AActor* LocationActor, float Strength, float Duration, float Radius, bool bIsPush, bool bIsAdditive, bool bNoZForce, class UCurveFloat* StrengthDistanceFalloff, class UCurveFloat* StrengthOverTime, bool bUseFixedWorldDirection, const struct FRotator& FixedWorldDirection, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish)
+class UAbilityTask_ApplyRootMotionRadialForce* UAbilityTask_ApplyRootMotionRadialForce::STATIC_ApplyRootMotionRadialForce(class UGameplayAbility* OwningAbility, const struct FName& TaskInstanceName, const struct FVector& Location, class AActor* LocationActor, float Strength, float Duration, float Radius, bool bIsPush, bool bIsAdditive, bool bNoZForce, class UCurveFloat* StrengthDistanceFalloff, class UCurveFloat* StrengthOverTime, bool bUseFixedWorldDirection, const struct FRotator& FixedWorldDirection, ERootMotionFinishVelocityMode VelocityOnFinishMode, const struct FVector& SetVelocityOnFinish, float ClampVelocityOnFinish)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function GameplayAbilities.AbilityTask_ApplyRootMotionRadialForce.ApplyRootMotionRadialForce");
 
@@ -5153,6 +5164,7 @@ class UAbilityTask_ApplyRootMotionRadialForce* UAbilityTask_ApplyRootMotionRadia
 	params.StrengthOverTime = StrengthOverTime;
 	params.bUseFixedWorldDirection = bUseFixedWorldDirection;
 	params.FixedWorldDirection = FixedWorldDirection;
+	params.VelocityOnFinishMode = VelocityOnFinishMode;
 	params.SetVelocityOnFinish = SetVelocityOnFinish;
 	params.ClampVelocityOnFinish = ClampVelocityOnFinish;
 
@@ -5205,14 +5217,16 @@ class UAbilityTask_MoveToLocation* UAbilityTask_MoveToLocation::STATIC_MoveToLoc
 // (FUNC_Final, FUNC_Native, FUNC_Static, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
 // class UGameplayAbility*        OwningAbility                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EAbilityTaskNetSyncType        SyncType                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UAbilityTask_NetworkSyncPoint* ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-class UAbilityTask_NetworkSyncPoint* UAbilityTask_NetworkSyncPoint::STATIC_WaitNetSync(class UGameplayAbility* OwningAbility)
+class UAbilityTask_NetworkSyncPoint* UAbilityTask_NetworkSyncPoint::STATIC_WaitNetSync(class UGameplayAbility* OwningAbility, EAbilityTaskNetSyncType SyncType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function GameplayAbilities.AbilityTask_NetworkSyncPoint.WaitNetSync");
 
 	UAbilityTask_NetworkSyncPoint_WaitNetSync_Params params;
 	params.OwningAbility = OwningAbility;
+	params.SyncType = SyncType;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;

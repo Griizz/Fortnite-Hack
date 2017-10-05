@@ -37,8 +37,8 @@ public:
 	void BndEvt__TopTabList_K2Node_ComponentBoundEvent_0_OnTabButtonCreated__DelegateSignature(const struct FName& TabId, class UCommonButton* TabButton);
 	void Construct();
 	void Destruct();
-	void HandleShowQuests();
-	void HandleShowObjectives();
+	void HandleShowQuests(EFortUIFeature ChangedFeature, EFortUIFeatureState NewState);
+	void HandleShowObjectives(EFortUIFeature ChangedFeature, EFortUIFeatureState NewState);
 	void ExecuteUbergraph_MgmtTabsScreen(int EntryPoint);
 };
 

@@ -186,13 +186,15 @@ void ULegacyItem_DO_NOT_USE_C::Hide_Subtype_Icons()
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // bool                           Override_Icon_Visibility       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// ESlateVisibility               Item_Icon_Visibility           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULegacyItem_DO_NOT_USE_C::Set_Primary_Icon_Visibility(bool Override_Icon_Visibility)
+void ULegacyItem_DO_NOT_USE_C::Set_Primary_Icon_Visibility(bool Override_Icon_Visibility, ESlateVisibility Item_Icon_Visibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Set Primary Icon Visibility");
 
 	ULegacyItem_DO_NOT_USE_C_Set_Primary_Icon_Visibility_Params params;
 	params.Override_Icon_Visibility = Override_Icon_Visibility;
+	params.Item_Icon_Visibility = Item_Icon_Visibility;
 
 	auto flags = fn->FunctionFlags;
 
@@ -412,13 +414,15 @@ class UWidget* ULegacyItem_DO_NOT_USE_C::Get_Item_Tooltip(int OverrideStackCount
 // Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Set Display Mode
 // (FUNC_Protected, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortUIState                   Current_UI_State               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           Cursor_Mode                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULegacyItem_DO_NOT_USE_C::Set_Display_Mode(bool Cursor_Mode)
+void ULegacyItem_DO_NOT_USE_C::Set_Display_Mode(EFortUIState Current_UI_State, bool Cursor_Mode)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Set Display Mode");
 
 	ULegacyItem_DO_NOT_USE_C_Set_Display_Mode_Params params;
+	params.Current_UI_State = Current_UI_State;
 	params.Cursor_Mode = Cursor_Mode;
 
 	auto flags = fn->FunctionFlags;
@@ -469,13 +473,15 @@ void ULegacyItem_DO_NOT_USE_C::Update_Subtype_Icons___Ammo()
 // Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Get Display Style
 // (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortItemType                  Item_Type                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // TEnumAsByte<EItemDisplayStyle> Style                          (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULegacyItem_DO_NOT_USE_C::Get_Display_Style(TEnumAsByte<EItemDisplayStyle>* Style)
+void ULegacyItem_DO_NOT_USE_C::Get_Display_Style(EFortItemType Item_Type, TEnumAsByte<EItemDisplayStyle>* Style)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LegacyItem_DO_NOT_USE.LegacyItem_DO_NOT_USE_C.Get Display Style");
 
 	ULegacyItem_DO_NOT_USE_C_Get_Display_Style_Params params;
+	params.Item_Type = Item_Type;
 
 	auto flags = fn->FunctionFlags;
 

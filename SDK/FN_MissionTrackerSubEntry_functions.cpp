@@ -146,13 +146,15 @@ void UMissionTrackerSubEntry_C::ShowObjectiveWidget()
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class AFortObjectiveBase*      Objective                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortMissionVisibilityOverride New_Visibility_Override        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMissionTrackerSubEntry_C::HanldeObjectiveVisiblityOverrideChanged(class AFortObjectiveBase* Objective)
+void UMissionTrackerSubEntry_C::HanldeObjectiveVisiblityOverrideChanged(class AFortObjectiveBase* Objective, EFortMissionVisibilityOverride New_Visibility_Override)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MissionTrackerSubEntry.MissionTrackerSubEntry_C.HanldeObjectiveVisiblityOverrideChanged");
 
 	UMissionTrackerSubEntry_C_HanldeObjectiveVisiblityOverrideChanged_Params params;
 	params.Objective = Objective;
+	params.New_Visibility_Override = New_Visibility_Override;
 
 	auto flags = fn->FunctionFlags;
 
@@ -262,13 +264,15 @@ void UMissionTrackerSubEntry_C::HandleObjectiveVisibilityChanged(class AFortObje
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class AFortObjectiveBase*      Objective                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortObjectiveStatus           NewStatus                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMissionTrackerSubEntry_C::HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective)
+void UMissionTrackerSubEntry_C::HandleObjectiveStatusChanged(class AFortObjectiveBase* Objective, EFortObjectiveStatus NewStatus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MissionTrackerSubEntry.MissionTrackerSubEntry_C.HandleObjectiveStatusChanged");
 
 	UMissionTrackerSubEntry_C_HandleObjectiveStatusChanged_Params params;
 	params.Objective = Objective;
+	params.NewStatus = NewStatus;
 
 	auto flags = fn->FunctionFlags;
 

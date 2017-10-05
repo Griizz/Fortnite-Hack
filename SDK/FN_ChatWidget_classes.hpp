@@ -26,7 +26,7 @@ public:
 	struct FDataTableRowHandle                         CloseUserListAction;                                      // 0x0430(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FDataTableRowHandle                         OpenUserListAction;                                       // 0x0440(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FDataTableRowHandle                         CurrentUserListAction;                                    // 0x0450(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      bEnteringChat : 1;                                        // 0x0460(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bEnteringChat;                                            // 0x0460(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0461(0x0007) MISSED OFFSET
 	struct FScriptMulticastDelegate                    AboutToEnterChat;                                         // 0x0468(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 
@@ -40,11 +40,11 @@ public:
 	void InitializeChat();
 	void BindDelegates();
 	void HandleCursorModeChanged(bool bEnabled, const struct FName& ActionName, class UUserWidget* Widget);
-	void HandleShowChatWindow();
+	void HandleShowChatWindow(EFortUIFeature Feature, EFortUIFeatureState FeatureState);
 	void HandeChatEnteredEvent(bool bEnteringChat);
 	void UpdateChatUserListIcon(bool Open);
-	void Set_Chat_Shortcut_Visibility();
-	void Set_Chat_Visibility();
+	void Set_Chat_Shortcut_Visibility(ESlateVisibility New_Visibility);
+	void Set_Chat_Visibility(ESlateVisibility New_Visibility);
 	void BndEvt__ConsoleChatShortcut_K2Node_ComponentBoundEvent_14_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void BndEvt__FortChat_K2Node_ComponentBoundEvent_66_OnChatEnteredDelegate__DelegateSignature(bool bEnteringChat);
 	void BndEvt__FortChat_K2Node_ComponentBoundEvent_0_OnUserListChangedDelegate__DelegateSignature(bool bOpen);

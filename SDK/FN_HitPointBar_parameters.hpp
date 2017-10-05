@@ -49,6 +49,7 @@ struct UHitPointBar_C_Update_Fill_Bar_Params
 struct UHitPointBar_C_UpdateCurrentValue_Params
 {
 	float                                              Current;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortHitPointModificationReason                    Reason;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function HitPointBar.HitPointBar_C.UpdateMaxValue

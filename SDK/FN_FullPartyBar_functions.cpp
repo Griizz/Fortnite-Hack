@@ -12,8 +12,52 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function FullPartyBar.FullPartyBar_C.GetTooltipStat
+// (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// struct FGameplayTag            Token                          (CPF_ConstParm, CPF_Parm)
+// struct FFortDisplayAttribute   OutDisplayAttribute            (CPF_Parm, CPF_OutParm)
+// bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+
+bool UFullPartyBar_C::GetTooltipStat(const struct FGameplayTag& Token, struct FFortDisplayAttribute* OutDisplayAttribute)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function FullPartyBar.FullPartyBar_C.GetTooltipStat");
+
+	UFullPartyBar_C_GetTooltipStat_Params params;
+	params.Token = Token;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (OutDisplayAttribute != nullptr)
+		*OutDisplayAttribute = params.OutDisplayAttribute;
+
+	return params.ReturnValue;
+}
+
+
+// Function FullPartyBar.FullPartyBar_C.InitializeStatLabels
+// (FUNC_Public, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void UFullPartyBar_C::InitializeStatLabels()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function FullPartyBar.FullPartyBar_C.InitializeStatLabels");
+
+	UFullPartyBar_C_InitializeStatLabels_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function FullPartyBar.FullPartyBar_C.Get_Tech_ToolTipWidget
-// (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
 // class UWidget*                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
@@ -34,7 +78,7 @@ class UWidget* UFullPartyBar_C::Get_Tech_ToolTipWidget()
 
 
 // Function FullPartyBar.FullPartyBar_C.Get_Resistance_ToolTipWidget
-// (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
 // class UWidget*                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
@@ -55,7 +99,7 @@ class UWidget* UFullPartyBar_C::Get_Resistance_ToolTipWidget()
 
 
 // Function FullPartyBar.FullPartyBar_C.Get_Offense_ToolTipWidget
-// (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
 // class UWidget*                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
@@ -76,7 +120,7 @@ class UWidget* UFullPartyBar_C::Get_Offense_ToolTipWidget()
 
 
 // Function FullPartyBar.FullPartyBar_C.Get_Fortitude_ToolTipWidget
-// (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
+// (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
 // class UWidget*                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
@@ -160,12 +204,17 @@ void UFullPartyBar_C::OpenPartyPrivacy()
 
 // Function FullPartyBar.FullPartyBar_C.HandlePartybarUIFeatureChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 Feature                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortUIFeatureState            FeatureState                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UFullPartyBar_C::HandlePartybarUIFeatureChanged()
+void UFullPartyBar_C::HandlePartybarUIFeatureChanged(EFortUIFeature Feature, EFortUIFeatureState FeatureState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function FullPartyBar.FullPartyBar_C.HandlePartybarUIFeatureChanged");
 
 	UFullPartyBar_C_HandlePartybarUIFeatureChanged_Params params;
+	params.Feature = Feature;
+	params.FeatureState = FeatureState;
 
 	auto flags = fn->FunctionFlags;
 

@@ -29,6 +29,31 @@ struct AStorePinataMaster_BP_C_UserConstructionScript_Params
 {
 };
 
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-WeaponCharge__FinishedFunc
+struct AStorePinataMaster_BP_C_TL_WeaponCharge__FinishedFunc_Params
+{
+};
+
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-WeaponCharge__UpdateFunc
+struct AStorePinataMaster_BP_C_TL_WeaponCharge__UpdateFunc_Params
+{
+};
+
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-Upgrade2__FinishedFunc
+struct AStorePinataMaster_BP_C_TL_Upgrade2__FinishedFunc_Params
+{
+};
+
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-Upgrade2__UpdateFunc
+struct AStorePinataMaster_BP_C_TL_Upgrade2__UpdateFunc_Params
+{
+};
+
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-Upgrade2__TasslesDropOff2__EventFunc
+struct AStorePinataMaster_BP_C_TL_Upgrade2__TasslesDropOff2__EventFunc_Params
+{
+};
+
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-DarkenBG__FinishedFunc
 struct AStorePinataMaster_BP_C_TL_DarkenBG__FinishedFunc_Params
 {
@@ -46,21 +71,6 @@ struct AStorePinataMaster_BP_C_TL_UndarkenBG__FinishedFunc_Params
 
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-UndarkenBG__UpdateFunc
 struct AStorePinataMaster_BP_C_TL_UndarkenBG__UpdateFunc_Params
-{
-};
-
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-Upgrade2__FinishedFunc
-struct AStorePinataMaster_BP_C_TL_Upgrade2__FinishedFunc_Params
-{
-};
-
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-Upgrade2__UpdateFunc
-struct AStorePinataMaster_BP_C_TL_Upgrade2__UpdateFunc_Params
-{
-};
-
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-Upgrade2__TasslesDropOff2__EventFunc
-struct AStorePinataMaster_BP_C_TL_Upgrade2__TasslesDropOff2__EventFunc_Params
 {
 };
 
@@ -91,16 +101,6 @@ struct AStorePinataMaster_BP_C_TL_ChangeLighting__FinishedFunc_Params
 
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-ChangeLighting__UpdateFunc
 struct AStorePinataMaster_BP_C_TL_ChangeLighting__UpdateFunc_Params
-{
-};
-
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-WeaponCharge__FinishedFunc
-struct AStorePinataMaster_BP_C_TL_WeaponCharge__FinishedFunc_Params
-{
-};
-
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.TL-WeaponCharge__UpdateFunc
-struct AStorePinataMaster_BP_C_TL_WeaponCharge__UpdateFunc_Params
 {
 };
 
@@ -236,12 +236,6 @@ struct AStorePinataMaster_BP_C_InpActEvt_LeftMouseButton_K2Node_InputKeyEvent_7_
 	struct FKey                                        Key;                                                      // (CPF_Parm)
 };
 
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.OnLoaded_E529D9FA4E70DEFD59CF9A8777EBA6D5
-struct AStorePinataMaster_BP_C_OnLoaded_E529D9FA4E70DEFD59CF9A8777EBA6D5_Params
-{
-	class UClass*                                      Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.InpActEvt_Gamepad_RightTrigger_K2Node_InputKeyEvent_6
 struct AStorePinataMaster_BP_C_InpActEvt_Gamepad_RightTrigger_K2Node_InputKeyEvent_6_Params
 {
@@ -268,14 +262,10 @@ struct AStorePinataMaster_BP_C_InpTchEvt_Pressed_Params
 	struct FVector                                     Location;                                                 // (CPF_Parm, CPF_IsPlainOldData)
 };
 
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.CardPackStoreStart
-struct AStorePinataMaster_BP_C_CardPackStoreStart_Params
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.OnLoaded_34AE763040BC26E1AD2CE4842CE48F91
+struct AStorePinataMaster_BP_C_OnLoaded_34AE763040BC26E1AD2CE4842CE48F91_Params
 {
-};
-
-// Function StorePinataMaster_BP.StorePinataMaster_BP_C.ReceiveBeginPlay
-struct AStorePinataMaster_BP_C_ReceiveBeginPlay_Params
-{
+	class UClass*                                      Loaded;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.ReadyToAttack
@@ -285,6 +275,16 @@ struct AStorePinataMaster_BP_C_ReadyToAttack_Params
 
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.OpenPinata
 struct AStorePinataMaster_BP_C_OpenPinata_Params
+{
+};
+
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.CardPackStoreStart
+struct AStorePinataMaster_BP_C_CardPackStoreStart_Params
+{
+};
+
+// Function StorePinataMaster_BP.StorePinataMaster_BP_C.ReceiveBeginPlay
+struct AStorePinataMaster_BP_C_ReceiveBeginPlay_Params
 {
 };
 
@@ -316,6 +316,7 @@ struct AStorePinataMaster_BP_C_CameraResetComplete_Params
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.OnStoreStateChanged
 struct AStorePinataMaster_BP_C_OnStoreStateChanged_Params
 {
+	EFortStoreState                                    NewStoreState;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function StorePinataMaster_BP.StorePinataMaster_BP_C.InitiatePinata

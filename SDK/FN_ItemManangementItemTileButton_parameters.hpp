@@ -66,11 +66,6 @@ struct UItemManangementItemTileButton_C_UpdateMulchStateBox_Params
 {
 };
 
-// Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleItemMulchStateChanged
-struct UItemManangementItemTileButton_C_HandleItemMulchStateChanged_Params
-{
-};
-
 // Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleDifferentItemManagementModeSetBP
 struct UItemManangementItemTileButton_C_HandleDifferentItemManagementModeSetBP_Params
 {
@@ -96,6 +91,11 @@ struct UItemManangementItemTileButton_C_HandleHasItemToCompareDetailsWithChanged
 {
 };
 
+// Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleItemMulchStateChanged
+struct UItemManangementItemTileButton_C_HandleItemMulchStateChanged_Params
+{
+};
+
 // Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleEquipSlotChanged
 struct UItemManangementItemTileButton_C_HandleEquipSlotChanged_Params
 {
@@ -111,6 +111,11 @@ struct UItemManangementItemTileButton_C_OnDragCancelled_Params
 
 // Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.OnSelected
 struct UItemManangementItemTileButton_C_OnSelected_Params
+{
+};
+
+// Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.Construct
+struct UItemManangementItemTileButton_C_Construct_Params
 {
 };
 

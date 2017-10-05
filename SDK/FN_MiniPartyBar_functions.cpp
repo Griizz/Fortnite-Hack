@@ -35,12 +35,17 @@ class UWidget* UMiniPartyBar_C::Get_Banners_Tooltip_Widget()
 
 // Function MiniPartyBar.MiniPartyBar_C.HandlePartybarUIFeatureChanged
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 Feature                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortUIFeatureState            FeatureState                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMiniPartyBar_C::HandlePartybarUIFeatureChanged()
+void UMiniPartyBar_C::HandlePartybarUIFeatureChanged(EFortUIFeature Feature, EFortUIFeatureState FeatureState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MiniPartyBar.MiniPartyBar_C.HandlePartybarUIFeatureChanged");
 
 	UMiniPartyBar_C_HandlePartybarUIFeatureChanged_Params params;
+	params.Feature = Feature;
+	params.FeatureState = FeatureState;
 
 	auto flags = fn->FunctionFlags;
 

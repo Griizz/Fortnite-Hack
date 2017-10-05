@@ -14,6 +14,12 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function SubgameSelectScreen.SubgameSelectScreen_C.IsBusyMatchmakingOrPartyTransitioning
+struct USubgameSelectScreen_C_IsBusyMatchmakingOrPartyTransitioning_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function SubgameSelectScreen.SubgameSelectScreen_C.Update
 struct USubgameSelectScreen_C_Update_Params
 {
@@ -38,10 +44,22 @@ struct USubgameSelectScreen_C_ToggleTimer_Params
 // Function SubgameSelectScreen.SubgameSelectScreen_C.SafeSetSubGame
 struct USubgameSelectScreen_C_SafeSetSubGame_Params
 {
+	ESubGame                                           SubGame;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function SubgameSelectScreen.SubgameSelectScreen_C.SetDescriptionForSubGame
 struct USubgameSelectScreen_C_SetDescriptionForSubGame_Params
+{
+	ESubGame                                           SubGame;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function SubgameSelectScreen.SubgameSelectScreen_C.OnCodeRedeemCanceled_4BE2E0B94F226EFF37B0C4B3DCA8A2CF
+struct USubgameSelectScreen_C_OnCodeRedeemCanceled_4BE2E0B94F226EFF37B0C4B3DCA8A2CF_Params
+{
+};
+
+// Function SubgameSelectScreen.SubgameSelectScreen_C.OnCodeRedeemComplete_4BE2E0B94F226EFF37B0C4B3DCA8A2CF
+struct USubgameSelectScreen_C_OnCodeRedeemComplete_4BE2E0B94F226EFF37B0C4B3DCA8A2CF_Params
 {
 };
 
@@ -120,6 +138,23 @@ struct USubgameSelectScreen_C_OnActivated_Params
 
 // Function SubgameSelectScreen.SubgameSelectScreen_C.CustomEvent_3
 struct USubgameSelectScreen_C_CustomEvent_3_Params
+{
+};
+
+// Function SubgameSelectScreen.SubgameSelectScreen_C.BndEvt__ButtonRedeem_K2Node_ComponentBoundEvent_67_CommonButtonClicked__DelegateSignature
+struct USubgameSelectScreen_C_BndEvt__ButtonRedeem_K2Node_ComponentBoundEvent_67_CommonButtonClicked__DelegateSignature_Params
+{
+	class UCommonButton*                               Button;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function SubgameSelectScreen.SubgameSelectScreen_C.OnRealMoneyPurchaseComleteHandler
+struct USubgameSelectScreen_C_OnRealMoneyPurchaseComleteHandler_Params
+{
+	bool                                               bSuccess;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function SubgameSelectScreen.SubgameSelectScreen_C.Destruct
+struct USubgameSelectScreen_C_Destruct_Params
 {
 };
 

@@ -13,31 +13,31 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum Foliage.EFoliageScaling
-enum class EFoliageScaling
+enum class EFoliageScaling : uint8_t
 {
-	EFoliageScaling__Uniform       = 0,
-	EFoliageScaling__Free          = 1,
-	EFoliageScaling__LockXY        = 2,
-	EFoliageScaling__LockXZ        = 3,
-	EFoliageScaling__LockYZ        = 4,
-	EFoliageScaling__EFoliageScaling_MAX = 5
+	Uniform                        = 0,
+	Free                           = 1,
+	LockXY                         = 2,
+	LockXZ                         = 3,
+	LockYZ                         = 4,
+	EFoliageScaling_MAX            = 5
 };
 
 
 // Enum Foliage.EVertexColorMaskChannel
-enum class EVertexColorMaskChannel
+enum class EVertexColorMaskChannel : uint8_t
 {
-	EVertexColorMaskChannel__Red   = 0,
-	EVertexColorMaskChannel__Green = 1,
-	EVertexColorMaskChannel__Blue  = 2,
-	EVertexColorMaskChannel__Alpha = 3,
-	EVertexColorMaskChannel__MAX_None = 4,
-	EVertexColorMaskChannel__EVertexColorMaskChannel_MAX = 5
+	Red                            = 0,
+	Green                          = 1,
+	Blue                           = 2,
+	Alpha                          = 3,
+	MAX_None                       = 4,
+	EVertexColorMaskChannel_MAX    = 5
 };
 
 
 // Enum Foliage.FoliageVertexColorMask
-enum class EFoliageVertexColorMask
+enum class EFoliageVertexColorMask : uint8_t
 {
 	FOLIAGEVERTEXCOLORMASK_Disabled = 0,
 	FOLIAGEVERTEXCOLORMASK_Red     = 1,
@@ -49,22 +49,22 @@ enum class EFoliageVertexColorMask
 
 
 // Enum Foliage.ESimulationQuery
-enum class ESimulationQuery
+enum class ESimulationQuery : uint8_t
 {
-	ESimulationQuery__CollisionOverlap = 0,
-	ESimulationQuery__ShadeOverlap = 1,
-	ESimulationQuery__AnyOverlap   = 2,
-	ESimulationQuery__ESimulationQuery_MAX = 3
+	CollisionOverlap               = 0,
+	ShadeOverlap                   = 1,
+	AnyOverlap                     = 2,
+	ESimulationQuery_MAX           = 3
 };
 
 
 // Enum Foliage.ESimulationOverlap
-enum class ESimulationOverlap
+enum class ESimulationOverlap : uint8_t
 {
-	ESimulationOverlap__CollisionOverlap = 0,
-	ESimulationOverlap__ShadeOverlap = 1,
-	ESimulationOverlap__None       = 2,
-	ESimulationOverlap__ESimulationOverlap_MAX = 3
+	CollisionOverlap               = 0,
+	ShadeOverlap                   = 1,
+	None                           = 2,
+	ESimulationOverlap_MAX         = 3
 };
 
 
@@ -81,6 +81,7 @@ struct FFoliageVertexColorChannelMask
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
 	float                                              MaskThreshold;                                            // 0x0004(0x0004) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      InvertMask : 1;                                           // 0x0008(0x0001) (CPF_Edit)
+	unsigned char                                      UnknownData01[0x3];                                       // 0x0009(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct Foliage.FoliageTypeObject
@@ -89,7 +90,7 @@ struct FFoliageTypeObject
 {
 	class UObject*                                     FoliageTypeObject;                                        // 0x0000(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFoliageType_InstancedStaticMesh*            TypeInstance;                                             // 0x0008(0x0008) (CPF_ZeroConstructor, CPF_Transient, CPF_IsPlainOldData)
-	unsigned char                                      bIsAsset : 1;                                             // 0x0010(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsAsset;                                                 // 0x0010(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0011(0x0007) MISSED OFFSET
 	class UClass*                                      Type;                                                     // 0x0018(0x0008) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 };

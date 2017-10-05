@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum ActorSequence.EActorSequenceObjectReferenceType
-enum class EActorSequenceObjectReferenceType
+enum class EActorSequenceObjectReferenceType : uint8_t
 {
-	EActorSequenceObjectReferenceType__ContextActor = 0,
-	EActorSequenceObjectReferenceType__ExternalActor = 1,
-	EActorSequenceObjectReferenceType__Component = 2,
-	EActorSequenceObjectReferenceType__EActorSequenceObjectReferenceType_MAX = 3
+	ContextActor                   = 0,
+	ExternalActor                  = 1,
+	Component                      = 2,
+	EActorSequenceObjectReferenceType_MAX = 3
 };
 
 
@@ -31,10 +31,10 @@ enum class EActorSequenceObjectReferenceType
 // 0x0028
 struct FActorSequenceObjectReference
 {
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0000(0x0001) UNKNOWN PROPERTY: EnumProperty ActorSequence.ActorSequenceObjectReference.Type
-	unsigned char                                      UnknownData01[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
+	EActorSequenceObjectReferenceType                  Type;                                                     // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0001(0x0003) MISSED OFFSET
 	struct FGuid                                       ActorId;                                                  // 0x0004(0x0010) (CPF_IsPlainOldData)
-	unsigned char                                      UnknownData02[0x4];                                       // 0x0014(0x0004) MISSED OFFSET
+	unsigned char                                      UnknownData01[0x4];                                       // 0x0014(0x0004) MISSED OFFSET
 	struct FString                                     PathToComponent;                                          // 0x0018(0x0010) (CPF_ZeroConstructor)
 };
 

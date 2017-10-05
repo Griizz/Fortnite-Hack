@@ -171,6 +171,26 @@ void UObjectivesPage_C::Destruct()
 }
 
 
+// Function ObjectivesPage.ObjectivesPage_C.OnActiveGameplayModifiersChanged_Event_1
+// (FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// TArray<class UFortGameplayModifierItemDefinition*> AppliedModifiers               (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+
+void UObjectivesPage_C::OnActiveGameplayModifiersChanged_Event_1(TArray<class UFortGameplayModifierItemDefinition*> AppliedModifiers)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ObjectivesPage.ObjectivesPage_C.OnActiveGameplayModifiersChanged_Event_1");
+
+	UObjectivesPage_C_OnActiveGameplayModifiersChanged_Event_1_Params params;
+	params.AppliedModifiers = AppliedModifiers;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ObjectivesPage.ObjectivesPage_C.ExecuteUbergraph_ObjectivesPage
 // (FUNC_HasDefaults)
 // Parameters:

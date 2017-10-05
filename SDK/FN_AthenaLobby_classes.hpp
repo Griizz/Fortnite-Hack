@@ -74,7 +74,7 @@ public:
 	void OnTeamMemberAdded(const struct FFortTeamMemberInfo& TeamMemberInfo);
 	void Refresh();
 	void Initialize();
-	void DialogResult_156754AE468EF93DCA2009A412591BA7(const struct FName& ResultName);
+	void DialogResult_156754AE468EF93DCA2009A412591BA7(EFortDialogResult Result, const struct FName& ResultName);
 	void BndEvt__SwitcherDetails_K2Node_ComponentBoundEvent_0_OnActiveWidgetChanged__DelegateSignature(class UWidget* ActiveWidget, int ActiveWidgetIndex);
 	void Event_Abandon();
 	void OnEndCursorOverPlayer(int* PlayerIndex);

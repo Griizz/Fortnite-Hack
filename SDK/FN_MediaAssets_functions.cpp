@@ -292,14 +292,16 @@ void UMediaPlayer::SetDesiredPlayerName(const struct FName& PlayerName)
 // Function MediaAssets.MediaPlayer.SelectTrack
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable)
 // Parameters:
+// EMediaPlayerTrack              TrackType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            TrackIndex                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-bool UMediaPlayer::SelectTrack(int TrackIndex)
+bool UMediaPlayer::SelectTrack(EMediaPlayerTrack TrackType, int TrackIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MediaAssets.MediaPlayer.SelectTrack");
 
 	UMediaPlayer_SelectTrack_Params params;
+	params.TrackType = TrackType;
 	params.TrackIndex = TrackIndex;
 
 	auto flags = fn->FunctionFlags;
@@ -726,14 +728,16 @@ struct FString UMediaPlayer::GetUrl()
 // Function MediaAssets.MediaPlayer.GetTrackLanguage
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
 // Parameters:
+// EMediaPlayerTrack              TrackType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            TrackIndex                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FString                 ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 
-struct FString UMediaPlayer::GetTrackLanguage(int TrackIndex)
+struct FString UMediaPlayer::GetTrackLanguage(EMediaPlayerTrack TrackType, int TrackIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MediaAssets.MediaPlayer.GetTrackLanguage");
 
 	UMediaPlayer_GetTrackLanguage_Params params;
+	params.TrackType = TrackType;
 	params.TrackIndex = TrackIndex;
 
 	auto flags = fn->FunctionFlags;
@@ -750,14 +754,16 @@ struct FString UMediaPlayer::GetTrackLanguage(int TrackIndex)
 // Function MediaAssets.MediaPlayer.GetTrackDisplayName
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
 // Parameters:
+// EMediaPlayerTrack              TrackType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            TrackIndex                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FText                   ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 
-struct FText UMediaPlayer::GetTrackDisplayName(int TrackIndex)
+struct FText UMediaPlayer::GetTrackDisplayName(EMediaPlayerTrack TrackType, int TrackIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MediaAssets.MediaPlayer.GetTrackDisplayName");
 
 	UMediaPlayer_GetTrackDisplayName_Params params;
+	params.TrackType = TrackType;
 	params.TrackIndex = TrackIndex;
 
 	auto flags = fn->FunctionFlags;
@@ -796,13 +802,15 @@ struct FTimespan UMediaPlayer::GetTime()
 // Function MediaAssets.MediaPlayer.GetSelectedTrack
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
 // Parameters:
+// EMediaPlayerTrack              TrackType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-int UMediaPlayer::GetSelectedTrack()
+int UMediaPlayer::GetSelectedTrack(EMediaPlayerTrack TrackType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MediaAssets.MediaPlayer.GetSelectedTrack");
 
 	UMediaPlayer_GetSelectedTrack_Params params;
+	params.TrackType = TrackType;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;
@@ -886,13 +894,15 @@ struct FName UMediaPlayer::GetPlayerName()
 // Function MediaAssets.MediaPlayer.GetNumTracks
 // (FUNC_Final, FUNC_Native, FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintPure, FUNC_Const)
 // Parameters:
+// EMediaPlayerTrack              TrackType                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            ReturnValue                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 
-int UMediaPlayer::GetNumTracks()
+int UMediaPlayer::GetNumTracks(EMediaPlayerTrack TrackType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MediaAssets.MediaPlayer.GetNumTracks");
 
 	UMediaPlayer_GetNumTracks_Params params;
+	params.TrackType = TrackType;
 
 	auto flags = fn->FunctionFlags;
 	fn->FunctionFlags |= 0x400;

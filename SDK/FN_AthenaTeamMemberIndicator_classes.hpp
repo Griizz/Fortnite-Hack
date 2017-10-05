@@ -30,8 +30,8 @@ public:
 	}
 
 
-	void On_Team_Reviving_Changed(TArray<unsigned char>* Team_Reviving);
-	void On_Team_DBNO_Changed(TArray<unsigned char>* DBNOStates);
+	void On_Team_Reviving_Changed(TArray<bool>* Team_Reviving);
+	void On_Team_DBNO_Changed(TArray<bool>* DBNOStates);
 	void Construct();
 	void Tick(struct FGeometry* MyGeometry, float* InDeltaTime);
 	void Destruct();

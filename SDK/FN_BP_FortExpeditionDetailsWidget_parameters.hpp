@@ -19,6 +19,7 @@ struct UBP_FortExpeditionDetailsWidget_C_Get_Bonus_Display_Name_and_Brush_Params
 {
 	struct FGameplayTag                                Tag;                                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 	bool                                               Condition;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortRarity                                        Rarity;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FSlateBrush                                 OutBrush_Brush_M;                                         // (CPF_Parm, CPF_OutParm)
 	struct FText                                       OutDisplayName;                                           // (CPF_Parm, CPF_OutParm)
 	struct FLinearColor                                OutRarityColor;                                           // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
@@ -110,6 +111,7 @@ struct UBP_FortExpeditionDetailsWidget_C_Refresh_Item_Data_Params
 // Function BP_FortExpeditionDetailsWidget.BP_FortExpeditionDetailsWidget_C.DialogResult_11B7688B48FDD9A59A2D55A7B4F60124
 struct UBP_FortExpeditionDetailsWidget_C_DialogResult_11B7688B48FDD9A59A2D55A7B4F60124_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWaitingForLatentActionCompletion;                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortDialogExternalLatentActionHandle       WaitingDialogHandle;                                      // (CPF_Parm)

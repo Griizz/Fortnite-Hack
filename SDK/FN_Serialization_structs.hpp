@@ -35,8 +35,8 @@ struct FStructSerializerNumericTestStruct
 // 0x0008
 struct FStructSerializerBooleanTestStruct
 {
-	unsigned char                                      BoolFalse : 1;                                            // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      BoolTrue : 1;                                             // 0x0001(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               BoolFalse;                                                // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               BoolTrue;                                                 // 0x0001(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x2];                                       // 0x0002(0x0002) MISSED OFFSET
 	uint32_t                                           Bitfield;                                                 // 0x0004(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -60,6 +60,7 @@ struct FStructSerializerBuiltinTestStruct
 	unsigned char                                      UnknownData00[0x4];                                       // 0x0034(0x0004) MISSED OFFSET
 	struct FText                                       Text;                                                     // 0x0038(0x0018)
 	struct FVector                                     Vector;                                                   // 0x0050(0x000C) (CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x4];                                       // 0x005C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct Serialization.StructSerializerArrayTestStruct

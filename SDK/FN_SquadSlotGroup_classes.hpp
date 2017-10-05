@@ -26,11 +26,11 @@ public:
 	struct FText                                       GroupLabelText;                                           // 0x0268(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	struct FMargin                                     SquadSlotPadding;                                         // 0x0280(0x0010) (CPF_Edit, CPF_BlueprintVisible)
 	float                                              HeadingWidth;                                             // 0x0290(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bShowHeader : 1;                                          // 0x0294(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bShowHeader;                                              // 0x0294(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0295(0x0003) MISSED OFFSET
 	struct FText                                       TooltipDescription;                                       // 0x0298(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	struct FText                                       TooltipHeader;                                            // 0x02B0(0x0018) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      bShowImageInHeader : 1;                                   // 0x02C8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bShowImageInHeader;                                       // 0x02C8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x02C9(0x0007) MISSED OFFSET
 	struct FSlateBrush                                 HeaderImageBrush;                                         // 0x02D0(0x0090) (CPF_Edit, CPF_BlueprintVisible)
 	struct FScriptMulticastDelegate                    HandleMouseEnter;                                         // 0x0360(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)

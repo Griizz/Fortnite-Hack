@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum CoreUObject.EInterpCurveMode
-enum class EInterpCurveMode
+enum class EInterpCurveMode : uint8_t
 {
 	CIM_Linear                     = 0,
 	CIM_CurveAuto                  = 1,
@@ -26,94 +26,94 @@ enum class EInterpCurveMode
 
 
 // Enum CoreUObject.ERangeBoundTypes
-enum class ERangeBoundTypes
+enum class ERangeBoundTypes : uint8_t
 {
-	ERangeBoundTypes__Exclusive    = 0,
-	ERangeBoundTypes__Inclusive    = 1,
-	ERangeBoundTypes__Open         = 2,
-	ERangeBoundTypes__ERangeBoundTypes_MAX = 3
+	Exclusive                      = 0,
+	Inclusive                      = 1,
+	Open                           = 2,
+	ERangeBoundTypes_MAX           = 3
 };
 
 
 // Enum CoreUObject.EUnit
-enum class EUnit
+enum class EUnit : uint8_t
 {
-	EUnit__Micrometers             = 0,
-	EUnit__Millimeters             = 1,
-	EUnit__Centimeters             = 2,
-	EUnit__Meters                  = 3,
-	EUnit__Kilometers              = 4,
-	EUnit__Inches                  = 5,
-	EUnit__Feet                    = 6,
-	EUnit__Yards                   = 7,
-	EUnit__Miles                   = 8,
-	EUnit__Lightyears              = 9,
-	EUnit__Degrees                 = 10,
-	EUnit__Radians                 = 11,
-	EUnit__MetersPerSecond         = 12,
-	EUnit__KilometersPerHour       = 13,
-	EUnit__MilesPerHour            = 14,
-	EUnit__Celsius                 = 15,
-	EUnit__Farenheit               = 16,
-	EUnit__Kelvin                  = 17,
-	EUnit__Micrograms              = 18,
-	EUnit__Milligrams              = 19,
-	EUnit__Grams                   = 20,
-	EUnit__Kilograms               = 21,
-	EUnit__MetricTons              = 22,
-	EUnit__Ounces                  = 23,
-	EUnit__Pounds                  = 24,
-	EUnit__Stones                  = 25,
-	EUnit__Newtons                 = 26,
-	EUnit__PoundsForce             = 27,
-	EUnit__KilogramsForce          = 28,
-	EUnit__Hertz                   = 29,
-	EUnit__Kilohertz               = 30,
-	EUnit__Megahertz               = 31,
-	EUnit__Gigahertz               = 32,
-	EUnit__RevolutionsPerMinute    = 33,
-	EUnit__Bytes                   = 34,
-	EUnit__Kilobytes               = 35,
-	EUnit__Megabytes               = 36,
-	EUnit__Gigabytes               = 37,
-	EUnit__Terabytes               = 38,
-	EUnit__Lumens                  = 39,
-	EUnit__Milliseconds            = 40,
-	EUnit__Seconds                 = 41,
-	EUnit__Minutes                 = 42,
-	EUnit__Hours                   = 43,
-	EUnit__Days                    = 44,
-	EUnit__Months                  = 45,
-	EUnit__Years                   = 46,
-	EUnit__Multiplier              = 47,
-	EUnit__Unspecified             = 48,
-	EUnit__EUnit_MAX               = 49
+	Micrometers                    = 0,
+	Millimeters                    = 1,
+	Centimeters                    = 2,
+	Meters                         = 3,
+	Kilometers                     = 4,
+	Inches                         = 5,
+	Feet                           = 6,
+	Yards                          = 7,
+	Miles                          = 8,
+	Lightyears                     = 9,
+	Degrees                        = 10,
+	Radians                        = 11,
+	MetersPerSecond                = 12,
+	KilometersPerHour              = 13,
+	MilesPerHour                   = 14,
+	Celsius                        = 15,
+	Farenheit                      = 16,
+	Kelvin                         = 17,
+	Micrograms                     = 18,
+	Milligrams                     = 19,
+	Grams                          = 20,
+	Kilograms                      = 21,
+	MetricTons                     = 22,
+	Ounces                         = 23,
+	Pounds                         = 24,
+	Stones                         = 25,
+	Newtons                        = 26,
+	PoundsForce                    = 27,
+	KilogramsForce                 = 28,
+	Hertz                          = 29,
+	Kilohertz                      = 30,
+	Megahertz                      = 31,
+	Gigahertz                      = 32,
+	RevolutionsPerMinute           = 33,
+	Bytes                          = 34,
+	Kilobytes                      = 35,
+	Megabytes                      = 36,
+	Gigabytes                      = 37,
+	Terabytes                      = 38,
+	Lumens                         = 39,
+	Milliseconds                   = 40,
+	Seconds                        = 41,
+	Minutes                        = 42,
+	Hours                          = 43,
+	Days                           = 44,
+	Months                         = 45,
+	Years                          = 46,
+	Multiplier                     = 47,
+	Unspecified                    = 48,
+	EUnit_MAX                      = 49
 };
 
 
 // Enum CoreUObject.EMouseCursor
-enum class EMouseCursor
+enum class EMouseCursor : uint8_t
 {
-	EMouseCursor__None             = 0,
-	EMouseCursor__Default          = 1,
-	EMouseCursor__TextEditBeam     = 2,
-	EMouseCursor__ResizeLeftRight  = 3,
-	EMouseCursor__ResizeUpDown     = 4,
-	EMouseCursor__ResizeSouthEast  = 5,
-	EMouseCursor__ResizeSouthWest  = 6,
-	EMouseCursor__CardinalCross    = 7,
-	EMouseCursor__Crosshairs       = 8,
-	EMouseCursor__Hand             = 9,
-	EMouseCursor__GrabHand         = 10,
-	EMouseCursor__GrabHandClosed   = 11,
-	EMouseCursor__SlashedCircle    = 12,
-	EMouseCursor__EyeDropper       = 13,
-	EMouseCursor__EMouseCursor_MAX = 14
+	None                           = 0,
+	Default                        = 1,
+	TextEditBeam                   = 2,
+	ResizeLeftRight                = 3,
+	ResizeUpDown                   = 4,
+	ResizeSouthEast                = 5,
+	ResizeSouthWest                = 6,
+	CardinalCross                  = 7,
+	Crosshairs                     = 8,
+	Hand                           = 9,
+	GrabHand                       = 10,
+	GrabHandClosed                 = 11,
+	SlashedCircle                  = 12,
+	EyeDropper                     = 13,
+	EMouseCursor_MAX               = 14
 };
 
 
 // Enum CoreUObject.EPixelFormat
-enum class EPixelFormat
+enum class EPixelFormat : uint8_t
 {
 	PF_Unknown                     = 0,
 	PF_A32B32G32R32F               = 1,
@@ -177,46 +177,46 @@ enum class EPixelFormat
 
 
 // Enum CoreUObject.EAxis
-enum class EAxis
+enum class EAxis : uint8_t
 {
-	EAxis__None                    = 0,
-	EAxis__X                       = 1,
-	EAxis__Y                       = 2,
-	EAxis__Z                       = 3,
-	EAxis__EAxis_MAX               = 4
+	None                           = 0,
+	X                              = 1,
+	Y                              = 2,
+	Z                              = 3,
+	EAxis_MAX                      = 4
 };
 
 
 // Enum CoreUObject.ELogTimes
-enum class ELogTimes
+enum class ELogTimes : uint8_t
 {
-	ELogTimes__None                = 0,
-	ELogTimes__UTC                 = 1,
-	ELogTimes__SinceGStartTime     = 2,
-	ELogTimes__ELogTimes_MAX       = 3
+	None                           = 0,
+	UTC                            = 1,
+	SinceGStartTime                = 2,
+	ELogTimes_MAX                  = 3
 };
 
 
 // Enum CoreUObject.ESearchDir
-enum class ESearchDir
+enum class ESearchDir : uint8_t
 {
-	ESearchDir__FromStart          = 0,
-	ESearchDir__FromEnd            = 1,
-	ESearchDir__ESearchDir_MAX     = 2
+	FromStart                      = 0,
+	FromEnd                        = 1,
+	ESearchDir_MAX                 = 2
 };
 
 
 // Enum CoreUObject.ESearchCase
-enum class ESearchCase
+enum class ESearchCase : uint8_t
 {
-	ESearchCase__CaseSensitive     = 0,
-	ESearchCase__IgnoreCase        = 1,
-	ESearchCase__ESearchCase_MAX   = 2
+	CaseSensitive                  = 0,
+	IgnoreCase                     = 1,
+	ESearchCase_MAX                = 2
 };
 
 
 // Enum CoreUObject.ELifetimeCondition
-enum class ELifetimeCondition
+enum class ELifetimeCondition : uint8_t
 {
 	COND_None                      = 0,
 	COND_InitialOnly               = 1,
@@ -246,19 +246,20 @@ enum class ELifetimeCondition
 struct FJoinabilitySettings
 {
 	struct FName                                       SessionName;                                              // 0x0000(0x0008) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bPublicSearchable : 1;                                    // 0x0008(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bAllowInvites : 1;                                        // 0x0009(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bJoinViaPresence : 1;                                     // 0x000A(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bJoinViaPresenceFriendsOnly : 1;                          // 0x000B(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bPublicSearchable;                                        // 0x0008(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bAllowInvites;                                            // 0x0009(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bJoinViaPresence;                                         // 0x000A(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bJoinViaPresenceFriendsOnly;                              // 0x000B(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                MaxPlayers;                                               // 0x000C(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                MaxPartySize;                                             // 0x0010(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0014(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.UniqueNetIdWrapper
 // 0x0001
 struct FUniqueNetIdWrapper
 {
-
+	unsigned char                                      UnknownData00[0x1];                                       // 0x0000(0x0001) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.Guid
@@ -423,6 +424,7 @@ struct FBox
 	struct FVector                                     Min;                                                      // 0x0000(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_SaveGame, CPF_IsPlainOldData)
 	struct FVector                                     Max;                                                      // 0x000C(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_SaveGame, CPF_IsPlainOldData)
 	unsigned char                                      IsValid;                                                  // 0x0018(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0019(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.Box2D
@@ -432,6 +434,7 @@ struct FBox2D
 	struct FVector2D                                   Min;                                                      // 0x0000(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_SaveGame, CPF_IsPlainOldData)
 	struct FVector2D                                   Max;                                                      // 0x0008(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_SaveGame, CPF_IsPlainOldData)
 	unsigned char                                      IsValid;                                                  // 0x0010(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.BoxSphereBounds
@@ -475,6 +478,7 @@ struct FInterpCurvePointFloat
 	float                                              ArriveTangent;                                            // 0x0008(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              LeaveTangent;                                             // 0x000C(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TEnumAsByte<EInterpCurveMode>                      InterpMode;                                               // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.InterpCurveFloat
@@ -482,7 +486,7 @@ struct FInterpCurvePointFloat
 struct FInterpCurveFloat
 {
 	TArray<struct FInterpCurvePointFloat>              Points;                                                   // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      bIsLooped : 1;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsLooped;                                                // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 	float                                              LoopKeyOffset;                                            // 0x0014(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -496,6 +500,7 @@ struct FInterpCurvePointVector2D
 	struct FVector2D                                   ArriveTangent;                                            // 0x000C(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	struct FVector2D                                   LeaveTangent;                                             // 0x0014(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	TEnumAsByte<EInterpCurveMode>                      InterpMode;                                               // 0x001C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x001D(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.InterpCurveVector2D
@@ -503,7 +508,7 @@ struct FInterpCurvePointVector2D
 struct FInterpCurveVector2D
 {
 	TArray<struct FInterpCurvePointVector2D>           Points;                                                   // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      bIsLooped : 1;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsLooped;                                                // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 	float                                              LoopKeyOffset;                                            // 0x0014(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -517,6 +522,7 @@ struct FInterpCurvePointVector
 	struct FVector                                     ArriveTangent;                                            // 0x0010(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	struct FVector                                     LeaveTangent;                                             // 0x001C(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	TEnumAsByte<EInterpCurveMode>                      InterpMode;                                               // 0x0028(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0029(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.InterpCurveVector
@@ -524,7 +530,7 @@ struct FInterpCurvePointVector
 struct FInterpCurveVector
 {
 	TArray<struct FInterpCurvePointVector>             Points;                                                   // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      bIsLooped : 1;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsLooped;                                                // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 	float                                              LoopKeyOffset;                                            // 0x0014(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -547,7 +553,7 @@ struct FInterpCurvePointQuat
 struct FInterpCurveQuat
 {
 	TArray<struct FInterpCurvePointQuat>               Points;                                                   // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      bIsLooped : 1;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsLooped;                                                // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 	float                                              LoopKeyOffset;                                            // 0x0014(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -561,6 +567,7 @@ struct FInterpCurvePointTwoVectors
 	struct FTwoVectors                                 ArriveTangent;                                            // 0x001C(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	struct FTwoVectors                                 LeaveTangent;                                             // 0x0034(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	TEnumAsByte<EInterpCurveMode>                      InterpMode;                                               // 0x004C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x004D(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.InterpCurveTwoVectors
@@ -568,7 +575,7 @@ struct FInterpCurvePointTwoVectors
 struct FInterpCurveTwoVectors
 {
 	TArray<struct FInterpCurvePointTwoVectors>         Points;                                                   // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      bIsLooped : 1;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsLooped;                                                // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 	float                                              LoopKeyOffset;                                            // 0x0014(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -582,6 +589,7 @@ struct FInterpCurvePointLinearColor
 	struct FLinearColor                                ArriveTangent;                                            // 0x0014(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	struct FLinearColor                                LeaveTangent;                                             // 0x0024(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
 	TEnumAsByte<EInterpCurveMode>                      InterpMode;                                               // 0x0034(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x3];                                       // 0x0035(0x0003) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.InterpCurveLinearColor
@@ -589,7 +597,7 @@ struct FInterpCurvePointLinearColor
 struct FInterpCurveLinearColor
 {
 	TArray<struct FInterpCurvePointLinearColor>        Points;                                                   // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor)
-	unsigned char                                      bIsLooped : 1;                                            // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsLooped;                                                // 0x0010(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0011(0x0003) MISSED OFFSET
 	float                                              LoopKeyOffset;                                            // 0x0014(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -602,6 +610,7 @@ struct alignas(16) FTransform
 	struct FVector                                     Translation;                                              // 0x0010(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_SaveGame, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x4];                                       // 0x001C(0x0004) MISSED OFFSET
 	struct FVector                                     Scale3D;                                                  // 0x0020(0x000C) (CPF_Edit, CPF_BlueprintVisible, CPF_SaveGame, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x4];                                       // 0x002C(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.RandomStream
@@ -659,7 +668,7 @@ struct FPrimaryAssetId
 // 0x0001
 struct FFallbackStruct
 {
-
+	unsigned char                                      UnknownData00[0x1];                                       // 0x0000(0x0001) MISSED OFFSET
 };
 
 // ScriptStruct CoreUObject.FloatRangeBound

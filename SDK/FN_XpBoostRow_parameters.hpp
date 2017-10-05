@@ -46,12 +46,14 @@ struct UXpBoostRow_C_OnMCPRequestComplete_13866D8D449A2AA167E306B6A172BD62_Param
 // Function XpBoostRow.XpBoostRow_C.DialogResult_9BF60C804C82DAA0C1A2839132130883
 struct UXpBoostRow_C_DialogResult_9BF60C804C82DAA0C1A2839132130883_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function XpBoostRow.XpBoostRow_C.DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0
 struct UXpBoostRow_C_DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -75,7 +77,7 @@ struct UXpBoostRow_C_ExecuteUbergraph_XpBoostRow_Params
 // Function XpBoostRow.XpBoostRow_C.Give Boost Clicked__DelegateSignature
 struct UXpBoostRow_C_Give_Boost_Clicked__DelegateSignature_Params
 {
-	struct FUniqueNetIdRepl                            Player_to_Boost;                                          // (CPF_Parm)
+	struct FUniqueNetIdRepl                            Player_To_Boost;                                          // (CPF_Parm)
 };
 
 }

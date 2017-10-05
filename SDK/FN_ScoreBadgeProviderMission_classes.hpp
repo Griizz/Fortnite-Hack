@@ -25,8 +25,8 @@ public:
 	}
 
 
-	void GetTotalScore(int* Score);
-	void GetScoreBadgeInfos(TArray<struct FCollectionMissionBadgeDisplayInfo>* BadgeInfos);
+	void GetTotalScore(EStatCategory ScoreCategory, int* Score);
+	void GetScoreBadgeInfos(EStatCategory ScoreCategory, TArray<struct FCollectionMissionBadgeDisplayInfo>* BadgeInfos);
 };
 
 

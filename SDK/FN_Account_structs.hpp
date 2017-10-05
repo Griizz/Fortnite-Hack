@@ -13,61 +13,61 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum Account.ECreateAccountResult
-enum class ECreateAccountResult
+enum class ECreateAccountResult : uint8_t
 {
-	ECreateAccountResult__NotStarted = 0,
-	ECreateAccountResult__Pending  = 1,
-	ECreateAccountResult__Success  = 2,
-	ECreateAccountResult__Console_LoginFailed = 3,
-	ECreateAccountResult__Console_DuplicateAuthAssociation = 4,
-	ECreateAccountResult__DuplicateAccount = 5,
-	ECreateAccountResult__GenericError = 6,
-	ECreateAccountResult__ECreateAccountResult_MAX = 7
+	NotStarted                     = 0,
+	Pending                        = 1,
+	Success                        = 2,
+	Console_LoginFailed            = 3,
+	Console_DuplicateAuthAssociation = 4,
+	DuplicateAccount               = 5,
+	GenericError                   = 6,
+	ECreateAccountResult_MAX       = 7
 };
 
 
 // Enum Account.ELoginResult
-enum class ELoginResult
+enum class ELoginResult : uint8_t
 {
-	ELoginResult__NotStarted       = 0,
-	ELoginResult__Pending          = 1,
-	ELoginResult__Success          = 2,
-	ELoginResult__Console_LoginFailed = 3,
-	ELoginResult__Console_AuthFailed = 4,
-	ELoginResult__Console_MissingAuthAssociation = 5,
-	ELoginResult__Console_DuplicateAuthAssociation = 6,
-	ELoginResult__Console_AddedAuthAssociation = 7,
-	ELoginResult__Console_AuthAssociationFailure = 8,
-	ELoginResult__Console_NotEntitled = 9,
-	ELoginResult__Console_EntitlementCheckFailed = 10,
-	ELoginResult__Console_PrivilegeCheck = 11,
-	ELoginResult__Console_PatchOrUpdateRequired = 12,
-	ELoginResult__AuthFailed       = 13,
-	ELoginResult__PlatformNotAllowed = 14,
-	ELoginResult__NotEntitled      = 15,
-	ELoginResult__Banned           = 16,
-	ELoginResult__EULACheckFailed  = 17,
-	ELoginResult__ServiceUnavailable = 18,
-	ELoginResult__GenericError     = 19,
-	ELoginResult__RejoinCheckFailure = 20,
-	ELoginResult__ConnectionFailed = 21,
-	ELoginResult__FailedToCreateParty = 22,
-	ELoginResult__ProfileQueryFailed = 23,
-	ELoginResult__ClientSettingsDownloadFailed = 24,
-	ELoginResult__ELoginResult_MAX = 25
+	NotStarted                     = 0,
+	Pending                        = 1,
+	Success                        = 2,
+	Console_LoginFailed            = 3,
+	Console_AuthFailed             = 4,
+	Console_MissingAuthAssociation = 5,
+	Console_DuplicateAuthAssociation = 6,
+	Console_AddedAuthAssociation   = 7,
+	Console_AuthAssociationFailure = 8,
+	Console_NotEntitled            = 9,
+	Console_EntitlementCheckFailed = 10,
+	Console_PrivilegeCheck         = 11,
+	Console_PatchOrUpdateRequired  = 12,
+	AuthFailed                     = 13,
+	PlatformNotAllowed             = 14,
+	NotEntitled                    = 15,
+	Banned                         = 16,
+	EULACheckFailed                = 17,
+	ServiceUnavailable             = 18,
+	GenericError                   = 19,
+	RejoinCheckFailure             = 20,
+	ConnectionFailed               = 21,
+	FailedToCreateParty            = 22,
+	ProfileQueryFailed             = 23,
+	ClientSettingsDownloadFailed   = 24,
+	ELoginResult_MAX               = 25
 };
 
 
 // Enum Account.EConsoleAuthLinkState
-enum class EConsoleAuthLinkState
+enum class EConsoleAuthLinkState : uint8_t
 {
-	EConsoleAuthLinkState__NotOnConsole = 0,
-	EConsoleAuthLinkState__ConsoleNotLoggedIn = 1,
-	EConsoleAuthLinkState__EpicNotLoggedIn = 2,
-	EConsoleAuthLinkState__ThisEpicAccountLinked = 3,
-	EConsoleAuthLinkState__OtherEpicAccountLinked = 4,
-	EConsoleAuthLinkState__NoEpicAccountLinked = 5,
-	EConsoleAuthLinkState__EConsoleAuthLinkState_MAX = 6
+	NotOnConsole                   = 0,
+	ConsoleNotLoggedIn             = 1,
+	EpicNotLoggedIn                = 2,
+	ThisEpicAccountLinked          = 3,
+	OtherEpicAccountLinked         = 4,
+	NoEpicAccountLinked            = 5,
+	EConsoleAuthLinkState_MAX      = 6
 };
 
 

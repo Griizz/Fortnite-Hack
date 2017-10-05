@@ -17,6 +17,7 @@ namespace SDK
 // Function CollectionBookSectionRewardWidget.CollectionBookSectionRewardWidget_C.OnRewardStatusChanged
 struct UCollectionBookSectionRewardWidget_C_OnRewardStatusChanged_Params
 {
+	ECollectionBookRewardStatus*                       NewStatus;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CollectionBookSectionRewardWidget.CollectionBookSectionRewardWidget_C.ExecuteUbergraph_CollectionBookSectionRewardWidget

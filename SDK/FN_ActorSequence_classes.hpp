@@ -36,7 +36,8 @@ public:
 	struct FMovieSceneSequencePlaybackSettings         PlaybackSettings;                                         // 0x00F0(0x0028) (CPF_Edit)
 	class UActorSequence*                              Sequence;                                                 // 0x0118(0x0008) (CPF_Edit, CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	class UActorSequencePlayer*                        SequencePlayer;                                           // 0x0120(0x0008) (CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_Transient, CPF_IsPlainOldData)
-	unsigned char                                      bAutoPlay : 1;                                            // 0x0128(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bAutoPlay;                                                // 0x0128(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0129(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

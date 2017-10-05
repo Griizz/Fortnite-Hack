@@ -37,6 +37,7 @@ struct UItemTooltipContent_C_SetDescriptionText_Params
 // Function ItemTooltipContent.ItemTooltipContent_C.Create Custom Integer Stat
 struct UItemTooltipContent_C_Create_Custom_Integer_Stat_Params
 {
+	EFortStatValueDisplayType                          Display_Type;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       Label;                                                    // (CPF_Parm)
 	int                                                Value;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Comparison_Value;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)

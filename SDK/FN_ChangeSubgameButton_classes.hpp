@@ -31,7 +31,7 @@ public:
 	}
 
 
-	void DialogResult_3A1F478D47C301F9F1E029927174E059(const struct FName& ResultName);
+	void DialogResult_3A1F478D47C301F9F1E029927174E059(EFortDialogResult Result, const struct FName& ResultName);
 	void Construct();
 	void BndEvt__Leave_K2Node_ComponentBoundEvent_90_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void Destruct();

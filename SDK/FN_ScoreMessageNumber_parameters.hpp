@@ -39,6 +39,7 @@ struct UScoreMessageNumber_C_ExecuteUbergraph_ScoreMessageNumber_Params
 // Function ScoreMessageNumber.ScoreMessageNumber_C.OnScoreValueSet__DelegateSignature
 struct UScoreMessageNumber_C_OnScoreValueSet__DelegateSignature_Params
 {
+	EStatCategory                                      ChangedScoreCategory;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 }

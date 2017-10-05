@@ -24,14 +24,14 @@ public:
 	struct FDataTableRowHandle                         AbandonExpeditionAction;                                  // 0x0490(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FDataTableRowHandle                         CollectExpeditionAction;                                  // 0x04A0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FDataTableRowHandle                         SortInputAction;                                          // 0x04B0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      bRewardsShowing : 1;                                      // 0x04C0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bRewardsShowing;                                          // 0x04C0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x04C1(0x0007) MISSED OFFSET
 	class UFrontEndRewards_Widget_C*                   RewardsWidget;                                            // 0x04C8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	TArray<class UFortExpeditionItem*>                 CompletedExpeditions;                                     // 0x04D0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	struct FFrontEndRewards_Definition                 RewardsDefinition;                                        // 0x04E0(0x0048) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	unsigned char                                      UnknownData01[0x1];                                       // 0x0528(0x0001) UNKNOWN PROPERTY: EnumProperty BP_FortExpeditionMasterWidget.BP_FortExpeditionMasterWidget_C.ExpeditionListSortType
-	unsigned char                                      UnknownData02[0x1];                                       // 0x0529(0x0001) UNKNOWN PROPERTY: EnumProperty BP_FortExpeditionMasterWidget.BP_FortExpeditionMasterWidget_C.ExpeditionListSortBegin
-	unsigned char                                      UnknownData03[0x1];                                       // 0x052A(0x0001) UNKNOWN PROPERTY: EnumProperty BP_FortExpeditionMasterWidget.BP_FortExpeditionMasterWidget_C.ExpeditionListSortEnd
+	EFortExpeditionListSort                            ExpeditionListSortType;                                   // 0x0528(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	EFortExpeditionListSort                            ExpeditionListSortBegin;                                  // 0x0529(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	EFortExpeditionListSort                            ExpeditionListSortEnd;                                    // 0x052A(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{

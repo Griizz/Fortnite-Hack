@@ -17,14 +17,14 @@ namespace SDK
 // Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.RefreshReadyState
 struct ULobbyPlayerPadTop_C_RefreshReadyState_Params
 {
-	bool                                               bReady;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               Ready;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnAthenaReadyStateChanged
 struct ULobbyPlayerPadTop_C_OnAthenaReadyStateChanged_Params
 {
-	struct FUniqueNetIdRepl                            MemberId;                                                 // (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	bool                                               bReady;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FUniqueNetIdRepl                            Member_Id;                                                // (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	bool                                               Ready;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyPlayerUnhovered
@@ -75,6 +75,28 @@ struct ULobbyPlayerPadTop_C_RefreshHomeBasePower_Params
 struct ULobbyPlayerPadTop_C_PreConstruct_Params
 {
 	bool*                                              IsDesignTime;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.Construct
+struct ULobbyPlayerPadTop_C_Construct_Params
+{
+};
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyStarted
+struct ULobbyPlayerPadTop_C_OnLobbyStarted_Params
+{
+};
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnUpdateLobbyPlayerPadTop
+struct ULobbyPlayerPadTop_C_OnUpdateLobbyPlayerPadTop_Params
+{
+	struct FUniqueNetIdRepl                            PlayerNetId;                                              // (CPF_Parm)
+	bool                                               bIsReady;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.OnLobbyDisconnected
+struct ULobbyPlayerPadTop_C_OnLobbyDisconnected_Params
+{
 };
 
 // Function LobbyPlayerPadTop.LobbyPlayerPadTop_C.ExecuteUbergraph_LobbyPlayerPadTop

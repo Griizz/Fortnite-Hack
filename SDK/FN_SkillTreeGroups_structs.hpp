@@ -13,14 +13,14 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum SkillTreeGroups.SkillTreeGroups
-enum class ESkillTreeGroups
+enum class ESkillTreeGroups : uint8_t
 {
-	SkillTreeGroups__NewEnumerator0 = 0,
-	SkillTreeGroups__NewEnumerator1 = 1,
-	SkillTreeGroups__NewEnumerator2 = 2,
-	SkillTreeGroups__NewEnumerator3 = 3,
-	SkillTreeGroups__NewEnumerator4 = 4,
-	SkillTreeGroups__SkillTreeGroups_MAX = 5
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	NewEnumerator3                 = 3,
+	NewEnumerator4                 = 4,
+	SkillTreeGroups_MAX            = 5
 };
 
 

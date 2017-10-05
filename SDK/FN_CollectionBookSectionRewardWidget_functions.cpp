@@ -14,12 +14,15 @@ namespace SDK
 
 // Function CollectionBookSectionRewardWidget.CollectionBookSectionRewardWidget_C.OnRewardStatusChanged
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+// Parameters:
+// ECollectionBookRewardStatus*   NewStatus                      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCollectionBookSectionRewardWidget_C::OnRewardStatusChanged()
+void UCollectionBookSectionRewardWidget_C::OnRewardStatusChanged(ECollectionBookRewardStatus* NewStatus)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CollectionBookSectionRewardWidget.CollectionBookSectionRewardWidget_C.OnRewardStatusChanged");
 
 	UCollectionBookSectionRewardWidget_C_OnRewardStatusChanged_Params params;
+	params.NewStatus = NewStatus;
 
 	auto flags = fn->FunctionFlags;
 

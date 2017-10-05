@@ -41,7 +41,7 @@ public:
 	class UMovieSceneTrack*                            CameraCutTrack;                                           // 0x00F0(0x0008) (CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FFloatRange                                 SelectionRange;                                           // 0x00F8(0x0010)
 	struct FFloatRange                                 PlaybackRange;                                            // 0x0108(0x0010)
-	unsigned char                                      bForceFixedFrameIntervalPlayback : 1;                     // 0x0118(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bForceFixedFrameIntervalPlayback;                         // 0x0118(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x3];                                       // 0x0119(0x0003) MISSED OFFSET
 	float                                              FixedFrameInterval;                                       // 0x011C(0x0004) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              InTime;                                                   // 0x0120(0x0004) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
@@ -223,7 +223,7 @@ class UMovieSceneSequence : public UMovieSceneSignedObject
 public:
 	struct FCachedMovieSceneEvaluationTemplate         EvaluationTemplate;                                       // 0x00B0(0x0220)
 	struct FMovieSceneTrackCompilationParams           TemplateParameters;                                       // 0x02D0(0x0001)
-	unsigned char                                      bParentContextsAreSignificant : 1;                        // 0x02D1(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bParentContextsAreSignificant;                            // 0x02D1(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0xE];                                       // 0x02D2(0x000E) MISSED OFFSET
 
 	static UClass* StaticClass()

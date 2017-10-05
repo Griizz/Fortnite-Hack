@@ -39,14 +39,16 @@ void APartyDisplayManagerBP_C::GetItemDefinitionToShow(class UFortItemDefinition
 // Parameters:
 // class UTexture2D*              Large_Texture                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UFortItemDefinition*     Item                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortRarity                    Rarity                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void APartyDisplayManagerBP_C::SetUIOverrideVisuals(class UTexture2D* Large_Texture, class UFortItemDefinition* Item)
+void APartyDisplayManagerBP_C::SetUIOverrideVisuals(class UTexture2D* Large_Texture, class UFortItemDefinition* Item, EFortRarity Rarity)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function PartyDisplayManagerBP.PartyDisplayManagerBP_C.SetUIOverrideVisuals");
 
 	APartyDisplayManagerBP_C_SetUIOverrideVisuals_Params params;
 	params.Large_Texture = Large_Texture;
 	params.Item = Item;
+	params.Rarity = Rarity;
 
 	auto flags = fn->FunctionFlags;
 

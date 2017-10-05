@@ -31,7 +31,7 @@ public:
 
 
 	void HandleTalkingHeadEnd();
-	void HandleTalkingHeadBegin(class UTexture2D* Image, const struct FText& Title, const struct FText& Subtitle);
+	void HandleTalkingHeadBegin(class UTexture2D* Image, const struct FText& Title, const struct FText& Subtitle, EFortAnnouncementDisplayPreference DisplayPreference);
 	void SetTalkingHeadSubtitle(const struct FText& Subtitle);
 	void SetTalkingHeadName(const struct FText& Title);
 	void SetTalkingHeadImage(class UTexture2D* Icon);

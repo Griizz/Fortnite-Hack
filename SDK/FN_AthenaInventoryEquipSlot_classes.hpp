@@ -46,7 +46,7 @@ public:
 	void OnFocusLost(struct FFocusEvent* InFocusEvent);
 	void BndEvt__InputActionWidget_K2Node_ComponentBoundEvent_6_OnInputMethodChanged__DelegateSignature(bool bUsingGamepad);
 	void Tick(struct FGeometry* MyGeometry, float* InDeltaTime);
-	void OnQuickbarContentsChanged_Event_1();
+	void OnQuickbarContentsChanged_Event_1(EFortQuickBars QuickbarIndex);
 	void ExecuteUbergraph_AthenaInventoryEquipSlot(int EntryPoint);
 	void OnEquipRequested__DelegateSignature(int SlotIndex);
 };

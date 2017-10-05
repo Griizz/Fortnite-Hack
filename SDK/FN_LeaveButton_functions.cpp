@@ -12,6 +12,45 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function LeaveButton.LeaveButton_C.IsInNeighborhood
+// (FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// bool                           bIsInNeighborhood              (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void ULeaveButton_C::IsInNeighborhood(bool* bIsInNeighborhood)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.IsInNeighborhood");
+
+	ULeaveButton_C_IsInNeighborhood_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (bIsInNeighborhood != nullptr)
+		*bIsInNeighborhood = params.bIsInNeighborhood;
+}
+
+
+// Function LeaveButton.LeaveButton_C.Update Style State
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void ULeaveButton_C::Update_Style_State()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.Update Style State");
+
+	ULeaveButton_C_Update_Style_State_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function LeaveButton.LeaveButton_C.SetText
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
@@ -157,13 +196,15 @@ void ULeaveButton_C::GetLeaveActionText(struct FText* Text)
 // Function LeaveButton.LeaveButton_C.DialogResult_1E39F47546648367BB2F218F69311220
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULeaveButton_C::DialogResult_1E39F47546648367BB2F218F69311220(const struct FName& ResultName)
+void ULeaveButton_C::DialogResult_1E39F47546648367BB2F218F69311220(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.DialogResult_1E39F47546648367BB2F218F69311220");
 
 	ULeaveButton_C_DialogResult_1E39F47546648367BB2F218F69311220_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -177,13 +218,15 @@ void ULeaveButton_C::DialogResult_1E39F47546648367BB2F218F69311220(const struct 
 // Function LeaveButton.LeaveButton_C.DialogResult_F5AF58094777CFEEC0BF28BEA620800C
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULeaveButton_C::DialogResult_F5AF58094777CFEEC0BF28BEA620800C(const struct FName& ResultName)
+void ULeaveButton_C::DialogResult_F5AF58094777CFEEC0BF28BEA620800C(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.DialogResult_F5AF58094777CFEEC0BF28BEA620800C");
 
 	ULeaveButton_C_DialogResult_F5AF58094777CFEEC0BF28BEA620800C_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -194,16 +237,40 @@ void ULeaveButton_C::DialogResult_F5AF58094777CFEEC0BF28BEA620800C(const struct 
 }
 
 
-// Function LeaveButton.LeaveButton_C.DialogResult_9CCFD7A449420648C97D57A200B3396D
+// Function LeaveButton.LeaveButton_C.DialogResult_574CB01D47DE8AEDA0EB2F9CFB146A3B
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void ULeaveButton_C::DialogResult_9CCFD7A449420648C97D57A200B3396D(const struct FName& ResultName)
+void ULeaveButton_C::DialogResult_574CB01D47DE8AEDA0EB2F9CFB146A3B(EFortDialogResult Result, const struct FName& ResultName)
 {
-	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.DialogResult_9CCFD7A449420648C97D57A200B3396D");
+	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.DialogResult_574CB01D47DE8AEDA0EB2F9CFB146A3B");
 
-	ULeaveButton_C_DialogResult_9CCFD7A449420648C97D57A200B3396D_Params params;
+	ULeaveButton_C_DialogResult_574CB01D47DE8AEDA0EB2F9CFB146A3B_Params params;
+	params.Result = Result;
+	params.ResultName = ResultName;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function LeaveButton.LeaveButton_C.DialogResult_A0D25F7F4E82D325BF226E811F1D79AF
+// (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void ULeaveButton_C::DialogResult_A0D25F7F4E82D325BF226E811F1D79AF(EFortDialogResult Result, const struct FName& ResultName)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.DialogResult_A0D25F7F4E82D325BF226E811F1D79AF");
+
+	ULeaveButton_C_DialogResult_A0D25F7F4E82D325BF226E811F1D79AF_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -316,6 +383,26 @@ void ULeaveButton_C::Destruct()
 	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.Destruct");
 
 	ULeaveButton_C_Destruct_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function LeaveButton.LeaveButton_C.PreConstruct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// bool*                          IsDesignTime                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void ULeaveButton_C::PreConstruct(bool* IsDesignTime)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function LeaveButton.LeaveButton_C.PreConstruct");
+
+	ULeaveButton_C_PreConstruct_Params params;
+	params.IsDesignTime = IsDesignTime;
 
 	auto flags = fn->FunctionFlags;
 

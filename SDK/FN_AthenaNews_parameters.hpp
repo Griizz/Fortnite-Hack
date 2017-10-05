@@ -17,11 +17,13 @@ namespace SDK
 // Function AthenaNews.AthenaNews_C.Get_RegionNews_Visibility
 struct UAthenaNews_C_Get_RegionNews_Visibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function AthenaNews.AthenaNews_C.Get_PlatformNews_Visibility
 struct UAthenaNews_C_Get_PlatformNews_Visibility_Params
 {
+	ESlateVisibility                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function AthenaNews.AthenaNews_C.Construct

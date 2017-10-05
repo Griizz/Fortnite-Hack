@@ -63,7 +63,7 @@ public:
 	class UParticleSystem*                             P_FragmentDefense;                                        // 0x1DB0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystem*                             P_FragmentSpeciality;                                     // 0x1DB8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystem*                             P_InTheZone_Activate;                                     // 0x1DC0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      OnPlayerBuiltFloor : 1;                                   // 0x1DC8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_Net, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               OnPlayerBuiltFloor;                                       // 0x1DC8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_Net, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData04[0x7];                                       // 0x1DC9(0x0007) MISSED OFFSET
 	struct FGameplayEventData                          EventData;                                                // 0x1DD0(0x00A8) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FGameplayTag                                EventNeedRoadsActivate;                                   // 0x1E78(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
@@ -89,7 +89,7 @@ public:
 	TArray<class UMaterialInstanceDynamic*>            Body_Effect_Mesh_Materials;                               // 0x1F78(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	class UMaterialInterface*                          Phase_Shift_Material_;                                    // 0x1F88(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystem*                             PhaseShiftActivateParticles;                              // 0x1F90(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      bPhaseShiftActive_ : 1;                                   // 0x1F98(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               bPhaseShiftActive_;                                       // 0x1F98(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData05[0x7];                                       // 0x1F99(0x0007) MISSED OFFSET
 	class UParticleSystem*                             KnockKnockFX;                                             // 0x1FA0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystem*                             P_Handtrail;                                              // 0x1FA8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -112,7 +112,7 @@ public:
 	TArray<struct FName>                               TeleportDustEmitters;                                     // 0x2028(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	class USkeletalMeshComponent*                      GuantletReference;                                        // 0x2038(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UParticleSystemComponent*                    P_SpawnedHandTrail;                                       // 0x2040(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      ChargeTrailIsVisible : 1;                                 // 0x2048(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               ChargeTrailIsVisible;                                     // 0x2048(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData07[0x7];                                       // 0x2049(0x0007) MISSED OFFSET
 	class UParticleSystem*                             P_HitBurst;                                               // 0x2050(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UPostProcessComponent*                       TeleportPP;                                               // 0x2058(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)

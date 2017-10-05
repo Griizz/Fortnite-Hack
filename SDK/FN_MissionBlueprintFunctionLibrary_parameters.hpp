@@ -14,6 +14,27 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.GetContributingControllersNearActor
+struct UMissionBlueprintFunctionLibrary_C_GetContributingControllersNearActor_Params
+{
+	float                                              Distance;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AActor*                                      Actor;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<class AFortPlayerController*>               PlayerControllersNearby;                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	bool                                               SuccessfullyFoundPlayer;                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.PointLocationsBetweenTwoVectors
+struct UMissionBlueprintFunctionLibrary_C_PointLocationsBetweenTwoVectors_Params
+{
+	struct FVector                                     Vector_1;                                                 // (CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     Vector_2;                                                 // (CPF_Parm, CPF_IsPlainOldData)
+	int                                                HowManyPoints;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<struct FVector>                             VectorPoints;                                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	bool                                               SuccessfullyFoundPoints;                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.GetCurrentDifficulty
 struct UMissionBlueprintFunctionLibrary_C_GetCurrentDifficulty_Params
 {
@@ -175,16 +196,16 @@ struct UMissionBlueprintFunctionLibrary_C_DoesAnyoneRequireQuest_Params
 	bool                                               SomePlayerNeedsTheQuest;                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
-// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.WhatQuestCountIsPlayerAt
-struct UMissionBlueprintFunctionLibrary_C_WhatQuestCountIsPlayerAt_Params
+// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.QuestObjectiveCountAchieved
+struct UMissionBlueprintFunctionLibrary_C_QuestObjectiveCountAchieved_Params
 {
 	class AFortPlayerController*                       PlayerControllerReference;                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortQuestItemDefinition*                    Quest_Item_Reference;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FName                                       Quest_Item_Backend_Objective_Name;                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FDataTableRowHandle                         ObjectiveStatHandle;                                      // (CPF_Parm)
 	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	int                                                Quest_Stage;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	int                                                Quest_RequiredStages;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               SuccessfullyFoundStage;                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                Quest_Count_Achieved;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                Quest_Count_Required;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               SuccessfullyFoundCount;                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.HighlightQuestActor

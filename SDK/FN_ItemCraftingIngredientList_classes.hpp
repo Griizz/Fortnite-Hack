@@ -29,6 +29,8 @@ public:
 	}
 
 
+	void GetIngredients(class UObject* Item, TArray<struct FFortItemQuantityPair>* ReturnIngredients);
+	void SetItemToCompare(class UFortItem* ItemToCompare);
 	void ItemNeedsInventoryTracking(class UFortItem* Item, bool* NeedsTracking);
 	void HandleItemChanged(bool ItemChanged, bool AmmoChanged, bool IngredientsChanged);
 	void RefreshInventoryTracking();

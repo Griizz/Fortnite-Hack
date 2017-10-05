@@ -12,6 +12,23 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function AlterationWidget.AlterationWidget_C.SetEvolutionDetails
+// (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+
+void UAlterationWidget_C::SetEvolutionDetails()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function AlterationWidget.AlterationWidget_C.SetEvolutionDetails");
+
+	UAlterationWidget_C_SetEvolutionDetails_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function AlterationWidget.AlterationWidget_C.UpdateRaritySwitcherVisiblity
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 

@@ -27,8 +27,9 @@ public:
 	}
 
 
-	void GetRecipeItemQuantityPairs(TArray<struct FFortItemQuantityPair>* Pairs);
+	void GetRecipeItemQuantityPairs(class UFortItem* Item, TArray<struct FFortItemQuantityPair>* Pairs);
 	void HandlePostDifferentItemToDetailSet();
+	void HandlePostDifferentItemToCompareWithSet();
 	void ExecuteUbergraph_MiniItemCraftingIngredientsDetailWidget(int EntryPoint);
 };
 

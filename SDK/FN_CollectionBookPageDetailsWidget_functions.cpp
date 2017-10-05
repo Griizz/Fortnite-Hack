@@ -17,14 +17,16 @@ namespace SDK
 // Parameters:
 // int*                           TotalFilledSlots               (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int*                           TotalSlots                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortCollectionBookState*      State                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCollectionBookPageDetailsWidget_C::OnPageProgressionUpdated(int* TotalFilledSlots, int* TotalSlots)
+void UCollectionBookPageDetailsWidget_C::OnPageProgressionUpdated(int* TotalFilledSlots, int* TotalSlots, EFortCollectionBookState* State)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CollectionBookPageDetailsWidget.CollectionBookPageDetailsWidget_C.OnPageProgressionUpdated");
 
 	UCollectionBookPageDetailsWidget_C_OnPageProgressionUpdated_Params params;
 	params.TotalFilledSlots = TotalFilledSlots;
 	params.TotalSlots = TotalSlots;
+	params.State = State;
 
 	auto flags = fn->FunctionFlags;
 

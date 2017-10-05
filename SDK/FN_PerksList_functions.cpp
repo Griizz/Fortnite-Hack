@@ -107,6 +107,23 @@ void UPerksList_C::OnHeroChanged()
 }
 
 
+// Function PerksList.PerksList_C.OnStateChanged
+// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UPerksList_C::OnStateChanged()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function PerksList.PerksList_C.OnStateChanged");
+
+	UPerksList_C_OnStateChanged_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function PerksList.PerksList_C.ExecuteUbergraph_PerksList
 // (FUNC_HasDefaults)
 // Parameters:

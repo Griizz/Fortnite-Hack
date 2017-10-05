@@ -83,15 +83,17 @@ void UCollectionBookItemPicker_C::HandleItemSelected(class UObject* ItemSelected
 // Function CollectionBookItemPicker.CollectionBookItemPicker_C.DialogResult_C897FB8741239C9DAE2430AD3D91A030
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // bool                           bWaitingForLatentActionCompletion (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FFortDialogExternalLatentActionHandle WaitingDialogHandle            (CPF_Parm)
 
-void UCollectionBookItemPicker_C::DialogResult_C897FB8741239C9DAE2430AD3D91A030(const struct FName& ResultName, bool bWaitingForLatentActionCompletion, const struct FFortDialogExternalLatentActionHandle& WaitingDialogHandle)
+void UCollectionBookItemPicker_C::DialogResult_C897FB8741239C9DAE2430AD3D91A030(EFortDialogResult Result, const struct FName& ResultName, bool bWaitingForLatentActionCompletion, const struct FFortDialogExternalLatentActionHandle& WaitingDialogHandle)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function CollectionBookItemPicker.CollectionBookItemPicker_C.DialogResult_C897FB8741239C9DAE2430AD3D91A030");
 
 	UCollectionBookItemPicker_C_DialogResult_C897FB8741239C9DAE2430AD3D91A030_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 	params.bWaitingForLatentActionCompletion = bWaitingForLatentActionCompletion;
 	params.WaitingDialogHandle = WaitingDialogHandle;

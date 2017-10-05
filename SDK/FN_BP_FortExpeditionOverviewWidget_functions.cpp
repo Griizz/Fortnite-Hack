@@ -35,12 +35,15 @@ struct FTimespan UBP_FortExpeditionOverviewWidget_C::Get_Utc_Now_Offset()
 
 // Function BP_FortExpeditionOverviewWidget.BP_FortExpeditionOverviewWidget_C.Set List Sort Type
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortExpeditionListSort        InSortType                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UBP_FortExpeditionOverviewWidget_C::Set_List_Sort_Type()
+void UBP_FortExpeditionOverviewWidget_C::Set_List_Sort_Type(EFortExpeditionListSort InSortType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function BP_FortExpeditionOverviewWidget.BP_FortExpeditionOverviewWidget_C.Set List Sort Type");
 
 	UBP_FortExpeditionOverviewWidget_C_Set_List_Sort_Type_Params params;
+	params.InSortType = InSortType;
 
 	auto flags = fn->FunctionFlags;
 

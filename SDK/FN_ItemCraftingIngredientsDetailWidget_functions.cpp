@@ -29,6 +29,23 @@ void UItemCraftingIngredientsDetailWidget_C::HandlePostDifferentItemToDetailSet(
 }
 
 
+// Function ItemCraftingIngredientsDetailWidget.ItemCraftingIngredientsDetailWidget_C.HandlePostDifferentItemToCompareWithSet
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void UItemCraftingIngredientsDetailWidget_C::HandlePostDifferentItemToCompareWithSet()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemCraftingIngredientsDetailWidget.ItemCraftingIngredientsDetailWidget_C.HandlePostDifferentItemToCompareWithSet");
+
+	UItemCraftingIngredientsDetailWidget_C_HandlePostDifferentItemToCompareWithSet_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ItemCraftingIngredientsDetailWidget.ItemCraftingIngredientsDetailWidget_C.ExecuteUbergraph_ItemCraftingIngredientsDetailWidget
 // ()
 // Parameters:

@@ -12,6 +12,70 @@ namespace SDK
 //Functions
 //---------------------------------------------------------------------------
 
+// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.GetContributingControllersNearActor
+// (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// float                          Distance                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// class AActor*                  Actor                          (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// TArray<class AFortPlayerController*> PlayerControllersNearby        (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+// bool                           SuccessfullyFoundPlayer        (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UMissionBlueprintFunctionLibrary_C::STATIC_GetContributingControllersNearActor(float Distance, class AActor* Actor, class UObject* __WorldContext, TArray<class AFortPlayerController*>* PlayerControllersNearby, bool* SuccessfullyFoundPlayer)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.GetContributingControllersNearActor");
+
+	UMissionBlueprintFunctionLibrary_C_GetContributingControllersNearActor_Params params;
+	params.Distance = Distance;
+	params.Actor = Actor;
+	params.__WorldContext = __WorldContext;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (PlayerControllersNearby != nullptr)
+		*PlayerControllersNearby = params.PlayerControllersNearby;
+	if (SuccessfullyFoundPlayer != nullptr)
+		*SuccessfullyFoundPlayer = params.SuccessfullyFoundPlayer;
+}
+
+
+// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.PointLocationsBetweenTwoVectors
+// (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// struct FVector                 Vector_1                       (CPF_Parm, CPF_IsPlainOldData)
+// struct FVector                 Vector_2                       (CPF_Parm, CPF_IsPlainOldData)
+// int                            HowManyPoints                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// TArray<struct FVector>         VectorPoints                   (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+// bool                           SuccessfullyFoundPoints        (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+
+void UMissionBlueprintFunctionLibrary_C::STATIC_PointLocationsBetweenTwoVectors(const struct FVector& Vector_1, const struct FVector& Vector_2, int HowManyPoints, class UObject* __WorldContext, TArray<struct FVector>* VectorPoints, bool* SuccessfullyFoundPoints)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.PointLocationsBetweenTwoVectors");
+
+	UMissionBlueprintFunctionLibrary_C_PointLocationsBetweenTwoVectors_Params params;
+	params.Vector_1 = Vector_1;
+	params.Vector_2 = Vector_2;
+	params.HowManyPoints = HowManyPoints;
+	params.__WorldContext = __WorldContext;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+
+	if (VectorPoints != nullptr)
+		*VectorPoints = params.VectorPoints;
+	if (SuccessfullyFoundPoints != nullptr)
+		*SuccessfullyFoundPoints = params.SuccessfullyFoundPoints;
+}
+
+
 // Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.GetCurrentDifficulty
 // (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
@@ -511,25 +575,25 @@ void UMissionBlueprintFunctionLibrary_C::STATIC_DoesAnyoneRequireQuest(class UFo
 }
 
 
-// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.WhatQuestCountIsPlayerAt
+// Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.QuestObjectiveCountAchieved
 // (FUNC_Static, FUNC_Public, FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
 // class AFortPlayerController*   PlayerControllerReference      (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // class UFortQuestItemDefinition* Quest_Item_Reference           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// struct FName                   Quest_Item_Backend_Objective_Name (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// struct FDataTableRowHandle     ObjectiveStatHandle            (CPF_Parm)
 // class UObject*                 __WorldContext                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// int                            Quest_Stage                    (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// int                            Quest_RequiredStages           (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-// bool                           SuccessfullyFoundStage         (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// int                            Quest_Count_Achieved           (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// int                            Quest_Count_Required           (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// bool                           SuccessfullyFoundCount         (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMissionBlueprintFunctionLibrary_C::STATIC_WhatQuestCountIsPlayerAt(class AFortPlayerController* PlayerControllerReference, class UFortQuestItemDefinition* Quest_Item_Reference, const struct FName& Quest_Item_Backend_Objective_Name, class UObject* __WorldContext, int* Quest_Stage, int* Quest_RequiredStages, bool* SuccessfullyFoundStage)
+void UMissionBlueprintFunctionLibrary_C::STATIC_QuestObjectiveCountAchieved(class AFortPlayerController* PlayerControllerReference, class UFortQuestItemDefinition* Quest_Item_Reference, const struct FDataTableRowHandle& ObjectiveStatHandle, class UObject* __WorldContext, int* Quest_Count_Achieved, int* Quest_Count_Required, bool* SuccessfullyFoundCount)
 {
-	static auto fn = UObject::FindObject<UFunction>("Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.WhatQuestCountIsPlayerAt");
+	static auto fn = UObject::FindObject<UFunction>("Function MissionBlueprintFunctionLibrary.MissionBlueprintFunctionLibrary_C.QuestObjectiveCountAchieved");
 
-	UMissionBlueprintFunctionLibrary_C_WhatQuestCountIsPlayerAt_Params params;
+	UMissionBlueprintFunctionLibrary_C_QuestObjectiveCountAchieved_Params params;
 	params.PlayerControllerReference = PlayerControllerReference;
 	params.Quest_Item_Reference = Quest_Item_Reference;
-	params.Quest_Item_Backend_Objective_Name = Quest_Item_Backend_Objective_Name;
+	params.ObjectiveStatHandle = ObjectiveStatHandle;
 	params.__WorldContext = __WorldContext;
 
 	auto flags = fn->FunctionFlags;
@@ -538,12 +602,12 @@ void UMissionBlueprintFunctionLibrary_C::STATIC_WhatQuestCountIsPlayerAt(class A
 
 	fn->FunctionFlags = flags;
 
-	if (Quest_Stage != nullptr)
-		*Quest_Stage = params.Quest_Stage;
-	if (Quest_RequiredStages != nullptr)
-		*Quest_RequiredStages = params.Quest_RequiredStages;
-	if (SuccessfullyFoundStage != nullptr)
-		*SuccessfullyFoundStage = params.SuccessfullyFoundStage;
+	if (Quest_Count_Achieved != nullptr)
+		*Quest_Count_Achieved = params.Quest_Count_Achieved;
+	if (Quest_Count_Required != nullptr)
+		*Quest_Count_Required = params.Quest_Count_Required;
+	if (SuccessfullyFoundCount != nullptr)
+		*SuccessfullyFoundCount = params.SuccessfullyFoundCount;
 }
 
 

@@ -21,7 +21,7 @@ struct FDynamicQuestUpdateInfo
 	class UFortQuestItem*                              QuestItem_11_3D49559C46BFAA72DF4BEBBC53D09EC3;            // 0x0008(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortQuestObjectiveInfo*                     QuestObjective_13_DD90737247F2659E162C58B4258EAEAF;       // 0x0010(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              TweenTimeRemaining_21_BE81ABC64DF8EDBD1C0476ADDB3D4541;   // 0x0018(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bHasUpdateStarted_20_619FFE6348FDB23D6A4253BFCFB0DF57 : 1;// 0x001C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bHasUpdateStarted_20_619FFE6348FDB23D6A4253BFCFB0DF57;    // 0x001C(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 }

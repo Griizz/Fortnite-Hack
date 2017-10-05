@@ -35,6 +35,7 @@ struct UHordeTierResultsWidget_C_ChooseMediaToUse_Params
 // Function HordeTierResultsWidget.HordeTierResultsWidget_C.Initialize
 struct UHordeTierResultsWidget_C_Initialize_Params
 {
+	EFortCompletionResult                              Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function HordeTierResultsWidget.HordeTierResultsWidget_C.InitializeMovie

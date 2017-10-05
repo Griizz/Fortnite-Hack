@@ -83,11 +83,13 @@ struct UAmbientControllerComponent_Athena_C_ReceiveTick_Params
 // Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.On Game Phase Change
 struct UAmbientControllerComponent_Athena_C_On_Game_Phase_Change_Params
 {
+	EAthenaGamePhase                                   GamePhase;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.On Game Phase Step Change
 struct UAmbientControllerComponent_Athena_C_On_Game_Phase_Step_Change_Params
 {
+	EAthenaGamePhaseStep                               GamePhaseStep;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function AmbientControllerComponent_Athena.AmbientControllerComponent_Athena_C.Set Storm Amb Layer Enabled

@@ -64,7 +64,7 @@ struct UXpBoosts_C_Construct_Params
 // Function XpBoosts.XpBoosts_C.Give Boost Clicked
 struct UXpBoosts_C_Give_Boost_Clicked_Params
 {
-	struct FUniqueNetIdRepl                            Player_to_Boost;                                          // (CPF_Parm)
+	struct FUniqueNetIdRepl                            Player_To_Boost;                                          // (CPF_Parm)
 };
 
 // Function XpBoosts.XpBoosts_C.On Party Left

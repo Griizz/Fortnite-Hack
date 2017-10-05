@@ -72,12 +72,17 @@ void UChatWidget_C::HandleCursorModeChanged(bool bEnabled, const struct FName& A
 
 // Function ChatWidget.ChatWidget_C.HandleShowChatWindow
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 Feature                        (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortUIFeatureState            FeatureState                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UChatWidget_C::HandleShowChatWindow()
+void UChatWidget_C::HandleShowChatWindow(EFortUIFeature Feature, EFortUIFeatureState FeatureState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ChatWidget.ChatWidget_C.HandleShowChatWindow");
 
 	UChatWidget_C_HandleShowChatWindow_Params params;
+	params.Feature = Feature;
+	params.FeatureState = FeatureState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -129,12 +134,15 @@ void UChatWidget_C::UpdateChatUserListIcon(bool Open)
 
 // Function ChatWidget.ChatWidget_C.Set Chat Shortcut Visibility
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ESlateVisibility               New_Visibility                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UChatWidget_C::Set_Chat_Shortcut_Visibility()
+void UChatWidget_C::Set_Chat_Shortcut_Visibility(ESlateVisibility New_Visibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ChatWidget.ChatWidget_C.Set Chat Shortcut Visibility");
 
 	UChatWidget_C_Set_Chat_Shortcut_Visibility_Params params;
+	params.New_Visibility = New_Visibility;
 
 	auto flags = fn->FunctionFlags;
 
@@ -146,12 +154,15 @@ void UChatWidget_C::Set_Chat_Shortcut_Visibility()
 
 // Function ChatWidget.ChatWidget_C.Set Chat Visibility
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ESlateVisibility               New_Visibility                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UChatWidget_C::Set_Chat_Visibility()
+void UChatWidget_C::Set_Chat_Visibility(ESlateVisibility New_Visibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function ChatWidget.ChatWidget_C.Set Chat Visibility");
 
 	UChatWidget_C_Set_Chat_Visibility_Params params;
+	params.New_Visibility = New_Visibility;
 
 	auto flags = fn->FunctionFlags;
 

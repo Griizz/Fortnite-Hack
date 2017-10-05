@@ -14,12 +14,15 @@ namespace SDK
 
 // Function TooltipStatWrapper.TooltipStatWrapper_C.ShowUpgradeArrow
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// ESlateVisibility               InVisibility                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UTooltipStatWrapper_C::ShowUpgradeArrow()
+void UTooltipStatWrapper_C::ShowUpgradeArrow(ESlateVisibility InVisibility)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function TooltipStatWrapper.TooltipStatWrapper_C.ShowUpgradeArrow");
 
 	UTooltipStatWrapper_C_ShowUpgradeArrow_Params params;
+	params.InVisibility = InVisibility;
 
 	auto flags = fn->FunctionFlags;
 

@@ -13,11 +13,11 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum E_OutlanderFragmentTypes.E_OutlanderFragmentTypes
-enum class E_OutlanderFragmentTypes
+enum class E_OutlanderFragmentTypes : uint8_t
 {
-	E_OutlanderFragmentTypes__NewEnumerator4 = 0,
-	E_OutlanderFragmentTypes__NewEnumerator2 = 1,
-	E_OutlanderFragmentTypes__E_MAX = 2
+	NewEnumerator4                 = 0,
+	NewEnumerator2                 = 1,
+	E_MAX                          = 2
 };
 
 

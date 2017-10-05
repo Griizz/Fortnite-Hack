@@ -60,6 +60,12 @@ struct UObjectivesPage_C_Destruct_Params
 {
 };
 
+// Function ObjectivesPage.ObjectivesPage_C.OnActiveGameplayModifiersChanged_Event_1
+struct UObjectivesPage_C_OnActiveGameplayModifiersChanged_Event_1_Params
+{
+	TArray<class UFortGameplayModifierItemDefinition*> AppliedModifiers;                                         // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+};
+
 // Function ObjectivesPage.ObjectivesPage_C.ExecuteUbergraph_ObjectivesPage
 struct UObjectivesPage_C_ExecuteUbergraph_ObjectivesPage_Params
 {

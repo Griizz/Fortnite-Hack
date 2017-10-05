@@ -66,6 +66,40 @@ void UAlterationsWidget_C::OnItemChanged()
 }
 
 
+// Function AlterationsWidget.AlterationsWidget_C.OnItemToCompareWithChanged
+// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UAlterationsWidget_C::OnItemToCompareWithChanged()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function AlterationsWidget.AlterationsWidget_C.OnItemToCompareWithChanged");
+
+	UAlterationsWidget_C_OnItemToCompareWithChanged_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function AlterationsWidget.AlterationsWidget_C.OnStateChanged
+// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UAlterationsWidget_C::OnStateChanged()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function AlterationsWidget.AlterationsWidget_C.OnStateChanged");
+
+	UAlterationsWidget_C_OnStateChanged_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function AlterationsWidget.AlterationsWidget_C.ExecuteUbergraph_AlterationsWidget
 // (FUNC_HasDefaults)
 // Parameters:

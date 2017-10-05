@@ -185,23 +185,6 @@ void UItemManangementItemTileButton_C::UpdateMulchStateBox()
 }
 
 
-// Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleItemMulchStateChanged
-// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
-
-void UItemManangementItemTileButton_C::HandleItemMulchStateChanged()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleItemMulchStateChanged");
-
-	UItemManangementItemTileButton_C_HandleItemMulchStateChanged_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleDifferentItemManagementModeSetBP
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 
@@ -287,6 +270,23 @@ void UItemManangementItemTileButton_C::HandleHasItemToCompareDetailsWithChanged(
 }
 
 
+// Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleItemMulchStateChanged
+// (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
+
+void UItemManangementItemTileButton_C::HandleItemMulchStateChanged()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleItemMulchStateChanged");
+
+	UItemManangementItemTileButton_C_HandleItemMulchStateChanged_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
 // Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.HandleEquipSlotChanged
 // (FUNC_Event, FUNC_Protected, FUNC_BlueprintEvent)
 // Parameters:
@@ -337,6 +337,23 @@ void UItemManangementItemTileButton_C::OnSelected()
 	static auto fn = UObject::FindObject<UFunction>("Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.OnSelected");
 
 	UItemManangementItemTileButton_C_OnSelected_Params params;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.Construct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UItemManangementItemTileButton_C::Construct()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function ItemManangementItemTileButton.ItemManangementItemTileButton_C.Construct");
+
+	UItemManangementItemTileButton_C_Construct_Params params;
 
 	auto flags = fn->FunctionFlags;
 

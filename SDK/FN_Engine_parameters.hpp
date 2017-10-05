@@ -410,6 +410,9 @@ struct AActor_K2_GetActorLocation_Params
 // Function Engine.Actor.K2_DetachFromActor
 struct AActor_K2_DetachFromActor_Params
 {
+	EDetachmentRule                                    LocationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDetachmentRule                                    RotationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDetachmentRule                                    ScaleRule;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.Actor.K2_DestroyComponent
@@ -428,6 +431,9 @@ struct AActor_K2_AttachToComponent_Params
 {
 	class USceneComponent*                             Parent;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FName                                       SocketName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    LocationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    RotationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    ScaleRule;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWeldSimulatedBodies;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -436,6 +442,9 @@ struct AActor_K2_AttachToActor_Params
 {
 	class AActor*                                      ParentActor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       SocketName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    LocationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    RotationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    ScaleRule;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWeldSimulatedBodies;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -1186,6 +1195,9 @@ struct USceneComponent_K2_GetComponentLocation_Params
 // Function Engine.SceneComponent.K2_DetachFromComponent
 struct USceneComponent_K2_DetachFromComponent_Params
 {
+	EDetachmentRule                                    LocationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDetachmentRule                                    RotationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDetachmentRule                                    ScaleRule;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bCallModify;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -1194,6 +1206,9 @@ struct USceneComponent_K2_AttachToComponent_Params
 {
 	class USceneComponent*                             Parent;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FName                                       SocketName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    LocationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    RotationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    ScaleRule;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWeldSimulatedBodies;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -1988,6 +2003,11 @@ struct UPrimitiveComponent_AddAngularImpulse_Params
 	struct FVector                                     Impulse;                                                  // (CPF_Parm, CPF_IsPlainOldData)
 	struct FName                                       BoneName;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bVelChange;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function Engine.WorldSettings.OnRep_WorldGravityZ
+struct AWorldSettings_OnRep_WorldGravityZ_Params
+{
 };
 
 // Function Engine.MeshComponent.SetVectorParameterValueOnMaterials
@@ -2839,6 +2859,7 @@ struct UAnimInstance_Montage_Play_Params
 {
 	class UAnimMontage*                                MontageToPlay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              InPlayRate;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EMontagePlayReturnType                             ReturnValueType;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              InTimeToStartMontageAt;                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -3246,6 +3267,229 @@ struct UBlueprintAsyncActionBase_Activate_Params
 {
 };
 
+// Function Engine.MovementComponent.StopMovementImmediately
+struct UMovementComponent_StopMovementImmediately_Params
+{
+};
+
+// Function Engine.MovementComponent.SnapUpdatedComponentToPlane
+struct UMovementComponent_SnapUpdatedComponentToPlane_Params
+{
+};
+
+// Function Engine.MovementComponent.SetUpdatedComponent
+struct UMovementComponent_SetUpdatedComponent_Params
+{
+	class USceneComponent*                             NewUpdatedComponent;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.SetPlaneConstraintOrigin
+struct UMovementComponent_SetPlaneConstraintOrigin_Params
+{
+	struct FVector                                     PlaneOrigin;                                              // (CPF_Parm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.SetPlaneConstraintNormal
+struct UMovementComponent_SetPlaneConstraintNormal_Params
+{
+	struct FVector                                     PlaneNormal;                                              // (CPF_Parm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.SetPlaneConstraintFromVectors
+struct UMovementComponent_SetPlaneConstraintFromVectors_Params
+{
+	struct FVector                                     Forward;                                                  // (CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     Up;                                                       // (CPF_Parm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.SetPlaneConstraintEnabled
+struct UMovementComponent_SetPlaneConstraintEnabled_Params
+{
+	bool                                               bEnabled;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.SetPlaneConstraintAxisSetting
+struct UMovementComponent_SetPlaneConstraintAxisSetting_Params
+{
+	EPlaneConstraintAxisSetting                        NewAxisSetting;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.PhysicsVolumeChanged
+struct UMovementComponent_PhysicsVolumeChanged_Params
+{
+	class APhysicsVolume*                              NewVolume;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.K2_MoveUpdatedComponent
+struct UMovementComponent_K2_MoveUpdatedComponent_Params
+{
+	struct FVector                                     Delta;                                                    // (CPF_Parm, CPF_IsPlainOldData)
+	struct FRotator                                    NewRotation;                                              // (CPF_Parm, CPF_IsPlainOldData)
+	struct FHitResult                                  OutHit;                                                   // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	bool                                               bSweep;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bTeleport;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.K2_GetModifiedMaxSpeed
+struct UMovementComponent_K2_GetModifiedMaxSpeed_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.K2_GetMaxSpeedModifier
+struct UMovementComponent_K2_GetMaxSpeedModifier_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.IsExceedingMaxSpeed
+struct UMovementComponent_IsExceedingMaxSpeed_Params
+{
+	float                                              MaxSpeed;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.GetPlaneConstraintOrigin
+struct UMovementComponent_GetPlaneConstraintOrigin_Params
+{
+	struct FVector                                     ReturnValue;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.GetPlaneConstraintNormal
+struct UMovementComponent_GetPlaneConstraintNormal_Params
+{
+	struct FVector                                     ReturnValue;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.GetPlaneConstraintAxisSetting
+struct UMovementComponent_GetPlaneConstraintAxisSetting_Params
+{
+	EPlaneConstraintAxisSetting                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.GetPhysicsVolume
+struct UMovementComponent_GetPhysicsVolume_Params
+{
+	class APhysicsVolume*                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.GetMaxSpeed
+struct UMovementComponent_GetMaxSpeed_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.GetGravityZ
+struct UMovementComponent_GetGravityZ_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.ConstrainNormalToPlane
+struct UMovementComponent_ConstrainNormalToPlane_Params
+{
+	struct FVector                                     Normal;                                                   // (CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.ConstrainLocationToPlane
+struct UMovementComponent_ConstrainLocationToPlane_Params
+{
+	struct FVector                                     Location;                                                 // (CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.MovementComponent.ConstrainDirectionToPlane
+struct UMovementComponent_ConstrainDirectionToPlane_Params
+{
+	struct FVector                                     Direction;                                                // (CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.NavMovementComponent.StopMovementKeepPathing
+struct UNavMovementComponent_StopMovementKeepPathing_Params
+{
+};
+
+// Function Engine.NavMovementComponent.StopActiveMovement
+struct UNavMovementComponent_StopActiveMovement_Params
+{
+};
+
+// Function Engine.NavMovementComponent.IsSwimming
+struct UNavMovementComponent_IsSwimming_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.NavMovementComponent.IsMovingOnGround
+struct UNavMovementComponent_IsMovingOnGround_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.NavMovementComponent.IsFlying
+struct UNavMovementComponent_IsFlying_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.NavMovementComponent.IsFalling
+struct UNavMovementComponent_IsFalling_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.NavMovementComponent.IsCrouching
+struct UNavMovementComponent_IsCrouching_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.K2_GetInputVector
+struct UPawnMovementComponent_K2_GetInputVector_Params
+{
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.IsMoveInputIgnored
+struct UPawnMovementComponent_IsMoveInputIgnored_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.GetPendingInputVector
+struct UPawnMovementComponent_GetPendingInputVector_Params
+{
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.GetPawnOwner
+struct UPawnMovementComponent_GetPawnOwner_Params
+{
+	class APawn*                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.GetLastInputVector
+struct UPawnMovementComponent_GetLastInputVector_Params
+{
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.ConsumeInputVector
+struct UPawnMovementComponent_ConsumeInputVector_Params
+{
+	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function Engine.PawnMovementComponent.AddInputVector
+struct UPawnMovementComponent_AddInputVector_Params
+{
+	struct FVector                                     WorldVector;                                              // (CPF_Parm, CPF_IsPlainOldData)
+	bool                                               bForce;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function Engine.CameraActor.GetAutoActivatePlayerIndex
 struct ACameraActor_GetAutoActivatePlayerIndex_Params
 {
@@ -3281,6 +3525,7 @@ struct APlayerController_SwitchLevel_Params
 // Function Engine.PlayerController.StopHapticEffect
 struct APlayerController_StopHapticEffect_Params
 {
+	EControllerHand                                    Hand;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.PlayerController.StartFire
@@ -3323,6 +3568,7 @@ struct APlayerController_SetHapticsByValue_Params
 {
 	float                                              Frequency;                                                // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Amplitude;                                                // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EControllerHand                                    Hand;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.PlayerController.SetControllerLightColor
@@ -3493,6 +3739,7 @@ struct APlayerController_ProjectWorldLocationToScreen_Params
 struct APlayerController_PlayHapticEffect_Params
 {
 	class UHapticFeedbackEffect_Base*                  HapticEffect;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EControllerHand                                    Hand;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              Scale;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bLoop;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -5266,6 +5513,7 @@ struct UNavigationSystem_SetMaxSimultaneousTileGenerationJobsCount_Params
 // Function Engine.NavigationSystem.SetGeometryGatheringMode
 struct UNavigationSystem_SetGeometryGatheringMode_Params
 {
+	ENavDataGatheringModeConfig                        NewMode;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.NavigationSystem.ResetMaxSimultaneousTileGenerationJobsCount
@@ -5458,227 +5706,6 @@ struct ALevelScriptActor_RemoteEvent_Params
 // Function Engine.LevelScriptActor.LevelReset
 struct ALevelScriptActor_LevelReset_Params
 {
-};
-
-// Function Engine.MovementComponent.StopMovementImmediately
-struct UMovementComponent_StopMovementImmediately_Params
-{
-};
-
-// Function Engine.MovementComponent.SnapUpdatedComponentToPlane
-struct UMovementComponent_SnapUpdatedComponentToPlane_Params
-{
-};
-
-// Function Engine.MovementComponent.SetUpdatedComponent
-struct UMovementComponent_SetUpdatedComponent_Params
-{
-	class USceneComponent*                             NewUpdatedComponent;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.SetPlaneConstraintOrigin
-struct UMovementComponent_SetPlaneConstraintOrigin_Params
-{
-	struct FVector                                     PlaneOrigin;                                              // (CPF_Parm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.SetPlaneConstraintNormal
-struct UMovementComponent_SetPlaneConstraintNormal_Params
-{
-	struct FVector                                     PlaneNormal;                                              // (CPF_Parm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.SetPlaneConstraintFromVectors
-struct UMovementComponent_SetPlaneConstraintFromVectors_Params
-{
-	struct FVector                                     Forward;                                                  // (CPF_Parm, CPF_IsPlainOldData)
-	struct FVector                                     Up;                                                       // (CPF_Parm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.SetPlaneConstraintEnabled
-struct UMovementComponent_SetPlaneConstraintEnabled_Params
-{
-	bool                                               bEnabled;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.SetPlaneConstraintAxisSetting
-struct UMovementComponent_SetPlaneConstraintAxisSetting_Params
-{
-};
-
-// Function Engine.MovementComponent.PhysicsVolumeChanged
-struct UMovementComponent_PhysicsVolumeChanged_Params
-{
-	class APhysicsVolume*                              NewVolume;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.K2_MoveUpdatedComponent
-struct UMovementComponent_K2_MoveUpdatedComponent_Params
-{
-	struct FVector                                     Delta;                                                    // (CPF_Parm, CPF_IsPlainOldData)
-	struct FRotator                                    NewRotation;                                              // (CPF_Parm, CPF_IsPlainOldData)
-	struct FHitResult                                  OutHit;                                                   // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	bool                                               bSweep;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bTeleport;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.K2_GetModifiedMaxSpeed
-struct UMovementComponent_K2_GetModifiedMaxSpeed_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.K2_GetMaxSpeedModifier
-struct UMovementComponent_K2_GetMaxSpeedModifier_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.IsExceedingMaxSpeed
-struct UMovementComponent_IsExceedingMaxSpeed_Params
-{
-	float                                              MaxSpeed;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.GetPlaneConstraintOrigin
-struct UMovementComponent_GetPlaneConstraintOrigin_Params
-{
-	struct FVector                                     ReturnValue;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.GetPlaneConstraintNormal
-struct UMovementComponent_GetPlaneConstraintNormal_Params
-{
-	struct FVector                                     ReturnValue;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.GetPlaneConstraintAxisSetting
-struct UMovementComponent_GetPlaneConstraintAxisSetting_Params
-{
-};
-
-// Function Engine.MovementComponent.GetPhysicsVolume
-struct UMovementComponent_GetPhysicsVolume_Params
-{
-	class APhysicsVolume*                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.GetMaxSpeed
-struct UMovementComponent_GetMaxSpeed_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.GetGravityZ
-struct UMovementComponent_GetGravityZ_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.ConstrainNormalToPlane
-struct UMovementComponent_ConstrainNormalToPlane_Params
-{
-	struct FVector                                     Normal;                                                   // (CPF_Parm, CPF_IsPlainOldData)
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.ConstrainLocationToPlane
-struct UMovementComponent_ConstrainLocationToPlane_Params
-{
-	struct FVector                                     Location;                                                 // (CPF_Parm, CPF_IsPlainOldData)
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.MovementComponent.ConstrainDirectionToPlane
-struct UMovementComponent_ConstrainDirectionToPlane_Params
-{
-	struct FVector                                     Direction;                                                // (CPF_Parm, CPF_IsPlainOldData)
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.NavMovementComponent.StopMovementKeepPathing
-struct UNavMovementComponent_StopMovementKeepPathing_Params
-{
-};
-
-// Function Engine.NavMovementComponent.StopActiveMovement
-struct UNavMovementComponent_StopActiveMovement_Params
-{
-};
-
-// Function Engine.NavMovementComponent.IsSwimming
-struct UNavMovementComponent_IsSwimming_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.NavMovementComponent.IsMovingOnGround
-struct UNavMovementComponent_IsMovingOnGround_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.NavMovementComponent.IsFlying
-struct UNavMovementComponent_IsFlying_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.NavMovementComponent.IsFalling
-struct UNavMovementComponent_IsFalling_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.NavMovementComponent.IsCrouching
-struct UNavMovementComponent_IsCrouching_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.K2_GetInputVector
-struct UPawnMovementComponent_K2_GetInputVector_Params
-{
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.IsMoveInputIgnored
-struct UPawnMovementComponent_IsMoveInputIgnored_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.GetPendingInputVector
-struct UPawnMovementComponent_GetPendingInputVector_Params
-{
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.GetPawnOwner
-struct UPawnMovementComponent_GetPawnOwner_Params
-{
-	class APawn*                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.GetLastInputVector
-struct UPawnMovementComponent_GetLastInputVector_Params
-{
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.ConsumeInputVector
-struct UPawnMovementComponent_ConsumeInputVector_Params
-{
-	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function Engine.PawnMovementComponent.AddInputVector
-struct UPawnMovementComponent_AddInputVector_Params
-{
-	struct FVector                                     WorldVector;                                              // (CPF_Parm, CPF_IsPlainOldData)
-	bool                                               bForce;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.CharacterMovementComponent.SetWalkableFloorZ
@@ -7079,11 +7106,6 @@ struct AHUD_AddDebugText_Params
 	bool                                               bDrawShadow;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
-// Function Engine.WorldSettings.OnRep_WorldGravityZ
-struct AWorldSettings_OnRep_WorldGravityZ_Params
-{
-};
-
 // Function Engine.InstancedStaticMeshComponent.UpdateInstanceTransform
 struct UInstancedStaticMeshComponent_UpdateInstanceTransform_Params
 {
@@ -7719,6 +7741,9 @@ struct UParticleSystemComponent_SetAutoAttachmentParameters_Params
 {
 	class USceneComponent*                             Parent;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FName                                       SocketName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    LocationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    RotationRule;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAttachmentRule                                    ScaleRule;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.ParticleSystemComponent.SetActorParameter
@@ -10422,6 +10447,7 @@ struct UStereoLayerComponent_GetPriority_Params
 // Function Engine.WindDirectionalSourceComponent.SetWindType
 struct UWindDirectionalSourceComponent_SetWindType_Params
 {
+	EWindSourceType                                    InNewType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Engine.WindDirectionalSourceComponent.SetStrength
@@ -13421,6 +13447,7 @@ struct UGameplayStatics_BeginDeferredActorSpawnFromClass_Params
 	class UObject*                                     WorldContextObject;                                       // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UClass*                                      ActorClass;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FTransform                                  SpawnTransform;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	ESpawnActorCollisionHandlingMethod                 CollisionHandlingOverride;                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class AActor*                                      Owner;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class AActor*                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -18275,6 +18302,7 @@ struct UMeshVertexPainterKismetLibrary_PaintVerticesLerpAlongAxis_Params
 	class UStaticMeshComponent*                        StaticMeshComponent;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FLinearColor                                StartColor;                                               // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
 	struct FLinearColor                                EndColor;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	EVertexPaintAxis                                   Axis;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bConvertToSRGB;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

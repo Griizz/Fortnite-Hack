@@ -13,88 +13,90 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // Enum CommonUI.ECommonInputType
-enum class ECommonInputType
+enum class ECommonInputType : uint8_t
 {
-	ECommonInputType__MouseAndKeyboard = 0,
-	ECommonInputType__XboxOneController = 1,
-	ECommonInputType__PS4Controller = 2,
-	ECommonInputType__Touch        = 3,
-	ECommonInputType__Count        = 4,
-	ECommonInputType__ECommonInputType_MAX = 5
+	MouseAndKeyboard               = 0,
+	XboxOneController              = 1,
+	PS4Controller                  = 2,
+	Touch                          = 3,
+	Count                          = 4,
+	ECommonInputType_MAX           = 5
 };
 
 
 // Enum CommonUI.EInputActionState
-enum class EInputActionState
+enum class EInputActionState : uint8_t
 {
-	EInputActionState__Enabled     = 0,
-	EInputActionState__Disabled    = 1,
-	EInputActionState__Hidden      = 2,
-	EInputActionState__HiddenAndDisabled = 3,
-	EInputActionState__EInputActionState_MAX = 4
+	Enabled                        = 0,
+	Disabled                       = 1,
+	Hidden                         = 2,
+	HiddenAndDisabled              = 3,
+	EInputActionState_MAX          = 4
 };
 
 
 // Enum CommonUI.EItemAlignment
-enum class EItemAlignment
+enum class EItemAlignment : uint8_t
 {
-	EItemAlignment__EvenlyDistributed = 0,
-	EItemAlignment__EvenlySize     = 1,
-	EItemAlignment__EvenlyWide     = 2,
-	EItemAlignment__LeftAligned    = 3,
-	EItemAlignment__RightAligned   = 4,
-	EItemAlignment__CenterAligned  = 5,
-	EItemAlignment__Fill           = 6,
-	EItemAlignment__EItemAlignment_MAX = 7
+	EvenlyDistributed              = 0,
+	EvenlySize                     = 1,
+	EvenlyWide                     = 2,
+	LeftAligned                    = 3,
+	RightAligned                   = 4,
+	CenterAligned                  = 5,
+	Fill                           = 6,
+	EItemAlignment_MAX             = 7
 };
 
 
 // Enum CommonUI.ECommonPlatformType
-enum class ECommonPlatformType
+enum class ECommonPlatformType : uint8_t
 {
-	ECommonPlatformType__PC        = 0,
-	ECommonPlatformType__Mac       = 1,
-	ECommonPlatformType__PS4       = 2,
-	ECommonPlatformType__XBox      = 3,
-	ECommonPlatformType__Count     = 4,
-	ECommonPlatformType__ECommonPlatformType_MAX = 5
+	PC                             = 0,
+	Mac                            = 1,
+	PS4                            = 2,
+	XBox                           = 3,
+	IOS                            = 4,
+	Android                        = 5,
+	Count                          = 6,
+	ECommonPlatformType_MAX        = 7
 };
 
 
 // Enum CommonUI.EOperation
-enum class EOperation
+enum class EOperation : uint8_t
 {
-	EOperation__Intro              = 0,
-	EOperation__Outro              = 1,
-	EOperation__Push               = 2,
-	EOperation__Pop                = 3,
-	EOperation__Invalid            = 4,
-	EOperation__EOperation_MAX     = 5
+	Intro                          = 0,
+	Outro                          = 1,
+	Push                           = 2,
+	Pop                            = 3,
+	Invalid                        = 4,
+	EOperation_MAX                 = 5
 };
 
 
 // Enum CommonUI.ETransitionCurve
-enum class ETransitionCurve
+enum class ETransitionCurve : uint8_t
 {
-	ETransitionCurve__Linear       = 0,
-	ETransitionCurve__QuadIn       = 1,
-	ETransitionCurve__QuadOut      = 2,
-	ETransitionCurve__QuadInOut    = 3,
-	ETransitionCurve__CubicIn      = 4,
-	ETransitionCurve__CubicOut     = 5,
-	ETransitionCurve__CubicInOut   = 6,
-	ETransitionCurve__ETransitionCurve_MAX = 7
+	Linear                         = 0,
+	QuadIn                         = 1,
+	QuadOut                        = 2,
+	QuadInOut                      = 3,
+	CubicIn                        = 4,
+	CubicOut                       = 5,
+	CubicInOut                     = 6,
+	ETransitionCurve_MAX           = 7
 };
 
 
 // Enum CommonUI.ECommonSwitcherTransition
-enum class ECommonSwitcherTransition
+enum class ECommonSwitcherTransition : uint8_t
 {
-	ECommonSwitcherTransition__FadeOnly = 0,
-	ECommonSwitcherTransition__Horizontal = 1,
-	ECommonSwitcherTransition__Vertical = 2,
-	ECommonSwitcherTransition__Zoom = 3,
-	ECommonSwitcherTransition__ECommonSwitcherTransition_MAX = 4
+	FadeOnly                       = 0,
+	Horizontal                     = 1,
+	Vertical                       = 2,
+	Zoom                           = 3,
+	ECommonSwitcherTransition_MAX  = 4
 };
 
 
@@ -113,12 +115,21 @@ struct FCommonRegisteredTabInfo
 	class UWidget*                                     ContentInstance;                                          // 0x0010(0x0008) (CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 };
 
+// ScriptStruct CommonUI.CommonInputActionHandlerData
+// 0x0018
+struct FCommonInputActionHandlerData
+{
+	struct FDataTableRowHandle                         InputActionRow;                                           // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly)
+	EInputActionState                                  State;                                                    // 0x0010(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0011(0x0007) MISSED OFFSET
+};
+
 // ScriptStruct CommonUI.CommonNumberFormattingOptions
 // 0x0014
 struct FCommonNumberFormattingOptions
 {
 	TEnumAsByte<ERoundingMode>                         RoundingMode;                                             // 0x0000(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UseGrouping : 1;                                          // 0x0001(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               UseGrouping;                                              // 0x0001(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x2];                                       // 0x0002(0x0002) MISSED OFFSET
 	int                                                MinimumIntegralDigits;                                    // 0x0004(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                MaximumIntegralDigits;                                    // 0x0008(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -130,11 +141,12 @@ struct FCommonNumberFormattingOptions
 // 0x0018
 struct FOperation
 {
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0000(0x0001) UNKNOWN PROPERTY: EnumProperty CommonUI.Operation.Operation
-	unsigned char                                      UnknownData01[0x7];                                       // 0x0001(0x0007) MISSED OFFSET
+	EOperation                                         Operation;                                                // 0x0000(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0001(0x0007) MISSED OFFSET
 	class UCommonActivatablePanel*                     Panel;                                                    // 0x0008(0x0008) (CPF_ExportObject, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
-	unsigned char                                      bIntroPanel : 1;                                          // 0x0010(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      bOutroPanelBelow : 1;                                     // 0x0011(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIntroPanel;                                              // 0x0010(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bOutroPanelBelow;                                         // 0x0011(0x0001) (CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x6];                                       // 0x0012(0x0006) MISSED OFFSET
 };
 
 // ScriptStruct CommonUI.CommonInputKeyDisplayData
@@ -152,25 +164,17 @@ struct FCommonInputKeyDisplayConfiguration
 	struct FCommonInputKeyDisplayData                  Value;                                                    // 0x0018(0x0240) (CPF_Edit)
 };
 
-// ScriptStruct CommonUI.CommonInputActionHandlerData
-// 0x0018
-struct FCommonInputActionHandlerData
-{
-	struct FDataTableRowHandle                         InputActionRow;                                           // 0x0000(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly)
-	unsigned char                                      UnknownData00[0x1];                                       // 0x0010(0x0001) UNKNOWN PROPERTY: EnumProperty CommonUI.CommonInputActionHandlerData.State
-};
-
 // ScriptStruct CommonUI.CommonInputActionData
 // 0x02C8 (0x02D0 - 0x0008)
 struct FCommonInputActionData : public FTableRowBase
 {
 	struct FText                                       DisplayName;                                              // 0x0008(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly)
 	struct FKey                                        PlatformSpecificKeys[0x4];                                // 0x0020(0x0018) (CPF_Edit)
-	unsigned char                                      UnknownData00[0x4];                                       // 0x0080(0x0004) UNKNOWN PROPERTY: EnumProperty CommonUI.CommonInputActionData.OverrrideStateForInputType
-	unsigned char                                      UnknownData01[0x4];                                       // 0x0084(0x0004) MISSED OFFSET
+	EInputActionState                                  OverrrideStateForInputType[0x4];                          // 0x0080(0x0001) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0084(0x0004) MISSED OFFSET
 	struct FSlateBrush                                 InputTypeOverrideBrush[0x4];                              // 0x0088(0x0090) (CPF_Edit)
-	unsigned char                                      bActionRequiresHold : 1;                                  // 0x02C8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      UnknownData02[0x3];                                       // 0x02C9(0x0003) MISSED OFFSET
+	bool                                               bActionRequiresHold;                                      // 0x02C8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData01[0x3];                                       // 0x02C9(0x0003) MISSED OFFSET
 	float                                              HoldTime;                                                 // 0x02CC(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_BlueprintReadOnly, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 

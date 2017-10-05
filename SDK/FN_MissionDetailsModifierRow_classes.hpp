@@ -27,10 +27,10 @@ public:
 	class UClass*                                      DescriptionTextStyle;                                     // 0x0268(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       Name;                                                     // 0x0270(0x0018) (CPF_Edit, CPF_BlueprintVisible)
 	class UTexture2D*                                  Icon;                                                     // 0x0288(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	unsigned char                                      ShowDescription : 1;                                      // 0x0290(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ShowDescription;                                          // 0x0290(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0291(0x0007) MISSED OFFSET
 	struct FText                                       Description;                                              // 0x0298(0x0018) (CPF_Edit, CPF_BlueprintVisible)
-	unsigned char                                      bUseSmallIcon : 1;                                        // 0x02B0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bUseSmallIcon;                                            // 0x02B0(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x02B1(0x0007) MISSED OFFSET
 	TAssetPtr<class UTexture2D>                        IconAssetID;                                              // 0x02B8(0x0020) (CPF_Edit, CPF_BlueprintVisible)
 

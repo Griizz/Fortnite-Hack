@@ -151,12 +151,14 @@ struct ULoginScreen_C_ShowSignInWindow_Params
 // Function LoginScreen.LoginScreen_C.DialogResult_EE7DC32F44B9651770AED08101A03510
 struct ULoginScreen_C_DialogResult_EE7DC32F44B9651770AED08101A03510_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LoginScreen.LoginScreen_C.DialogResult_B952A8754B3836D2151B4981F531542E
 struct ULoginScreen_C_DialogResult_B952A8754B3836D2151B4981F531542E_Params
 {
+	EFortDialogResult                                  Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       ResultName;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -174,11 +176,13 @@ struct ULoginScreen_C_OnPatchingComplete_Params
 // Function LoginScreen.LoginScreen_C.OnEnterState
 struct ULoginScreen_C_OnEnterState_Params
 {
+	EFortUIState*                                      PreviousUIState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LoginScreen.LoginScreen_C.OnExitState
 struct ULoginScreen_C_OnExitState_Params
 {
+	EFortUIState*                                      NextUIState;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LoginScreen.LoginScreen_C.HandleOnStartLogin
@@ -295,6 +299,7 @@ struct ULoginScreen_C_OnDisplayErrorComplete_Params
 // Function LoginScreen.LoginScreen_C.HandleOnLoginAccountTypeSelected
 struct ULoginScreen_C_HandleOnLoginAccountTypeSelected_Params
 {
+	EFortLoginAccountType                              LoginAccountType;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function LoginScreen.LoginScreen_C.OnPostLoginLogoutComplete

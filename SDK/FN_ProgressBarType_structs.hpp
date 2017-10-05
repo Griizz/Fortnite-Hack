@@ -13,12 +13,12 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // UserDefinedEnum ProgressBarType.ProgressBarType
-enum class EProgressBarType
+enum class EProgressBarType : uint8_t
 {
-	ProgressBarType__NewEnumerator0 = 0,
-	ProgressBarType__NewEnumerator1 = 1,
-	ProgressBarType__NewEnumerator2 = 2,
-	ProgressBarType__ProgressBarType_MAX = 3
+	NewEnumerator0                 = 0,
+	NewEnumerator1                 = 1,
+	NewEnumerator2                 = 2,
+	ProgressBarType_MAX            = 3
 };
 
 

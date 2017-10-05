@@ -38,7 +38,7 @@ struct UTabInputOptions_C_Construct_Params
 // Function TabInputOptions.TabInputOptions_C.Input Clicked
 struct UTabInputOptions_C_Input_Clicked_Params
 {
-	int                                                Number_In_List;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                Number_in_List;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               Is_Primary_Button;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -62,6 +62,12 @@ struct UTabInputOptions_C_BndEvt__InputCommonListView_K2Node_ComponentBoundEvent
 struct UTabInputOptions_C_HandleUsingGamepadChanged_Params
 {
 	bool*                                              bUsingGamepad;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function TabInputOptions.TabInputOptions_C.UnbindClicked
+struct UTabInputOptions_C_UnbindClicked_Params
+{
+	int                                                Number_in_List;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function TabInputOptions.TabInputOptions_C.ExecuteUbergraph_TabInputOptions

@@ -40,7 +40,7 @@ public:
 
 	void HandleMouseHoverVisualState(bool Hover);
 	void OpenPartyFinder();
-	void GetLeaderVisibility();
+	ESlateVisibility GetLeaderVisibility();
 	void UpdateMemberInfo(struct FFortTeamMemberInfo* NewMemberInfo);
 	void ShowOpen();
 	void ShowConnected();

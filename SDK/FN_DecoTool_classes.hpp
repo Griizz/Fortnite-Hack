@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass DecoTool.DecoTool_C
-// 0x0000 (0x0AC8 - 0x0AC8)
+// 0x0000 (0x0AD0 - 0x0AD0)
 class ADecoTool_C : public AFortDecoTool
 {
 public:

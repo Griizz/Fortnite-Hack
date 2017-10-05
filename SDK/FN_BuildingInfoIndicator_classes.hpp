@@ -77,9 +77,9 @@ public:
 
 
 	void RefreshBuildingInfo();
-	void HandleQuickbarFocusChanged(int QuickBarSlot);
+	void HandleQuickbarFocusChanged(EFortQuickBars QuickBar, int QuickBarSlot);
 	void HandleAttachedTrapChanged(class ABuildingTrap* BuildingTrap);
-	void UpdateBuildingInfo_InteractionWidgets(bool Interactable, bool CanBePlayerEdited, bool IsAnyTrapAttached, bool IsTrapAttachedFacingPlayer, bool IsPreviewTrapAttached, int InteractionCost, TEnumAsByte<EFortResourceType> BuildingMaterial);
+	void UpdateBuildingInfo_InteractionWidgets(bool Interactable, bool CanBePlayerEdited, bool IsAnyTrapAttached, bool IsTrapAttachedFacingPlayer, bool IsPreviewTrapAttached, EFortBuildingInteraction InteractionType, int InteractionCost, TEnumAsByte<EFortResourceType> BuildingMaterial);
 	bool IsCurrentBuildingBeingRepaired();
 	void UpdateBuildingRepairCost(int NewInteractionCost);
 	void HandlePlayerTargetingChanged(bool bIsTargeting);

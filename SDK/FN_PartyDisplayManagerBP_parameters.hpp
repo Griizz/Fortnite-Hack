@@ -25,6 +25,7 @@ struct APartyDisplayManagerBP_C_SetUIOverrideVisuals_Params
 {
 	class UTexture2D*                                  Large_Texture;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortItemDefinition*                         Item;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortRarity                                        Rarity;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function PartyDisplayManagerBP.PartyDisplayManagerBP_C.GetWeaponPlacementTransform

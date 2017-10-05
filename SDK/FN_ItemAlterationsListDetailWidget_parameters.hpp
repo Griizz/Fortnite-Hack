@@ -14,8 +14,19 @@ namespace SDK
 //Parameters
 //---------------------------------------------------------------------------
 
+// Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.SetState
+struct UItemAlterationsListDetailWidget_C_SetState_Params
+{
+	EFortAlterationWidgetState                         State;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.HandlePostDifferentItemToDetailSet
 struct UItemAlterationsListDetailWidget_C_HandlePostDifferentItemToDetailSet_Params
+{
+};
+
+// Function ItemAlterationsListDetailWidget.ItemAlterationsListDetailWidget_C.HandlePostDifferentItemToCompareWithSet
+struct UItemAlterationsListDetailWidget_C_HandlePostDifferentItemToCompareWithSet_Params
 {
 };
 

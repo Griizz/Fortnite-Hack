@@ -80,23 +80,6 @@ void UHordeWaveAlertWidget_C::OnHordeTierInitialized_Event_1(TArray<struct FFort
 }
 
 
-// Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.Construct
-// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
-
-void UHordeWaveAlertWidget_C::Construct()
-{
-	static auto fn = UObject::FindObject<UFunction>("Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.Construct");
-
-	UHordeWaveAlertWidget_C_Construct_Params params;
-
-	auto flags = fn->FunctionFlags;
-
-	UObject::ProcessEvent(fn, &params);
-
-	fn->FunctionFlags = flags;
-}
-
-
 // Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.OnWaveModifiersAdded
 // (FUNC_HasOutParms, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
@@ -108,6 +91,23 @@ void UHordeWaveAlertWidget_C::OnWaveModifiersAdded(TArray<class UFortGameplayMod
 
 	UHordeWaveAlertWidget_C_OnWaveModifiersAdded_Params params;
 	params.Modifiers = Modifiers;
+
+	auto flags = fn->FunctionFlags;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+// Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.Construct
+// (FUNC_BlueprintCosmetic, FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+
+void UHordeWaveAlertWidget_C::Construct()
+{
+	static auto fn = UObject::FindObject<UFunction>("Function HordeWaveAlertWidget.HordeWaveAlertWidget_C.Construct");
+
+	UHordeWaveAlertWidget_C_Construct_Params params;
 
 	auto flags = fn->FunctionFlags;
 

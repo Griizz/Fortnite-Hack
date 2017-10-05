@@ -32,9 +32,10 @@ void USquadSlotDetailsPanel_C::Set_Scroll_Box_to_Nav_Scroll_Widget()
 // Function SquadSlotDetailsPanel.SquadSlotDetailsPanel_C.GetRestrictionReasonsAsText
 // (FUNC_Public, FUNC_HasOutParms, FUNC_HasDefaults, FUNC_BlueprintCallable, FUNC_BlueprintEvent, FUNC_BlueprintPure)
 // Parameters:
+// TArray<EFortSquadSlottingRestrictionReason> Reasons                        (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 // struct FText                   Text                           (CPF_Parm, CPF_OutParm)
 
-void USquadSlotDetailsPanel_C::GetRestrictionReasonsAsText(struct FText* Text)
+void USquadSlotDetailsPanel_C::GetRestrictionReasonsAsText(TArray<EFortSquadSlottingRestrictionReason>* Reasons, struct FText* Text)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function SquadSlotDetailsPanel.SquadSlotDetailsPanel_C.GetRestrictionReasonsAsText");
 
@@ -46,6 +47,8 @@ void USquadSlotDetailsPanel_C::GetRestrictionReasonsAsText(struct FText* Text)
 
 	fn->FunctionFlags = flags;
 
+	if (Reasons != nullptr)
+		*Reasons = params.Reasons;
 	if (Text != nullptr)
 		*Text = params.Text;
 }

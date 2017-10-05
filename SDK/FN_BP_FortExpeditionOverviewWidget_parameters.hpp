@@ -23,6 +23,7 @@ struct UBP_FortExpeditionOverviewWidget_C_Get_Utc_Now_Offset_Params
 // Function BP_FortExpeditionOverviewWidget.BP_FortExpeditionOverviewWidget_C.Set List Sort Type
 struct UBP_FortExpeditionOverviewWidget_C_Set_List_Sort_Type_Params
 {
+	EFortExpeditionListSort                            InSortType;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function BP_FortExpeditionOverviewWidget.BP_FortExpeditionOverviewWidget_C.Should Disable Build Expedition Action

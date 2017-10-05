@@ -50,6 +50,7 @@ class USubmixEffectSubmixEQPreset : public USoundEffectSubmixPreset
 {
 public:
 	struct FSubmixEffectSubmixEQSettings               Settings;                                                 // 0x0040(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0041(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -66,6 +67,7 @@ class USubmixEffectTestPreset : public USoundEffectSubmixPreset
 {
 public:
 	struct FSubmixEffectTestSettings                   Settings;                                                 // 0x0040(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0044(0x0004) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

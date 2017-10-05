@@ -39,6 +39,7 @@ struct UResults_TeleportPad_C_Focus_Params
 struct UResults_TeleportPad_C_Initialize_Params
 {
 	class UFortUIScoreReport*                          InScoreReport;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCompletionResult                              CompletionResult;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Results_TeleportPad.Results_TeleportPad_C.Team Score Screen Intro

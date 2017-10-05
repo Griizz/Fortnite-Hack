@@ -346,12 +346,15 @@ void UCinematic_C::PushContentWidgetInternal(class UWidget** Widget, struct FCon
 
 // Function Cinematic.Cinematic_C.OnEnterState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  PreviousUIState                (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCinematic_C::OnEnterState()
+void UCinematic_C::OnEnterState(EFortUIState* PreviousUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Cinematic.Cinematic_C.OnEnterState");
 
 	UCinematic_C_OnEnterState_Params params;
+	params.PreviousUIState = PreviousUIState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -363,12 +366,15 @@ void UCinematic_C::OnEnterState()
 
 // Function Cinematic.Cinematic_C.OnExitState
 // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIState*                  NextUIState                    (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UCinematic_C::OnExitState()
+void UCinematic_C::OnExitState(EFortUIState* NextUIState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function Cinematic.Cinematic_C.OnExitState");
 
 	UCinematic_C_OnExitState_Params params;
+	params.NextUIState = NextUIState;
 
 	auto flags = fn->FunctionFlags;
 

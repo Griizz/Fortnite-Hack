@@ -31,12 +31,15 @@ void UQuickbarSlot_C::UpdateItemCardsVisibility()
 
 // Function QuickbarSlot.QuickbarSlot_C.OnCooldownStopped
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortItemCooldownType          CooldownType                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarSlot_C::OnCooldownStopped()
+void UQuickbarSlot_C::OnCooldownStopped(EFortItemCooldownType CooldownType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarSlot.QuickbarSlot_C.OnCooldownStopped");
 
 	UQuickbarSlot_C_OnCooldownStopped_Params params;
+	params.CooldownType = CooldownType;
 
 	auto flags = fn->FunctionFlags;
 
@@ -48,12 +51,15 @@ void UQuickbarSlot_C::OnCooldownStopped()
 
 // Function QuickbarSlot.QuickbarSlot_C.OnCooldownStarted
 // (FUNC_Public, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortItemCooldownType          CooldownType                   (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarSlot_C::OnCooldownStarted()
+void UQuickbarSlot_C::OnCooldownStarted(EFortItemCooldownType CooldownType)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarSlot.QuickbarSlot_C.OnCooldownStarted");
 
 	UQuickbarSlot_C_OnCooldownStarted_Params params;
+	params.CooldownType = CooldownType;
 
 	auto flags = fn->FunctionFlags;
 

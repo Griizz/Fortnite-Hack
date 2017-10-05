@@ -17,12 +17,14 @@ namespace SDK
 // Function FortniteGame.AIHotSpotSlot.SetSlotState
 struct UAIHotSpotSlot_SetSlotState_Params
 {
+	EAIHotSpotSlot                                     NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpotSlot.SetSlotOwnerAndState
 struct UAIHotSpotSlot_SetSlotOwnerAndState_Params
 {
 	class AAIController*                               NewOwner;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAIHotSpotSlot                                     NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpotSlot.SetSlotEnabled
@@ -35,6 +37,7 @@ struct UAIHotSpotSlot_SetSlotEnabled_Params
 struct UAIHotSpotSlot_OnStateChanged_Params
 {
 	class AAIController*                               SlotOwner;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAIHotSpotSlot                                     NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpotSlot.IsEnabled
@@ -65,6 +68,7 @@ struct UAIHotSpotSlot_GetSlotUserId_Params
 // Function FortniteGame.AIHotSpotSlot.GetSlotState
 struct UAIHotSpotSlot_GetSlotState_Params
 {
+	EAIHotSpotSlot                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpotSlot.GetSlotRotation
@@ -200,6 +204,7 @@ struct AAIHotSpot_OnRemovedBehavior_Params
 	class AAIController*                               AI;                                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                UserId;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAIHotSpotSlot                                     PrevState;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bWasOnWaitingList;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -284,6 +289,7 @@ struct AAIHotSpot_HasEnabledSlots_Params
 struct AAIHotSpot_HasAssignedAI_Params
 {
 	class AAIController*                               AI;                                                       // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAIHotSpotAssignmentFilter                         Filter;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -298,12 +304,14 @@ struct AAIHotSpot_GetSlotUserIdByIndex_Params
 struct AAIHotSpot_GetSlotStateByOwner_Params
 {
 	class AAIController*                               AIOwner;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAIHotSpotSlot                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpot.GetSlotStateByIndex
 struct AAIHotSpot_GetSlotStateByIndex_Params
 {
 	int                                                Index;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAIHotSpotSlot                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpot.GetSlotRotationByIndex
@@ -337,6 +345,7 @@ struct AAIHotSpot_GetSlotIndexByOwner_Params
 // Function FortniteGame.AIHotSpot.GetSlotCount
 struct AAIHotSpot_GetSlotCount_Params
 {
+	EAIHotSpotSlotFilter                               Filter;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -357,12 +366,14 @@ struct AAIHotSpot_GetSlotByIndex_Params
 // Function FortniteGame.AIHotSpot.GetAssignedAICount
 struct AAIHotSpot_GetAssignedAICount_Params
 {
+	EAIHotSpotAssignmentFilter                         Filter;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.AIHotSpot.GetAssignedAI
 struct AAIHotSpot_GetAssignedAI_Params
 {
+	EAIHotSpotAssignmentFilter                         Filter;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<class AAIController*>                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
 
@@ -418,6 +429,7 @@ struct AAIHotSpot_AssignFromWaitingList_Params
 // Function FortniteGame.FortInventorySortFunctionLibrary.GetCriterionDisplayNameOfSortType
 struct UFortInventorySortFunctionLibrary_GetCriterionDisplayNameOfSortType_Params
 {
+	EInventoryContentSortType                          SortType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
@@ -1147,6 +1159,12 @@ struct ABuildingActor_GameplayCue_Damage_Params
 	struct FGameplayCueParameters                      Parameters;                                               // (CPF_Parm)
 };
 
+// Function FortniteGame.BuildingActor.ForceBuildingHealth
+struct ABuildingActor_ForceBuildingHealth_Params
+{
+	float                                              NewHealth;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.BuildingActor.CustomStateChanged
 struct ABuildingActor_CustomStateChanged_Params
 {
@@ -1442,6 +1460,12 @@ struct ABuildingSMActor_GetBuildingMeshComponent_Params
 	class UStaticMeshComponent*                        ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.BuildingSMActor.GetAttachedBuildingActors
+struct ABuildingSMActor_GetAttachedBuildingActors_Params
+{
+	TArray<class ABuildingSMActor*>                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
+};
+
 // Function FortniteGame.BuildingSMActor.GetAnimatingMID
 struct ABuildingSMActor_GetAnimatingMID_Params
 {
@@ -1617,6 +1641,7 @@ struct UAutomationPerfMonitorManager_GetPerfMonitorInstance_Params
 // Function FortniteGame.FortTargetSelectionInterface.GetTargetingTransform
 struct UFortTargetSelectionInterface_GetTargetingTransform_Params
 {
+	EFortAbilityTargetingSource                        Source;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortGameplayAbility*                        SourceAbility;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FTransform                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -1695,6 +1720,7 @@ struct ABuildingGameplayActor_K2_AddGameplayCue_Params
 // Function FortniteGame.BuildingGameplayActor.GetTargetingSourceTransform
 struct ABuildingGameplayActor_GetTargetingSourceTransform_Params
 {
+	EFortAbilityTargetingSource                        Source;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FTransform                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -1837,6 +1863,7 @@ struct ABuildingFlagSpawn_IsSpawnedObjectAwayFromBase_Params
 // Function FortniteGame.FortItemTypeFunctionLibrary.ToText
 struct UFortItemTypeFunctionLibrary_ToText_Params
 {
+	EFortItemType                                      ItemType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               UsePlural;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
@@ -2086,6 +2113,7 @@ struct UFortItemDefinition_CreateTemporaryInstanceFromExistingItemBP_Params
 // Function FortniteGame.FortItem.TryGetCategory
 struct UFortItem_TryGetCategory_Params
 {
+	EFortItemCategoryOrdinal                           Ordinal;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       OutCategoryDisplayName;                                   // (CPF_Parm, CPF_OutParm)
 	bool                                               OutHasIcon;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortMultiSizeBrush                         OutCategoryIconBrush;                                     // (CPF_Parm, CPF_OutParm)
@@ -2171,6 +2199,7 @@ struct UFortItem_HasDurability_Params
 // Function FortniteGame.FortItem.GetUpgradeRestrictionReasonText
 struct UFortItem_GetUpgradeRestrictionReasonText_Params
 {
+	EItemUpgradeRestrictionReason                      Reason;                                                   // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
@@ -2189,6 +2218,7 @@ struct UFortItem_GetUpgradeCost_Params
 // Function FortniteGame.FortItem.GetType
 struct UFortItem_GetType_Params
 {
+	EFortItemType                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortItem.GetTier
@@ -2230,6 +2260,7 @@ struct UFortItem_GetSearchTags_Params
 // Function FortniteGame.FortItem.GetSchematicResultType
 struct UFortItem_GetSchematicResultType_Params
 {
+	EFortItemType                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortItem.GetSchematicCraftingResultBP
@@ -2271,6 +2302,7 @@ struct UFortItem_GetRarityColor_Params
 // Function FortniteGame.FortItem.GetRarity
 struct UFortItem_GetRarity_Params
 {
+	EFortRarity                                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortItem.GetPrimaryCategory
@@ -2343,11 +2375,13 @@ struct UFortItem_GetItemDefinitionBP_Params
 // Function FortniteGame.FortItem.GetFilterCategory
 struct UFortItem_GetFilterCategory_Params
 {
+	EFortInventoryFilter                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortItem.GetEvolveRestrictionReasonText
 struct UFortItem_GetEvolveRestrictionReasonText_Params
 {
+	EItemEvolutionRestrictionReason                    Reason;                                                   // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
@@ -2400,12 +2434,14 @@ struct UFortItem_DoesMatchSearchString_Params
 // Function FortniteGame.FortItem.CanEvolve
 struct UFortItem_CanEvolve_Params
 {
+	TArray<EItemEvolutionRestrictionReason>            OutRestrictionReasons;                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortItem.CanBeUpgraded
 struct UFortItem_CanBeUpgraded_Params
 {
+	TArray<EItemUpgradeRestrictionReason>              OutRestrictionReasons;                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -2478,7 +2514,9 @@ struct UFortWorldItemDefinition_CanBeDisassembled_Params
 // Function FortniteGame.FortQuickBars.ServerSwapItemsInternal
 struct AFortQuickBars_ServerSwapItemsInternal_Params
 {
+	EFortQuickBars                                     QuickBarA;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndexA;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortQuickBars                                     QuickBarB;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndexB;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -2494,12 +2532,14 @@ struct AFortQuickBars_ServerRemoveItemInternal_Params
 struct AFortQuickBars_ServerAddItemInternal_Params
 {
 	struct FGuid                                       Item;                                                     // (CPF_Parm, CPF_IsPlainOldData)
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuickBars.ServerActivateSlotInternal
 struct AFortQuickBars_ServerActivateSlotInternal_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              ActivateDelay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bUpdatePreviousFocusedSlot;                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -2518,30 +2558,28 @@ struct AFortQuickBars_OnRep_PrimaryQuickBar_Params
 // Function FortniteGame.FortQuickBars.EnableSlot
 struct AFortQuickBars_EnableSlot_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndex;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuickBars.EmptySlot
 struct AFortQuickBars_EmptySlot_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndex;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuickBars.Empty
 struct AFortQuickBars_Empty_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuickBars.DisableSlot
 struct AFortQuickBars_DisableSlot_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndex;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortAccountItemDefinition.GetRecyclingRefunds
-struct UFortAccountItemDefinition_GetRecyclingRefunds_Params
-{
-	TArray<struct FFortItemQuantityPair>               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
 
 // Function FortniteGame.BuildingFOBCoreSpawnPad.GetCoreSpawnTransform
@@ -2569,6 +2607,7 @@ struct ABuildingFOBConfigActor_OnRep_bFinalized_Params
 // Function FortniteGame.BuildingFOBConfigActor.OnIOOperationCompleteMulticast
 struct ABuildingFOBConfigActor_OnIOOperationCompleteMulticast_Params
 {
+	EFOBIOStatus                                       IOOperation;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bSuccess;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortFOBCoreDecoItemDefinition*              SelectedCoreDef;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -2576,6 +2615,7 @@ struct ABuildingFOBConfigActor_OnIOOperationCompleteMulticast_Params
 // Function FortniteGame.BuildingFOBConfigActor.OnFOBModeSet
 struct ABuildingFOBConfigActor_OnFOBModeSet_Params
 {
+	EFOBMode                                           ModeThatWasSet;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.BuildingFOBConfigActor.OnFinalized
@@ -2634,6 +2674,7 @@ struct ABuildingFOBConfigActor_GetSelectedFOBCoreItemDefinition_Params
 // Function FortniteGame.BuildingFOBConfigActor.GetFOBMode
 struct ABuildingFOBConfigActor_GetFOBMode_Params
 {
+	EFOBMode                                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.BuildingFOBConfigActor.GetAllCoreChoices
@@ -2754,6 +2795,7 @@ struct ABuildingItemCollectorActor_UpdateTeamDepositValues_Params
 // Function FortniteGame.BuildingItemCollectorActor.SetItemCollectorState
 struct ABuildingItemCollectorActor_SetItemCollectorState_Params
 {
+	EFortItemCollectorState                            InItemCollectorState;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.BuildingItemCollectorActor.OnTeamReachedDepositGoal
@@ -2785,6 +2827,7 @@ struct ABuildingItemCollectorActor_OnRep_ControllingTeam_Params
 // Function FortniteGame.BuildingItemCollectorActor.OnItemCollectorStateChanged
 struct ABuildingItemCollectorActor_OnItemCollectorStateChanged_Params
 {
+	EFortItemCollectorState                            InItemCollectorState;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.BuildingItemCollectorActor.GetTeamReachedGoalCount
@@ -2849,11 +2892,14 @@ struct ADeployableBasePlot_OnRep_BuildableSpaceExpansionVector_Params
 // Function FortniteGame.DeployableBasePlot.OnCurrentBuildingStateSet
 struct ADeployableBasePlot_OnCurrentBuildingStateSet_Params
 {
+	EDeployableBaseBuildingState                       InCurrentBuildingState;                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.DeployableBasePlot.OnBuildingStateTransition
 struct ADeployableBasePlot_OnBuildingStateTransition_Params
 {
+	EDeployableBaseBuildingState                       InPreviousState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDeployableBaseBuildingState                       InCurrentState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.DeployableBasePlot.IsOccupied
@@ -2880,6 +2926,8 @@ struct ADeployableBasePlot_IsBuildingActorWithinBuildableSpace_Params
 // Function FortniteGame.DeployableBasePlot.HandleBuildingStateTransition
 struct ADeployableBasePlot_HandleBuildingStateTransition_Params
 {
+	EDeployableBaseBuildingState                       InPreviousState;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EDeployableBaseBuildingState                       InCurrentState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.DeployableBasePlot.GetPlayerStart
@@ -3100,6 +3148,21 @@ struct UFortGameplayAbility_DoesTargetHaveProhibitedTagsForAI_Params
 struct UFortGameplayAbility_ClearAIFocalPoint_Params
 {
 	bool                                               bUseAttackingPriority;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGameplayAbility.CalculateProjectileTrajectorySpline
+struct UFortGameplayAbility_CalculateProjectileTrajectorySpline_Params
+{
+	TArray<struct FVector>                             OutSplinePoints;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	TArray<struct FVector>                             OutSplineTangents;                                        // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	class AActor*                                      Instigator;                                               // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     InitialLocation;                                          // (CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     InitialVelocity;                                          // (CPF_Parm, CPF_IsPlainOldData)
+	float                                              Gravity;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              Friction;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              Bounciness;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              TimeStep;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              TraceExtent;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortGameplayAbility.BP_GetGameplayEffectContainer
@@ -3494,6 +3557,12 @@ struct ABuildingPropAtlas_GetDefenseAnimSpeed_Params
 	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortAccountItemDefinition.GetRecyclingRefunds
+struct UFortAccountItemDefinition_GetRecyclingRefunds_Params
+{
+	TArray<struct FFortItemQuantityPair>               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
+};
+
 // Function FortniteGame.FortAlterationFunctionLibrary.GetAlterationImpactPhysicalSurfaceEffects
 struct UFortAlterationFunctionLibrary_GetAlterationImpactPhysicalSurfaceEffects_Params
 {
@@ -3619,12 +3688,14 @@ struct UFortWeaponItemDefinition_GetEquippedAbilities_Params
 // Function FortniteGame.FortWeaponItemDefinition.GetDisplayTierAsText
 struct UFortWeaponItemDefinition_GetDisplayTierAsText_Params
 {
+	EFortDisplayTier                                   DisplayTier;                                              // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
 // Function FortniteGame.FortWeaponItemDefinition.GetDisplayTier
 struct UFortWeaponItemDefinition_GetDisplayTier_Params
 {
+	EFortDisplayTier                                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortWeaponItemDefinition.GetDegradedPercentage
@@ -3805,6 +3876,427 @@ struct AFortTrack_GetOutgoingNeighborFromSpline_Params
 struct ABuildingFloor_IsBalcony_Params
 {
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.ShouldStreamOutTextureDataWhenPlayerIsTeleportedAtEndOfZone
+struct UFortGlobals_ShouldStreamOutTextureDataWhenPlayerIsTeleportedAtEndOfZone_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.ShouldShowSkillTreeMovies
+struct UFortGlobals_ShouldShowSkillTreeMovies_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.ShouldShowMissionResultsMovies
+struct UFortGlobals_ShouldShowMissionResultsMovies_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.ShouldFlushGPUWhenPlayerIsTeleportedAtEndOfZone
+struct UFortGlobals_ShouldFlushGPUWhenPlayerIsTeleportedAtEndOfZone_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.ShouldDisablePlayerTeleportDuringMissionResults
+struct UFortGlobals_ShouldDisablePlayerTeleportDuringMissionResults_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.ShouldDisableParticleEffectsDuringMissionResults
+struct UFortGlobals_ShouldDisableParticleEffectsDuringMissionResults_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.IsTwitchEnabled
+struct UFortGlobals_IsTwitchEnabled_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.IsNewRewardFlowEnabled
+struct UFortGlobals_IsNewRewardFlowEnabled_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.IsDisplayingTwitchViewerNamesAllowed
+struct UFortGlobals_IsDisplayingTwitchViewerNamesAllowed_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.IsAccountLinkingUIURLButtonEnabled
+struct UFortGlobals_IsAccountLinkingUIURLButtonEnabled_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.IsAccountLinkingEnabled
+struct UFortGlobals_IsAccountLinkingEnabled_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.GetMinTheaterListRefreshDelay
+struct UFortGlobals_GetMinTheaterListRefreshDelay_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.GetMaxTheaterListRefreshDelay
+struct UFortGlobals_GetMaxTheaterListRefreshDelay_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.GetAccountLinkingUIURL
+struct UFortGlobals_GetAccountLinkingUIURL_Params
+{
+	struct FString                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortGlobals.GetAccountLinkingUIConfig
+struct UFortGlobals_GetAccountLinkingUIConfig_Params
+{
+	EFortAccountLinkingUIConfig                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGlobals.AreFriendCodesEnabled
+struct UFortGlobals_AreFriendCodesEnabled_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.ThreatCloud.OnThreatVolumeChanged
+struct AThreatCloud_OnThreatVolumeChanged_Params
+{
+};
+
+// Function FortniteGame.ThreatCloud.OnLightningStrike
+struct AThreatCloud_OnLightningStrike_Params
+{
+	struct FVector                                     StartLocation;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FVector                                     EndLocation;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	class ABuildingRift*                               Rift;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bLightningStruckRift;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.ThreatCloud.OnCloudStart
+struct AThreatCloud_OnCloudStart_Params
+{
+};
+
+// Function FortniteGame.ThreatCloud.OnCloudHiddenChange
+struct AThreatCloud_OnCloudHiddenChange_Params
+{
+	bool                                               bCloudsAreHidden;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.ThreatCloud.OnCloudDeactivated
+struct AThreatCloud_OnCloudDeactivated_Params
+{
+	EFortThreatDeactivationType                        DeactivationType;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.ThreatCloud.OnCloudActivated
+struct AThreatCloud_OnCloudActivated_Params
+{
+};
+
+// Function FortniteGame.ThreatCloud.OnBeginDeath
+struct AThreatCloud_OnBeginDeath_Params
+{
+};
+
+// Function FortniteGame.ThreatCloud.ManualLightningFlash
+struct AThreatCloud_ManualLightningFlash_Params
+{
+};
+
+// Function FortniteGame.ThreatCloud.GetThreatVolume
+struct AThreatCloud_GetThreatVolume_Params
+{
+	struct FBox                                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.StormsExist
+struct AFortThreatVisualsManager_StormsExist_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.SetMinimumCloudAltitude
+struct AFortThreatVisualsManager_SetMinimumCloudAltitude_Params
+{
+	float                                              NewMinimumAltitude;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.SetCloudsAreHidden
+struct AFortThreatVisualsManager_SetCloudsAreHidden_Params
+{
+	bool                                               bHide;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.ResetMinimumCloudAltitude
+struct AFortThreatVisualsManager_ResetMinimumCloudAltitude_Params
+{
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnWorldReady
+struct AFortThreatVisualsManager_OnWorldReady_Params
+{
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnThreatCloudsChanged
+struct AFortThreatVisualsManager_OnThreatCloudsChanged_Params
+{
+	TArray<struct FThreatLocationInfo>                 ThreatLocationInfo;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnRep_ThreatLocations
+struct AFortThreatVisualsManager_OnRep_ThreatLocations_Params
+{
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnRep_StormWinds
+struct AFortThreatVisualsManager_OnRep_StormWinds_Params
+{
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnRep_HideClouds
+struct AFortThreatVisualsManager_OnRep_HideClouds_Params
+{
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnRep_GoalActorLocations
+struct AFortThreatVisualsManager_OnRep_GoalActorLocations_Params
+{
+};
+
+// Function FortniteGame.FortThreatVisualsManager.OnBeginThreatVisualsPrecursor
+struct AFortThreatVisualsManager_OnBeginThreatVisualsPrecursor_Params
+{
+	class AActor*                                      SourceActor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     EndLocation;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.GetThreatClouds
+struct AFortThreatVisualsManager_GetThreatClouds_Params
+{
+	TArray<struct FThreatLocationInfo>                 ReturnValue;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.GetThreatCloud
+struct AFortThreatVisualsManager_GetThreatCloud_Params
+{
+	struct FThreatLocationInfo                         ThreatLocInfo;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	class AThreatCloud*                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.GetCloudsAreHidden
+struct AFortThreatVisualsManager_GetCloudsAreHidden_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortThreatVisualsManager.BeginThreatVisualsPrecursor
+struct AFortThreatVisualsManager_BeginThreatVisualsPrecursor_Params
+{
+	class AActor*                                      SourceActor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     ThreatLocation;                                           // (CPF_Parm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.ToggleSkipNight
+struct AFortTimeOfDayManager_ToggleSkipNight_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.ToggleDebugForceStormEffects
+struct AFortTimeOfDayManager_ToggleDebugForceStormEffects_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDaySpeedFloat
+struct AFortTimeOfDayManager_SetTimeOfDaySpeedFloat_Params
+{
+	float                                              InTimeOfDaySpeed;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDaySpeed
+struct AFortTimeOfDayManager_SetTimeOfDaySpeed_Params
+{
+	float                                              TimeOfDaySpeedFactor;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayManagerVisibility
+struct AFortTimeOfDayManager_SetTimeOfDayManagerVisibility_Params
+{
+	bool                                               bVisible;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayInHours
+struct AFortTimeOfDayManager_SetTimeOfDayInHours_Params
+{
+	float                                              TimeOfDayInHours;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayFloat
+struct AFortTimeOfDayManager_SetTimeOfDayFloat_Params
+{
+	float                                              TimeOfDayInHours;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayAbsoluteSpeed
+struct AFortTimeOfDayManager_SetTimeOfDayAbsoluteSpeed_Params
+{
+	float                                              NewTimeOfDaySpeed;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDay
+struct AFortTimeOfDayManager_SetTimeOfDay_Params
+{
+	struct FString                                     NewTimeOfDay;                                             // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetStormStrength
+struct AFortTimeOfDayManager_SetStormStrength_Params
+{
+	float                                              NewStormStrength;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetLightningColorAlpha
+struct AFortTimeOfDayManager_SetLightningColorAlpha_Params
+{
+	float                                              NewLightningColorAlpha;                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetFogDirectionalInscatteringMultiplier
+struct AFortTimeOfDayManager_SetFogDirectionalInscatteringMultiplier_Params
+{
+	float                                              NewFogDirectionalInscatteringMultiplier;                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetDirectionalLightColorMultiplier
+struct AFortTimeOfDayManager_SetDirectionalLightColorMultiplier_Params
+{
+	float                                              NewDirectionalLightColorMultiplier;                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.SetDayPhase
+struct AFortTimeOfDayManager_SetDayPhase_Params
+{
+	struct FString                                     DayPhase;                                                 // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnUpdateDirectionalLightForTimeOfDay
+struct AFortTimeOfDayManager_OnUpdateDirectionalLightForTimeOfDay_Params
+{
+	struct FLinearColor                                AboutToApplyDirectionalLightColor;                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnStormStart
+struct AFortTimeOfDayManager_OnStormStart_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnStormEnd
+struct AFortTimeOfDayManager_OnStormEnd_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnRep_TimeOfDayInit
+struct AFortTimeOfDayManager_OnRep_TimeOfDayInit_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnRep_TimeOfDay
+struct AFortTimeOfDayManager_OnRep_TimeOfDay_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnRep_HeightFogEnabled
+struct AFortTimeOfDayManager_OnRep_HeightFogEnabled_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.OnDayPhaseChange
+struct AFortTimeOfDayManager_OnDayPhaseChange_Params
+{
+};
+
+// Function FortniteGame.FortTimeOfDayManager.MakeExponentialHeightFogValues
+struct AFortTimeOfDayManager_MakeExponentialHeightFogValues_Params
+{
+	float                                              FogDensity;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              FogHeightFalloff;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              FogMaxOpacity;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              StartDistance;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              DirectionalInscatteringExponent;                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              DirectionalInscatteringStartDistance;                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FLinearColor                                DirectionalInscatteringColor;                             // (CPF_Parm, CPF_IsPlainOldData)
+	struct FLinearColor                                FogInscatteringColor;                                     // (CPF_Parm, CPF_IsPlainOldData)
+	float                                              VolumetricFogScatteringDistribution;                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              VolumetricFogScatteringScale;                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              VolumetricFogAbsorptionScale;                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              VolumetricFogDistance;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FExponentialHeightFogValues                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.GetTimeOfDayManagerFromContext
+struct AFortTimeOfDayManager_GetTimeOfDayManagerFromContext_Params
+{
+	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AFortTimeOfDayManager*                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.GetThreatClouds
+struct AFortTimeOfDayManager_GetThreatClouds_Params
+{
+	TArray<struct FThreatLocationInfo>                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.GetStormStrength
+struct AFortTimeOfDayManager_GetStormStrength_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.GetPreviousDayPhase
+struct AFortTimeOfDayManager_GetPreviousDayPhase_Params
+{
+	TEnumAsByte<EFortDayPhase>                         ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.FFToTimeOfDay
+struct AFortTimeOfDayManager_FFToTimeOfDay_Params
+{
+	float                                              FastForwardTime;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              FastForwardSpeed;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortTimeOfDayManager.BreakExponentialHeightFogValues
+struct AFortTimeOfDayManager_BreakExponentialHeightFogValues_Params
+{
+	struct FExponentialHeightFogValues                 HeightFogValues;                                          // (CPF_Parm)
+	float                                              FogDensity;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              FogHeightFalloff;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              FogMaxOpacity;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              StartDistance;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              DirectionalInscatteringExponent;                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              DirectionalInscatteringStartDistance;                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FLinearColor                                DirectionalInscatteringColor;                             // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	struct FLinearColor                                FogInscatteringColor;                                     // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	float                                              VolumetricFogScatteringDistribution;                      // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              VolumetricFogScatteringScale;                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              VolumetricFogAbsorptionScale;                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              VolumetricFogDistance;                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.BuildingFoundation.OnRep_LevelToStream
@@ -4102,6 +4594,12 @@ struct AFortPlayerSpawnPad_PrestreamChestTextures_Params
 // Function FortniteGame.FortPlayerSpawnPad.InitializeChestProgression
 struct AFortPlayerSpawnPad_InitializeChestProgression_Params
 {
+};
+
+// Function FortniteGame.FortPlayerSpawnPad.GetRewardedChestLevel
+struct AFortPlayerSpawnPad_GetRewardedChestLevel_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerSpawnPad.GetPossessedPlayerPawnsByID
@@ -4640,6 +5138,7 @@ struct UFortAbilityTask_PlayMontageWaitTarget_PlayMontageWithCharPartsWait_Param
 	class UAnimMontage*                                MontageToPlay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<struct FFortCharacterPartMontageInfo>       CharacterPartMontages;                                    // (CPF_Parm, CPF_ZeroConstructor)
 	float                                              AnimPlayRate;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortGameplayAbilityMontageSectionToPlay           SectionToPlay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       OverrideSection;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              AnimRootMotionTranslationScale;                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortAbilityTask_PlayMontageWaitTarget*      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
@@ -4652,6 +5151,7 @@ struct UFortAbilityTask_PlayMontageWaitTarget_PlayMontageWaitTarget_Params
 	struct FName                                       TaskInstanceName;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UAnimMontage*                                MontageToPlay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              AnimPlayRate;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortGameplayAbilityMontageSectionToPlay           SectionToPlay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FName                                       OverrideSection;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              AnimRootMotionTranslationScale;                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortAbilityTask_PlayMontageWaitTarget*      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
@@ -4717,6 +5217,7 @@ struct AFortGameplayEffectDeliveryActor_OnTouched_Params
 	class AActor*                                      OtherActor;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UPrimitiveComponent*                         OtherComp;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
 	struct FHitResult                                  HitResult;                                                // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	bool                                               bIsOverlap;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortGameplayEffectDeliveryActor.OnRep_IsBeingKilled
@@ -4952,101 +5453,6 @@ struct UFortAccountItem_IsFavorite_Params
 
 // Function FortniteGame.FortAccountItem.HasBeenSeenLocally
 struct UFortAccountItem_HasBeenSeenLocally_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.ShouldStreamOutTextureDataWhenPlayerIsTeleportedAtEndOfZone
-struct UFortGlobals_ShouldStreamOutTextureDataWhenPlayerIsTeleportedAtEndOfZone_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.ShouldShowSkillTreeMovies
-struct UFortGlobals_ShouldShowSkillTreeMovies_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.ShouldShowMissionResultsMovies
-struct UFortGlobals_ShouldShowMissionResultsMovies_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.ShouldFlushGPUWhenPlayerIsTeleportedAtEndOfZone
-struct UFortGlobals_ShouldFlushGPUWhenPlayerIsTeleportedAtEndOfZone_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.ShouldDisablePlayerTeleportDuringMissionResults
-struct UFortGlobals_ShouldDisablePlayerTeleportDuringMissionResults_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.ShouldDisableParticleEffectsDuringMissionResults
-struct UFortGlobals_ShouldDisableParticleEffectsDuringMissionResults_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.IsTwitchEnabled
-struct UFortGlobals_IsTwitchEnabled_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.IsNewRewardFlowEnabled
-struct UFortGlobals_IsNewRewardFlowEnabled_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.IsDisplayingTwitchViewerNamesAllowed
-struct UFortGlobals_IsDisplayingTwitchViewerNamesAllowed_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.IsAccountLinkingUIURLButtonEnabled
-struct UFortGlobals_IsAccountLinkingUIURLButtonEnabled_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.IsAccountLinkingEnabled
-struct UFortGlobals_IsAccountLinkingEnabled_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.GetMinTheaterListRefreshDelay
-struct UFortGlobals_GetMinTheaterListRefreshDelay_Params
-{
-	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.GetMaxTheaterListRefreshDelay
-struct UFortGlobals_GetMaxTheaterListRefreshDelay_Params
-{
-	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGlobals.GetAccountLinkingUIURL
-struct UFortGlobals_GetAccountLinkingUIURL_Params
-{
-	struct FString                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortGlobals.GetAccountLinkingUIConfig
-struct UFortGlobals_GetAccountLinkingUIConfig_Params
-{
-};
-
-// Function FortniteGame.FortGlobals.AreFriendCodesEnabled
-struct UFortGlobals_AreFriendCodesEnabled_Params
 {
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -5685,6 +6091,12 @@ struct AFortPawn_IsAllowChainStun_Params
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortPawn.IsActionInputIgnored
+struct AFortPawn_IsActionInputIgnored_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortPawn.InitializeDeathHitSocket
 struct AFortPawn_InitializeDeathHitSocket_Params
 {
@@ -5716,6 +6128,7 @@ struct AFortPawn_HandleIsDying_Params
 // Function FortniteGame.FortPawn.GetTargetingTransform
 struct AFortPawn_GetTargetingTransform_Params
 {
+	EFortAbilityTargetingSource                        Source;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortGameplayAbility*                        SourceAbility;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FTransform                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -5861,6 +6274,7 @@ struct AFortPawn_GetControlResistance_Params
 // Function FortniteGame.FortPawn.GetControlRecoveryBehavior
 struct AFortPawn_GetControlRecoveryBehavior_Params
 {
+	EFortControlRecoveryBehavior                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPawn.GetAssetSkeletalMeshComponentAttachment
@@ -6027,6 +6441,7 @@ struct AFortAIPawn_SetMovementUrgency_Params
 // Function FortniteGame.FortAIPawn.SetMinimumAILOD
 struct AFortAIPawn_SetMinimumAILOD_Params
 {
+	EFortAILODLevel                                    MinimumAILOD;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortAIPawn.SetMinimapViewableDistance
@@ -6093,6 +6508,7 @@ struct AFortAIPawn_SetBlockCollisionWithOtherAI_Params
 // Function FortniteGame.FortAIPawn.SetAIType
 struct AFortAIPawn_SetAIType_Params
 {
+	EFortressAIType                                    InAIType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortAIPawn.SetAIRotationRate
@@ -6272,6 +6688,12 @@ struct AFortAIPawn_GetSpawnLocation_Params
 	struct FVector                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortAIPawn.GetScoreValue
+struct AFortAIPawn_GetScoreValue_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortAIPawn.GetMovementUrgency
 struct AFortAIPawn_GetMovementUrgency_Params
 {
@@ -6391,6 +6813,7 @@ struct AFortAIController_SetTeam_Params
 // Function FortniteGame.FortAIController.SetPawnAIType
 struct AFortAIController_SetPawnAIType_Params
 {
+	EFortressAIType                                    NewAIType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class AActor*                                      SpawnSpot;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -6507,6 +6930,7 @@ struct UFortMissionPowerPointsInterface_GetAvailabilityWeight_Params
 // Function FortniteGame.FortPatrolWardInterface.GetAffectingType
 struct UFortPatrolWardInterface_GetAffectingType_Params
 {
+	EWardAffectType                                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPatrolWardInterface.GetAffectingDistance
@@ -6596,6 +7020,7 @@ struct AFortAIDirector_OnDayPhaseChanged_Params
 struct AFortAIDirector_IsPointTooCloseToPatrolWards_Params
 {
 	struct FVector                                     Point;                                                    // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	EWardAffectType                                    WardEffectTypeFilter;                                     // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -6696,6 +7121,7 @@ struct AFortAIDirectorDataManager_TriggerEvent_Params
 // Function FortniteGame.FortAIDirectorDataManager.GetAIDirectorFactorValue
 struct AFortAIDirectorDataManager_GetAIDirectorFactorValue_Params
 {
+	EFortAIDirectorFactor                              AIDirectorFactor;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -6851,57 +7277,6 @@ struct UFortAIEncounterInfo_CreateEncounterAssignment_Params
 	class UFortAIAssignment*                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
-// Function FortniteGame.ThreatCloud.OnThreatVolumeChanged
-struct AThreatCloud_OnThreatVolumeChanged_Params
-{
-};
-
-// Function FortniteGame.ThreatCloud.OnLightningStrike
-struct AThreatCloud_OnLightningStrike_Params
-{
-	struct FVector                                     StartLocation;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	struct FVector                                     EndLocation;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	class ABuildingRift*                               Rift;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bLightningStruckRift;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.ThreatCloud.OnCloudStart
-struct AThreatCloud_OnCloudStart_Params
-{
-};
-
-// Function FortniteGame.ThreatCloud.OnCloudHiddenChange
-struct AThreatCloud_OnCloudHiddenChange_Params
-{
-	bool                                               bCloudsAreHidden;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.ThreatCloud.OnCloudDeactivated
-struct AThreatCloud_OnCloudDeactivated_Params
-{
-};
-
-// Function FortniteGame.ThreatCloud.OnCloudActivated
-struct AThreatCloud_OnCloudActivated_Params
-{
-};
-
-// Function FortniteGame.ThreatCloud.OnBeginDeath
-struct AThreatCloud_OnBeginDeath_Params
-{
-};
-
-// Function FortniteGame.ThreatCloud.ManualLightningFlash
-struct AThreatCloud_ManualLightningFlash_Params
-{
-};
-
-// Function FortniteGame.ThreatCloud.GetThreatVolume
-struct AThreatCloud_GetThreatVolume_Params
-{
-	struct FBox                                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
 // Function FortniteGame.FortAISpawnGroup.IsValidForEnemySpawners
 struct UFortAISpawnGroup_IsValidForEnemySpawners_Params
 {
@@ -6947,6 +7322,7 @@ struct UFortAIEncounterSequence_StopCurrentEncounter_Params
 // Function FortniteGame.FortAIEncounterSequence.StartCurrentEncounter
 struct UFortAIEncounterSequence_StartCurrentEncounter_Params
 {
+	EFortEncounterSequenceResult                       OutRequestResult;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<class AActor*>                              TargetActors;                                             // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	class UFortAIAssignmentSettings*                   AssignmentSettings;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FEncounterEnvironmentQueryInfo              OverrideEnvironmentQueryInfo;                             // (CPF_Parm)
@@ -6960,11 +7336,13 @@ struct UFortAIEncounterSequence_StartCurrentEncounter_Params
 // Function FortniteGame.FortAIEncounterSequence.Previous
 struct UFortAIEncounterSequence_Previous_Params
 {
+	EFortEncounterSequenceResult                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortAIEncounterSequence.Next
 struct UFortAIEncounterSequence_Next_Params
 {
+	EFortEncounterSequenceResult                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortAIEncounterSequence.IsOnFinalIndexInSequence
@@ -7114,6 +7492,7 @@ struct AFortAIGoalManager_CreateWorldAssignment_Params
 	class UFortAIAssignmentSettings*                   AssignmentSettings;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UClass*                                      GoalProvider;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortAIAssignmentIdentifier                 AssignmentIdentifier;                                     // (CPF_Parm, CPF_OutParm)
+	EAssignmentCreationResult                          CreationResult;                                           // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortAIGoalManager.AddWorldAssignment
@@ -7303,11 +7682,13 @@ struct UCustomCharacterPartAnimInstance_GetAssociatedPlayerPawn_Params
 // Function FortniteGame.FortHuskAnimInstance.SetHuskAnimType
 struct UFortHuskAnimInstance_SetHuskAnimType_Params
 {
+	EFortHuskAnimType                                  NewHuskAnimType;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortHuskAnimInstance.GetHuskAnimType
 struct UFortHuskAnimInstance_GetHuskAnimType_Params
 {
+	EFortHuskAnimType                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortHuskAnimInstance.AnimNotify_SleepingFullyBlended
@@ -7339,6 +7720,536 @@ struct UFortPlayerAnimInstance_AnimNotify_PlaySecondaryFireFX_Params
 struct UFortPlayerAnimInstance_AnimNotify_PlayFireFX_Params
 {
 	class UAnimNotify*                                 Notify;                                                   // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FrontendAnimInstance.PlaySelected
+struct UFrontendAnimInstance_PlaySelected_Params
+{
+};
+
+// Function FortniteGame.FrontendAnimInstance.PlayOutro
+struct UFrontendAnimInstance_PlayOutro_Params
+{
+};
+
+// Function FortniteGame.FrontendAnimInstance.PlayIntro
+struct UFrontendAnimInstance_PlayIntro_Params
+{
+};
+
+// Function FortniteGame.FrontendAnimInstance.OnPlayMontageFromGameplayTagQuery
+struct UFrontendAnimInstance_OnPlayMontageFromGameplayTagQuery_Params
+{
+	struct FGameplayTagQuery                           MatchingQuery;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	class UAnimMontage*                                MontagePlaying;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHeroType.GetSubType
+struct UFortHeroType_GetSubType_Params
+{
+	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortHeroType.GetMaleOverrideFeedback
+struct UFortHeroType_GetMaleOverrideFeedback_Params
+{
+	class UFortFeedbackBank*                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHeroType.GetFrontendAnimClass
+struct UFortHeroType_GetFrontendAnimClass_Params
+{
+	class UClass*                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHeroType.GetFemaleOverrideFeedback
+struct UFortHeroType_GetFemaleOverrideFeedback_Params
+{
+	class UFortFeedbackBank*                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWorker.GetWorkerTypeBP
+struct UFortWorker_GetWorkerTypeBP_Params
+{
+	class UFortWorkerType*                             ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWorker.GetTertiaryCategory
+struct UFortWorker_GetTertiaryCategory_Params
+{
+	struct FText                                       ItemCategoryText;                                         // (CPF_Parm, CPF_OutParm)
+	struct FSlateBrush                                 ItemCategoryBrush;                                        // (CPF_Parm, CPF_OutParm)
+	TEnumAsByte<EFortBrushSize>                        BrushSize;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWorker.GetSecondaryCategory
+struct UFortWorker_GetSecondaryCategory_Params
+{
+	struct FText                                       ItemCategoryText;                                         // (CPF_Parm, CPF_OutParm)
+	struct FSlateBrush                                 ItemCategoryBrush;                                        // (CPF_Parm, CPF_OutParm)
+	TEnumAsByte<EFortBrushSize>                        BrushSize;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHero.IsLevelClamped
+struct UFortHero_IsLevelClamped_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHero.GetUnclampedLevel
+struct UFortHero_GetUnclampedLevel_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHero.GetHeroTypeBP
+struct UFortHero_GetHeroTypeBP_Params
+{
+	class UFortHeroType*                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortHero.GetDisplayName
+struct UFortHero_GetDisplayName_Params
+{
+	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortPlayerPawn.ToggleGender
+struct AFortPlayerPawn_ToggleGender_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.ToggleBodyType
+struct AFortPlayerPawn_ToggleBodyType_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.TimeFromJumpApex
+struct AFortPlayerPawn_TimeFromJumpApex_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.SwitchToPreviousPart
+struct AFortPlayerPawn_SwitchToPreviousPart_Params
+{
+	struct FString                                     PartName;                                                 // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortPlayerPawn.SwitchToNextPart
+struct AFortPlayerPawn_SwitchToNextPart_Params
+{
+	struct FString                                     PartName;                                                 // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortPlayerPawn.SetStasisMode
+struct AFortPlayerPawn_SetStasisMode_Params
+{
+	EFortPawnStasisMode                                InStasisMode;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.SetHomeActor
+struct AFortPlayerPawn_SetHomeActor_Params
+{
+	class AActor*                                      NewActor;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.SetFirstPersonCamera
+struct AFortPlayerPawn_SetFirstPersonCamera_Params
+{
+	bool                                               bNewUseFirstPersonCamera;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerToggleGender
+struct AFortPlayerPawn_ServerToggleGender_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerToggleBodyType
+struct AFortPlayerPawn_ServerToggleBodyType_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerRootMotionInterruptNotifyStopMontage
+struct AFortPlayerPawn_ServerRootMotionInterruptNotifyStopMontage_Params
+{
+	class UAnimMontage*                                MontageToStop;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerReviveFromDBNO
+struct AFortPlayerPawn_ServerReviveFromDBNO_Params
+{
+	class AController*                                 EventInstigator;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerRespawnFromDBNO
+struct AFortPlayerPawn_ServerRespawnFromDBNO_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerPlayUnableToPerformActionMontage
+struct AFortPlayerPawn_ServerPlayUnableToPerformActionMontage_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerHandlePickup
+struct AFortPlayerPawn_ServerHandlePickup_Params
+{
+	class AFortPickup*                                 Pickup;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              InFlyTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     InStartDirection;                                         // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
+	bool                                               bPlayPickupSound;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerCyclePart
+struct AFortPlayerPawn_ServerCyclePart_Params
+{
+	TEnumAsByte<EFortCustomPartType>                   Part;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bNextPart;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerCycleColorSwatch
+struct AFortPlayerPawn_ServerCycleColorSwatch_Params
+{
+	TEnumAsByte<EColorSwatchType>                      SwatchType;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bNext;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerCycleAccessoryColorSwatch
+struct AFortPlayerPawn_ServerCycleAccessoryColorSwatch_Params
+{
+	TEnumAsByte<EFortCustomPartType>                   Part;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bNext;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerChoosePart
+struct AFortPlayerPawn_ServerChoosePart_Params
+{
+	TEnumAsByte<EFortCustomPartType>                   Part;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UCustomCharacterPart*                        ChosenCharacterPart;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ServerChooseGender
+struct AFortPlayerPawn_ServerChooseGender_Params
+{
+	TEnumAsByte<EFortCustomGender>                     Gender;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ReviveFromDBNO
+struct AFortPlayerPawn_ReviveFromDBNO_Params
+{
+	class AController*                                 EventInstigator;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.RandomizeCharacter
+struct AFortPlayerPawn_RandomizeCharacter_Params
+{
+	struct FString                                     GenderString;                                             // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortPlayerPawn.OnRep_IsDBNO
+struct AFortPlayerPawn_OnRep_IsDBNO_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.OnRep_CharPartAnimMontageInfo
+struct AFortPlayerPawn_OnRep_CharPartAnimMontageInfo_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.OnRep_AccelerationPack
+struct AFortPlayerPawn_OnRep_AccelerationPack_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.OnCharacterPartsReinitialized
+struct AFortPlayerPawn_OnCharacterPartsReinitialized_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.ListCharacterParts
+struct AFortPlayerPawn_ListCharacterParts_Params
+{
+	struct FString                                     GenderAndOrPartString;                                    // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortPlayerPawn.IsSprinting
+struct AFortPlayerPawn_IsSprinting_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.InternalServerSetTargeting
+struct AFortPlayerPawn_InternalServerSetTargeting_Params
+{
+	bool                                               bNewTargeting;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.HandleInStasis
+struct AFortPlayerPawn_HandleInStasis_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawn.GetStasisMode
+struct AFortPlayerPawn_GetStasisMode_Params
+{
+	EFortPawnStasisMode                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetStamina
+struct AFortPlayerPawn_GetStamina_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetSkeletalMeshForPartType
+struct AFortPlayerPawn_GetSkeletalMeshForPartType_Params
+{
+	TEnumAsByte<EFortCustomPartType>                   PartType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class USkeletalMeshComponent*                      ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetMaxStamina
+struct AFortPlayerPawn_GetMaxStamina_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetHomeActor
+struct AFortPlayerPawn_GetHomeActor_Params
+{
+	class AActor*                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetGender
+struct AFortPlayerPawn_GetGender_Params
+{
+	bool                                               IsMale;                                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               IsFemale;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetExtraLives
+struct AFortPlayerPawn_GetExtraLives_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetCharacterGender
+struct AFortPlayerPawn_GetCharacterGender_Params
+{
+	TEnumAsByte<EFortCustomGender>                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.GetCharacterBodyType
+struct AFortPlayerPawn_GetCharacterBodyType_Params
+{
+	TEnumAsByte<EFortCustomBodyType>                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawn.ClientNotifyAbilityFailed
+struct AFortPlayerPawn_ClientNotifyAbilityFailed_Params
+{
+	class UGameplayAbility*                            FailedAbility;                                            // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FGameplayTagContainer                       FailedReason;                                             // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortPlayerPawn.CanPredictJumpApex
+struct AFortPlayerPawn_CanPredictJumpApex_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.StopConsumableUseAudio
+struct AFortPlayerPawnAthena_StopConsumableUseAudio_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.StartConsumableUseAudio
+struct AFortPlayerPawnAthena_StartConsumableUseAudio_Params
+{
+	class USoundBase*                                  Sound;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.SafeZoneStatusChanged
+struct AFortPlayerPawnAthena_SafeZoneStatusChanged_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_WeaponActivated
+struct AFortPlayerPawnAthena_OnRep_WeaponActivated_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_ReplicatedAnimMontage
+struct AFortPlayerPawnAthena_OnRep_ReplicatedAnimMontage_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_IsSkydiving
+struct AFortPlayerPawnAthena_OnRep_IsSkydiving_Params
+{
+	bool                                               bPreviousState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_IsParachuteOpen
+struct AFortPlayerPawnAthena_OnRep_IsParachuteOpen_Params
+{
+	bool                                               bPreviousState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_IsOutsideSafeZone
+struct AFortPlayerPawnAthena_OnRep_IsOutsideSafeZone_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_GliderType
+struct AFortPlayerPawnAthena_OnRep_GliderType_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.OnRep_DrivingCar
+struct AFortPlayerPawnAthena_OnRep_DrivingCar_Params
+{
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCuesExecuted_WithParams
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCuesExecuted_WithParams_Params
+{
+	struct FGameplayTagContainer                       GameplayCueTags;                                          // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCuesExecuted
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCuesExecuted_Params
+{
+	struct FGameplayTagContainer                       GameplayCueTags;                                          // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayEffectContextHandle                EffectContext;                                            // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCuesAddedAndWhileActive_WithParams
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCuesAddedAndWhileActive_WithParams_Params
+{
+	struct FGameplayTagContainer                       GameplayCueTags;                                          // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueExecuted_WithParams
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueExecuted_WithParams_Params
+{
+	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueExecuted_FromSpec
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueExecuted_FromSpec_Params
+{
+	struct FGameplayEffectSpecForRPC                   Spec;                                                     // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueExecuted
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueExecuted_Params
+{
+	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayEffectContextHandle                EffectContext;                                            // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAddedAndWhileActive_WithParams
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAddedAndWhileActive_WithParams_Params
+{
+	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAddedAndWhileActive_FromSpec
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAddedAndWhileActive_FromSpec_Params
+{
+	struct FGameplayEffectSpecForRPC                   Spec;                                                     // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAdded_WithParams
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAdded_WithParams_Params
+{
+	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayCueParameters                      Parameters;                                               // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAdded
+struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAdded_Params
+{
+	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
+	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
+	struct FGameplayEffectContextHandle                EffectContext;                                            // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_Athena_BatchedDamageCues
+struct AFortPlayerPawnAthena_NetMulticast_Athena_BatchedDamageCues_Params
+{
+	struct FAthenaBatchedDamageGameplayCues            BatchData;                                                // (CPF_Parm)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.MarkSafe
+struct AFortPlayerPawnAthena_MarkSafe_Params
+{
+	class UClass*                                      GEtoApply;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsUsingUmbrella
+struct AFortPlayerPawnAthena_IsUsingUmbrella_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsSkydiving
+struct AFortPlayerPawnAthena_IsSkydiving_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsPassivelySkydiving
+struct AFortPlayerPawnAthena_IsPassivelySkydiving_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsParachuteOpen
+struct AFortPlayerPawnAthena_IsParachuteOpen_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsParachuteForcedOpen
+struct AFortPlayerPawnAthena_IsParachuteForcedOpen_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsDrivingCar
+struct AFortPlayerPawnAthena_IsDrivingCar_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsActivelyStrafingInAir
+struct AFortPlayerPawnAthena_IsActivelyStrafingInAir_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerPawnAthena.IsActivelySkydiving
+struct AFortPlayerPawnAthena_IsActivelySkydiving_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortAsyncAction_AbandonSession.AbandonSession
@@ -7408,6 +8319,7 @@ struct UFortHomebaseManager_GetSquadCopyById_Params
 // Function FortniteGame.FortHomebaseManager.GetPrereqNodeTypeName
 struct UFortHomebaseManager_GetPrereqNodeTypeName_Params
 {
+	EPrereqNodeType                                    NodeType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
@@ -7430,6 +8342,7 @@ struct UFortHomebaseManager_GetNumOwnedNodesInPage_Params
 {
 	struct FName                                       NodePageId;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortMcpProfileAccount*                      McpProfile;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EPrereqNodeType                                    NodeType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -7677,6 +8590,100 @@ struct UHomeBaseContext_BroadcastSquadSlotMarkedAsSeen_Params
 {
 };
 
+// Function FortniteGame.FortClientEventInterface.BlueprintCustomHandleClientEvent
+struct UFortClientEventInterface_BlueprintCustomHandleClientEvent_Params
+{
+	class UObject*                                     EventSource;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UObject*                                     EventFocus;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FFortClientEvent                            ClientEvent;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortClientAnnouncement.StopClientAnnouncement
+struct AFortClientAnnouncement_StopClientAnnouncement_Params
+{
+};
+
+// Function FortniteGame.FortClientAnnouncement.OnClientAnnouncementStop
+struct AFortClientAnnouncement_OnClientAnnouncementStop_Params
+{
+};
+
+// Function FortniteGame.FortClientAnnouncement.OnClientAnnouncementStart
+struct AFortClientAnnouncement_OnClientAnnouncementStart_Params
+{
+};
+
+// Function FortniteGame.FortClientAnnouncement.GetPriority
+struct AFortClientAnnouncement_GetPriority_Params
+{
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortClientAnnouncement.CancelClientAnnouncement
+struct AFortClientAnnouncement_CancelClientAnnouncement_Params
+{
+};
+
+// Function FortniteGame.FortClientAnnouncement_Basic.SetTitleText
+struct AFortClientAnnouncement_Basic_SetTitleText_Params
+{
+	struct FText                                       TitleText;                                                // (CPF_Parm)
+};
+
+// Function FortniteGame.FortClientAnnouncement_Basic.SetIcon
+struct AFortClientAnnouncement_Basic_SetIcon_Params
+{
+	struct FSlateBrush                                 Icon;                                                     // (CPF_Parm, CPF_OutParm)
+};
+
+// Function FortniteGame.FortClientAnnouncement_Basic.SetDisplayTime
+struct AFortClientAnnouncement_Basic_SetDisplayTime_Params
+{
+	float                                              DisplayTime;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortClientAnnouncement_Basic.SetDetailText
+struct AFortClientAnnouncement_Basic_SetDetailText_Params
+{
+	struct FText                                       DetailText;                                               // (CPF_Parm)
+};
+
+// Function FortniteGame.FortClientAnnouncement_Basic.OnRep_BasicData
+struct AFortClientAnnouncement_Basic_OnRep_BasicData_Params
+{
+	struct FFortClientAnnouncementData_Basic           PreviousBasicData;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortCollectionBookData.GetPageIdsFromCategoryId
+struct UFortCollectionBookData_GetPageIdsFromCategoryId_Params
+{
+	struct FName                                       CategoryId;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<struct FName>                               PageIds;                                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortOutpostItemDefinition.GetLongDescription
+struct UFortOutpostItemDefinition_GetLongDescription_Params
+{
+	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortNotificationHandler.NotificationShown
+struct UFortNotificationHandler_NotificationShown_Params
+{
+};
+
+// Function FortniteGame.FortNotificationHandler.CreateWidget
+struct UFortNotificationHandler_CreateWidget_Params
+{
+	class APlayerController*                           OwningPlayer;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UUserWidget*                                 ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortNotificationHandler.ClearNotification
+struct UFortNotificationHandler_ClearNotification_Params
+{
+};
+
 // Function FortniteGame.FortAsyncAction_MCPContextUpgradeItem.UpgradeItem
 struct UFortAsyncAction_MCPContextUpgradeItem_UpgradeItem_Params
 {
@@ -7870,6 +8877,7 @@ struct UFortMcpContext_GetXpBoostBalance_Params
 // Function FortniteGame.FortMcpContext.GetUpgradeXPBalance
 struct UFortMcpContext_GetUpgradeXPBalance_Params
 {
+	EFortItemType                                      ItemTypeToBeUpgraded;                                     // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -8070,6 +9078,344 @@ struct UFortMcpContext_AbandonExpedition_Params
 	class UFortExpeditionItem*                         Expedition;                                               // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
+// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberStateChangedDelegate__DelegateSignature
+struct UFortUITeamInfo_OnTeamMemberStateChangedDelegate__DelegateSignature_Params
+{
+	struct FFortTeamMemberInfo                         TeamMemberInfo;                                           // (CPF_Parm)
+};
+
+// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberSimpleDelegate__DelegateSignature
+struct UFortUITeamInfo_OnTeamMemberSimpleDelegate__DelegateSignature_Params
+{
+};
+
+// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberRemovedDelegate__DelegateSignature
+struct UFortUITeamInfo_OnTeamMemberRemovedDelegate__DelegateSignature_Params
+{
+	int                                                PlayerIndex;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberFinishedSynchronizingDelegate__DelegateSignature
+struct UFortUITeamInfo_OnTeamMemberFinishedSynchronizingDelegate__DelegateSignature_Params
+{
+	struct FUniqueNetIdRepl                            NewTeamMemberId;                                          // (CPF_Parm)
+};
+
+// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberAddedDelegate__DelegateSignature
+struct UFortUITeamInfo_OnTeamMemberAddedDelegate__DelegateSignature_Params
+{
+	struct FFortTeamMemberInfo                         NewTeamMemberInfo;                                        // (CPF_Parm)
+};
+
+// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamHitPointFractionsChanged__DelegateSignature
+struct UFortUITeamInfo_OnTeamHitPointFractionsChanged__DelegateSignature_Params
+{
+	TArray<float>                                      HealthFractions;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<float>                                      ShieldFractions;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortUITeamInfo.GetTeamMembers
+struct UFortUITeamInfo_GetTeamMembers_Params
+{
+	TArray<struct FFortTeamMemberInfo>                 TeamMembers;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortUITeamInfo.GetTeamMemberIDs
+struct UFortUITeamInfo_GetTeamMemberIDs_Params
+{
+	TArray<struct FUniqueNetIdRepl>                    TeamMemberIDs;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortUITeamInfo.GetTeamHitPointFractions
+struct UFortUITeamInfo_GetTeamHitPointFractions_Params
+{
+	TArray<float>                                      HealthFractions;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	TArray<float>                                      ShieldFractions;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortUINotification.TakeAction
+struct UFortUINotification_TakeAction_Params
+{
+};
+
+// Function FortniteGame.FortUINotification.ShouldShowNotification
+struct UFortUINotification_ShouldShowNotification_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortUINotification.NotificationShown
+struct UFortUINotification_NotificationShown_Params
+{
+};
+
+// Function FortniteGame.FortUINotification.GetImageOverride
+struct UFortUINotification_GetImageOverride_Params
+{
+	class UTexture2D*                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortUINotification.CreateWidget
+struct UFortUINotification_CreateWidget_Params
+{
+	class APlayerController*                           OwningPlayer;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UUserWidget*                                 ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortUINotification.ClearNotification
+struct UFortUINotification_ClearNotification_Params
+{
+};
+
+// Function FortniteGame.WorldMapPin.SetTheaterId
+struct AWorldMapPin_SetTheaterId_Params
+{
+	struct FString                                     NewId;                                                    // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.WorldMapPin.OnTheaterIdSet
+struct AWorldMapPin_OnTheaterIdSet_Params
+{
+};
+
+// Function FortniteGame.FortWindManager.SetWindImpulseCylinderMagnitude
+struct AFortWindManager_SetWindImpulseCylinderMagnitude_Params
+{
+	struct FFortWindImpulseHandle                      ImpulseHandle;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	float                                              NewMagnitude;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              BlendTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.SetWindImpulse
+struct AFortWindManager_SetWindImpulse_Params
+{
+	struct FFortWindImpulseHandle                      ImpulseHandle;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FFortWindImpulseRadius                      WindImpulse;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.RemoveWindImpulse
+struct AFortWindManager_RemoveWindImpulse_Params
+{
+	struct FFortWindImpulseHandle                      ImpulseHandle;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	float                                              BlendTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.OnWorldReady
+struct AFortWindManager_OnWorldReady_Params
+{
+};
+
+// Function FortniteGame.FortWindManager.OnWindImpulseCylinderDeltaComplete
+struct AFortWindManager_OnWindImpulseCylinderDeltaComplete_Params
+{
+	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortWindManager.OnWindImpulseCylinderDeath
+struct AFortWindManager_OnWindImpulseCylinderDeath_Params
+{
+	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortWindManager.OnWindImpulseCylinderCreation
+struct AFortWindManager_OnWindImpulseCylinderCreation_Params
+{
+	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FFortWindImpulseCylinderDelta               WindImpulseCylinderDelta;                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+};
+
+// Function FortniteGame.FortWindManager.OnWindAudioBecameInactive
+struct AFortWindManager_OnWindAudioBecameInactive_Params
+{
+	class UAudioComponent*                             WindAudioComp;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.OnWindAudioBecameActive
+struct AFortWindManager_OnWindAudioBecameActive_Params
+{
+	class UAudioComponent*                             WindAudioComp;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.MakeWindImpulseRadius
+struct AFortWindManager_MakeWindImpulseRadius_Params
+{
+	struct FVector                                     ImpulseLocation;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	float                                              ImpulseRadius;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseBlendTime;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FFortWindImpulseRadius                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortWindManager.MakeWindImpulseCylinder
+struct AFortWindManager_MakeWindImpulseCylinder_Params
+{
+	struct FVector                                     ImpulseLocation;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	float                                              ImpulseInnerRadius;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseOuterRadius;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     ImpulseDirection;                                         // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FFortWindImpulseCylinder                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortWindManager.HasWindImpulse
+struct AFortWindManager_HasWindImpulse_Params
+{
+	struct FFortWindImpulseHandle                      WindImpulseHandle;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.GetWindManager
+struct AFortWindManager_GetWindManager_Params
+{
+	class UObject*                                     WorldContextObject;                                       // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AFortWindManager*                            ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.GetWindLocationFromWorldLocation
+struct AFortWindManager_GetWindLocationFromWorldLocation_Params
+{
+	struct FVector                                     WorldLocation;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FVector                                     WindWorldLocation;                                        // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.GetGlobalWindIntensityAndDirection
+struct AFortWindManager_GetGlobalWindIntensityAndDirection_Params
+{
+	float                                              WindIntensity;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     WindDirection;                                            // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.GetCurrentWindImpulseCylinderDelta
+struct AFortWindManager_GetCurrentWindImpulseCylinderDelta_Params
+{
+	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_Parm, CPF_OutParm)
+	struct FFortWindImpulseCylinderDelta               WindImpulseCylinderDelta;                                 // (CPF_Parm, CPF_OutParm)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.BreakWindImpulseRadius
+struct AFortWindManager_BreakWindImpulseRadius_Params
+{
+	struct FFortWindImpulseRadius                      InWindImpulseRadius;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FVector                                     ImpulseLocation;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	float                                              ImpulseRadius;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseBlendTime;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.BreakWindImpulseCylinderDelta
+struct AFortWindManager_BreakWindImpulseCylinderDelta_Params
+{
+	struct FFortWindImpulseCylinderDelta               WindImpulseCylinderDelta;                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FVector                                     WindDeltaCenter;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	bool                                               bWindImpulseInitialized;                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bWindRipplesOutward;                                      // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaSectionWidth;                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaInnerSectionRadius;                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaOuterSectionRadius;                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaMaximumRadius;                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaDesiredOverallBlendTime;                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaSectionBlendTime;                                // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaSectionCurrentBlendTime;                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaPreviousMagnitude;                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaSectionCurrentMagnitude;                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindDeltaDesiredMagnitude;                                // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FBox                                        WindDeltaOuterWorldBounds;                                // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	struct FBox                                        WindDeltaInnerWorldBounds;                                // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	struct FBox                                        WindImpulseBounds;                                        // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	struct FFortWindImpulseHandle                      WindImpulseHandleToModify;                                // (CPF_Parm, CPF_OutParm)
+};
+
+// Function FortniteGame.FortWindManager.BreakWindImpulseCylinderAdvanced
+struct AFortWindManager_BreakWindImpulseCylinderAdvanced_Params
+{
+	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FVector                                     WindLocation;                                             // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	float                                              WindInnerRadius;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              WindOuterRadius;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     WindWorldDirection;                                       // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	float                                              WindMagnitude;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FBox                                        WindWorldBounds;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	bool                                               bIsWindChanging;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bIsWindChangePending;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.BreakWindImpulseCylinder
+struct AFortWindManager_BreakWindImpulseCylinder_Params
+{
+	struct FFortWindImpulseCylinder                    InWindImpulseCylinder;                                    // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FVector                                     ImpulseLocation;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	float                                              ImpulseInnerRadius;                                       // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseOuterRadius;                                       // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     ImpulseDirection;                                         // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortWindManager.AddWindImpulseCylinder
+struct AFortWindManager_AddWindImpulseCylinder_Params
+{
+	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	float                                              BlendTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FFortWindImpulseHandle                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortWindManager.AddWindImpulse
+struct AFortWindManager_AddWindImpulse_Params
+{
+	struct FFortWindImpulseRadius                      WindImpulse;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FFortWindImpulseHandle                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortTheaterMapViewer.HandleMarkedQuestsChanged
+struct AFortTheaterMapViewer_HandleMarkedQuestsChanged_Params
+{
+};
+
+// Function FortniteGame.FortPlacementActorTagTest.ShouldApplyTagsToPlacementActor
+struct UFortPlacementActorTagTest_ShouldApplyTagsToPlacementActor_Params
+{
+	class AFortPlacementActor*                         FocusPlacementActor;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     AveragePlacementActorLocation;                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlacementActorTagTest.LineTraceByChannel
+struct UFortPlacementActorTagTest_LineTraceByChannel_Params
+{
+	class AFortPlacementActor*                         PlacementActor;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     Start;                                                    // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
+	struct FVector                                     End;                                                      // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
+	TEnumAsByte<ETraceTypeQuery>                       TraceChannel;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               bTraceComplex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<class AActor*>                              ActorsToIgnore;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	struct FHitResult                                  OutHit;                                                   // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
+	bool                                               bIgnoreSelf;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGameData.GetTeamXpBoost
+struct UFortGameData_GetTeamXpBoost_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortGameData.GetPersonalXpBoost
+struct UFortGameData_GetPersonalXpBoost_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortAsyncAction_MakeTieredWaveEncounterSettings.CreateAsyncAction_MakeTieredWaveEncounterSettings
+struct UFortAsyncAction_MakeTieredWaveEncounterSettings_CreateAsyncAction_MakeTieredWaveEncounterSettings_Params
+{
+	struct FTieredWaveSetData                          WaveData;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FFortEncounterSettings                      InEncounterSettings;                                      // (CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	class UFortAsyncAction_MakeTieredWaveEncounterSettings* ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortAsyncAction_OpenChoiceUI.OpenChoiceUI
 struct UFortAsyncAction_OpenChoiceUI_OpenChoiceUI_Params
 {
@@ -8117,6 +9463,7 @@ struct UFortAsyncAction_SendQuestStatEvent_SendClientStatEvent_Params
 struct UFortAsyncAction_TriggerNotification_TriggerNotification_Params
 {
 	class UObject*                                     InWorldContextObject;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortNotificationQueueType                         NotificationType;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortDialogDescription                      NotificationDescription;                                  // (CPF_Parm)
 	class UFortAsyncAction_TriggerNotification*        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -8154,6 +9501,14 @@ struct AFortAthenaAircraft_GetDropEndTime_Params
 // DelegateFunction FortniteGame.FortAthenaAircraft.FortAthenaAircraftDelegate__DelegateSignature
 struct AFortAthenaAircraft_FortAthenaAircraftDelegate__DelegateSignature_Params
 {
+};
+
+// Function FortniteGame.FortAthenaHoverCarMovementComponent.ServerUpdateAthenaState
+struct UFortAthenaHoverCarMovementComponent_ServerUpdateAthenaState_Params
+{
+	float                                              InThrottleInput;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              InSteeringInput;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     InForwardVectorTarget;                                    // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMiniMapComponent.SetupMiniMapComponent
@@ -8246,6 +9601,7 @@ struct UFortMiniMapComponent_OnRep_MiniMapData_Params
 // Function FortniteGame.FortSafeZoneIndicator.OnSafeZoneStateChange
 struct AFortSafeZoneIndicator_OnSafeZoneStateChange_Params
 {
+	EFortSafeZoneState                                 NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortSafeZoneIndicator.GetSafeZoneShrinkSpeed
@@ -8724,6 +10080,177 @@ struct UFortWeaponAttrSet_OnRep_AccumulatedWeaponChanceToNotConsumeAmmo_Params
 {
 };
 
+// Function FortniteGame.FortBannerUtilities.LoadAndGetBannerLargeIconFromRowName
+struct UFortBannerUtilities_LoadAndGetBannerLargeIconFromRowName_Params
+{
+	struct FName                                       BannerIconRowName;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	class UTexture2D*                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetSecondaryColor
+struct UFortBannerUtilities_GetSecondaryColor_Params
+{
+	struct FHomebaseBannerColor                        BannerColor;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetRowNameForBannerIconItem
+struct UFortBannerUtilities_GetRowNameForBannerIconItem_Params
+{
+	class UFortHomebaseBannerIconItem*                 BannerIcon;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetRowNameForBannerColorItem
+struct UFortBannerUtilities_GetRowNameForBannerColorItem_Params
+{
+	class UFortHomebaseBannerColorItem*                BannerColor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetPrimaryColor
+struct UFortBannerUtilities_GetPrimaryColor_Params
+{
+	struct FHomebaseBannerColor                        BannerColor;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerSmallIconAssetFromRowName
+struct UFortBannerUtilities_GetBannerSmallIconAssetFromRowName_Params
+{
+	struct FName                                       BannerIconRowName;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	TAssetPtr<class UTexture2D>                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerSmallIconAsset
+struct UFortBannerUtilities_GetBannerSmallIconAsset_Params
+{
+	class UFortHomebaseBannerIconItem*                 BannerIcon;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TAssetPtr<class UTexture2D>                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerLargeIconAssetFromRowName
+struct UFortBannerUtilities_GetBannerLargeIconAssetFromRowName_Params
+{
+	struct FName                                       BannerIconRowName;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	TAssetPtr<class UTexture2D>                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerLargeIconAsset
+struct UFortBannerUtilities_GetBannerLargeIconAsset_Params
+{
+	class UFortHomebaseBannerIconItem*                 BannerIcon;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TAssetPtr<class UTexture2D>                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerIconsForCategory
+struct UFortBannerUtilities_GetBannerIconsForCategory_Params
+{
+	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       CategoryRowName;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	TArray<class UFortAccountItem*>                    BannerIcons;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerIconItemFromRowName
+struct UFortBannerUtilities_GetBannerIconItemFromRowName_Params
+{
+	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       BannerIconRowName;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	class UFortHomebaseBannerIconItem*                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerIconCategoryRowName
+struct UFortBannerUtilities_GetBannerIconCategoryRowName_Params
+{
+	struct FName                                       BannerIconRowName;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FName                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerIconCategoryName
+struct UFortBannerUtilities_GetBannerIconCategoryName_Params
+{
+	struct FName                                       CategoryRowName;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorsForCategory
+struct UFortBannerUtilities_GetBannerColorsForCategory_Params
+{
+	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       CategoryRowName;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	TArray<class UFortAccountItem*>                    BannerColors;                                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorSecondaryColorFromRowName
+struct UFortBannerUtilities_GetBannerColorSecondaryColorFromRowName_Params
+{
+	struct FName                                       BannerColorRowName;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorSecondaryColor
+struct UFortBannerUtilities_GetBannerColorSecondaryColor_Params
+{
+	class UFortHomebaseBannerColorItem*                BannerColor;                                              // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorPrimaryColorFromRowName
+struct UFortBannerUtilities_GetBannerColorPrimaryColorFromRowName_Params
+{
+	struct FName                                       BannerColorRowName;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorPrimaryColor
+struct UFortBannerUtilities_GetBannerColorPrimaryColor_Params
+{
+	class UFortHomebaseBannerColorItem*                BannerColor;                                              // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FLinearColor                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorItemFromRowName
+struct UFortBannerUtilities_GetBannerColorItemFromRowName_Params
+{
+	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       BannerColorRowName;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	class UFortHomebaseBannerColorItem*                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorFromRowName
+struct UFortBannerUtilities_GetBannerColorFromRowName_Params
+{
+	struct FName                                       BannerColorRowName;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FHomebaseBannerColor                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorCategoryRowName
+struct UFortBannerUtilities_GetBannerColorCategoryRowName_Params
+{
+	struct FName                                       BannerColorRowName;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FName                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColorCategoryName
+struct UFortBannerUtilities_GetBannerColorCategoryName_Params
+{
+	struct FName                                       CategoryRowName;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortBannerUtilities.GetBannerColor
+struct UFortBannerUtilities_GetBannerColor_Params
+{
+	class UFortHomebaseBannerColorItem*                BannerColor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FHomebaseBannerColor                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortTieredCollectionLayout.ShouldUseTierAsRandomSeed
+struct UFortTieredCollectionLayout_ShouldUseTierAsRandomSeed_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortTieredCollectionLayout.GetMissionPointsForTier
 struct UFortTieredCollectionLayout_GetMissionPointsForTier_Params
 {
@@ -8735,749 +10262,6 @@ struct UFortTieredCollectionLayout_GetMissionPointsForTier_Params
 struct UFortTieredCollectionLayout_GetCollectionLayoutDisplayName_Params
 {
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortClientEventInterface.BlueprintCustomHandleClientEvent
-struct UFortClientEventInterface_BlueprintCustomHandleClientEvent_Params
-{
-	class UObject*                                     EventSource;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class UObject*                                     EventFocus;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FFortClientEvent                            ClientEvent;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortClientAnnouncement.StopClientAnnouncement
-struct AFortClientAnnouncement_StopClientAnnouncement_Params
-{
-};
-
-// Function FortniteGame.FortClientAnnouncement.OnClientAnnouncementStop
-struct AFortClientAnnouncement_OnClientAnnouncementStop_Params
-{
-};
-
-// Function FortniteGame.FortClientAnnouncement.OnClientAnnouncementStart
-struct AFortClientAnnouncement_OnClientAnnouncementStart_Params
-{
-};
-
-// Function FortniteGame.FortClientAnnouncement.GetPriority
-struct AFortClientAnnouncement_GetPriority_Params
-{
-	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortClientAnnouncement.CancelClientAnnouncement
-struct AFortClientAnnouncement_CancelClientAnnouncement_Params
-{
-};
-
-// Function FortniteGame.FortClientAnnouncement_Basic.SetTitleText
-struct AFortClientAnnouncement_Basic_SetTitleText_Params
-{
-	struct FText                                       TitleText;                                                // (CPF_Parm)
-};
-
-// Function FortniteGame.FortClientAnnouncement_Basic.SetIcon
-struct AFortClientAnnouncement_Basic_SetIcon_Params
-{
-	struct FSlateBrush                                 Icon;                                                     // (CPF_Parm, CPF_OutParm)
-};
-
-// Function FortniteGame.FortClientAnnouncement_Basic.SetDisplayTime
-struct AFortClientAnnouncement_Basic_SetDisplayTime_Params
-{
-	float                                              DisplayTime;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortClientAnnouncement_Basic.SetDetailText
-struct AFortClientAnnouncement_Basic_SetDetailText_Params
-{
-	struct FText                                       DetailText;                                               // (CPF_Parm)
-};
-
-// Function FortniteGame.FortClientAnnouncement_Basic.OnRep_BasicData
-struct AFortClientAnnouncement_Basic_OnRep_BasicData_Params
-{
-	struct FFortClientAnnouncementData_Basic           PreviousBasicData;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortCollectionBookData.GetPageIdsFromCategoryId
-struct UFortCollectionBookData_GetPageIdsFromCategoryId_Params
-{
-	struct FName                                       CategoryId;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	TArray<struct FName>                               PageIds;                                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortOutpostItemDefinition.GetLongDescription
-struct UFortOutpostItemDefinition_GetLongDescription_Params
-{
-	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FrontendAnimInstance.PlaySelected
-struct UFrontendAnimInstance_PlaySelected_Params
-{
-};
-
-// Function FortniteGame.FrontendAnimInstance.PlayOutro
-struct UFrontendAnimInstance_PlayOutro_Params
-{
-};
-
-// Function FortniteGame.FrontendAnimInstance.PlayIntro
-struct UFrontendAnimInstance_PlayIntro_Params
-{
-};
-
-// Function FortniteGame.FrontendAnimInstance.OnPlayMontageFromGameplayTagQuery
-struct UFrontendAnimInstance_OnPlayMontageFromGameplayTagQuery_Params
-{
-	struct FGameplayTagQuery                           MatchingQuery;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	class UAnimMontage*                                MontagePlaying;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHeroType.GetSubType
-struct UFortHeroType_GetSubType_Params
-{
-	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortHeroType.GetMaleOverrideFeedback
-struct UFortHeroType_GetMaleOverrideFeedback_Params
-{
-	class UFortFeedbackBank*                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHeroType.GetFrontendAnimClass
-struct UFortHeroType_GetFrontendAnimClass_Params
-{
-	class UClass*                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHeroType.GetFemaleOverrideFeedback
-struct UFortHeroType_GetFemaleOverrideFeedback_Params
-{
-	class UFortFeedbackBank*                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortNotificationHandler.NotificationShown
-struct UFortNotificationHandler_NotificationShown_Params
-{
-};
-
-// Function FortniteGame.FortNotificationHandler.CreateWidget
-struct UFortNotificationHandler_CreateWidget_Params
-{
-	class APlayerController*                           OwningPlayer;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class UUserWidget*                                 ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortNotificationHandler.ClearNotification
-struct UFortNotificationHandler_ClearNotification_Params
-{
-};
-
-// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberStateChangedDelegate__DelegateSignature
-struct UFortUITeamInfo_OnTeamMemberStateChangedDelegate__DelegateSignature_Params
-{
-	struct FFortTeamMemberInfo                         TeamMemberInfo;                                           // (CPF_Parm)
-};
-
-// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberSimpleDelegate__DelegateSignature
-struct UFortUITeamInfo_OnTeamMemberSimpleDelegate__DelegateSignature_Params
-{
-};
-
-// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberRemovedDelegate__DelegateSignature
-struct UFortUITeamInfo_OnTeamMemberRemovedDelegate__DelegateSignature_Params
-{
-	int                                                PlayerIndex;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberFinishedSynchronizingDelegate__DelegateSignature
-struct UFortUITeamInfo_OnTeamMemberFinishedSynchronizingDelegate__DelegateSignature_Params
-{
-	struct FUniqueNetIdRepl                            NewTeamMemberId;                                          // (CPF_Parm)
-};
-
-// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamMemberAddedDelegate__DelegateSignature
-struct UFortUITeamInfo_OnTeamMemberAddedDelegate__DelegateSignature_Params
-{
-	struct FFortTeamMemberInfo                         NewTeamMemberInfo;                                        // (CPF_Parm)
-};
-
-// DelegateFunction FortniteGame.FortUITeamInfo.OnTeamHitPointFractionsChanged__DelegateSignature
-struct UFortUITeamInfo_OnTeamHitPointFractionsChanged__DelegateSignature_Params
-{
-	TArray<float>                                      HealthFractions;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-	TArray<float>                                      ShieldFractions;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortUITeamInfo.GetTeamMembers
-struct UFortUITeamInfo_GetTeamMembers_Params
-{
-	TArray<struct FFortTeamMemberInfo>                 TeamMembers;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortUITeamInfo.GetTeamMemberIDs
-struct UFortUITeamInfo_GetTeamMemberIDs_Params
-{
-	TArray<struct FUniqueNetIdRepl>                    TeamMemberIDs;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortUITeamInfo.GetTeamHitPointFractions
-struct UFortUITeamInfo_GetTeamHitPointFractions_Params
-{
-	TArray<float>                                      HealthFractions;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
-	TArray<float>                                      ShieldFractions;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortUINotification.TakeAction
-struct UFortUINotification_TakeAction_Params
-{
-};
-
-// Function FortniteGame.FortUINotification.ShouldShowNotification
-struct UFortUINotification_ShouldShowNotification_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortUINotification.NotificationShown
-struct UFortUINotification_NotificationShown_Params
-{
-};
-
-// Function FortniteGame.FortUINotification.GetImageOverride
-struct UFortUINotification_GetImageOverride_Params
-{
-	class UTexture2D*                                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortUINotification.CreateWidget
-struct UFortUINotification_CreateWidget_Params
-{
-	class APlayerController*                           OwningPlayer;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class UUserWidget*                                 ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortUINotification.ClearNotification
-struct UFortUINotification_ClearNotification_Params
-{
-};
-
-// Function FortniteGame.WorldMapPin.SetTheaterId
-struct AWorldMapPin_SetTheaterId_Params
-{
-	struct FString                                     NewId;                                                    // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.WorldMapPin.OnTheaterIdSet
-struct AWorldMapPin_OnTheaterIdSet_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.StormsExist
-struct AFortThreatVisualsManager_StormsExist_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.SetMinimumCloudAltitude
-struct AFortThreatVisualsManager_SetMinimumCloudAltitude_Params
-{
-	float                                              NewMinimumAltitude;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.SetCloudsAreHidden
-struct AFortThreatVisualsManager_SetCloudsAreHidden_Params
-{
-	bool                                               bHide;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.ResetMinimumCloudAltitude
-struct AFortThreatVisualsManager_ResetMinimumCloudAltitude_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnWorldReady
-struct AFortThreatVisualsManager_OnWorldReady_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnThreatCloudsChanged
-struct AFortThreatVisualsManager_OnThreatCloudsChanged_Params
-{
-	TArray<struct FThreatLocationInfo>                 ThreatLocationInfo;                                       // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnRep_ThreatLocations
-struct AFortThreatVisualsManager_OnRep_ThreatLocations_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnRep_StormWinds
-struct AFortThreatVisualsManager_OnRep_StormWinds_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnRep_HideClouds
-struct AFortThreatVisualsManager_OnRep_HideClouds_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnRep_GoalActorLocations
-struct AFortThreatVisualsManager_OnRep_GoalActorLocations_Params
-{
-};
-
-// Function FortniteGame.FortThreatVisualsManager.OnBeginThreatVisualsPrecursor
-struct AFortThreatVisualsManager_OnBeginThreatVisualsPrecursor_Params
-{
-	class AActor*                                      SourceActor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     EndLocation;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.GetThreatClouds
-struct AFortThreatVisualsManager_GetThreatClouds_Params
-{
-	TArray<struct FThreatLocationInfo>                 ReturnValue;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.GetThreatCloud
-struct AFortThreatVisualsManager_GetThreatCloud_Params
-{
-	struct FThreatLocationInfo                         ThreatLocInfo;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	class AThreatCloud*                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.GetCloudsAreHidden
-struct AFortThreatVisualsManager_GetCloudsAreHidden_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortThreatVisualsManager.BeginThreatVisualsPrecursor
-struct AFortThreatVisualsManager_BeginThreatVisualsPrecursor_Params
-{
-	class AActor*                                      SourceActor;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     ThreatLocation;                                           // (CPF_Parm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.ToggleSkipNight
-struct AFortTimeOfDayManager_ToggleSkipNight_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.ToggleDebugForceStormEffects
-struct AFortTimeOfDayManager_ToggleDebugForceStormEffects_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDaySpeedFloat
-struct AFortTimeOfDayManager_SetTimeOfDaySpeedFloat_Params
-{
-	float                                              InTimeOfDaySpeed;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDaySpeed
-struct AFortTimeOfDayManager_SetTimeOfDaySpeed_Params
-{
-	float                                              TimeOfDaySpeedFactor;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayManagerVisibility
-struct AFortTimeOfDayManager_SetTimeOfDayManagerVisibility_Params
-{
-	bool                                               bVisible;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayInHours
-struct AFortTimeOfDayManager_SetTimeOfDayInHours_Params
-{
-	float                                              TimeOfDayInHours;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayFloat
-struct AFortTimeOfDayManager_SetTimeOfDayFloat_Params
-{
-	float                                              TimeOfDayInHours;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDayAbsoluteSpeed
-struct AFortTimeOfDayManager_SetTimeOfDayAbsoluteSpeed_Params
-{
-	float                                              NewTimeOfDaySpeed;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetTimeOfDay
-struct AFortTimeOfDayManager_SetTimeOfDay_Params
-{
-	struct FString                                     NewTimeOfDay;                                             // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetStormStrength
-struct AFortTimeOfDayManager_SetStormStrength_Params
-{
-	float                                              NewStormStrength;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetLightningColorAlpha
-struct AFortTimeOfDayManager_SetLightningColorAlpha_Params
-{
-	float                                              NewLightningColorAlpha;                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetFogDirectionalInscatteringMultiplier
-struct AFortTimeOfDayManager_SetFogDirectionalInscatteringMultiplier_Params
-{
-	float                                              NewFogDirectionalInscatteringMultiplier;                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetDirectionalLightColorMultiplier
-struct AFortTimeOfDayManager_SetDirectionalLightColorMultiplier_Params
-{
-	float                                              NewDirectionalLightColorMultiplier;                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.SetDayPhase
-struct AFortTimeOfDayManager_SetDayPhase_Params
-{
-	struct FString                                     DayPhase;                                                 // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnUpdateDirectionalLightForTimeOfDay
-struct AFortTimeOfDayManager_OnUpdateDirectionalLightForTimeOfDay_Params
-{
-	struct FLinearColor                                AboutToApplyDirectionalLightColor;                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnStormStart
-struct AFortTimeOfDayManager_OnStormStart_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnStormEnd
-struct AFortTimeOfDayManager_OnStormEnd_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnRep_TimeOfDayInit
-struct AFortTimeOfDayManager_OnRep_TimeOfDayInit_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnRep_TimeOfDay
-struct AFortTimeOfDayManager_OnRep_TimeOfDay_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnRep_HeightFogEnabled
-struct AFortTimeOfDayManager_OnRep_HeightFogEnabled_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.OnDayPhaseChange
-struct AFortTimeOfDayManager_OnDayPhaseChange_Params
-{
-};
-
-// Function FortniteGame.FortTimeOfDayManager.MakeExponentialHeightFogValues
-struct AFortTimeOfDayManager_MakeExponentialHeightFogValues_Params
-{
-	float                                              FogDensity;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              FogHeightFalloff;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              FogMaxOpacity;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              StartDistance;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              DirectionalInscatteringExponent;                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              DirectionalInscatteringStartDistance;                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FLinearColor                                DirectionalInscatteringColor;                             // (CPF_Parm, CPF_IsPlainOldData)
-	struct FLinearColor                                FogInscatteringColor;                                     // (CPF_Parm, CPF_IsPlainOldData)
-	float                                              VolumetricFogScatteringDistribution;                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              VolumetricFogScatteringScale;                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              VolumetricFogAbsorptionScale;                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              VolumetricFogDistance;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FExponentialHeightFogValues                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.GetTimeOfDayManagerFromContext
-struct AFortTimeOfDayManager_GetTimeOfDayManagerFromContext_Params
-{
-	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class AFortTimeOfDayManager*                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.GetThreatClouds
-struct AFortTimeOfDayManager_GetThreatClouds_Params
-{
-	TArray<struct FThreatLocationInfo>                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.GetStormStrength
-struct AFortTimeOfDayManager_GetStormStrength_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.GetPreviousDayPhase
-struct AFortTimeOfDayManager_GetPreviousDayPhase_Params
-{
-	TEnumAsByte<EFortDayPhase>                         ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.FFToTimeOfDay
-struct AFortTimeOfDayManager_FFToTimeOfDay_Params
-{
-	float                                              FastForwardTime;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              FastForwardSpeed;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortTimeOfDayManager.BreakExponentialHeightFogValues
-struct AFortTimeOfDayManager_BreakExponentialHeightFogValues_Params
-{
-	struct FExponentialHeightFogValues                 HeightFogValues;                                          // (CPF_Parm)
-	float                                              FogDensity;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              FogHeightFalloff;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              FogMaxOpacity;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              StartDistance;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              DirectionalInscatteringExponent;                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              DirectionalInscatteringStartDistance;                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FLinearColor                                DirectionalInscatteringColor;                             // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	struct FLinearColor                                FogInscatteringColor;                                     // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	float                                              VolumetricFogScatteringDistribution;                      // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              VolumetricFogScatteringScale;                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              VolumetricFogAbsorptionScale;                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              VolumetricFogDistance;                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.SetWindImpulseCylinderMagnitude
-struct AFortWindManager_SetWindImpulseCylinderMagnitude_Params
-{
-	struct FFortWindImpulseHandle                      ImpulseHandle;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	float                                              NewMagnitude;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              BlendTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.SetWindImpulse
-struct AFortWindManager_SetWindImpulse_Params
-{
-	struct FFortWindImpulseHandle                      ImpulseHandle;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FFortWindImpulseRadius                      WindImpulse;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.RemoveWindImpulse
-struct AFortWindManager_RemoveWindImpulse_Params
-{
-	struct FFortWindImpulseHandle                      ImpulseHandle;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	float                                              BlendTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.OnWorldReady
-struct AFortWindManager_OnWorldReady_Params
-{
-};
-
-// Function FortniteGame.FortWindManager.OnWindImpulseCylinderDeltaComplete
-struct AFortWindManager_OnWindImpulseCylinderDeltaComplete_Params
-{
-	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortWindManager.OnWindImpulseCylinderDeath
-struct AFortWindManager_OnWindImpulseCylinderDeath_Params
-{
-	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortWindManager.OnWindImpulseCylinderCreation
-struct AFortWindManager_OnWindImpulseCylinderCreation_Params
-{
-	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FFortWindImpulseCylinderDelta               WindImpulseCylinderDelta;                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortWindManager.OnWindAudioBecameInactive
-struct AFortWindManager_OnWindAudioBecameInactive_Params
-{
-	class UAudioComponent*                             WindAudioComp;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.OnWindAudioBecameActive
-struct AFortWindManager_OnWindAudioBecameActive_Params
-{
-	class UAudioComponent*                             WindAudioComp;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.MakeWindImpulseRadius
-struct AFortWindManager_MakeWindImpulseRadius_Params
-{
-	struct FVector                                     ImpulseLocation;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	float                                              ImpulseRadius;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseBlendTime;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FFortWindImpulseRadius                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortWindManager.MakeWindImpulseCylinder
-struct AFortWindManager_MakeWindImpulseCylinder_Params
-{
-	struct FVector                                     ImpulseLocation;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	float                                              ImpulseInnerRadius;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseOuterRadius;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     ImpulseDirection;                                         // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	struct FFortWindImpulseCylinder                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortWindManager.HasWindImpulse
-struct AFortWindManager_HasWindImpulse_Params
-{
-	struct FFortWindImpulseHandle                      WindImpulseHandle;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.GetWindManager
-struct AFortWindManager_GetWindManager_Params
-{
-	class UObject*                                     WorldContextObject;                                       // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class AFortWindManager*                            ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.GetWindLocationFromWorldLocation
-struct AFortWindManager_GetWindLocationFromWorldLocation_Params
-{
-	struct FVector                                     WorldLocation;                                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	struct FVector                                     WindWorldLocation;                                        // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.GetGlobalWindIntensityAndDirection
-struct AFortWindManager_GetGlobalWindIntensityAndDirection_Params
-{
-	float                                              WindIntensity;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     WindDirection;                                            // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.GetCurrentWindImpulseCylinderDelta
-struct AFortWindManager_GetCurrentWindImpulseCylinderDelta_Params
-{
-	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_Parm, CPF_OutParm)
-	struct FFortWindImpulseCylinderDelta               WindImpulseCylinderDelta;                                 // (CPF_Parm, CPF_OutParm)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.BreakWindImpulseRadius
-struct AFortWindManager_BreakWindImpulseRadius_Params
-{
-	struct FFortWindImpulseRadius                      InWindImpulseRadius;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FVector                                     ImpulseLocation;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	float                                              ImpulseRadius;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseBlendTime;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.BreakWindImpulseCylinderDelta
-struct AFortWindManager_BreakWindImpulseCylinderDelta_Params
-{
-	struct FFortWindImpulseCylinderDelta               WindImpulseCylinderDelta;                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FVector                                     WindDeltaCenter;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	bool                                               bWindImpulseInitialized;                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bWindRipplesOutward;                                      // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaSectionWidth;                                    // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaInnerSectionRadius;                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaOuterSectionRadius;                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaMaximumRadius;                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaDesiredOverallBlendTime;                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaSectionBlendTime;                                // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaSectionCurrentBlendTime;                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaPreviousMagnitude;                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaSectionCurrentMagnitude;                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindDeltaDesiredMagnitude;                                // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FBox                                        WindDeltaOuterWorldBounds;                                // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	struct FBox                                        WindDeltaInnerWorldBounds;                                // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	struct FBox                                        WindImpulseBounds;                                        // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	struct FFortWindImpulseHandle                      WindImpulseHandleToModify;                                // (CPF_Parm, CPF_OutParm)
-};
-
-// Function FortniteGame.FortWindManager.BreakWindImpulseCylinderAdvanced
-struct AFortWindManager_BreakWindImpulseCylinderAdvanced_Params
-{
-	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FVector                                     WindLocation;                                             // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	float                                              WindInnerRadius;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              WindOuterRadius;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     WindWorldDirection;                                       // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	float                                              WindMagnitude;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FBox                                        WindWorldBounds;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	bool                                               bIsWindChanging;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bIsWindChangePending;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.BreakWindImpulseCylinder
-struct AFortWindManager_BreakWindImpulseCylinder_Params
-{
-	struct FFortWindImpulseCylinder                    InWindImpulseCylinder;                                    // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FVector                                     ImpulseLocation;                                          // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	float                                              ImpulseInnerRadius;                                       // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseOuterRadius;                                       // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              ImpulseMagnitude;                                         // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     ImpulseDirection;                                         // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWindManager.AddWindImpulseCylinder
-struct AFortWindManager_AddWindImpulseCylinder_Params
-{
-	struct FFortWindImpulseCylinder                    WindImpulseCylinder;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	float                                              BlendTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FFortWindImpulseHandle                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortWindManager.AddWindImpulse
-struct AFortWindManager_AddWindImpulse_Params
-{
-	struct FFortWindImpulseRadius                      WindImpulse;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
-	struct FFortWindImpulseHandle                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
-};
-
-// Function FortniteGame.FortTheaterMapViewer.HandleMarkedQuestsChanged
-struct AFortTheaterMapViewer_HandleMarkedQuestsChanged_Params
-{
-};
-
-// Function FortniteGame.FortPlacementActorTagTest.ShouldApplyTagsToPlacementActor
-struct UFortPlacementActorTagTest_ShouldApplyTagsToPlacementActor_Params
-{
-	class AFortPlacementActor*                         FocusPlacementActor;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     AveragePlacementActorLocation;                            // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlacementActorTagTest.LineTraceByChannel
-struct UFortPlacementActorTagTest_LineTraceByChannel_Params
-{
-	class AFortPlacementActor*                         PlacementActor;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     Start;                                                    // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
-	struct FVector                                     End;                                                      // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
-	TEnumAsByte<ETraceTypeQuery>                       TraceChannel;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bTraceComplex;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	TArray<class AActor*>                              ActorsToIgnore;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-	struct FHitResult                                  OutHit;                                                   // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
-	bool                                               bIgnoreSelf;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGameData.GetTeamXpBoost
-struct UFortGameData_GetTeamXpBoost_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortGameData.GetPersonalXpBoost
-struct UFortGameData_GetPersonalXpBoost_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortExpeditionItemDefinition.GetRequiredTags
@@ -9816,7 +10600,9 @@ struct UFortDeployableBaseAnalytics_FireAnalyticsEvent_CombatZone_WaveStarted_Pa
 	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Wave;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class ADeployableBasePlot*                         Target;                                                   // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                NumberOfPlayers;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<class ADeployableBaseCore*>                 TargetCores;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<class ADeployableBaseCore*>                 AllCores;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	struct FFortTierCollectionLayoutOutput             CollectionData;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 
@@ -9826,6 +10612,9 @@ struct UFortDeployableBaseAnalytics_FireAnalyticsEvent_CombatZone_WaveFailed_Par
 	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Wave;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                NumberOfPlayers;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<class ADeployableBaseCore*>                 TargetCores;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<class ADeployableBaseCore*>                 AllCores;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	struct FFortTierCollectionLayoutOutput             CollectionData;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 
@@ -9834,6 +10623,7 @@ struct UFortDeployableBaseAnalytics_FireAnalyticsEvent_CombatZone_TierStarted_Pa
 {
 	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                NumberOfPlayers;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortTierCollectionLayoutOutput             CollectionData;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 
@@ -9843,6 +10633,7 @@ struct UFortDeployableBaseAnalytics_FireAnalyticsEvent_CombatZone_TierFailed_Par
 	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Wave;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                NumberOfPlayers;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortTierCollectionLayoutOutput             CollectionData;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 
@@ -9852,6 +10643,9 @@ struct UFortDeployableBaseAnalytics_FireAnalyticsEvent_CombatZone_TierCompleted_
 	class AFortPlayerController*                       FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                FinalWave;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                NumberOfPlayers;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<class ADeployableBaseCore*>                 TargetCores;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<class ADeployableBaseCore*>                 AllCores;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	struct FFortTierCollectionLayoutOutput             CollectionData;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 };
 
@@ -9865,6 +10659,107 @@ struct UFortDeployableBaseAnalytics_FireAnalyticsEvent_CombatZone_ConsoleOpened_
 struct AFortBluGloManager_GetBluGloItemDefinition_Params
 {
 	class UFortItemDefinition*                         ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotStructureBuilder.RunDeconstructor
+struct AFortBotStructureBuilder_RunDeconstructor_Params
+{
+};
+
+// Function FortniteGame.FortBotStructureBuilder.OnBuildingDied
+struct AFortBotStructureBuilder_OnBuildingDied_Params
+{
+	class AActor*                                      DamagedActor;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              Damage;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AController*                                 InstigatedBy;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AActor*                                      DamageCauser;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     HitLocation;                                              // (CPF_Parm, CPF_IsPlainOldData)
+	class UPrimitiveComponent*                         FHitComponent;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_InstancedReference, CPF_IsPlainOldData)
+	struct FName                                       BoneName;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FVector                                     Momentum;                                                 // (CPF_Parm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotStructureBuilder.BuildAll
+struct AFortBotStructureBuilder_BuildAll_Params
+{
+};
+
+// Function FortniteGame.FortBotMissionLogic.SpawnStructureBuilder
+struct UFortBotMissionLogic_SpawnStructureBuilder_Params
+{
+	class AActor*                                      MissionGoal;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UFortBuildingInstructions*                   BuildingInstructions;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AFortBotStructureBuilder*                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.SetGoalsInvulnerable
+struct UFortBotMissionLogic_SetGoalsInvulnerable_Params
+{
+	bool                                               bGodMode;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.SetCurrentBehavior
+struct UFortBotMissionLogic_SetCurrentBehavior_Params
+{
+	class UBehaviorTree*                               Behavior;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.ResetBehavior
+struct UFortBotMissionLogic_ResetBehavior_Params
+{
+};
+
+// Function FortniteGame.FortBotMissionLogic.OnMissionStarted
+struct UFortBotMissionLogic_OnMissionStarted_Params
+{
+};
+
+// Function FortniteGame.FortBotMissionLogic.OnMissionFinished
+struct UFortBotMissionLogic_OnMissionFinished_Params
+{
+};
+
+// Function FortniteGame.FortBotMissionLogic.OnMissionActivated
+struct UFortBotMissionLogic_OnMissionActivated_Params
+{
+};
+
+// Function FortniteGame.FortBotMissionLogic.OnInteractWithMissionGoal
+struct UFortBotMissionLogic_OnInteractWithMissionGoal_Params
+{
+	class AFortAIController*                           BotAI;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AActor*                                      MissionGoal;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.OnCanStartOtherMission
+struct UFortBotMissionLogic_OnCanStartOtherMission_Params
+{
+	class AFortAIController*                           BotAI;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class AFortMission*                                OtherMission;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.OnAssignedBehavior
+struct UFortBotMissionLogic_OnAssignedBehavior_Params
+{
+	class AFortAIController*                           BotAI;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.MarkSingleLocator
+struct UFortBotMissionLogic_MarkSingleLocator_Params
+{
+	class AActor*                                      LocatorActor;                                             // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortBotMissionLogic.MarkAllLocated
+struct UFortBotMissionLogic_MarkAllLocated_Params
+{
+};
+
+// Function FortniteGame.FortBotMissionLogic.ClearAllLocated
+struct UFortBotMissionLogic_ClearAllLocated_Params
+{
 };
 
 // Function FortniteGame.FortCameraBase.OnDragEnd
@@ -9952,6 +10847,7 @@ struct AFortPlayerController_ToggleClientBot_Params
 // Function FortniteGame.FortPlayerController.SwapQuickBarFocus
 struct AFortPlayerController_SwapQuickBarFocus_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerController.SuppressEventNotifications
@@ -10204,6 +11100,12 @@ struct AFortPlayerController_ServerRequestAIDebug_Params
 {
 };
 
+// Function FortniteGame.FortPlayerController.ServerReportClientFPS
+struct AFortPlayerController_ServerReportClientFPS_Params
+{
+	float                                              ClientAvgFPS;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortPlayerController.ServerReplyToReadyCheck
 struct AFortPlayerController_ServerReplyToReadyCheck_Params
 {
@@ -10240,6 +11142,7 @@ struct AFortPlayerController_ServerRemoveDefender_Params
 // Function FortniteGame.FortPlayerController.ServerReleaseInventoryItemKey
 struct AFortPlayerController_ServerReleaseInventoryItemKey_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -10295,13 +11198,6 @@ struct AFortPlayerController_ServerItemWillBeDestroyed_Params
 {
 	struct FGuid                                       DestroyedItemGuid;                                        // (CPF_Parm, CPF_IsPlainOldData)
 	int                                                Count;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerController.ServerHandleMissionEvent_ToggledOptionsMenu
-struct AFortPlayerController_ServerHandleMissionEvent_ToggledOptionsMenu_Params
-{
-	class AFortPlayerController*                       PlayerThatToggledOptionsMenu;                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bOpened;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerController.ServerHandleMissionEvent_ToggledEditMode
@@ -10657,8 +11553,20 @@ struct AFortPlayerController_IsInBuildMode_Params
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortPlayerController.IsClientTimingOut
+struct AFortPlayerController_IsClientTimingOut_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortPlayerController.IsClientBot
 struct AFortPlayerController_IsClientBot_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPlayerController.IsActionInputIgnored
+struct AFortPlayerController_IsActionInputIgnored_Params
 {
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -10759,6 +11667,7 @@ struct AFortPlayerController_FortClientPlaySound_Params
 // Function FortniteGame.FortPlayerController.ForceUpdateQuickbar
 struct AFortPlayerController_ForceUpdateQuickbar_Params
 {
+	EFortQuickBars                                     QuickbarToRefresh;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerController.FixupInteractionWidgetsOnUnzoom
@@ -10788,6 +11697,7 @@ struct AFortPlayerController_DeployDefender_Params
 // Function FortniteGame.FortPlayerController.ClientUpdateRichPresence
 struct AFortPlayerController_ClientUpdateRichPresence_Params
 {
+	ERichPresenceStateChange                           RichPresenceChange;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bImportant;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -10955,6 +11865,7 @@ struct AFortPlayerController_ClientCancelCrafting_Params
 struct AFortPlayerController_ClientAddScoreNumber_Params
 {
 	int                                                Score;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EStatCategory                                      ScoreCategory;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FVector_NetQuantize                         ScoreLocation;                                            // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
 	bool                                               bDisplayScoreOnPlayer;                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -10981,12 +11892,14 @@ struct AFortPlayerController_Cheat_Params
 struct AFortPlayerController_AddItemToQuickBars_Params
 {
 	class UFortItemDefinition*                         ItemDefinition;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortQuickBars                                     QuickBarType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndex;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerController.ActivateSlot
 struct AFortPlayerController_ActivateSlot_Params
 {
+	EFortQuickBars                                     InQuickBar;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Slot;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              ActivateDelay;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bUpdatePreviousFocusedSlot;                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -11100,6 +12013,11 @@ struct UFortCheatManager_ToggleVoiceDebug_Params
 
 // Function FortniteGame.FortCheatManager.ToggleUtilitiesGraph
 struct UFortCheatManager_ToggleUtilitiesGraph_Params
+{
+};
+
+// Function FortniteGame.FortCheatManager.ToggleUseNewItemCards
+struct UFortCheatManager_ToggleUseNewItemCards_Params
 {
 };
 
@@ -11432,6 +12350,12 @@ struct UFortCheatManager_TestCancelLobby_Params
 {
 };
 
+// Function FortniteGame.FortCheatManager.TestBanhammer
+struct UFortCheatManager_TestBanhammer_Params
+{
+	struct FString                                     InUserId;                                                 // (CPF_Parm, CPF_ZeroConstructor)
+};
+
 // Function FortniteGame.FortCheatManager.TeleportToMissionActor
 struct UFortCheatManager_TeleportToMissionActor_Params
 {
@@ -11525,6 +12449,12 @@ struct UFortCheatManager_ShowActiveGameplayModifiers_Params
 {
 };
 
+// Function FortniteGame.FortCheatManager.ShouldUseNewItemCards
+struct UFortCheatManager_ShouldUseNewItemCards_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortCheatManager.SetWorldLevel
 struct UFortCheatManager_SetWorldLevel_Params
 {
@@ -11535,6 +12465,12 @@ struct UFortCheatManager_SetWorldLevel_Params
 struct UFortCheatManager_SetWorldDaysElapsed_Params
 {
 	float                                              days;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortCheatManager.SetWindPixelDebugExtent
+struct UFortCheatManager_SetWindPixelDebugExtent_Params
+{
+	float                                              ExtentInUnrealUnits;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortCheatManager.SetSafeZoneRadius
@@ -11603,6 +12539,14 @@ struct UFortCheatManager_SetInteractExtent_Params
 struct UFortCheatManager_SetInputPresetName_Params
 {
 	struct FString                                     PresetName;                                               // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortCheatManager.SetHordePlotExpansionSize
+struct UFortCheatManager_SetHordePlotExpansionSize_Params
+{
+	int                                                XSize;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                YSize;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                ZSize;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortCheatManager.SetHeroLevel
@@ -12119,6 +13063,12 @@ struct UFortCheatManager_McpCheat_Params
 {
 };
 
+// Function FortniteGame.FortCheatManager.McpApplyStash
+struct UFortCheatManager_McpApplyStash_Params
+{
+	struct FString                                     StashName;                                                // (CPF_Parm, CPF_ZeroConstructor)
+};
+
 // Function FortniteGame.FortCheatManager.McpApplyAlteration
 struct UFortCheatManager_McpApplyAlteration_Params
 {
@@ -12172,6 +13122,11 @@ struct UFortCheatManager_ListTraps_Params
 
 // Function FortniteGame.FortCheatManager.ListSpawnGroups
 struct UFortCheatManager_ListSpawnGroups_Params
+{
+};
+
+// Function FortniteGame.FortCheatManager.ListPlayerIDs
+struct UFortCheatManager_ListPlayerIDs_Params
 {
 };
 
@@ -12395,6 +13350,11 @@ struct UFortCheatManager_GiveAthenaConsumables_Params
 {
 };
 
+// Function FortniteGame.FortCheatManager.GiveAthenaAmmo
+struct UFortCheatManager_GiveAthenaAmmo_Params
+{
+};
+
 // Function FortniteGame.FortCheatManager.GiveAmmo
 struct UFortCheatManager_GiveAmmo_Params
 {
@@ -12456,6 +13416,11 @@ struct UFortCheatManager_GetWorldLevel_Params
 
 // Function FortniteGame.FortCheatManager.GetWorldDifficulty
 struct UFortCheatManager_GetWorldDifficulty_Params
+{
+};
+
+// Function FortniteGame.FortCheatManager.GetWindPixelDebugExtent
+struct UFortCheatManager_GetWindPixelDebugExtent_Params
 {
 };
 
@@ -12523,6 +13488,7 @@ struct UFortCheatManager_ForceHeroType_Params
 // Function FortniteGame.FortCheatManager.ForceAILODs
 struct UFortCheatManager_ForceAILODs_Params
 {
+	EFortAILODLevel                                    inForcedAILODValue;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortCheatManager.ExecuteNewMissionGeneration
@@ -12803,6 +13769,15 @@ struct UFortCheatManager_BotStopDogpile_Params
 // Function FortniteGame.FortCheatManager.BotStartDogpile
 struct UFortCheatManager_BotStartDogpile_Params
 {
+};
+
+// Function FortniteGame.FortCheatManager.BotProtectBuilding
+struct UFortCheatManager_BotProtectBuilding_Params
+{
+	struct FString                                     ClassName;                                                // (CPF_Parm, CPF_ZeroConstructor)
+	float                                              PosX;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              PosY;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	float                                              PosZ;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortCheatManager.BeautyMode
@@ -13111,11 +14086,13 @@ struct UFortPartyContext_ShouldPartyInvitesBeEnabled_Params
 // Function FortniteGame.FortPartyContext.SetPartyProgression
 struct UFortPartyContext_SetPartyProgression_Params
 {
+	EFortPartyState                                    NewState;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPartyContext.SetPartyPrivacySetting
 struct UFortPartyContext_SetPartyPrivacySetting_Params
 {
+	EPartyType                                         PartyType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bLeaderFriendsOnly;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bLeaderInvitesOnly;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -13129,6 +14106,7 @@ struct UFortPartyContext_SetPartyInvitesEnabled_Params
 // Function FortniteGame.FortPartyContext.SetLocalPartyMemberLocation
 struct UFortPartyContext_SetLocalPartyMemberLocation_Params
 {
+	EFortPartyMemberLocation                           Location;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPartyContext.SetFriendInvitesEnabled
@@ -13204,16 +14182,19 @@ struct UFortPartyContext_OnPlayerStateChangedDelegate__DelegateSignature_Params
 // DelegateFunction FortniteGame.FortPartyContext.OnPartyTypeChanged__DelegateSignature
 struct UFortPartyContext_OnPartyTypeChanged__DelegateSignature_Params
 {
+	EPartyType                                         PartyType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // DelegateFunction FortniteGame.FortPartyContext.OnPartyTransitionStartedDelegate__DelegateSignature
 struct UFortPartyContext_OnPartyTransitionStartedDelegate__DelegateSignature_Params
 {
+	EFortPartyTransition                               PartyTransition;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // DelegateFunction FortniteGame.FortPartyContext.OnPartyTransitionCompleteDelegate__DelegateSignature
 struct UFortPartyContext_OnPartyTransitionCompleteDelegate__DelegateSignature_Params
 {
+	EFortPartyTransition                               PartyTransition;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // DelegateFunction FortniteGame.FortPartyContext.OnPartyLeftDelegate__DelegateSignature
@@ -13283,11 +14264,13 @@ struct UFortPartyContext_OnClientSquadFillChanged__DelegateSignature_Params
 // DelegateFunction FortniteGame.FortPartyContext.OnClientPlaylistChanged__DelegateSignature
 struct UFortPartyContext_OnClientPlaylistChanged__DelegateSignature_Params
 {
+	EFortAthenaPlaylist                                PlaylistChanged;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // DelegateFunction FortniteGame.FortPartyContext.OnClientPartyStateChanged__DelegateSignature
 struct UFortPartyContext_OnClientPartyStateChanged__DelegateSignature_Params
 {
+	EFortPartyState                                    PartyState;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // DelegateFunction FortniteGame.FortPartyContext.OnAthenaReadyStateChanged__DelegateSignature
@@ -13435,6 +14418,7 @@ struct UFortPartyContext_GetSocialItemCategories_Params
 // Function FortniteGame.FortPartyContext.GetPartyPrivacySetting
 struct UFortPartyContext_GetPartyPrivacySetting_Params
 {
+	EPartyType                                         OutPartyType;                                             // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               OutLeaderFriendsOnly;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               OutLeaderInvitesOnly;                                     // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
@@ -13444,6 +14428,7 @@ struct UFortPartyContext_GetPartyPrivacySetting_Params
 struct UFortPartyContext_GetPartyMemberDisplayState_Params
 {
 	struct FFortTeamMemberInfo                         PartyMemberInfo;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	EFortPartyMemberDisplayState                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPartyContext.GetPartyInvites
@@ -13499,17 +14484,27 @@ struct UFortPartyContext_GetLocalPartyTeamFill_Params
 // Function FortniteGame.FortPartyContext.GetLocalPartyProgression
 struct UFortPartyContext_GetLocalPartyProgression_Params
 {
+	EFortPartyState                                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPartyContext.GetLocalPartyPlaylist
 struct UFortPartyContext_GetLocalPartyPlaylist_Params
 {
+	EFortAthenaPlaylist                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortPartyContext.GetLocalPartyMemberLocation
+struct UFortPartyContext_GetLocalPartyMemberLocation_Params
+{
+	EFortPartyMemberLocation                           Location;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPartyContext.GetFriendRequestStatusForPlayer
 struct UFortPartyContext_GetFriendRequestStatusForPlayer_Params
 {
 	struct FUniqueNetIdRepl                            PlayerID;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	EFortFriendRequestStatus                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPartyContext.GetCurrentPartyMaxSize
@@ -13547,6 +14542,7 @@ struct UFortPartyContext_CancelFriendRequest_Params
 struct UFortPartyContext_CanBeJoined_Params
 {
 	class UFortSocialItem*                             SocialItem;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortPartyRestriction                              FailReason;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -13554,6 +14550,7 @@ struct UFortPartyContext_CanBeJoined_Params
 struct UFortPartyContext_CanBeInvitedNetID_Params
 {
 	struct FUniqueNetIdRepl                            PlayerID;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	EFortPartyRestriction                              FailReason;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -13561,6 +14558,7 @@ struct UFortPartyContext_CanBeInvitedNetID_Params
 struct UFortPartyContext_CanBeInvited_Params
 {
 	class UFortSocialItem*                             SocialItem;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortPartyRestriction                              FailReason;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -13579,6 +14577,7 @@ struct UFortSocialItem_GetUniquePlayerId_Params
 // Function FortniteGame.FortSocialItem.GetPresenceStatus
 struct UFortSocialItem_GetPresenceStatus_Params
 {
+	EFortSocialItemPresenceStatus                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortSocialItem.GetLocation
@@ -13927,6 +14926,7 @@ struct AFortTheaterMapTile_GetZoneDifficulty_Params
 // Function FortniteGame.FortTheaterMapTile.GetMissionAlertCategory
 struct AFortTheaterMapTile_GetMissionAlertCategory_Params
 {
+	EFortMissionAlertCategory                          ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortTheaterMapTile.DoesTileAllowQuickplay
@@ -14016,11 +15016,13 @@ struct UFortCollectionBookManager_CalculateBookXp_Params
 struct UFortCollectionBookPage_GetSectionState_Params
 {
 	struct FName                                       SectionId;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCollectionBookState                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortCollectionBookPage.GetPageState
 struct UFortCollectionBookPage_GetPageState_Params
 {
+	EFortCollectionBookState                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortCombatManager.OnThresholdChange
@@ -14054,6 +15056,7 @@ struct UFortDateTimeLibrary_GetTimespanAsText_Params
 {
 	struct FTimespan                                   Timespan;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 	bool                                               bShowSeconds;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	ETimespanAsTextFormat                              FormatType;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 
@@ -14148,9 +15151,6 @@ struct UFortDeployableBaseLibrary_SetupDeployableBaseCombatZoneInventoriesOnPlay
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<struct FName>                               TierGroups;                                               // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	TArray<class AFortPlayerController*>               PlayerControllers;                                        // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-	struct FVector                                     RewardsPosition;                                          // (CPF_Parm, CPF_IsPlainOldData)
-	float                                              RewardsTossAngle;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              RewardsTossRadius;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortDeployableBaseLibrary.SetDeployableBaseMatchJoinability
@@ -14187,11 +15187,11 @@ struct UFortDeployableBaseLibrary_GrantPlayersCompletedWaveRewards_Params
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Wave;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                NumberOfPlayers;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<class ADeployableBaseCore*>                 TargetCores;                                              // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<class ADeployableBaseCore*>                 AllCores;                                                 // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	struct FFortTierCollectionLayoutOutput             CollectionData;                                           // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
 	TArray<struct FName>                               TierGroups;                                               // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-	struct FVector                                     RewardsPosition;                                          // (CPF_Parm, CPF_IsPlainOldData)
-	float                                              RewardsTossAngle;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              RewardsTossRadius;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortDeployableBaseLibrary.GetTieredModifierSet
@@ -14212,6 +15212,7 @@ struct UFortDeployableBaseLibrary_GetPrimaryHordeMission_Params
 struct UFortDeployableBaseLibrary_GetHordeTierStartStatus_Params
 {
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EHordeTierStartStatus                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortDeployableBaseLibrary.GetGameDifficultyInfo
@@ -14244,6 +15245,7 @@ struct UFortDeployableBaseLibrary_ForceClearAllDefenders_Params
 struct UFortDeployableBaseLibrary_BroadcastHordeTierComplete_Params
 {
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCompletionResult                              Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortDeployableBaseLibrary.ApplyTieredModifierSet
@@ -14345,6 +15347,12 @@ struct AFortMissionState_UpdateUI_Params
 {
 };
 
+// Function FortniteGame.FortMissionState.SetTimerForOnAllPlayersLoadedIn
+struct AFortMissionState_SetTimerForOnAllPlayersLoadedIn_Params
+{
+	float                                              Timer;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortMissionState.SendMissionUIEvent
 struct AFortMissionState_SendMissionUIEvent_Params
 {
@@ -14361,6 +15369,16 @@ struct AFortMissionState_OnMatchStarted_Params
 {
 };
 
+// Function FortniteGame.FortMissionState.OnAllPlayersLoadedInWrapper
+struct AFortMissionState_OnAllPlayersLoadedInWrapper_Params
+{
+};
+
+// Function FortniteGame.FortMissionState.OnAllPlayersLoadedIn
+struct AFortMissionState_OnAllPlayersLoadedIn_Params
+{
+};
+
 // Function FortniteGame.FortObjectiveBase.UnpauseObjectiveTimer
 struct AFortObjectiveBase_UnpauseObjectiveTimer_Params
 {
@@ -14369,6 +15387,7 @@ struct AFortObjectiveBase_UnpauseObjectiveTimer_Params
 // Function FortniteGame.FortObjectiveBase.StopObjective
 struct AFortObjectiveBase_StopObjective_Params
 {
+	EFortObjectiveStatus                               Status;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     Description;                                              // (CPF_Parm, CPF_ZeroConstructor)
 	class UFortBadgeItemDefinition*                    ExtraBadgeToGrant;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
@@ -14382,6 +15401,7 @@ struct AFortObjectiveBase_StartPlayingObjective_Params
 // Function FortniteGame.FortObjectiveBase.SetUIVisibilityOverride
 struct AFortObjectiveBase_SetUIVisibilityOverride_Params
 {
+	EFortMissionVisibilityOverride                     InVisibilityOverride;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortObjectiveBase.SetUiVisibility
@@ -14515,6 +15535,7 @@ struct AFortObjectiveBase_BlueprintOnStartPlaying_Params
 // Function FortniteGame.FortObjectiveBase.BlueprintOnObjectiveEnd
 struct AFortObjectiveBase_BlueprintOnObjectiveEnd_Params
 {
+	EFortObjectiveStatus                               Status;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortObjectiveBase.BlueprintOnActivated
@@ -14621,6 +15642,12 @@ struct AFortMission_SetToSilentDestroy_Params
 {
 };
 
+// Function FortniteGame.FortMission.SendBotLogicMessage
+struct AFortMission_SendBotLogicMessage_Params
+{
+	struct FString                                     EventName;                                                // (CPF_Parm, CPF_ZeroConstructor)
+};
+
 // Function FortniteGame.FortMission.RemoveParticipantAccount
 struct AFortMission_RemoveParticipantAccount_Params
 {
@@ -14661,6 +15688,7 @@ struct AFortMission_OnWaveCompleted_Params
 {
 	int                                                Tier;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                Wave;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortCompletionResult                              Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMission.OnRep_UIIndex
@@ -14683,8 +15711,8 @@ struct AFortMission_OnRep_MissionStatus_Params
 {
 };
 
-// Function FortniteGame.FortMission.OnRep_CurrentFocusDisplayText
-struct AFortMission_OnRep_CurrentFocusDisplayText_Params
+// Function FortniteGame.FortMission.OnRep_CurrentFocusDisplayData
+struct AFortMission_OnRep_CurrentFocusDisplayData_Params
 {
 };
 
@@ -14775,6 +15803,7 @@ struct AFortMission_GetParticipatingMissionControllers_Params
 struct AFortMission_GetObjectiveStatusByHandle_Params
 {
 	struct FGameplayTagContainer                       ObjectiveHandle;                                          // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ReferenceParm)
+	EFortObjectiveStatus                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMission.GetObjectiveHandlesWithTag
@@ -14814,6 +15843,12 @@ struct AFortMission_GetExpectedCompletionTime_Params
 struct AFortMission_GetDaysRemainingBeforeOverPar_Params
 {
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortMission.GetCurrentFocusPercentage
+struct AFortMission_GetCurrentFocusPercentage_Params
+{
+	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMission.GetCurrentFocusDisplayText
@@ -14858,6 +15893,7 @@ struct AFortMission_GetAdditionalMissionSuccessBadges_Params
 // Function FortniteGame.FortMission.GetAdditionalMissionCompletionMissionPoints
 struct AFortMission_GetAdditionalMissionCompletionMissionPoints_Params
 {
+	EFortMissionStatus                                 CompletionStatus;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -14873,6 +15909,7 @@ struct AFortMission_GetActorsSpawnedMatchingQuery_Params
 struct AFortMission_FocusThisMission_Params
 {
 	struct FText                                       FocusDisplayText;                                         // (CPF_Parm)
+	float                                              FocusPercentage;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMission.FindGoalLocationsForEncounterAssignment
@@ -14898,6 +15935,7 @@ struct AFortMission_CreateEncounterAssignment_Params
 	class UFortAIAssignmentSettings*                   AssignmentSettings;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UClass*                                      GoalProvider;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortAIAssignmentIdentifier                 AssignmentIdentifier;                                     // (CPF_Parm, CPF_OutParm)
+	EAssignmentCreationResult                          ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMission.ChooseRandomReward
@@ -14919,6 +15957,7 @@ struct AFortMission_BlueprintOnStartPlaying_Params
 // Function FortniteGame.FortMission.BlueprintOnMissionEnd
 struct AFortMission_BlueprintOnMissionEnd_Params
 {
+	EFortMissionStatus                                 Status;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMission.BlueprintOnActivated
@@ -15025,9 +16064,18 @@ struct AFortDeployableBaseManager_GetTierOutputForSelectedTier_Params
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortDeployableBaseManager.GetHighestDefeatedTierForPlayerAndLayout
+struct AFortDeployableBaseManager_GetHighestDefeatedTierForPlayerAndLayout_Params
+{
+	struct FUniqueNetIdRepl                            PlayerID;                                                 // (CPF_Parm)
+	class UFortTieredCollectionLayout*                 Layout;                                                   // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortDeployableBaseManager.GetDeployableBaseUseType
 struct AFortDeployableBaseManager_GetDeployableBaseUseType_Params
 {
+	EDeployableBaseUseType                             ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortDeployableBaseManager.GetDeployableBasePlotFromLocation
@@ -15059,54 +16107,7 @@ struct AFortDeployableBaseManager_GetAllDeployableBasePlots_Params
 // Function FortniteGame.FortDeployableBaseManager.BroadcastHordeWaveStinger
 struct AFortDeployableBaseManager_BroadcastHordeWaveStinger_Params
 {
-};
-
-// Function FortniteGame.FortWorker.GetWorkerTypeBP
-struct UFortWorker_GetWorkerTypeBP_Params
-{
-	class UFortWorkerType*                             ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWorker.GetTertiaryCategory
-struct UFortWorker_GetTertiaryCategory_Params
-{
-	struct FText                                       ItemCategoryText;                                         // (CPF_Parm, CPF_OutParm)
-	struct FSlateBrush                                 ItemCategoryBrush;                                        // (CPF_Parm, CPF_OutParm)
-	TEnumAsByte<EFortBrushSize>                        BrushSize;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortWorker.GetSecondaryCategory
-struct UFortWorker_GetSecondaryCategory_Params
-{
-	struct FText                                       ItemCategoryText;                                         // (CPF_Parm, CPF_OutParm)
-	struct FSlateBrush                                 ItemCategoryBrush;                                        // (CPF_Parm, CPF_OutParm)
-	TEnumAsByte<EFortBrushSize>                        BrushSize;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHero.IsLevelClamped
-struct UFortHero_IsLevelClamped_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHero.GetUnclampedLevel
-struct UFortHero_GetUnclampedLevel_Params
-{
-	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHero.GetHeroTypeBP
-struct UFortHero_GetHeroTypeBP_Params
-{
-	class UFortHeroType*                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortHero.GetDisplayName
-struct UFortHero_GetDisplayName_Params
-{
-	struct FText                                       ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
+	EHordeWaveStingerType                              StingerType;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.PartyDisplayManager.ShowLoading
@@ -15192,250 +16193,8 @@ struct AFortGameModeSurvival_FireEvent_SurvivalVoteReport_Params
 // Function FortniteGame.FortGameModeSurvival.FireEvent_SurvivalPeriodicReport
 struct AFortGameModeSurvival_FireEvent_SurvivalPeriodicReport_Params
 {
+	EFortReportDayPhase                                TimeOfReport;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<class ABuildingActor*>                      ActorsBeingDefended;                                      // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortPlayerPawn.ToggleGender
-struct AFortPlayerPawn_ToggleGender_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.ToggleBodyType
-struct AFortPlayerPawn_ToggleBodyType_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.TimeFromJumpApex
-struct AFortPlayerPawn_TimeFromJumpApex_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.SwitchToPreviousPart
-struct AFortPlayerPawn_SwitchToPreviousPart_Params
-{
-	struct FString                                     PartName;                                                 // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortPlayerPawn.SwitchToNextPart
-struct AFortPlayerPawn_SwitchToNextPart_Params
-{
-	struct FString                                     PartName;                                                 // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortPlayerPawn.SetStasisMode
-struct AFortPlayerPawn_SetStasisMode_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.SetHomeActor
-struct AFortPlayerPawn_SetHomeActor_Params
-{
-	class AActor*                                      NewActor;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.SetFirstPersonCamera
-struct AFortPlayerPawn_SetFirstPersonCamera_Params
-{
-	bool                                               bNewUseFirstPersonCamera;                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerToggleGender
-struct AFortPlayerPawn_ServerToggleGender_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerToggleBodyType
-struct AFortPlayerPawn_ServerToggleBodyType_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerRootMotionInterruptNotifyStopMontage
-struct AFortPlayerPawn_ServerRootMotionInterruptNotifyStopMontage_Params
-{
-	class UAnimMontage*                                MontageToStop;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerReviveFromDBNO
-struct AFortPlayerPawn_ServerReviveFromDBNO_Params
-{
-	class AController*                                 EventInstigator;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerRespawnFromDBNO
-struct AFortPlayerPawn_ServerRespawnFromDBNO_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerPlayUnableToPerformActionMontage
-struct AFortPlayerPawn_ServerPlayUnableToPerformActionMontage_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerHandlePickup
-struct AFortPlayerPawn_ServerHandlePickup_Params
-{
-	class AFortPickup*                                 Pickup;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	float                                              InFlyTime;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FVector                                     InStartDirection;                                         // (CPF_ConstParm, CPF_Parm, CPF_IsPlainOldData)
-	bool                                               bPlayPickupSound;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerCyclePart
-struct AFortPlayerPawn_ServerCyclePart_Params
-{
-	TEnumAsByte<EFortCustomPartType>                   Part;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bNextPart;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerCycleColorSwatch
-struct AFortPlayerPawn_ServerCycleColorSwatch_Params
-{
-	TEnumAsByte<EColorSwatchType>                      SwatchType;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bNext;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerCycleAccessoryColorSwatch
-struct AFortPlayerPawn_ServerCycleAccessoryColorSwatch_Params
-{
-	TEnumAsByte<EFortCustomPartType>                   Part;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bNext;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerChoosePart
-struct AFortPlayerPawn_ServerChoosePart_Params
-{
-	TEnumAsByte<EFortCustomPartType>                   Part;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class UCustomCharacterPart*                        ChosenCharacterPart;                                      // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ServerChooseGender
-struct AFortPlayerPawn_ServerChooseGender_Params
-{
-	TEnumAsByte<EFortCustomGender>                     Gender;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ReviveFromDBNO
-struct AFortPlayerPawn_ReviveFromDBNO_Params
-{
-	class AController*                                 EventInstigator;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.RandomizeCharacter
-struct AFortPlayerPawn_RandomizeCharacter_Params
-{
-	struct FString                                     GenderString;                                             // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortPlayerPawn.OnRep_IsDBNO
-struct AFortPlayerPawn_OnRep_IsDBNO_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.OnRep_CharPartAnimMontageInfo
-struct AFortPlayerPawn_OnRep_CharPartAnimMontageInfo_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.OnRep_AccelerationPack
-struct AFortPlayerPawn_OnRep_AccelerationPack_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.OnCharacterPartsReinitialized
-struct AFortPlayerPawn_OnCharacterPartsReinitialized_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.ListCharacterParts
-struct AFortPlayerPawn_ListCharacterParts_Params
-{
-	struct FString                                     GenderAndOrPartString;                                    // (CPF_Parm, CPF_ZeroConstructor)
-};
-
-// Function FortniteGame.FortPlayerPawn.IsSprinting
-struct AFortPlayerPawn_IsSprinting_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.InternalServerSetTargeting
-struct AFortPlayerPawn_InternalServerSetTargeting_Params
-{
-	bool                                               bNewTargeting;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.HandleInStasis
-struct AFortPlayerPawn_HandleInStasis_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.GetStasisMode
-struct AFortPlayerPawn_GetStasisMode_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawn.GetStamina
-struct AFortPlayerPawn_GetStamina_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetSkeletalMeshForPartType
-struct AFortPlayerPawn_GetSkeletalMeshForPartType_Params
-{
-	TEnumAsByte<EFortCustomPartType>                   PartType;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class USkeletalMeshComponent*                      ReturnValue;                                              // (CPF_ExportObject, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_InstancedReference, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetMaxStamina
-struct AFortPlayerPawn_GetMaxStamina_Params
-{
-	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetHomeActor
-struct AFortPlayerPawn_GetHomeActor_Params
-{
-	class AActor*                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetGender
-struct AFortPlayerPawn_GetGender_Params
-{
-	bool                                               IsMale;                                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               IsFemale;                                                 // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetExtraLives
-struct AFortPlayerPawn_GetExtraLives_Params
-{
-	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetCharacterGender
-struct AFortPlayerPawn_GetCharacterGender_Params
-{
-	TEnumAsByte<EFortCustomGender>                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.GetCharacterBodyType
-struct AFortPlayerPawn_GetCharacterBodyType_Params
-{
-	TEnumAsByte<EFortCustomBodyType>                   ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawn.ClientNotifyAbilityFailed
-struct AFortPlayerPawn_ClientNotifyAbilityFailed_Params
-{
-	class UGameplayAbility*                            FailedAbility;                                            // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FGameplayTagContainer                       FailedReason;                                             // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
-};
-
-// Function FortniteGame.FortPlayerPawn.CanPredictJumpApex
-struct AFortPlayerPawn_CanPredictJumpApex_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMcpProfileAccount.UpgradeItem
@@ -15457,23 +16216,6 @@ struct UFortMcpProfileAccount_UpdateQuestClientObjectives_Params
 {
 	TArray<struct FFortQuestObjectiveCompletion>       Advance;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_ReferenceParm)
 	struct FClientUrlContext                           Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
-};
-
-// Function FortniteGame.FortMcpProfileAccount.UpdateOutpostCore
-struct UFortMcpProfileAccount_UpdateOutpostCore_Params
-{
-	struct FString                                     CoreId;                                                   // (CPF_Parm, CPF_ZeroConstructor)
-	struct FFortOutpostCoreInfo                        CoreInfo;                                                 // (CPF_Parm)
-	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
-};
-
-// Function FortniteGame.FortMcpProfileAccount.UpdateDeployableBaseTierProgression
-struct UFortMcpProfileAccount_UpdateDeployableBaseTierProgression_Params
-{
-	struct FString                                     DeployableBaseItemId;                                     // (CPF_Parm, CPF_ZeroConstructor)
-	struct FString                                     ProgressionLayoutGuid;                                    // (CPF_Parm, CPF_ZeroConstructor)
-	int                                                TierDefeated;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
 };
 
 // Function FortniteGame.FortMcpProfileAccount.UpdateBuildingLevelAndRating
@@ -15564,6 +16306,7 @@ struct UFortMcpProfileAccount_SetPinnedQuests_Params
 // Function FortniteGame.FortMcpProfileAccount.SetMtxPlatform
 struct UFortMcpProfileAccount_SetMtxPlatform_Params
 {
+	EFortMtxPlatform                                   NewPlatform;                                              // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FClientUrlContext                           Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
 };
 
@@ -15635,6 +16378,12 @@ struct UFortMcpProfileAccount_ServerQuestLogin_Params
 {
 	struct FString                                     MatchmakingSessionId;                                     // (CPF_Parm, CPF_ZeroConstructor)
 	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
+// Function FortniteGame.FortMcpProfileAccount.RequestEventFlags
+struct UFortMcpProfileAccount_RequestEventFlags_Params
+{
+	struct FClientUrlContext                           Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
 };
 
 // Function FortniteGame.FortMcpProfileAccount.RefreshExpeditions
@@ -15758,20 +16507,6 @@ struct UFortMcpProfileAccount_EarnScore_Params
 	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
 };
 
-// Function FortniteGame.FortMcpProfileAccount.CreateOrUpgradeOutpostItem
-struct UFortMcpProfileAccount_CreateOrUpgradeOutpostItem_Params
-{
-	struct FString                                     TemplateId;                                               // (CPF_Parm, CPF_ZeroConstructor)
-	struct FClientUrlContext                           Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
-};
-
-// Function FortniteGame.FortMcpProfileAccount.CreateDeployableBaseItem
-struct UFortMcpProfileAccount_CreateDeployableBaseItem_Params
-{
-	struct FString                                     TemplateId;                                               // (CPF_Parm, CPF_ZeroConstructor)
-	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
-};
-
 // Function FortniteGame.FortMcpProfileAccount.ConvertItem
 struct UFortMcpProfileAccount_ConvertItem_Params
 {
@@ -15879,6 +16614,37 @@ struct UFortMcpProfileAccount_AbandonExpedition_Params
 	struct FClientUrlContext                           Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
 };
 
+// Function FortniteGame.FortMcpProfileMetadata.UpdateOutpostCore
+struct UFortMcpProfileMetadata_UpdateOutpostCore_Params
+{
+	struct FString                                     CoreId;                                                   // (CPF_Parm, CPF_ZeroConstructor)
+	struct FFortOutpostCoreInfo                        CoreInfo;                                                 // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
+	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
+// Function FortniteGame.FortMcpProfileMetadata.UpdateDeployableBaseTierProgression
+struct UFortMcpProfileMetadata_UpdateDeployableBaseTierProgression_Params
+{
+	struct FString                                     DeployableBaseItemId;                                     // (CPF_Parm, CPF_ZeroConstructor)
+	struct FString                                     ProgressionLayoutGuid;                                    // (CPF_Parm, CPF_ZeroConstructor)
+	int                                                TierDefeated;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
+// Function FortniteGame.FortMcpProfileMetadata.CreateOrUpgradeOutpostItem
+struct UFortMcpProfileMetadata_CreateOrUpgradeOutpostItem_Params
+{
+	struct FString                                     TemplateId;                                               // (CPF_Parm, CPF_ZeroConstructor)
+	struct FClientUrlContext                           Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
+// Function FortniteGame.FortMcpProfileMetadata.CreateDeployableBaseItem
+struct UFortMcpProfileMetadata_CreateDeployableBaseItem_Params
+{
+	struct FString                                     TemplateId;                                               // (CPF_Parm, CPF_ZeroConstructor)
+	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
 // Function FortniteGame.FortPlayerControllerGameplay.SetHUDElementVisibility
 struct AFortPlayerControllerGameplay_SetHUDElementVisibility_Params
 {
@@ -15925,6 +16691,13 @@ struct AFortPlayerControllerZone_ServerSendPartyJoinInfoToPlayer_Params
 {
 	struct FUniqueNetIdRepl                            RecipientId;                                              // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
 	struct FString                                     JoinInfoStr;                                              // (CPF_Parm, CPF_ZeroConstructor)
+};
+
+// Function FortniteGame.FortPlayerControllerZone.ServerSendLoadoutConfig
+struct AFortPlayerControllerZone_ServerSendLoadoutConfig_Params
+{
+	int                                                LoadoutSeed;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	TArray<unsigned char>                              Loadout;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_ReferenceParm)
 };
 
 // Function FortniteGame.FortPlayerControllerZone.PushDeathInputComponent
@@ -16065,7 +16838,7 @@ struct AFortPlayerControllerAthena_IsInAircraft_Params
 // Function FortniteGame.FortPlayerControllerAthena.GetTeamReviving
 struct AFortPlayerControllerAthena_GetTeamReviving_Params
 {
-	TArray<unsigned char>                              RevivingStates;                                           // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	TArray<bool>                                       RevivingStates;                                           // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 };
 
 // Function FortniteGame.FortPlayerControllerAthena.GetTeamHitPointFractions
@@ -16078,19 +16851,25 @@ struct AFortPlayerControllerAthena_GetTeamHitPointFractions_Params
 // Function FortniteGame.FortPlayerControllerAthena.GetTeamDead
 struct AFortPlayerControllerAthena_GetTeamDead_Params
 {
-	TArray<unsigned char>                              DeadStates;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	TArray<bool>                                       DeadStates;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 };
 
 // Function FortniteGame.FortPlayerControllerAthena.GetTeamDBNO
 struct AFortPlayerControllerAthena_GetTeamDBNO_Params
 {
-	TArray<unsigned char>                              DBNOStates;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	TArray<bool>                                       DBNOStates;                                               // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 };
 
 // Function FortniteGame.FortPlayerControllerAthena.GetSpectatingPlayerName
 struct AFortPlayerControllerAthena_GetSpectatingPlayerName_Params
 {
 	struct FString                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
+};
+
+// Function FortniteGame.FortPlayerControllerAthena.GetRevertPlayerListenerChangeFlag
+struct AFortPlayerControllerAthena_GetRevertPlayerListenerChangeFlag_Params
+{
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerControllerAthena.FullscreenMapCursorVertical_Gamepad
@@ -16360,6 +17139,7 @@ struct AFortGameStateZone_ServerFireAIDirectorEventBatch_Params
 // Function FortniteGame.FortGameStateZone.ServerFireAIDirectorEvent
 struct AFortGameStateZone_ServerFireAIDirectorEvent_Params
 {
+	EFortAIDirectorEvent                               Event;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UObject*                                     EventSource;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UObject*                                     EventTarget;                                              // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	float                                              EventMultiplier;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
@@ -16555,6 +17335,7 @@ struct AFortGameStateZone_GetUIMapManager_Params
 // Function FortniteGame.FortGameStateZone.GetTotalScore
 struct AFortGameStateZone_GetTotalScore_Params
 {
+	EStatCategory                                      ScoreCategory;                                            // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -16589,16 +17370,6 @@ struct AFortGameStateZone_GetGameDifficulty_Params
 	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
-// Function FortniteGame.FortGameStateZone.GetDefenderToRemove
-struct AFortGameStateZone_GetDefenderToRemove_Params
-{
-	class AFortPlayerStateZone*                        PlayerCausingRemoval;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FName                                       RemoveFromDefenderSquadId;                                // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
-	int                                                SimulatedAdditionalDefenders;                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               bDefenderRemovalCausedByPlayerJoin;                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	class AFortAIPawn*                                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
 // Function FortniteGame.FortGameStateZone.GetActiveModifiers
 struct AFortGameStateZone_GetActiveModifiers_Params
 {
@@ -16608,6 +17379,15 @@ struct AFortGameStateZone_GetActiveModifiers_Params
 // Function FortniteGame.FortGameStateZone.EndGameplayVote
 struct AFortGameStateZone_EndGameplayVote_Params
 {
+};
+
+// Function FortniteGame.FortGameStateZone.CanSpawnDefender
+struct AFortGameStateZone_CanSpawnDefender_Params
+{
+	class AFortPlayerStateZone*                        PlayerCausingRemoval;                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	struct FName                                       RemoveFromDefenderSquadId;                                // (CPF_ConstParm, CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReferenceParm, CPF_IsPlainOldData)
+	class AFortAIPawn*                                 OutDefenderToBeRemoved;                                   // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortGameStateZone.BeginGameplayVote
@@ -16640,6 +17420,7 @@ struct AFortGameStateDeployableBase_OnRep_DeployableBaseManager_Params
 // Function FortniteGame.FortGameStateDeployableBase.GetDeployableBaseUseType
 struct AFortGameStateDeployableBase_GetDeployableBaseUseType_Params
 {
+	EDeployableBaseUseType                             ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortGameStateFOB.SetGameDifficultyRow
@@ -16758,6 +17539,7 @@ struct AFortGameStateAthena_OnRep_WinningPlayerName_Params
 // Function FortniteGame.FortGameStateAthena.OnRep_GamePhase
 struct AFortGameStateAthena_OnRep_GamePhase_Params
 {
+	EAthenaGamePhase                                   OldGamePhase;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortGameStateAthena.OnRep_Aircraft
@@ -16781,6 +17563,7 @@ struct AFortGameStateAthena_GetAircraft_Params
 struct AFortGameStateAthena_GetAerialPhase_Params
 {
 	class AFortPlayerControllerAthena*                 PlayerController;                                         // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EAthenaAerialPhase                                 ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortGameStatePvPBaseDestruction.GetTeamLevelForExperienceAmount
@@ -17151,6 +17934,7 @@ struct UFortQuestItem_GetRemainingExpirationDuration_Params
 // Function FortniteGame.FortQuestItem.GetQuestState
 struct UFortQuestItem_GetQuestState_Params
 {
+	EFortQuestState                                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuestItem.GetQuestDefinitionBP
@@ -17250,6 +18034,7 @@ struct UFortWorldItem_GetOwnedGameplayTags_Params
 struct UFortConversionControlItemDefinition_GetTierFromSacrificePoints_Params
 {
 	int                                                SacrificePoints;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortRarity                                        CalculatedTier;                                           // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -17281,17 +18066,20 @@ struct UFortConversionControlItemDefinition_GetRequiredCatalysts_Params
 // Function FortniteGame.FortConversionControlItemDefinition.GetPointsForTier
 struct UFortConversionControlItemDefinition_GetPointsForTier_Params
 {
+	EFortRarity                                        InTier;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortConversionControlItemDefinition.GetMaxConversionTier
 struct UFortConversionControlItemDefinition_GetMaxConversionTier_Params
 {
+	EFortRarity                                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortConversionControlItemDefinition.GetFirstConversionTier
 struct UFortConversionControlItemDefinition_GetFirstConversionTier_Params
 {
+	EFortRarity                                        ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPersistentResourceItemDefinition.IsEventItem
@@ -17339,6 +18127,7 @@ struct UFortQuestItemDefinition_GetSelectableRewards_BP_Params
 // Function FortniteGame.FortQuestItemDefinition.GetRewardType
 struct UFortQuestItemDefinition_GetRewardType_Params
 {
+	EFortQuestRewardType                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuestItemDefinition.GetRewards_BP
@@ -17368,6 +18157,7 @@ struct UFortQuestItemDefinition_GetRewardDescription_Params
 // Function FortniteGame.FortQuestItemDefinition.GetQuestType
 struct UFortQuestItemDefinition_GetQuestType_Params
 {
+	EFortQuestType                                     ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuestItemDefinition.GetPrerequisiteQuest
@@ -17452,6 +18242,7 @@ struct UFortBadgeItemDefinition_GetBadgeScoreThreshold_Params
 // Function FortniteGame.FortBadgeItemDefinition.GetBadgeScoreCategory
 struct UFortBadgeItemDefinition_GetBadgeScoreCategory_Params
 {
+	EStatCategory                                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortConsumableItemDefinition.GetUseAnimation
@@ -17993,6 +18784,7 @@ struct UFortKismetLibrary_OpenTalkingHead_Params
 	class UTexture2D*                                  Image;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FText                                       Title;                                                    // (CPF_Parm)
 	struct FText                                       SpeechText;                                               // (CPF_Parm)
+	EFortAnnouncementDisplayPreference                 DisplayPreference;                                        // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortKismetLibrary.OnSameTeam
@@ -18842,6 +19634,7 @@ struct UFortKismetLibrary_EquipItemToQuickBarSlot_Params
 {
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortItemDefinition*                         ItemDefinition;                                           // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortQuickBars                                     QuickBarType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndex;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -18889,6 +19682,7 @@ struct UFortKismetLibrary_EnableTutorialHighlight_Params
 struct UFortKismetLibrary_EmptyQuickBarSlot_Params
 {
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortQuickBars                                     QuickBarType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                SlotIndex;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -19105,6 +19899,35 @@ struct AFortLobbyBeaconClientPvP_ServerReadyUp_Params
 {
 };
 
+// Function FortniteGame.FortLobbyBeaconClientRM.UpdateNewlyJoinedPlayer
+struct AFortLobbyBeaconClientRM_UpdateNewlyJoinedPlayer_Params
+{
+};
+
+// Function FortniteGame.FortLobbyBeaconClientRM.SetLocalReadyStatus
+struct AFortLobbyBeaconClientRM_SetLocalReadyStatus_Params
+{
+	bool                                               bIsReady;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortLobbyBeaconClientRM.ServerUpdateReadyStatus
+struct AFortLobbyBeaconClientRM_ServerUpdateReadyStatus_Params
+{
+	bool                                               bIsReady;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
+// Function FortniteGame.FortLobbyBeaconClientRM.ServerUpdateNewlyJoinedPlayerInternal
+struct AFortLobbyBeaconClientRM_ServerUpdateNewlyJoinedPlayerInternal_Params
+{
+};
+
+// Function FortniteGame.FortLobbyBeaconClientRM.ClientBroadcastLobbyPlayerPadTop
+struct AFortLobbyBeaconClientRM_ClientBroadcastLobbyPlayerPadTop_Params
+{
+	struct FUniqueNetIdRepl                            ReadiedPlayer;                                            // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
+	bool                                               bIsReadiedUp;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortLobbyBeaconPlayerState.OnRep_LobbyTimeRemaining
 struct AFortLobbyBeaconPlayerState_OnRep_LobbyTimeRemaining_Params
 {
@@ -19172,6 +19995,11 @@ struct AFortLobbyBeaconState_OnRep_MissionGeneratorClassPath_Params
 
 // Function FortniteGame.FortLobbyBeaconStatePvP.OnRep_PvPLobbyTimeRemaining
 struct AFortLobbyBeaconStatePvP_OnRep_PvPLobbyTimeRemaining_Params
+{
+};
+
+// Function FortniteGame.FortLobbyBeaconStateRM.OnRep_LobbyTimeRemaining
+struct AFortLobbyBeaconStateRM_OnRep_LobbyTimeRemaining_Params
 {
 };
 
@@ -19275,6 +20103,12 @@ struct UFortMatchmakingContext_GetLobbyWaitForPlayersTimeRemaining_Params
 	float                                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortMatchmakingContext.GetLobbyBeaconClient
+struct UFortMatchmakingContext_GetLobbyBeaconClient_Params
+{
+	class AFortLobbyBeaconClient*                      ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortMatchmakingContext.EnterPvPFOB
 struct UFortMatchmakingContext_EnterPvPFOB_Params
 {
@@ -19369,6 +20203,31 @@ struct UFortMcpProfileWorld_DepositPostResources_Params
 	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
 };
 
+// Function FortniteGame.FortMcpProfileWorld.BatchUpdatePlayers_Outpost
+struct UFortMcpProfileWorld_BatchUpdatePlayers_Outpost_Params
+{
+	TArray<struct FFortBatchUpdatePlayer_Update>       Updates;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	struct FString                                     OutpostId;                                                // (CPF_Parm, CPF_ZeroConstructor)
+	struct FFortOutpostCoreInfo                        OutpostInfo;                                              // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
+	struct FFortCloudSaveInfo                          CloudSaveInfo;                                            // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
+	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
+// Function FortniteGame.FortMcpProfileWorld.BatchUpdatePlayers_DeployableBase
+struct UFortMcpProfileWorld_BatchUpdatePlayers_DeployableBase_Params
+{
+	TArray<struct FFortBatchUpdatePlayer_Update>       Updates;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	TArray<struct FFortBatchUpdatePlayer_DeployableBaseUpdate> DeployableBaseUpdates;                                    // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
+// Function FortniteGame.FortMcpProfileWorld.BatchUpdatePlayers
+struct UFortMcpProfileWorld_BatchUpdatePlayers_Params
+{
+	TArray<struct FFortBatchUpdatePlayer_Update>       Updates;                                                  // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_ReferenceParm)
+	struct FDedicatedServerUrlContext                  Context;                                                  // (CPF_Parm, CPF_OutParm, CPF_RepSkip, CPF_RepNotify, CPF_Interp, CPF_NonTransactional, CPF_EditorOnly, CPF_NoDestructor, CPF_AutoWeak, CPF_ContainsInstancedReference, CPF_AssetRegistrySearchable, CPF_SimpleDisplay, CPF_AdvancedDisplay, CPF_Protected, CPF_BlueprintCallable, CPF_BlueprintAuthorityOnly, CPF_TextExportTransient, CPF_NonPIEDuplicateTransient, CPF_ExposeOnSpawn, CPF_PersistentInstance, CPF_UObjectWrapper, CPF_HasGetValueTypeHash, CPF_NativeAccessSpecifierPublic, CPF_NativeAccessSpecifierProtected, CPF_NativeAccessSpecifierPrivate)
+};
+
 // Function FortniteGame.FortMcpProfileWorld.BatchUpdatePlayerOutpost
 struct UFortMcpProfileWorld_BatchUpdatePlayerOutpost_Params
 {
@@ -19443,6 +20302,7 @@ struct UFortMissionLibrary_StopAIEncounter_Params
 {
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortAIEncounterInfo*                        ActiveEncounter;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortObjectiveStatus                               ObjectiveStatus;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortMissionLibrary.StartPlayingMission
@@ -20129,6 +20989,7 @@ struct UFortOutpostContext_UpgradeBuildingByDefinition_Params
 // Function FortniteGame.FortOutpostContext.UpgradeBuilding
 struct UFortOutpostContext_UpgradeBuilding_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortOutpostContext.LeaveOutpostAsParty
@@ -20173,6 +21034,7 @@ struct UFortOutpostContext_GetBuildingUpgradeCostFromDefinition_Params
 // Function FortniteGame.FortOutpostContext.GetBuildingUpgradeCost
 struct UFortOutpostContext_GetBuildingUpgradeCost_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<struct FFortItemQuantityPair>               OutWorldItems;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 	TArray<struct FFortItemQuantityPair>               OutAccountItems;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 };
@@ -20187,6 +21049,7 @@ struct UFortOutpostContext_GetBuildingMaxLevelFromDefinition_Params
 // Function FortniteGame.FortOutpostContext.GetBuildingMaxLevel
 struct UFortOutpostContext_GetBuildingMaxLevel_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -20200,6 +21063,7 @@ struct UFortOutpostContext_GetBuildingLevelFromDefinition_Params
 // Function FortniteGame.FortOutpostContext.GetBuildingLevel
 struct UFortOutpostContext_GetBuildingLevel_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -20227,6 +21091,7 @@ struct UFortOutpostContext_CanUpgradeBuildingFromDefinition_Params
 // Function FortniteGame.FortOutpostContext.CanUpgradeBuilding
 struct UFortOutpostContext_CanUpgradeBuilding_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bLog;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -20279,6 +21144,7 @@ struct UFortOutpostFunctionLibrary_IsCraftingTableActive_Params
 struct UFortOutpostFunctionLibrary_GetStorageVaultStoredItems_Params
 {
 	class AFortPlayerControllerOutpost*                Player;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortInventoryFilter                               InventoryFilter;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     SearchFilter;                                             // (CPF_Parm, CPF_ZeroConstructor)
 	TArray<class UFortItem*>                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
@@ -20287,6 +21153,7 @@ struct UFortOutpostFunctionLibrary_GetStorageVaultStoredItems_Params
 struct UFortOutpostFunctionLibrary_GetStorageVaultPlayerItems_Params
 {
 	class AFortPlayerControllerOutpost*                Player;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortInventoryFilter                               InventoryFilter;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     SearchFilter;                                             // (CPF_Parm, CPF_ZeroConstructor)
 	TArray<class UFortItem*>                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
@@ -20340,6 +21207,7 @@ struct UFortOutpostFunctionLibrary_GetOutpostBuildingTagFromPlacementTag_Params
 struct UFortOutpostFunctionLibrary_GetOutpostBuildingItemDefinition_Params
 {
 	class UObject*                                     WorldContextObject;                                       // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EOutpostBuildings                                  Building;                                                 // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortOutpostItemDefinition*                  ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -20375,6 +21243,7 @@ struct UFortOutpostFunctionLibrary_GetFabricatorStoredGooAmount_Params
 struct UFortOutpostFunctionLibrary_GetFabricatorRecipes_Params
 {
 	class AFortPlayerControllerOutpost*                FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortInventoryFilter                               InventoryFilter;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     SearchFilter;                                             // (CPF_Parm, CPF_ZeroConstructor)
 	TArray<class UFortItem*>                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
@@ -20383,6 +21252,7 @@ struct UFortOutpostFunctionLibrary_GetFabricatorRecipes_Params
 struct UFortOutpostFunctionLibrary_GetFabricatorPlayerItems_Params
 {
 	class AFortPlayerControllerOutpost*                FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortInventoryFilter                               InventoryFilter;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FString                                     SearchFilter;                                             // (CPF_Parm, CPF_ZeroConstructor)
 	TArray<class UFortItem*>                           ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm)
 };
@@ -20510,6 +21380,15 @@ struct UFortOutpostFunctionLibrary_DeactivateCraftingTable_Params
 	class AFortPlayerControllerOutpost*                FortPC;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
+// Function FortniteGame.FortOutpostFunctionLibrary.CountOverflowFromAddingItem
+struct UFortOutpostFunctionLibrary_CountOverflowFromAddingItem_Params
+{
+	class AFortPlayerControllerOutpost*                Player;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	class UFortWorldItem*                              Item;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                Count;                                                    // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
+};
+
 // Function FortniteGame.FortOutpostFunctionLibrary.CanActivateCraftingTable
 struct UFortOutpostFunctionLibrary_CanActivateCraftingTable_Params
 {
@@ -20589,186 +21468,6 @@ struct AFortPawn_InteractablePawn_BlueprintGetInteractionString_Params
 struct AFortPawn_InteractablePawn_BlueprintCanInteract_Params
 {
 	class AFortPawn*                                   InteractingPawn;                                          // (CPF_ConstParm, CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.SafeZoneStatusChanged
-struct AFortPlayerPawnAthena_SafeZoneStatusChanged_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_WeaponActivated
-struct AFortPlayerPawnAthena_OnRep_WeaponActivated_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_ReplicatedAnimMontage
-struct AFortPlayerPawnAthena_OnRep_ReplicatedAnimMontage_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_IsSkydiving
-struct AFortPlayerPawnAthena_OnRep_IsSkydiving_Params
-{
-	bool                                               bPreviousState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_IsParachuteOpen
-struct AFortPlayerPawnAthena_OnRep_IsParachuteOpen_Params
-{
-	bool                                               bPreviousState;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_IsOutsideSafeZone
-struct AFortPlayerPawnAthena_OnRep_IsOutsideSafeZone_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_GliderType
-struct AFortPlayerPawnAthena_OnRep_GliderType_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.OnRep_DrivingCar
-struct AFortPlayerPawnAthena_OnRep_DrivingCar_Params
-{
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCuesExecuted_WithParams
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCuesExecuted_WithParams_Params
-{
-	struct FGameplayTagContainer                       GameplayCueTags;                                          // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCuesExecuted
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCuesExecuted_Params
-{
-	struct FGameplayTagContainer                       GameplayCueTags;                                          // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayEffectContextHandle                EffectContext;                                            // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCuesAddedAndWhileActive_WithParams
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCuesAddedAndWhileActive_WithParams_Params
-{
-	struct FGameplayTagContainer                       GameplayCueTags;                                          // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueExecuted_WithParams
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueExecuted_WithParams_Params
-{
-	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueExecuted_FromSpec
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueExecuted_FromSpec_Params
-{
-	struct FGameplayEffectSpecForRPC                   Spec;                                                     // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueExecuted
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueExecuted_Params
-{
-	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayEffectContextHandle                EffectContext;                                            // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAddedAndWhileActive_WithParams
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAddedAndWhileActive_WithParams_Params
-{
-	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayCueParameters                      GameplayCueParameters;                                    // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAddedAndWhileActive_FromSpec
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAddedAndWhileActive_FromSpec_Params
-{
-	struct FGameplayEffectSpecForRPC                   Spec;                                                     // (CPF_ConstParm, CPF_Parm, CPF_ReferenceParm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAdded_WithParams
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAdded_WithParams_Params
-{
-	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayCueParameters                      Parameters;                                               // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_InvokeGameplayCueAdded
-struct AFortPlayerPawnAthena_NetMulticast_InvokeGameplayCueAdded_Params
-{
-	struct FGameplayTag                                GameplayCueTag;                                           // (CPF_ConstParm, CPF_Parm)
-	struct FPredictionKey                              PredictionKey;                                            // (CPF_Parm)
-	struct FGameplayEffectContextHandle                EffectContext;                                            // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.NetMulticast_Athena_BatchedDamageCues
-struct AFortPlayerPawnAthena_NetMulticast_Athena_BatchedDamageCues_Params
-{
-	struct FAthenaBatchedDamageGameplayCues            BatchData;                                                // (CPF_Parm)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.MarkSafe
-struct AFortPlayerPawnAthena_MarkSafe_Params
-{
-	class UClass*                                      GEtoApply;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsUsingUmbrella
-struct AFortPlayerPawnAthena_IsUsingUmbrella_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsSkydiving
-struct AFortPlayerPawnAthena_IsSkydiving_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsPassivelySkydiving
-struct AFortPlayerPawnAthena_IsPassivelySkydiving_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsParachuteOpen
-struct AFortPlayerPawnAthena_IsParachuteOpen_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsParachuteForcedOpen
-struct AFortPlayerPawnAthena_IsParachuteForcedOpen_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsDrivingCar
-struct AFortPlayerPawnAthena_IsDrivingCar_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsActivelyStrafingInAir
-struct AFortPlayerPawnAthena_IsActivelyStrafingInAir_Params
-{
-	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
-};
-
-// Function FortniteGame.FortPlayerPawnAthena.IsActivelySkydiving
-struct AFortPlayerPawnAthena_IsActivelySkydiving_Params
-{
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -20919,6 +21618,7 @@ struct AFortPlayerState_AreUniqueIDsIdentical_Params
 // Function FortniteGame.FortFrontEndCameraManager.SetCamera
 struct AFortFrontEndCameraManager_SetCamera_Params
 {
+	EFrontEndCamera                                    NewCamera;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortFrontEndCameraManager.GetCameraActor
@@ -20930,6 +21630,7 @@ struct AFortFrontEndCameraManager_GetCameraActor_Params
 // Function FortniteGame.FortFrontEndCameraManager.GetCamera
 struct AFortFrontEndCameraManager_GetCamera_Params
 {
+	EFrontEndCamera                                    ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortReplaySpectator.SetCloudAltitudes
@@ -21006,6 +21707,7 @@ struct AFortPlayerControllerDeployableBase_ClientOnHordeTierInitialized_Params
 // Function FortniteGame.FortPlayerControllerDeployableBase.ClientOnHordeTierComplete
 struct AFortPlayerControllerDeployableBase_ClientOnHordeTierComplete_Params
 {
+	EFortCompletionResult                              Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerControllerFOB.ServerSaveFOB
@@ -21096,6 +21798,7 @@ struct AFortPlayerControllerOutpost_UpgradeBuildingByDefinition_Params
 // Function FortniteGame.FortPlayerControllerOutpost.UpgradeBuilding
 struct AFortPlayerControllerOutpost_UpgradeBuilding_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPlayerControllerOutpost.ToggleOwnerInPIE
@@ -21232,6 +21935,7 @@ struct AFortPlayerControllerOutpost_GetBuildingUpgradeCostFromDefinition_Params
 // Function FortniteGame.FortPlayerControllerOutpost.GetBuildingUpgradeCost
 struct AFortPlayerControllerOutpost_GetBuildingUpgradeCost_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	TArray<struct FFortItemQuantityPair>               OutWorldItems;                                            // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 	TArray<struct FFortItemQuantityPair>               OutAccountItems;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
 };
@@ -21246,6 +21950,7 @@ struct AFortPlayerControllerOutpost_GetBuildingMaxLevelFromDefinition_Params
 // Function FortniteGame.FortPlayerControllerOutpost.GetBuildingMaxLevel
 struct AFortPlayerControllerOutpost_GetBuildingMaxLevel_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -21259,6 +21964,7 @@ struct AFortPlayerControllerOutpost_GetBuildingLevelFromDefinition_Params
 // Function FortniteGame.FortPlayerControllerOutpost.GetBuildingLevel
 struct AFortPlayerControllerOutpost_GetBuildingLevel_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	int                                                ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -21290,6 +21996,7 @@ struct AFortPlayerControllerOutpost_CanUpgradeBuildingFromDefinition_Params
 // Function FortniteGame.FortPlayerControllerOutpost.CanUpgradeBuilding
 struct AFortPlayerControllerOutpost_CanUpgradeBuilding_Params
 {
+	EOutpostBuildings                                  OutpostBuilding;                                          // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               bLog;                                                     // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	bool                                               ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
@@ -21469,6 +22176,7 @@ struct UFortPrototypingContext_OnPrototypingStatusChanged__DelegateSignature_Par
 // Function FortniteGame.FortPrototypingContext.GetPrototypingStatus
 struct UFortPrototypingContext_GetPrototypingStatus_Params
 {
+	EFortPrototypingStatus                             ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortPvPFunctionLibrary.SetMatchLevel
@@ -21742,6 +22450,7 @@ struct UFortQuestManager_GetPinnedQuests_Params
 // Function FortniteGame.FortQuestManager.GetNextUnseenQuest
 struct UFortQuestManager_GetNextUnseenQuest_Params
 {
+	EFortQuestType                                     QuestType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	class UFortQuestItem*                              ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_ReturnParm, CPF_IsPlainOldData)
 };
 
@@ -21796,6 +22505,7 @@ struct UFortQuestManager_ClaimQuestReward_Params
 // Function FortniteGame.FortQuestManager.ClaimNextCompletedQuestReward
 struct UFortQuestManager_ClaimNextCompletedQuestReward_Params
 {
+	EFortQuestType                                     QuestType;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function FortniteGame.FortQuestObjectiveInfo.IsVisibleToUser
@@ -21836,6 +22546,7 @@ struct UFortQuestObjectiveInfo_DisplayDynamicQuestUpdate_Params
 // Function FortniteGame.FortRarityData.BPGetRarityData
 struct UFortRarityData_BPGetRarityData_Params
 {
+	EFortRarity                                        Rarity;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortRarityItemData                         ReturnValue;                                              // (CPF_Parm, CPF_OutParm, CPF_ReturnParm)
 };
 

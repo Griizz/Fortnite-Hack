@@ -35,6 +35,8 @@ struct UChatWidget_C_HandleCursorModeChanged_Params
 // Function ChatWidget.ChatWidget_C.HandleShowChatWindow
 struct UChatWidget_C_HandleShowChatWindow_Params
 {
+	EFortUIFeature                                     Feature;                                                  // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortUIFeatureState                                FeatureState;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ChatWidget.ChatWidget_C.HandeChatEnteredEvent
@@ -52,11 +54,13 @@ struct UChatWidget_C_UpdateChatUserListIcon_Params
 // Function ChatWidget.ChatWidget_C.Set Chat Shortcut Visibility
 struct UChatWidget_C_Set_Chat_Shortcut_Visibility_Params
 {
+	ESlateVisibility                                   New_Visibility;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ChatWidget.ChatWidget_C.Set Chat Visibility
 struct UChatWidget_C_Set_Chat_Visibility_Params
 {
+	ESlateVisibility                                   New_Visibility;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ChatWidget.ChatWidget_C.BndEvt__ConsoleChatShortcut_K2Node_ComponentBoundEvent_14_CommonButtonClicked__DelegateSignature

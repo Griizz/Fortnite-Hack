@@ -112,13 +112,15 @@ void UXpBoostRow_C::OnMCPRequestComplete_13866D8D449A2AA167E306B6A172BD62()
 // Function XpBoostRow.XpBoostRow_C.DialogResult_9BF60C804C82DAA0C1A2839132130883
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UXpBoostRow_C::DialogResult_9BF60C804C82DAA0C1A2839132130883(const struct FName& ResultName)
+void UXpBoostRow_C::DialogResult_9BF60C804C82DAA0C1A2839132130883(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function XpBoostRow.XpBoostRow_C.DialogResult_9BF60C804C82DAA0C1A2839132130883");
 
 	UXpBoostRow_C_DialogResult_9BF60C804C82DAA0C1A2839132130883_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -132,13 +134,15 @@ void UXpBoostRow_C::DialogResult_9BF60C804C82DAA0C1A2839132130883(const struct F
 // Function XpBoostRow.XpBoostRow_C.DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortDialogResult              Result                         (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // struct FName                   ResultName                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UXpBoostRow_C::DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0(const struct FName& ResultName)
+void UXpBoostRow_C::DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0(EFortDialogResult Result, const struct FName& ResultName)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function XpBoostRow.XpBoostRow_C.DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0");
 
 	UXpBoostRow_C_DialogResult_8D859C4A4CE7EC02F6B02CA6729E58B0_Params params;
+	params.Result = Result;
 	params.ResultName = ResultName;
 
 	auto flags = fn->FunctionFlags;
@@ -209,14 +213,14 @@ void UXpBoostRow_C::ExecuteUbergraph_XpBoostRow(int EntryPoint)
 // Function XpBoostRow.XpBoostRow_C.Give Boost Clicked__DelegateSignature
 // (FUNC_Public, FUNC_Delegate, FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
-// struct FUniqueNetIdRepl        Player_to_Boost                (CPF_Parm)
+// struct FUniqueNetIdRepl        Player_To_Boost                (CPF_Parm)
 
-void UXpBoostRow_C::Give_Boost_Clicked__DelegateSignature(const struct FUniqueNetIdRepl& Player_to_Boost)
+void UXpBoostRow_C::Give_Boost_Clicked__DelegateSignature(const struct FUniqueNetIdRepl& Player_To_Boost)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function XpBoostRow.XpBoostRow_C.Give Boost Clicked__DelegateSignature");
 
 	UXpBoostRow_C_Give_Boost_Clicked__DelegateSignature_Params params;
-	params.Player_to_Boost = Player_to_Boost;
+	params.Player_To_Boost = Player_To_Boost;
 
 	auto flags = fn->FunctionFlags;
 

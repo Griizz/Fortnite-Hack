@@ -49,6 +49,7 @@ public:
 	void Construct();
 	void OnActivated();
 	void Destruct();
+	void OnActiveGameplayModifiersChanged_Event_1(TArray<class UFortGameplayModifierItemDefinition*> AppliedModifiers);
 	void ExecuteUbergraph_ObjectivesPage(int EntryPoint);
 };
 

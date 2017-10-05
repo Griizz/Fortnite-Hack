@@ -29,7 +29,7 @@ public:
 	}
 
 
-	void OnRewardStatusChanged();
+	void OnRewardStatusChanged(ECollectionBookRewardStatus* NewStatus);
 	void ExecuteUbergraph_CollectionBookPageCompletionRewardWidget(int EntryPoint);
 };
 

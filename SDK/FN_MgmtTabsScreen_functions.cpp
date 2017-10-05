@@ -148,12 +148,17 @@ void UMgmtTabsScreen_C::Destruct()
 
 // Function MgmtTabsScreen.MgmtTabsScreen_C.HandleShowQuests
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 ChangedFeature                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortUIFeatureState            NewState                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMgmtTabsScreen_C::HandleShowQuests()
+void UMgmtTabsScreen_C::HandleShowQuests(EFortUIFeature ChangedFeature, EFortUIFeatureState NewState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MgmtTabsScreen.MgmtTabsScreen_C.HandleShowQuests");
 
 	UMgmtTabsScreen_C_HandleShowQuests_Params params;
+	params.ChangedFeature = ChangedFeature;
+	params.NewState = NewState;
 
 	auto flags = fn->FunctionFlags;
 
@@ -165,12 +170,17 @@ void UMgmtTabsScreen_C::HandleShowQuests()
 
 // Function MgmtTabsScreen.MgmtTabsScreen_C.HandleShowObjectives
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortUIFeature                 ChangedFeature                 (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+// EFortUIFeatureState            NewState                       (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UMgmtTabsScreen_C::HandleShowObjectives()
+void UMgmtTabsScreen_C::HandleShowObjectives(EFortUIFeature ChangedFeature, EFortUIFeatureState NewState)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function MgmtTabsScreen.MgmtTabsScreen_C.HandleShowObjectives");
 
 	UMgmtTabsScreen_C_HandleShowObjectives_Params params;
+	params.ChangedFeature = ChangedFeature;
+	params.NewState = NewState;
 
 	auto flags = fn->FunctionFlags;
 

@@ -56,7 +56,7 @@ public:
 	struct FScriptMulticastDelegate                    OnRequestShowFeedbackWidget;                              // 0x0358(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_BlueprintAssignable)
 	class ULegalInfo_C*                                Legal_Widget;                                             // 0x0368(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UFortQuestItemDefinition*                    OnboardingQuest;                                          // 0x0370(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      tutorialComplete_ : 1;                                    // 0x0378(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               tutorialComplete_;                                        // 0x0378(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0379(0x0007) MISSED OFFSET
 	class UQuestScreen_C*                              QuestScreen;                                              // 0x0380(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UCredits_C*                                  CreditsWidget;                                            // 0x0388(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -70,7 +70,7 @@ public:
 	struct FName                                       Public;                                                   // 0x03D0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FName                                       Friends;                                                  // 0x03D8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	struct FName                                       Private;                                                  // 0x03E0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      isMatchmaking : 1;                                        // 0x03E8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               isMatchmaking;                                            // 0x03E8(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x03E9(0x0007) MISSED OFFSET
 	TArray<struct FFriendCode>                         FriendCodes;                                              // 0x03F0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 	class UFortUITeamInfo*                             LocalTeam;                                                // 0x0400(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
@@ -91,24 +91,24 @@ public:
 	void GetTotalNumFriendCodes(int* Num_Codes);
 	void OnQueryUnredeemedFriendCodes(bool Success, TArray<struct FFriendCode>* FriendCodes);
 	void RefreshFriendCodesButton();
-	void HandlePartyStateChanged();
+	void HandlePartyStateChanged(EFortPartyState New_State);
 	void HandleMatchmakingStarted();
 	void HandleLobbyDisconnected();
 	void HandleLobbyStarted();
-	void HandleMatchmakingComplete();
+	void HandleMatchmakingComplete(EMatchmakingCompleteResult Result);
 	void HandleActiveInvitesAmountChanged(int ActiveInvitesAmount);
-	void HandlePartyTypeChanged();
+	void HandlePartyTypeChanged(EPartyType Party_Type);
 	void HandlePartyJoined();
-	void HandlePartybarUIFeatureChanged();
+	void HandlePartybarUIFeatureChanged(EFortUIFeature Feature, EFortUIFeatureState FeatureState);
 	void HandleRemotePlayerRemoved(int RemovedIndex);
 	void HandleRemotePlayerStateChanged(const struct FFortTeamMemberInfo& NewMemberState);
 	void HandlePartyLeft();
 	void HandleLocalPlayerStateChanged(struct FFortTeamMemberInfo* MemberState);
-	void HandlePrivacySelected(bool FriendsOfFriends);
+	void HandlePrivacySelected(EPartyType PartyPrivacyType, bool FriendsOfFriends);
 	void OpenPartyPrivacy();
 	void OpenPartyInvites();
 	void SetPrivacyButtonData(class UTexture2D* Image, const struct FText& Button_Text);
-	void UpdatePrivacyButton(bool Use_Overide_Party_Type);
+	void UpdatePrivacyButton(EPartyType Overide_Party_Type, bool Use_Overide_Party_Type);
 	void IsOutpostOwner(bool* OutpostOwner);
 	void PushDailyRewards();
 	void ProcessPartyBar();
@@ -116,8 +116,8 @@ public:
 	void UpdateDescriptionText(const struct FText& HelpText);
 	void InitializeMainMenu();
 	void SetupTestUI();
-	void DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0(const struct FName& ResultName);
-	void DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7(const struct FName& ResultName);
+	void DialogResult_6DDAC27E47A3D5A11BE436A3ED3ADEA0(EFortDialogResult Result, const struct FName& ResultName);
+	void DialogResult_5FDF347E45DFDFC5D3596B9DA0EB60E7(EFortDialogResult Result, const struct FName& ResultName);
 	void BndEvt__Legal_K2Node_ComponentBoundEvent_146_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void BndEvt__DailyRewardsButton_K2Node_ComponentBoundEvent_737_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void BndEvt__MessagesButton_K2Node_ComponentBoundEvent_761_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
@@ -178,7 +178,7 @@ public:
 	void BndEvt__AthenaPartyPrivacyButton_K2Node_ComponentBoundEvent_481_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void BndEvt__AthenaPartyPrivacyButton_K2Node_ComponentBoundEvent_543_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void BndEvt__AthenaPartyPrivacyButton_K2Node_ComponentBoundEvent_600_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
-	void BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_259_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
+	void BndEvt__IconTextButton_C_0_K2Node_ComponentBoundEvent_321_CommonButtonClicked__DelegateSignature(class UCommonButton* Button);
 	void ExecuteUbergraph_MainMenu(int EntryPoint);
 	void OnRequestShowFeedbackWidget__DelegateSignature();
 };

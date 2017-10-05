@@ -149,13 +149,15 @@ void UQuickbarBase_C::OnWorldItemListChanged(TArray<class UFortWorldItem*> Items
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarSlotFocusChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            Slot                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarBase_C::OnQuickbarSlotFocusChanged(int Slot)
+void UQuickbarBase_C::OnQuickbarSlotFocusChanged(EFortQuickBars QuickbarIndex, int Slot)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarBase.QuickbarBase_C.OnQuickbarSlotFocusChanged");
 
 	UQuickbarBase_C_OnQuickbarSlotFocusChanged_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 	params.Slot = Slot;
 
 	auto flags = fn->FunctionFlags;
@@ -168,12 +170,15 @@ void UQuickbarBase_C::OnQuickbarSlotFocusChanged(int Slot)
 
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarContentsChanged
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarBase_C::OnQuickbarContentsChanged()
+void UQuickbarBase_C::OnQuickbarContentsChanged(EFortQuickBars QuickbarIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarBase.QuickbarBase_C.OnQuickbarContentsChanged");
 
 	UQuickbarBase_C_OnQuickbarContentsChanged_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 
 	auto flags = fn->FunctionFlags;
 
@@ -185,12 +190,15 @@ void UQuickbarBase_C::OnQuickbarContentsChanged()
 
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarForceFullUpdate
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
+// Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarBase_C::OnQuickbarForceFullUpdate()
+void UQuickbarBase_C::OnQuickbarForceFullUpdate(EFortQuickBars QuickbarIndex)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarBase.QuickbarBase_C.OnQuickbarForceFullUpdate");
 
 	UQuickbarBase_C_OnQuickbarForceFullUpdate_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 
 	auto flags = fn->FunctionFlags;
 
@@ -203,13 +211,15 @@ void UQuickbarBase_C::OnQuickbarForceFullUpdate()
 // Function QuickbarBase.QuickbarBase_C.OnQuickbarSecondarySlotFocusChanged_Event_1
 // (FUNC_BlueprintCallable, FUNC_BlueprintEvent)
 // Parameters:
+// EFortQuickBars                 QuickbarIndex                  (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 // int                            Slot                           (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-void UQuickbarBase_C::OnQuickbarSecondarySlotFocusChanged_Event_1(int Slot)
+void UQuickbarBase_C::OnQuickbarSecondarySlotFocusChanged_Event_1(EFortQuickBars QuickbarIndex, int Slot)
 {
 	static auto fn = UObject::FindObject<UFunction>("Function QuickbarBase.QuickbarBase_C.OnQuickbarSecondarySlotFocusChanged_Event_1");
 
 	UQuickbarBase_C_OnQuickbarSecondarySlotFocusChanged_Event_1_Params params;
+	params.QuickbarIndex = QuickbarIndex;
 	params.Slot = Slot;
 
 	auto flags = fn->FunctionFlags;

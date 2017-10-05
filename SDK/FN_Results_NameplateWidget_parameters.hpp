@@ -27,6 +27,7 @@ struct UResults_NameplateWidget_C_Intro_Params
 // Function Results_NameplateWidget.Results_NameplateWidget_C.Initialize
 struct UResults_NameplateWidget_C_Initialize_Params
 {
+	EFortCompletionResult                              Result;                                                   // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function Results_NameplateWidget.Results_NameplateWidget_C.BndEvt__Anim_Intro_K2Node_ComponentBoundEvent_97_OnWidgetAnimationPlaybackStatusChanged__DelegateSignature

@@ -17,6 +17,7 @@ namespace SDK
 // Function CollectionBookPageCompletionRewardWidget.CollectionBookPageCompletionRewardWidget_C.OnRewardStatusChanged
 struct UCollectionBookPageCompletionRewardWidget_C_OnRewardStatusChanged_Params
 {
+	ECollectionBookRewardStatus*                       NewStatus;                                                // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function CollectionBookPageCompletionRewardWidget.CollectionBookPageCompletionRewardWidget_C.ExecuteUbergraph_CollectionBookPageCompletionRewardWidget

@@ -34,7 +34,7 @@ public:
 	class UWidget* PopContentWidgetInternal(struct FContentPushState* State);
 	void Initialize();
 	void Construct();
-	void OnEnterState();
+	void OnEnterState(EFortUIState* PreviousUIState);
 	void PushContentWidgetInternal(class UWidget** Widget, struct FContentPushState* State);
 	void ExecuteUbergraph_SubgameSelect(int EntryPoint);
 };

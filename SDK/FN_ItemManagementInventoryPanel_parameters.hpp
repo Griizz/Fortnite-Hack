@@ -149,6 +149,7 @@ struct UItemManagementInventoryPanel_C_HandleDifferentFrontendInventoryFilterSet
 // Function ItemManagementInventoryPanel.ItemManagementInventoryPanel_C.HandleQuickBarChangedBP
 struct UItemManagementInventoryPanel_C_HandleQuickBarChangedBP_Params
 {
+	EFortQuickBars*                                    QuickBarType;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
 // Function ItemManagementInventoryPanel.ItemManagementInventoryPanel_C.HandleMulchQuantitySelection

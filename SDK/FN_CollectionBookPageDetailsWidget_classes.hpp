@@ -28,7 +28,7 @@ public:
 	}
 
 
-	void OnPageProgressionUpdated(int* TotalFilledSlots, int* TotalSlots);
+	void OnPageProgressionUpdated(int* TotalFilledSlots, int* TotalSlots, EFortCollectionBookState* State);
 	void ExecuteUbergraph_CollectionBookPageDetailsWidget(int EntryPoint);
 };
 

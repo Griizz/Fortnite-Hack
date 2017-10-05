@@ -6,8 +6,7 @@
 	#pragma pack(push, 0x8)
 #endif
 
-//#include "../SDK.hpp"
-#include"FN_FortUIStylesheet_structs.hpp"
+#include "../SDK.hpp"
 
 namespace SDK
 {
@@ -34,7 +33,7 @@ struct UStyleLibrary_C_Get_Conning_Color_From_Difficulty_Value_Params
 	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FLinearColor                                Difficulty_Linear_Color;                                  // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)
 	bool                                               Success;                                                  // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	struct FString                                     ToolTipText;                                              // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor)
+	struct FText                                       ToolTipText;                                              // (CPF_Parm, CPF_OutParm)
 	int                                                DifficultyValue;                                          // (CPF_Parm, CPF_OutParm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 };
 
@@ -58,6 +57,8 @@ struct UStyleLibrary_C_ResizeBrush_Params
 // Function StyleLibrary.StyleLibrary_C.Get Base & Buff Colors
 struct UStyleLibrary_C_Get_Base___Buff_Colors_Params
 {
+	EFortStatValueDisplayType                          Display_Type;                                             // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	EFortBuffState                                     Buff_State;                                               // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FFortUIStylesheet                           Stylesheet;                                               // (CPF_Parm)
 	class UObject*                                     __WorldContext;                                           // (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 	struct FLinearColor                                Base;                                                     // (CPF_Parm, CPF_OutParm, CPF_IsPlainOldData)

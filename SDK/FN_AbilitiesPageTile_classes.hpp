@@ -30,7 +30,7 @@ public:
 	class UFortAbilityKit*                             AbilityKit;                                               // 0x08E8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UFortGadgetItemDefinition*                   GadgetItemDef;                                            // 0x08F0(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	class UFortItem*                                   AbilityItem;                                              // 0x08F8(0x0008) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
-	unsigned char                                      AbilityLocked : 1;                                        // 0x0900(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
+	bool                                               AbilityLocked;                                            // 0x0900(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x7];                                       // 0x0901(0x0007) MISSED OFFSET
 	struct FFortUIPerk                                 AbilityUIPerk;                                            // 0x0908(0x0088) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
 	struct FLinearColor                                LockedColor;                                              // 0x0990(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance, CPF_IsPlainOldData)

@@ -36,8 +36,8 @@ public:
 	int                                                Total_Boost_Amount;                                       // 0x02B8(0x0004) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData00[0x4];                                       // 0x02BC(0x0004) MISSED OFFSET
 	TArray<class UXpBoostRow_C*>                       Party_Members;                                            // 0x02C0(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
-	struct FUniqueNetIdRepl                            Player_to_Boost;                                          // 0x02D0(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
-	TArray<unsigned char>                              RowsBoosted;                                              // 0x02E8(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
+	struct FUniqueNetIdRepl                            Player_To_Boost;                                          // 0x02D0(0x0018) (CPF_Edit, CPF_BlueprintVisible, CPF_DisableEditOnInstance)
+	TArray<bool>                                       RowsBoosted;                                              // 0x02E8(0x0010) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_DisableEditOnInstance)
 
 	static UClass* StaticClass()
 	{
@@ -55,7 +55,7 @@ public:
 	void Bind_Party_Delegates();
 	void Update_Current_Boosts();
 	void Construct();
-	void Give_Boost_Clicked(const struct FUniqueNetIdRepl& Player_to_Boost);
+	void Give_Boost_Clicked(const struct FUniqueNetIdRepl& Player_To_Boost);
 	void On_Party_Left();
 	void On_Party_Joined();
 	void Xp_Boost_Changed(int BoostAmount);

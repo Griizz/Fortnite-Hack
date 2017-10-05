@@ -17,7 +17,7 @@ namespace SDK
 class UAnimNotifyState_HolsterWeapon_C : public UAnimNotifyState
 {
 public:
-	unsigned char                                      PlayEquipAnim : 1;                                        // 0x0030(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
+	bool                                               PlayEquipAnim;                                            // 0x0030(0x0001) (CPF_Edit, CPF_BlueprintVisible, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
 	static UClass* StaticClass()
 	{
