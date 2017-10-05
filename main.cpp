@@ -70,7 +70,9 @@ void Aimbot()
         auto weapon = m_LocalPawn->CurrentWeapon;
         if (weapon != nullptr && weapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
         {
-            maxRange = static_cast<SDK::AFortWeaponRanged*>(weapon)->GetRange();
+            auto rangedWeapon = static_cast<SDK::AFortWeaponRanged*>(weapon);
+            maxRange = rangedWeapon->GetRange();
+            
             WeaponEffectiveRange = maxRange;
         }
     }
@@ -89,7 +91,7 @@ void Aimbot()
         SDK::FVector playerLoc;
         Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
 
-        auto dist = Util::GetDistance(playerController->RootComponent->Location, playerLoc);
+        auto dist = Util::GetDistance(playerController->AcknowledgedPawn->RootComponent->Location, playerLoc);
         LastAimDistance = dist;
 
         if (dist <= HeadshotMinDistance)
@@ -291,25 +293,18 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                         }
 
                         Color color{ 0.8f, 0.8f, 0.8f, 0.9f };
-
-                        switch (itemDef->Rarity)
+                        switch (itemDef->Tier.GetValue())
                         {
-                        case SDK::EFortRarity::Handmade:
-                        case SDK::EFortRarity::Ordinary:
+                        case SDK::EFortItemTier::I:
                             color = Color{ 0.9f, 0.9f, 0.9f, 0.9f };
                             break;
-                        case SDK::EFortRarity::Sturdy:
-                        case SDK::EFortRarity::Quality:
-                        case SDK::EFortRarity::Fine:
+                        case SDK::EFortItemTier::II:
                             color = Color{ 0.95f, 0.0f, 0.0f, 0.9f };
                             break;
-                        case SDK::EFortRarity::Elegant:
-                        case SDK::EFortRarity::Masterwork:
-                        case SDK::EFortRarity::Epic:
-                        case SDK::EFortRarity::Badass:
+                        case SDK::EFortItemTier::III:
                             color = Color{ 1.0f, 0.5f, 0.0f, 0.9f };
                             break;
-                        case SDK::EFortRarity::Legendary:
+                        case SDK::EFortItemTier::IV:
                             color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
                             break;
                         }

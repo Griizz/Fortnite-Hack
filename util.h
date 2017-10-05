@@ -150,16 +150,10 @@ namespace Util
         return state->TeamIndex.GetValue() == state2->TeamIndex.GetValue();
     }
 
-	float GetDistance(SDK::FVector point1, SDK::FVector point2)
+	float GetDistance(SDK::FVector x, SDK::FVector y)
 	{
-		SDK::FVector heading = Vector::Subtract(point2, point1);
-		float distanceSquared;
-		float distance;
-
-		distanceSquared = heading.X * heading.X + heading.Y * heading.Y + heading.Z * heading.Z;
-		distance = sqrt(distanceSquared);
-
-		return distance;
+		auto z = Vector::Subtract(x, y);
+		return sqrt(z.X * z.X + z.Y * z.Y + z.Z * z.Z);
 	}
 
 	float GetDistance2D(SDK::FVector2D point1, SDK::FVector2D point2)
