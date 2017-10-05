@@ -272,7 +272,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                         Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
                     {
                         auto size = renderer->getTextExtent(L"Enemy", 10.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.0f, 1.0f, 1.0f }, 0, 12.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.0f, 1.0f, 1.0f }, 0, 10.0f, L"Verdana");
                     }
                 }
             }
@@ -282,7 +282,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                 if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
                 {
                     auto size = renderer->getTextExtent(L"Item", 10.0f, L"Verdana");
-                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"Item", Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 12.0f, L"Verdana");
+                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"Item", Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 10.0f, L"Verdana");
                 }
             }
         }
