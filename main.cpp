@@ -287,7 +287,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
         auto msg = AutofireEnabled ? L"AUTOFIRE IS ON" : L"AUTOFIRE IS OFF";
 
         std::wstringstream ss;
-        ss.precision(2);
+        ss.precision(4);
 
         ss << msg << L" (DIST: " << LastAimDistance << L")";
 
