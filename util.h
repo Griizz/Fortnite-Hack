@@ -67,6 +67,41 @@ namespace Utils
 		return (static_cast<SDK::APawn*>(player) == Variables::m_LocalPlayer->PlayerController->AcknowledgedPawn);
 	}
 
+    bool IsTeammate(SDK::AActor* player)
+    {
+        if (!player)
+        {
+            return false;
+        }
+
+        if (!player->IsA(SDK::AFortPawn::StaticClass()))
+        {
+            return false;
+        }
+
+        auto myPawn = Variables::m_LocalPlayer->PlayerController->AcknowledgedPawn;
+        if (!myPawn)
+        {
+            return false;
+        }
+
+        auto otherPawn = static_cast<SDK::AFortPawn*>(player);
+        if (!myPawn->PlayerState || !otherPawn->PlayerState)
+        {
+            return false;
+        }
+
+        if (!myPawn->PlayerState->IsA(SDK::AFortPlayerStateAthena::StaticClass()) || !otherPawn->PlayerState->IsA(SDK::AFortPlayerStateAthena::StaticClass()))
+        {
+            return false;
+        }
+
+        auto state = static_cast<SDK::AFortPlayerStateAthena*>(myPawn->PlayerState);
+        auto state2 = static_cast<SDK::AFortPlayerStateAthena*>(otherPawn->PlayerState);
+
+        return state->TeamIndex.GetValue() == state2->TeamIndex.GetValue();
+    }
+
 	float GetDistance(SDK::FVector point1, SDK::FVector point2)
 	{
 		SDK::FVector heading = Vector::Subtract(point2, point1);
@@ -106,51 +141,6 @@ namespace Utils
 		return false;
 	}
 
-	SDK::AActor* GetClosestPlayer()
-	{
-        float distance = std::numeric_limits<float>::max();
-		SDK::AActor* closestPlayer = nullptr;
-		SDK::FVector localPos;
-
-		if (Variables::m_LocalPlayer->PlayerController != nullptr)
-		{
-			localPos = Variables::m_LocalPlayer->PlayerController->RootComponent->Location;
-		}
-		else
-		{
-			printf("null at pos 01\n\n\n\n");
-			return nullptr;
-		}
-
-		SDK::TArray<SDK::AActor*> actors = Variables::m_persistentLevel->AActors;
-		for (int i = 0; i < actors.Num(); i++)
-		{
-			SDK::AActor* m_Player = 0;
-			m_Player = Variables::m_persistentLevel->AActors[i];
-			if (m_Player != nullptr)
-			{
-				if (m_Player->IsA(SDK::ACharacter::StaticClass()))
-				{
-					if (m_Player->RootComponent != nullptr && !IsLocalPlayer(m_Player))
-					{
-						SDK::FVector playerLoc;
-						Utils::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(m_Player)->Mesh, &playerLoc, 66);
-						float curDist = GetDistance(localPos, playerLoc);
-						if (curDist < distance)
-						{
-							if (IsInFOV(Variables::m_LocalPlayer->PlayerController, playerLoc, Variables::fov))
-							{
-								distance = curDist;
-								closestPlayer = m_Player;
-							}
-						}
-					}
-				}
-			}
-		}
-		return closestPlayer;
-	}
-
     SDK::AActor* GetClosestVisiblePlayer(float maxRange)
     {
         SDK::FVector localPos;
@@ -174,41 +164,42 @@ namespace Utils
         auto& actors = Variables::m_persistentLevel->AActors;
         for (int i = 0; i < actors.Num(); i++)
         {
-            auto m_Player = Variables::m_persistentLevel->AActors[i];
-            if (m_Player != nullptr)
+            auto actor = Variables::m_persistentLevel->AActors[i];
+            if (actor == nullptr || !actor->IsA(SDK::AFortPawn::StaticClass()) || actor->RootComponent == nullptr || IsLocalPlayer(actor))
             {
-                if (m_Player->IsA(SDK::AFortPawn::StaticClass()))
-                {
-                    if (m_Player->RootComponent != nullptr && !IsLocalPlayer(m_Player))
-                    {
-                        SDK::FVector playerLoc;
-                        Utils::Engine::GetBoneLocation(static_cast<SDK::AFortPawn*>(m_Player)->Mesh, &playerLoc, 66);
-                        if (GetDistance(playerLoc, localPos) > maxRange * 0.95f)
-                        {
-                            continue;
-                        }
-
-                        SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
-                        if (!playerController->LineOfSightTo(m_Player, zero, false))
-                        {
-                            continue;
-                        }
-
-                        auto pawn = static_cast<SDK::AFortPawn*>(m_Player);
-                        if (pawn->GetName().find("PlayerPawn_Athena_C") == string::npos)
-                        {
-                            continue;
-                        }
-
-                        if (pawn->GetHealth() <= 0.0f || pawn->bIsDBNO)
-                        {
-                            continue;
-                        }
-
-                        candidates.push_back(m_Player);
-                    }
-                }
+                continue;
             }
+            
+            if (IsTeammate(actor))
+            {
+                continue;
+            }
+
+            SDK::FVector playerLoc;
+            Utils::Engine::GetBoneLocation(static_cast<SDK::AFortPawn*>(actor)->Mesh, &playerLoc, 66);
+            if (GetDistance(playerLoc, localPos) > maxRange * 0.95f)
+            {
+                continue;
+            }
+
+            SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
+            if (!playerController->LineOfSightTo(actor, zero, false))
+            {
+                continue;
+            }
+
+            auto pawn = static_cast<SDK::AFortPawn*>(actor);
+            if (pawn->GetName().find("PlayerPawn_Athena_C") == string::npos)
+            {
+                continue;
+            }
+
+            if (pawn->GetHealth() <= 0.0f || pawn->bIsDBNO)
+            {
+                continue;
+            }
+
+            candidates.push_back(actor);
         }
 
         for (auto candidate : candidates)
