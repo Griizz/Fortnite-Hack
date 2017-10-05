@@ -25,7 +25,6 @@
 bool EnableESP = true;
 bool AutofireEnabled = true;
 float HeadshotMinDistance = 1400.0f;
-float MaxAimbotDistance = 10000.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
 #define AIMBOT_KEY VK_XBUTTON2
@@ -74,7 +73,7 @@ void Aimbot()
 
     if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
     {
-        targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbotDistance);
+        targetPlayer = Util::GetClosestVisiblePlayer();
     }
     else
     {
