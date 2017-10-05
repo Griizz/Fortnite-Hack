@@ -10,7 +10,7 @@ Hold *Mouse 5* to use the aimbot.
 
 Press *Mouse 4* to toggle autofire.
 
-Press *F11* to toggle ESP.
+Press *F10* to toggle ESP.
 
 Compile in release x64 if you just want to use it.
 
