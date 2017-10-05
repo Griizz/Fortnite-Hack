@@ -1,90 +1,90 @@
 // Fortnite SDK
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x8)
+#pragma pack(push, 0x8)
 #endif
 
 #include "../SDK.hpp"
 
 namespace SDK
 {
-//---------------------------------------------------------------------------
-//Functions
-//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    //Functions
+    //---------------------------------------------------------------------------
 
-std::string UObject::GetName() const
-{
-	std::string name(Name.GetName());
-	if (Name.Number > 0)
-	{
-		name += '_' + std::to_string(Name.Number);
-	}
+    std::string UObject::GetName() const
+    {
+        std::string name(Name.GetName());
+        if (Name.Number > 0)
+        {
+            name += '_' + std::to_string(Name.Number);
+        }
 
-	auto pos = name.rfind('/');
-	if (pos == std::string::npos)
-	{
-		return name;
-	}
-	
-	return name.substr(pos + 1);
-}
+        auto pos = name.rfind('/');
+        if (pos == std::string::npos)
+        {
+            return name;
+        }
 
-std::string UObject::GetFullName() const
-{
-	std::string name;
+        return name.substr(pos + 1);
+    }
 
-	if (Class != nullptr)
-	{
-		std::string temp;
-		for (auto p = Outer; p; p = p->Outer)
-		{
-			temp = p->GetName() + "." + temp;
-		}
+    std::string UObject::GetFullName() const
+    {
+        std::string name;
 
-		name = Class->GetName();
-		name += " ";
-		name += temp;
-		name += GetName();
-	}
+        if (Class != nullptr)
+        {
+            std::string temp;
+            for (auto p = Outer; p; p = p->Outer)
+            {
+                temp = p->GetName() + "." + temp;
+            }
 
-	return name;
-}
+            name = Class->GetName();
+            name += " ";
+            name += temp;
+            name += GetName();
+        }
 
-bool UObject::IsA(UClass* cmp) const
-{
-	for (auto super = Class; super; super = static_cast<UClass*>(super->SuperField))
-	{
-		if (super == cmp)
-		{
-			return true;
-		}
-	}
+        return name;
+    }
 
-	return false;
-}
+    bool UObject::IsA(UClass* cmp) const
+    {
+        for (auto super = Class; super; super = static_cast<UClass*>(super->SuperField))
+        {
+            if (super == cmp)
+            {
+                return true;
+            }
+        }
 
-// Function CoreUObject.Object.ExecuteUbergraph
-// (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
-// Parameters:
-// int                            EntryPoint                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
+        return false;
+    }
 
-void UObject::ExecuteUbergraph(int EntryPoint)
-{
-	static auto fn = UObject::FindObject<UFunction>("Function CoreUObject.Object.ExecuteUbergraph");
+    // Function CoreUObject.Object.ExecuteUbergraph
+    // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
+    // Parameters:
+    // int                            EntryPoint                     (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
 
-	UObject_ExecuteUbergraph_Params params;
-	params.EntryPoint = EntryPoint;
+    void UObject::ExecuteUbergraph(int EntryPoint)
+    {
+        static auto fn = UObject::FindObject<UFunction>("Function CoreUObject.Object.ExecuteUbergraph");
 
-	auto flags = fn->FunctionFlags;
+        UObject_ExecuteUbergraph_Params params;
+        params.EntryPoint = EntryPoint;
 
-	UObject::ProcessEvent(fn, &params);
+        auto flags = fn->FunctionFlags;
 
-	fn->FunctionFlags = flags;
-}
+        UObject::ProcessEvent(fn, &params);
+
+        fn->FunctionFlags = flags;
+    }
 
 
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif
