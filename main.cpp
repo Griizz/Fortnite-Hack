@@ -39,6 +39,7 @@ SDK::AActor* targetPlayer = nullptr;
 
 std::chrono::high_resolution_clock timer;
 auto delay = timer.now();
+auto nextShotDeadline = timer.now();
 
 void Aimbot()
 {
@@ -76,6 +77,7 @@ void Aimbot()
         if (targetPlayer == nullptr)
         {
             targetPlayer = Util::GetClosestVisiblePlayer();
+            nextShotDeadline = timer.now() + std::chrono::milliseconds(250);
         }
     }
     else
@@ -112,13 +114,23 @@ void Aimbot()
         {
             if (!firing && lineOfSight)
             {
-                firing = true;
-                Util::LeftClick(true);
+                if (nextShotDeadline <= timer.now())
+                {
+                    firing = true;
+                    Util::LeftClick(true);
+                }
             }
             else if (firing && !lineOfSight)
             {
                 firing = false;
                 Util::LeftClick(false);
+                nextShotDeadline = timer.now() + std::chrono::milliseconds(250);
+            }
+            else if (firing && (nextShotDeadline + std::chrono::milliseconds(500) > timer.now()))
+            {
+                firing = false;
+                Util::LeftClick(false);
+                nextShotDeadline = timer.now();
             }
         }
     }
@@ -231,7 +243,7 @@ void DrawESP()
                         case SDK::EFortItemTier::VIII:
                         case SDK::EFortItemTier::IX:
                         case SDK::EFortItemTier::X:
-                            color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
+                            color = Color{ 0.7f, 0.0f, 0.95f, 0.9f };
                             break;
                         }
 
