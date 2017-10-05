@@ -85,6 +85,13 @@ void Aimbot()
 
     if (targetPlayer != nullptr)
     {
+        auto pawn = static_cast<SDK::AFortPawn*>(targetPlayer);
+        if (pawn->GetHealth() <= 0.0f || pawn->bIsDBNO)
+        {
+            targetPlayer = nullptr;
+            return;
+        }
+
         SDK::FVector playerLoc;
         Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
 
