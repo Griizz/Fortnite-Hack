@@ -105,6 +105,8 @@ void Aimbot()
 
         Util::LookAt(playerController, playerLoc);
 
+        Sleep(50);
+
         SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
         auto lineOfSight = playerController->LineOfSightTo(targetPlayer, zero, false);
 
@@ -164,6 +166,99 @@ DWORD WINAPI UpdateThread(LPVOID)
 }
 
 std::unique_ptr<Renderer> renderer;
+
+void DrawESP()
+{
+    if (EnableESP && Global::m_persistentLevel != nullptr && Global::m_LocalPlayer != nullptr)
+    {
+        auto actors = Global::m_persistentLevel->AActors;
+        for (int i = 0; i < actors.Num(); i++)
+        {
+            auto actor = Global::m_persistentLevel->AActors[i];
+            if (actor == nullptr || actor->RootComponent == nullptr)
+            {
+                continue;
+            }
+
+            if (actor->IsA(SDK::AFortPawn::StaticClass()))
+            {
+                auto pawn = static_cast<SDK::AFortPawn*>(actor);
+                if (pawn->GetName().find("PlayerPawn_Athena_C") != string::npos)
+                {
+                    SDK::FVector playerLoc;
+                    Util::Engine::GetBoneLocation(pawn->Mesh, &playerLoc, 66);
+
+                    SDK::FVector2D screenPos;
+                    if (!Util::IsTeammate(actor) && !Util::IsLocalPlayer(actor) &&
+                        Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
+                    {
+                        auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.6f, 0.95f, 1.0f }, 0, 11.0f, L"Verdana");
+                    }
+                }
+            }
+            else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()))
+            {
+                SDK::FVector2D screenPos;
+                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                {
+                    auto pickup = static_cast<SDK::AB_Pickups_C*>(actor);
+
+                    if (pickup->ItemDefinition)
+                    {
+                        auto itemDef = pickup->ItemDefinition;
+                        if (itemDef->ItemType == SDK::EFortItemType::Ammo)
+                        {
+                            continue;
+                        }
+
+                        Color color{ 0.8f, 0.8f, 0.8f, 0.9f };
+
+                        switch (itemDef->Tier.GetValue())
+                        {
+                        case SDK::EFortItemTier::I:
+                            break;
+                        case SDK::EFortItemTier::II:
+                            color = Color{ 0.0f, 0.95f, 0.0f, 0.9f };
+                            break;
+                        case SDK::EFortItemTier::III:
+                            color = Color{ 0.0f, 0.1f, 0.95f, 0.9f };
+                            break;
+                        case SDK::EFortItemTier::IV:
+                            color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
+                            break;
+                        case SDK::EFortItemTier::V:
+                        case SDK::EFortItemTier::VI:
+                        case SDK::EFortItemTier::VII:
+                        case SDK::EFortItemTier::VIII:
+                        case SDK::EFortItemTier::IX:
+                        case SDK::EFortItemTier::X:
+                            color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
+                            break;
+                        }
+
+                        auto name = itemDef->DisplayName.Get();
+
+                        if (name)
+                        {
+                            auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
+                            renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), name, color, 0, 11.0f, L"Verdana");
+                        }
+                    }
+                }
+            }
+            else if (actor->GetName().find("AthenaSupplyDrop_02_C") != string::npos)
+            {
+                SDK::FVector2D screenPos;
+                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                {
+                    auto size = renderer->getTextExtent(L"SupplyDrop", 10.0f, L"Verdana");
+                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"SupplyDrop", Color{ 1.0f, 0.0f, 0.0f, 1.0f }, 0, 10.0f, L"Verdana");
+                }
+            }
+        }
+    }
+}
 
 HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -253,94 +348,9 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
     auto str = ss.str();
     renderer->drawText(Vec2(16.0f, 16.0f), str.c_str(), Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 18.0f, L"Verdana");
 
-    if (EnableESP && Global::m_persistentLevel != nullptr && Global::m_LocalPlayer != nullptr)
+    if ((*Global::m_UWorld) != nullptr)
     {
-        auto actors = Global::m_persistentLevel->AActors;
-        for (int i = 0; i < actors.Num(); i++)
-        {
-            auto actor = Global::m_persistentLevel->AActors[i];
-            if (actor == nullptr || actor->RootComponent == nullptr)
-            {
-                continue;
-            }
-
-            if (actor->IsA(SDK::AFortPawn::StaticClass()))
-            {
-                auto pawn = static_cast<SDK::AFortPawn*>(actor);
-                if (pawn->GetName().find("PlayerPawn_Athena_C") != string::npos)
-                {
-                    SDK::FVector playerLoc;
-                    Util::Engine::GetBoneLocation(pawn->Mesh, &playerLoc, 66);
-
-                    SDK::FVector2D screenPos;
-                    if (!Util::IsTeammate(actor) && !Util::IsLocalPlayer(actor) &&
-                        Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
-                    {
-                        auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.6f, 0.95f, 1.0f }, 0, 11.0f, L"Verdana");
-                    }
-                }
-            }
-            else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()))
-            {
-                SDK::FVector2D screenPos;
-                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
-                {
-                    auto pickup = static_cast<SDK::AB_Pickups_C*>(actor);
-
-                    if (pickup->ItemDefinition)
-                    {
-                        auto itemDef = pickup->ItemDefinition;
-                        if (itemDef->ItemType == SDK::EFortItemType::Ammo)
-                        {
-                            continue;
-                        }
-
-                        Color color{ 0.8f, 0.8f, 0.8f, 0.9f };
-
-                        switch (itemDef->Tier.GetValue())
-                        {
-                        case SDK::EFortItemTier::I:
-                            break;
-                        case SDK::EFortItemTier::II:
-                            color = Color{ 0.0f, 0.95f, 0.0f, 0.9f };
-                            break;
-                        case SDK::EFortItemTier::III:
-                            color = Color{ 0.0f, 0.1f, 0.95f, 0.9f };
-                            break;
-                        case SDK::EFortItemTier::IV:
-                            color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
-                            break;
-                        case SDK::EFortItemTier::V:
-                        case SDK::EFortItemTier::VI:
-                        case SDK::EFortItemTier::VII:
-                        case SDK::EFortItemTier::VIII:
-                        case SDK::EFortItemTier::IX:
-                        case SDK::EFortItemTier::X:
-                            color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
-                            break;
-                        }
-
-                        auto name = itemDef->DisplayName.Get();
-
-                        if (name)
-                        {
-                            auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
-                            renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), name, color, 0, 11.0f, L"Verdana");
-                        }
-                    }
-                }
-            }
-            else if (actor->GetName().find("AthenaSupplyDrop_02_C") != string::npos)
-            {
-                SDK::FVector2D screenPos;
-                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
-                {
-                    auto size = renderer->getTextExtent(L"SupplyDrop", 10.0f, L"Verdana");
-                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"SupplyDrop", Color{ 1.0f, 0.0f, 0.0f, 1.0f }, 0, 10.0f, L"Verdana");
-                }
-            }
-        }
+        DrawESP();
     }
 
     renderer->draw();
