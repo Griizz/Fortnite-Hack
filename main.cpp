@@ -73,7 +73,10 @@ void Aimbot()
 
     if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
     {
-        targetPlayer = Util::GetClosestVisiblePlayer();
+        if (targetPlayer == nullptr)
+        {
+            targetPlayer = Util::GetClosestVisiblePlayer();
+        }
     }
     else
     {
