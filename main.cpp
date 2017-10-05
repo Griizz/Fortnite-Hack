@@ -232,7 +232,7 @@ void DrawESP()
                             color = Color{ 0.0f, 0.95f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::III:
-                            color = Color{ 0.0f, 0.1f, 0.95f, 0.9f };
+                            color = Color{ 0.0f, 0.35f, 0.95f, 0.9f };
                             break;
                         case SDK::EFortItemTier::IV:
                             color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
