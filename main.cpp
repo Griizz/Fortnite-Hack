@@ -1,6 +1,7 @@
 ﻿//d3d11 w2s finder by n7
 #include "variables.h"
 #include <vector>
+#include <chrono>
 #include <d3d11.h>
 #include <D3D11Shader.h>
 #include <D3Dcompiler.h>//generateshader
@@ -102,8 +103,17 @@ DWORD WINAPI UpdateThread(LPVOID)
         bool firing = false;
         SDK::AActor* targetPlayer = nullptr;
 
+        std::chrono::high_resolution_clock clock;
+        auto timer = clock.now();
+
         while (true)
         {
+            if ((GetAsyncKeyState(VK_XBUTTON1) & 0x8000) && ((clock.now() - timer) > std::chrono::milliseconds(250)))
+            {
+                AutofireEnabled = !AutofireEnabled;
+                timer = clock.now();
+            }
+
             if ((*Variables::m_UWorld) != nullptr)
             {
                 Variables::m_persistentLevel = (*Variables::m_UWorld)->PersistentLevel;
@@ -137,11 +147,6 @@ DWORD WINAPI UpdateThread(LPVOID)
                 else
                 {
                     targetPlayer = nullptr;
-                }
-
-                if (GetAsyncKeyState(VK_XBUTTON1) & 0x8000)
-                {
-                    AutofireEnabled = !AutofireEnabled;
                 }
 
                 if (targetPlayer != nullptr)
