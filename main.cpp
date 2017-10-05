@@ -105,8 +105,6 @@ void Aimbot()
 
         Util::LookAt(playerController, playerLoc);
 
-        Sleep(50);
-
         SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
         auto lineOfSight = playerController->LineOfSightTo(targetPlayer, zero, false);
 
