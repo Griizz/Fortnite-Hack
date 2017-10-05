@@ -183,7 +183,7 @@ namespace Util
 		return false;
 	}
 
-    SDK::AActor* GetClosestVisiblePlayer()
+    SDK::AActor* GetClosestVisiblePlayer(float maxRange)
     {
         SDK::FVector localPos;
 
@@ -213,6 +213,13 @@ namespace Util
             }
             
             if (IsTeammate(actor))
+            {
+                continue;
+            }
+
+            SDK::FVector playerLoc;
+            Util::Engine::GetBoneLocation(static_cast<SDK::AFortPawn*>(actor)->Mesh, &playerLoc, 66);
+            if (GetDistance(playerLoc, localPos) > maxRange * 0.95f)
             {
                 continue;
             }

@@ -25,6 +25,7 @@
 bool EnableESP = true;
 bool AutofireEnabled = true;
 float HeadshotMinDistance = 1400.0f;
+float MaxAimbotDistance = 10000.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
 #define AIMBOT_KEY VK_XBUTTON2
@@ -73,7 +74,7 @@ void Aimbot()
 
     if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
     {
-        targetPlayer = Util::GetClosestVisiblePlayer();
+        targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbotDistance);
     }
     else
     {
@@ -267,7 +268,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                         Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
                     {
                         auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.4f, 0.9f, 1.0f }, 0, 11.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.6f, 0.95f, 1.0f }, 0, 11.0f, L"Verdana");
                     }
                 }
             }
@@ -300,7 +301,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                             color = Color{ 0.0f, 0.1f, 0.8f, 0.9f };
                             break;
                         case SDK::EFortItemTier::V:
-                            color = Color{ 1.0f, 0.7f, 0.0f, 0.9f };
+                            color = Color{ 0.8f, 0.7f, 0.0f, 0.9f };
                             break;
                         case SDK::EFortItemTier::VI:
                             color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
