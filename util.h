@@ -183,7 +183,7 @@ namespace Util
 		return false;
 	}
 
-    SDK::AActor* GetClosestVisiblePlayer()
+    SDK::AActor* GetClosestVisiblePlayer(float maxDistance)
     {
         SDK::FVector localPos;
 
@@ -198,7 +198,6 @@ namespace Util
             return nullptr;
         }
 
-        float distance = std::numeric_limits<float>::max();
         SDK::AActor* closestPlayer = nullptr;
 
         std::vector<SDK::AActor*> candidates;
@@ -237,13 +236,14 @@ namespace Util
             candidates.push_back(actor);
         }
 
+        float distance = std::numeric_limits<float>::max();
         for (auto candidate : candidates)
         {
             SDK::FVector playerLoc;
             Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
             float curDist = GetDistance(localPos, playerLoc);
 
-            if (curDist < distance)
+            if (curDist < distance && curDist < maxDistance)
             {
                 distance = curDist;
                 closestPlayer = candidate;

@@ -3,6 +3,7 @@
 #include <sstream>
 #include <chrono>
 #include <memory>
+
 #include <d3d11.h>
 #include <D3D11Shader.h>
 #include <D3Dcompiler.h>//generateshader
@@ -23,12 +24,17 @@
 //==========================================================================================================================
 
 bool EnableESP = true;
+bool EnableChams = true;
 bool AutofireEnabled = true;
 float HeadshotMinDistance = 1400.0f;
+float MaxAimbotLockDistance = 15000.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
 #define AIMBOT_KEY VK_XBUTTON2
+#define CHAMS_KEY VK_F8
 #define ESP_KEY VK_F9
+
+#define ENEMY_TEXT_COLOR Color{ 0.2f, 0.7f, 0.975f, 1.0f }
 
 //==========================================================================================================================
 
@@ -55,6 +61,12 @@ void Aimbot()
         delay = timer.now();
     }
 
+    if ((GetAsyncKeyState(CHAMS_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+    {
+        EnableChams = !EnableChams;
+        delay = timer.now();
+    }
+
     if ((*Global::m_UWorld) == nullptr)
     {
         return;
@@ -76,8 +88,8 @@ void Aimbot()
     {
         if (targetPlayer == nullptr)
         {
-            targetPlayer = Util::GetClosestVisiblePlayer();
-            nextShotDeadline = timer.now() + std::chrono::milliseconds(250);
+            targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbotLockDistance);
+            nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
         }
     }
     else
@@ -124,9 +136,9 @@ void Aimbot()
             {
                 firing = false;
                 Util::LeftClick(false);
-                nextShotDeadline = timer.now() + std::chrono::milliseconds(250);
+                nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
             }
-            else if (firing && (nextShotDeadline + std::chrono::milliseconds(500) > timer.now()))
+            else if (firing && (nextShotDeadline + std::chrono::milliseconds(250) > timer.now()))
             {
                 firing = false;
                 Util::LeftClick(false);
@@ -138,6 +150,7 @@ void Aimbot()
     {
         firing = false;
         Util::LeftClick(false);
+        nextShotDeadline = timer.now();
     }
 }
 
@@ -203,7 +216,7 @@ void DrawESP()
                         Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
                     {
                         auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.6f, 0.95f, 1.0f }, 0, 11.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", ENEMY_TEXT_COLOR, 0, 11.0f, L"Verdana");
                     }
                 }
             }
@@ -222,32 +235,32 @@ void DrawESP()
                             continue;
                         }
 
-                        Color color{ 0.8f, 0.8f, 0.8f, 0.9f };
+                        Color color{ 0.8f, 0.8f, 0.8f, 0.95f };
 
                         switch (itemDef->Tier.GetValue())
                         {
                         case SDK::EFortItemTier::I: // white
                             break;
                         case SDK::EFortItemTier::II: // green
-                            color = Color{ 0.0f, 0.95f, 0.0f, 0.9f };
+                            color = Color{ 0.0f, 0.95f, 0.0f, 0.95f };
                             break;
                         case SDK::EFortItemTier::III: // blue
-                            color = Color{ 0.2f, 0.45f, 1.0f, 0.9f };
+                            color = Color{ 0.4f, 0.65f, 1.0f, 0.95f };
                             break;
                         case SDK::EFortItemTier::IV: // purple
-                            color = Color{ 0.7f, 0.25f, 0.85f, 0.9f };
+                            color = Color{ 0.7f, 0.25f, 0.85f, 0.95f };
                             break;
                         case SDK::EFortItemTier::V: // orange
-                            color = Color{ 0.85f, 0.65f, 0.0f, 0.9f };
+                            color = Color{ 0.85f, 0.65f, 0.0f, 0.95f };
                             break;
                         case SDK::EFortItemTier::VI: // gold
                         case SDK::EFortItemTier::VII:
-                            color = Color{ 0.95f, 0.85f, 0.45f, 0.9f };
+                            color = Color{ 0.95f, 0.85f, 0.45f, 0.95f };
                             break;
                         case SDK::EFortItemTier::VIII:
                         case SDK::EFortItemTier::IX:
                         case SDK::EFortItemTier::X:
-                            color = Color{ 1.0f, 0.0f, 1.0f, 0.9f };
+                            color = Color{ 1.0f, 0.0f, 1.0f, 0.95f };
                             break;
                         }
 
@@ -345,6 +358,17 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
         firstTime = false;
     }
 
+    // shaders
+    if (!psRed)
+    {
+        GenerateShader(pDevice, &psRed, 0.85f, 0.0f, 0.0f);
+    }
+
+    if (!psGreen)
+    {
+        GenerateShader(pDevice, &psGreen, 0.0f, 0.85f, 0.0f);
+    }
+
     // viewport
     pContext->RSGetViewports(&vps, &viewport);
     ScreenCenterX = viewport.Width / 2.0f;
@@ -404,15 +428,8 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
         pcsBuffer->Release(); pcsBuffer = NULL;
     }
 
-    // shaders
-    if (!psRed)
-        GenerateShader(pDevice, &psRed, 0.85f, 0.0f, 0.0f);
-
-    if (!psGreen)
-        GenerateShader(pDevice, &psGreen, 0.0f, 0.85f, 0.0f);
-
     //wallhack/chams
-    if (Stride == 24 || Stride == countnum)
+    if ((Stride == 24 || Stride == countnum) && EnableChams)
     {
         SetDepthStencilState(DISABLED);
         pContext->PSSetShader(psRed, NULL, NULL);
