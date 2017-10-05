@@ -100,7 +100,6 @@ void Aimbot()
         Util::LookAt(playerController, playerLoc);
 
         SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
-
         auto lineOfSight = playerController->LineOfSightTo(targetPlayer, zero, false);
 
         if (AutofireEnabled)
@@ -271,18 +270,33 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                     if (!Util::IsTeammate(actor) && !Util::IsLocalPlayer(actor) &&
                         Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
                     {
-                        auto size = renderer->getTextExtent(L"Enemy", 10.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.0f, 1.0f, 1.0f }, 0, 10.0f, L"Verdana");
+                        auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", Color{ 0.0f, 0.4f, 0.9f, 1.0f }, 0, 11.0f, L"Verdana");
                     }
                 }
             }
-            else if (actor->GetName().find("B_Pickups_C") != string::npos)
+            else if (actor->IsA(SDK::AFortPickup::StaticClass()))
             {
                 SDK::FVector2D screenPos;
                 if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
                 {
-                    auto size = renderer->getTextExtent(L"Item", 10.0f, L"Verdana");
-                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"Item", Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, 10.0f, L"Verdana");
+                    auto pickup = static_cast<SDK::AFortPickup*>(actor);
+
+                    if (pickup->PrimaryPickupItemEntry.ItemDefinition)
+                    {
+                        auto name = pickup->PrimaryPickupItemEntry.ItemDefinition->DisplayName.Get();
+                        auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
+                        renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), name, Color{ 0.2f, 0.8f, 0.0f, 1.0f }, 0, 11.0f, L"Verdana");
+                    }
+                }
+            }
+            else if (actor->GetName().find("AthenaSupplyDrop_02_C") != string::npos)
+            {
+                SDK::FVector2D screenPos;
+                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                {
+                    auto size = renderer->getTextExtent(L"SupplyDrop", 10.0f, L"Verdana");
+                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), L"SupplyDrop", Color{ 1.0f, 0.0f, 0.0f, 1.0f }, 0, 10.0f, L"Verdana");
                 }
             }
         }
