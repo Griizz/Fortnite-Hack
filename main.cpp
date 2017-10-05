@@ -275,18 +275,52 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
                     }
                 }
             }
-            else if (actor->IsA(SDK::AFortPickup::StaticClass()))
+            else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()))
             {
                 SDK::FVector2D screenPos;
                 if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
                 {
-                    auto pickup = static_cast<SDK::AFortPickup*>(actor);
+                    auto pickup = static_cast<SDK::AB_Pickups_C*>(actor);
 
-                    if (pickup->PrimaryPickupItemEntry.ItemDefinition)
+                    if (pickup->ItemDefinition)
                     {
-                        auto name = pickup->PrimaryPickupItemEntry.ItemDefinition->DisplayName.Get();
-                        auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), name, Color{ 0.2f, 0.8f, 0.0f, 1.0f }, 0, 11.0f, L"Verdana");
+                        auto itemDef = pickup->ItemDefinition;
+                        if (itemDef->ItemType == SDK::EFortItemType::Ammo)
+                        {
+                            continue;
+                        }
+
+                        Color color{ 0.8f, 0.8f, 0.8f, 0.9f };
+
+                        switch (itemDef->Rarity)
+                        {
+                        case SDK::EFortRarity::Handmade:
+                        case SDK::EFortRarity::Ordinary:
+                            color = Color{ 0.9f, 0.9f, 0.9f, 0.9f };
+                            break;
+                        case SDK::EFortRarity::Sturdy:
+                        case SDK::EFortRarity::Quality:
+                        case SDK::EFortRarity::Fine:
+                            color = Color{ 0.95f, 0.0f, 0.0f, 0.9f };
+                            break;
+                        case SDK::EFortRarity::Elegant:
+                        case SDK::EFortRarity::Masterwork:
+                        case SDK::EFortRarity::Epic:
+                        case SDK::EFortRarity::Badass:
+                            color = Color{ 1.0f, 0.5f, 0.0f, 0.9f };
+                            break;
+                        case SDK::EFortRarity::Legendary:
+                            color = Color{ 0.0f, 0.4f, 0.95f, 0.9f };
+                            break;
+                        }
+
+                        auto name = itemDef->DisplayName.Get();
+
+                        if (name)
+                        {
+                            auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
+                            renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), name, color, 0, 11.0f, L"Verdana");
+                        }
                     }
                 }
             }
