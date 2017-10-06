@@ -62,6 +62,10 @@ bool logger = true;
 int countnum = 1;
 char szString[64];
 
+//nospread
+using _GetWeaponStatsRow = SDK::FFortRangedWeaponStats* (__thiscall*)(SDK::FDataTableRowHandle *pDataRow, SDK::FString *tableName, UINT32 unk1, UINT32 unk2);
+_GetWeaponStatsRow pGetWeaponStatsRow = nullptr;
+
 #define SAFE_RELEASE(p) { if (p) { (p)->Release(); (p) = nullptr; } }
 
 //==========================================================================================================================
