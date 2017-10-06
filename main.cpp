@@ -26,7 +26,7 @@
 bool EnableESP = true;
 bool EnableChams = true;
 bool AutofireEnabled = true;
-float HeadshotMinDistance = 1400.0f;
+float HeadshotMinDistance = 1000.0f;
 float MaxAimbot360LockDistance = 2000.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
@@ -88,7 +88,7 @@ void Aimbot()
     {
         if (targetPlayer == nullptr)
         {
-            targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbot360LockDistance);
+            targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbot360LockDistance, !AutofireEnabled);
             nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
         }
     }

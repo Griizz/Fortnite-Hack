@@ -183,7 +183,7 @@ namespace Util
 		return false;
 	}
 
-    SDK::AActor* GetClosestVisiblePlayer(float maxDistance)
+    SDK::AActor* GetClosestVisiblePlayer(float maxDistance, bool ignoreWalls)
     {
         SDK::FVector localPos;
 
@@ -217,7 +217,7 @@ namespace Util
             }
 
             SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
-            if (!playerController->LineOfSightTo(actor, zero, false))
+            if (!ignoreWalls && !playerController->LineOfSightTo(actor, zero, false))
             {
                 continue;
             }
@@ -237,16 +237,20 @@ namespace Util
         }
 
         float distance = std::numeric_limits<float>::max();
-        for (auto candidate : candidates)
-        {
-            SDK::FVector playerLoc;
-            Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
-            float curDist = GetDistance(localPos, playerLoc);
 
-            if (curDist < distance && curDist < maxDistance)
+        if (!ignoreWalls)
+        {
+            for (auto candidate : candidates)
             {
-                distance = curDist;
-                closestPlayer = candidate;
+                SDK::FVector playerLoc;
+                Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(candidate)->Mesh, &playerLoc, 66);
+                float curDist = GetDistance(localPos, playerLoc);
+
+                if (curDist < distance && curDist < maxDistance)
+                {
+                    distance = curDist;
+                    closestPlayer = candidate;
+                }
             }
         }
 
@@ -264,7 +268,7 @@ namespace Util
             if (Engine::WorldToScreen(playerController, playerLoc, &screenPos))
             {
                 float dist = GetDistance2D(centerScreen, screenPos);
-                if (dist < 70.0f)
+                if (dist < 24.0f)
                 {
                     closestPlayer = candidate;
                     break;

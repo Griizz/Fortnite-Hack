@@ -11,7 +11,10 @@ Hold *Mouse 5* to use the aimbot.
 Press *Mouse 4* to toggle autofire.
 
 Press *F8* to toggle the chams.
+
 Press *F9* to toggle ESP.
+
+If autofire is off the aimbot will lock-on through walls.
 
 Compile in release x64 if you just want to use it.
 
