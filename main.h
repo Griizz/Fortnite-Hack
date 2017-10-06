@@ -112,7 +112,7 @@ HRESULT GenerateShader(ID3D11Device* pD3DDevice, ID3D11PixelShader** pShader, fl
         "float4 main( VS_OUT input ) : SV_Target"
         "{"
         " float4 fake;"
-        " fake.a = 1.0f;"
+        " fake.a = 0.5f;"
         " fake.r = %f;"
         " fake.g = %f;"
         " fake.b = %f;"

@@ -25,7 +25,6 @@ namespace Util
         ::SendInput(1, &Input, sizeof(INPUT));
     }
 
-
     bool DataCompare(PBYTE pData, PBYTE bSig, char* szMask)
     {
         for (; *szMask; ++szMask, ++pData, ++bSig)
@@ -44,11 +43,11 @@ namespace Util
             if (DataCompare(dwAddress + i, pbSig, szMask))
                 return dwAddress + i + offset;
         }
-        return 0;
+        return nullptr;
     }
 
-	namespace Vector
-	{
+    namespace Vector
+    {
         SDK::FVector Add(SDK::FVector point1, SDK::FVector point2)
         {
             SDK::FVector vector{ 0, 0, 0 };
@@ -58,62 +57,62 @@ namespace Util
             return vector;
         }
 
-		SDK::FVector Subtract(SDK::FVector point1, SDK::FVector point2)
-		{
-			SDK::FVector vector{ 0, 0, 0 };
-			vector.X = point1.X - point2.X;
-			vector.Y = point1.Y - point2.Y;
-			vector.Z = point1.Z - point2.Z;
-			return vector;
-		}
+        SDK::FVector Subtract(SDK::FVector point1, SDK::FVector point2)
+        {
+            SDK::FVector vector{ 0, 0, 0 };
+            vector.X = point1.X - point2.X;
+            vector.Y = point1.Y - point2.Y;
+            vector.Z = point1.Z - point2.Z;
+            return vector;
+        }
 
-		SDK::FVector Square(SDK::FVector vector)
-		{
-			return SDK::FVector{ vector.X * vector.X, vector.Y * vector.Y, vector.Z * vector.Z };
-		}
-	}
+        SDK::FVector Square(SDK::FVector vector)
+        {
+            return SDK::FVector{ vector.X * vector.X, vector.Y * vector.Y, vector.Z * vector.Z };
+        }
+    }
 
-	namespace Vector2D
-	{
-		SDK::FVector2D Subtract(SDK::FVector2D point1, SDK::FVector2D point2)
-		{
-			SDK::FVector2D vector{ 0, 0 };
-			vector.X = point1.X - point2.X;
-			vector.Y = point1.Y - point2.Y;
-			return vector;
-		}
-	}
+    namespace Vector2D
+    {
+        SDK::FVector2D Subtract(SDK::FVector2D point1, SDK::FVector2D point2)
+        {
+            SDK::FVector2D vector{ 0, 0 };
+            vector.X = point1.X - point2.X;
+            vector.Y = point1.Y - point2.Y;
+            return vector;
+        }
+    }
 
-	namespace Engine
-	{
-		DWORD_PTR w2sAddress;
-		bool WorldToScreen(SDK::APlayerController* m_Player, SDK::FVector WorldPosition, SDK::FVector2D* ScreenPosition)
-		{
-			return reinterpret_cast<char(__fastcall*)(SDK::APlayerController*, SDK::FVector, SDK::FVector2D *, char)>(w2sAddress)(m_Player, WorldPosition, ScreenPosition, 0);
-		}
+    namespace Engine
+    {
+        DWORD_PTR w2sAddress;
+        bool WorldToScreen(SDK::APlayerController* m_Player, SDK::FVector WorldPosition, SDK::FVector2D* ScreenPosition)
+        {
+            return reinterpret_cast<char(__fastcall*)(SDK::APlayerController*, SDK::FVector, SDK::FVector2D *, char)>(w2sAddress)(m_Player, WorldPosition, ScreenPosition, 0);
+        }
 
-		DWORD_PTR boneAddress;
-		SDK::FMatrix* GetBoneMatrix(SDK::USkeletalMeshComponent* mesh, SDK::FMatrix* result, int boneid)
-		{
-			return reinterpret_cast<SDK::FMatrix*(__fastcall*)(SDK::USkeletalMeshComponent*, SDK::FMatrix*, int)>(boneAddress)(mesh, result, boneid);
-		}
+        DWORD_PTR boneAddress;
+        SDK::FMatrix* GetBoneMatrix(SDK::USkeletalMeshComponent* mesh, SDK::FMatrix* result, int boneid)
+        {
+            return reinterpret_cast<SDK::FMatrix*(__fastcall*)(SDK::USkeletalMeshComponent*, SDK::FMatrix*, int)>(boneAddress)(mesh, result, boneid);
+        }
 
-		void GetBoneLocation(SDK::USkeletalMeshComponent* mesh, SDK::FVector* result, int boneid)
-		{
-			SDK::FMatrix vMatrix;
-			SDK::FMatrix *vTempMatrix = GetBoneMatrix(mesh, &vMatrix, boneid);
-			*result = vMatrix.WPlane;
-		}
-	}
+        void GetBoneLocation(SDK::USkeletalMeshComponent* mesh, SDK::FVector* result, int boneid)
+        {
+            SDK::FMatrix vMatrix;
+            SDK::FMatrix *vTempMatrix = GetBoneMatrix(mesh, &vMatrix, boneid);
+            *result = vMatrix.WPlane;
+        }
+    }
 
-	bool IsLocalPlayer(SDK::AActor* player)
-	{
-		if (Global::m_LocalPlayer->PlayerController->AcknowledgedPawn == nullptr)
-		{
-			return true;
-		}
-		return (static_cast<SDK::APawn*>(player) == Global::m_LocalPlayer->PlayerController->AcknowledgedPawn);
-	}
+    bool IsLocalPlayer(SDK::AActor* player)
+    {
+        if (Global::m_LocalPlayer->PlayerController->AcknowledgedPawn == nullptr)
+        {
+            return true;
+        }
+        return (static_cast<SDK::APawn*>(player) == Global::m_LocalPlayer->PlayerController->AcknowledgedPawn);
+    }
 
     bool IsTeammate(SDK::AActor* player)
     {
@@ -150,38 +149,56 @@ namespace Util
         return state->TeamIndex.GetValue() == state2->TeamIndex.GetValue();
     }
 
-	float GetDistance(SDK::FVector x, SDK::FVector y)
-	{
-		auto z = Vector::Subtract(x, y);
-		return sqrt(z.X * z.X + z.Y * z.Y + z.Z * z.Z);
-	}
+    std::wstring DistanceToString(float distance)
+    {
+        auto meters = distance * 0.01f;
+        std::wstringstream ss;
 
-	float GetDistance2D(SDK::FVector2D point1, SDK::FVector2D point2)
-	{
-		SDK::FVector2D heading = Vector2D::Subtract(point2, point1);
-		float distanceSquared;
-		float distance;
+        if (meters < 1000.0f)
+        {
+            ss << fixed << setprecision(2) << meters << "m";
+        }
+        else
+        {
+            ss.precision(3);
+            ss << fixed << setprecision(2) << (meters / 1000.0f) << "km";
+        }
 
-		distanceSquared = heading.X * heading.X + heading.Y * heading.Y;
-		distance = sqrt(distanceSquared);
+        return ss.str();
+    }
 
-		return distance;
-	}
+    float GetDistance(SDK::FVector x, SDK::FVector y)
+    {
+        auto z = Vector::Subtract(x, y);
+        return sqrt(z.X * z.X + z.Y * z.Y + z.Z * z.Z);
+    }
 
-	bool IsInFOV(SDK::APlayerController* m_Player, SDK::FVector position, float fov)
-	{
-		int screenSizeX, screenSizeY;
-		m_Player->GetViewportSize(&screenSizeX, &screenSizeY);
-		SDK::FVector2D centerScreen{ (float)screenSizeX / 2, (float)screenSizeY / 2 };
-		SDK::FVector2D screenPos;
-		if (Engine::WorldToScreen(m_Player, position, &screenPos))
-		{
-			float dist = GetDistance2D(centerScreen, screenPos);
-			if (dist < fov)
-				return true;
-		}
-		return false;
-	}
+    float GetDistance2D(SDK::FVector2D point1, SDK::FVector2D point2)
+    {
+        SDK::FVector2D heading = Vector2D::Subtract(point2, point1);
+        float distanceSquared;
+        float distance;
+
+        distanceSquared = heading.X * heading.X + heading.Y * heading.Y;
+        distance = sqrt(distanceSquared);
+
+        return distance;
+    }
+
+    bool IsInFOV(SDK::APlayerController* m_Player, SDK::FVector position, float fov)
+    {
+        int screenSizeX, screenSizeY;
+        m_Player->GetViewportSize(&screenSizeX, &screenSizeY);
+        SDK::FVector2D centerScreen{ (float)screenSizeX / 2, (float)screenSizeY / 2 };
+        SDK::FVector2D screenPos;
+        if (Engine::WorldToScreen(m_Player, position, &screenPos))
+        {
+            float dist = GetDistance2D(centerScreen, screenPos);
+            if (dist < fov)
+                return true;
+        }
+        return false;
+    }
 
     SDK::AActor* GetClosestVisiblePlayer(float maxDistance, bool ignoreWalls)
     {
@@ -210,7 +227,7 @@ namespace Util
             {
                 continue;
             }
-            
+
             if (IsTeammate(actor))
             {
                 continue;
@@ -284,15 +301,15 @@ namespace Util
         return closestPlayer;
     }
 
-	void LookAt(SDK::APlayerController* m_Player, SDK::FVector position)
-	{
-		SDK::FVector localPos = m_Player->PlayerCameraManager->TransformComponent->Location;
-		SDK::FVector relativePos = Vector::Subtract(position, localPos);
-		float tmp = atan2(relativePos.Y, relativePos.X) * 180.0f / M_PI;
-		float yaw = tmp;//(tmp < 0 ? tmp + 360 : tmp);
-		float pitch = -((acos(relativePos.Z / GetDistance(localPos, position)) * 180.0f / M_PI) - 90.0f);
+    void LookAt(SDK::APlayerController* m_Player, SDK::FVector position)
+    {
+        SDK::FVector localPos = m_Player->PlayerCameraManager->TransformComponent->Location;
+        SDK::FVector relativePos = Vector::Subtract(position, localPos);
+        float tmp = atan2(relativePos.Y, relativePos.X) * 180.0f / M_PI;
+        float yaw = tmp;//(tmp < 0 ? tmp + 360 : tmp);
+        float pitch = -((acos(relativePos.Z / GetDistance(localPos, position)) * 180.0f / M_PI) - 90.0f);
 
-		m_Player->ControlRotation.Pitch = pitch;
-		m_Player->ControlRotation.Yaw = yaw;
-	}
+        m_Player->ControlRotation.Pitch = pitch;
+        m_Player->ControlRotation.Yaw = yaw;
+    }
 }
