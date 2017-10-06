@@ -32,7 +32,7 @@ bool EnableNoSpread = true;
 bool EnableInstantReload = true;
 bool AutofireEnabled = false;
 float HeadshotMinDistance = 3000.0f;
-float fieldOfView = 25.0f;
+float fieldOfView = 3.0f;
 float MaxAimbotDistance = 10000.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
@@ -108,12 +108,12 @@ void Aimbot()
     }
     if ((GetAsyncKeyState(INCREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
     {
-        fieldOfView += 5;
+        fieldOfView ++;
         delay = timer.now();
     }
     if ((GetAsyncKeyState(DECREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
     {
-        fieldOfView -= 5;
+        fieldOfView --;
         delay = timer.now();
     }
     if ((GetAsyncKeyState(INCREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
@@ -153,7 +153,7 @@ void Aimbot()
             SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
             if (!playerController->LineOfSightTo(targetPlayer, zero, false))
                 targetPlayer = nullptr;
-            else if (!Util::IsInFOV(Global::m_LocalPlayer->PlayerController, targetPlayer->RootComponent->Location, fieldOfView))
+            else if (!Util::IsInFOV(Global::m_LocalPlayer->PlayerController, targetPlayer->RootComponent->Location, fieldOfView * 1920 / 90))
                 targetPlayer = nullptr;
             nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
         }
