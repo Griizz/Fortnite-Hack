@@ -39,7 +39,7 @@ class RenderList
     using Ptr = std::unique_ptr<RenderList>;
 
     friend class Renderer;
-    public:
+public:
     RenderList() = delete;
 
     RenderList(IFW1Factory *fontFactory, std::size_t maxVertices = 0)
@@ -60,7 +60,7 @@ class RenderList
         textGeometry->Clear();
     }
 
-    protected:
+protected:
     std::vector<Vertex>	vertices;
     std::vector<Batch>	batches;
 
@@ -70,7 +70,7 @@ class RenderList
 class Renderer
     : public std::enable_shared_from_this<Renderer>
 {
-    public:
+public:
     Renderer(ID3D11Device *direct3DDevice, const std::wstring &defaultFontFamily = L"Verdana");
 
     ~Renderer();
@@ -114,7 +114,7 @@ class Renderer
 
     std::shared_ptr<Renderer> ptr();
 
-    private:
+private:
     ID3D11DeviceContext		*immediateContext;
     ID3D11Device			*direct3DDevice;
 

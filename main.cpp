@@ -3,6 +3,8 @@
 #include <sstream>
 #include <chrono>
 #include <memory>
+#include <string>
+#include <iomanip>
 
 #include <d3d11.h>
 #include <D3D11Shader.h>
@@ -24,6 +26,7 @@
 //==========================================================================================================================
 
 bool EnableESP = true;
+bool EnableExtendedESP = false;
 bool EnableChams = true;
 bool EnableNoSpread = true;
 bool EnableInstantReload = true;
@@ -36,13 +39,17 @@ float MaxAimbotDistance = 10000.0f;
 #define AIMBOT_KEY VK_XBUTTON2
 #define INSTANT_RELOAD_KEY VK_F6
 #define NOSPREAD_KEY VK_F7
+#define NOSPREAD_KEY VK_F6
+#define INSTANT_RELOAD_KEY VK_F7
 #define CHAMS_KEY VK_F8
 #define ESP_KEY VK_F9
+#define EXTENDED_ESP_KEY VK_NUMPAD1
 #define INCREASE_FOV_KEY VK_NUMPAD6
 #define DECREASE_FOV_KEY VK_NUMPAD4
 #define INCREASE_HSRANGE_KEY VK_NUMPAD8
 #define DECREASE_HSRANGE_KEY VK_NUMPAD2
 
+#define ENEMY_TEXT_COLOR Color{ 0.9f, 0.9f, 0.15f, 0.95f }
 #define ENEMY_RANGE_COLOR Color{ 0.0f, 0.0f, 1.0f, 1.0f }
 #define ENEMY_DEFAULT_COLOR Color{0.4f, 0.4f, 0.4f, 1.0f}
 #define ENEMY_HEALTH_COLOR Color{1.0f, 0.0f, 0.0f, 1.0f}
@@ -77,42 +84,48 @@ void Aimbot()
         delay = timer.now();
     }
 
+    if ((GetAsyncKeyState(EXTENDED_ESP_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+    {
+        EnableExtendedESP = !EnableExtendedESP;
+        delay = timer.now();
+    }
+
     if ((GetAsyncKeyState(CHAMS_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
     {
         EnableChams = !EnableChams;
         delay = timer.now();
     }
 
-	if ((GetAsyncKeyState(NOSPREAD_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableNoSpread = !EnableNoSpread;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(INSTANT_RELOAD_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableInstantReload = !EnableInstantReload;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(INCREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		fieldOfView++;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(DECREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		fieldOfView--;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(INCREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		HeadshotMinDistance += 100;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(DECREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		HeadshotMinDistance -= 100;
-		delay = timer.now();
-	}
+    if ((GetAsyncKeyState(NOSPREAD_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+    {
+        EnableNoSpread = !EnableNoSpread;
+        delay = timer.now();
+    }
+    if ((GetAsyncKeyState(INSTANT_RELOAD_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+    {
+        EnableInstantReload = !EnableInstantReload;
+        delay = timer.now();
+    }
+    if ((GetAsyncKeyState(INCREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
+    {
+        fieldOfView += 5;
+        delay = timer.now();
+    }
+    if ((GetAsyncKeyState(DECREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
+    {
+        fieldOfView -= 5;
+        delay = timer.now();
+    }
+    if ((GetAsyncKeyState(INCREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
+    {
+        HeadshotMinDistance += 100;
+        delay = timer.now();
+    }
+    if ((GetAsyncKeyState(DECREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
+    {
+        HeadshotMinDistance -= 100;
+        delay = timer.now();
+    }
 
     if ((*Global::m_UWorld) == nullptr)
     {
@@ -130,18 +143,18 @@ void Aimbot()
         return;
     }
 
-	
+
 
     if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
     {
         if (targetPlayer == nullptr)
         {
             targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbotDistance, false);
-			SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
-			if (!playerController->LineOfSightTo(targetPlayer, zero, false))
-				targetPlayer = nullptr;
-			else if (!Util::IsInFOV(Global::m_LocalPlayer->PlayerController, targetPlayer->RootComponent->Location, fieldOfView))
-				targetPlayer = nullptr;
+            SDK::FVector zero{ 0.0f, 0.0f, 0.0f };
+            if (!playerController->LineOfSightTo(targetPlayer, zero, false))
+                targetPlayer = nullptr;
+            else if (!Util::IsInFOV(Global::m_LocalPlayer->PlayerController, targetPlayer->RootComponent->Location, fieldOfView))
+                targetPlayer = nullptr;
             nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
         }
     }
@@ -150,52 +163,52 @@ void Aimbot()
         targetPlayer = nullptr;
     }
 
-	if (EnableNoSpread || EnableInstantReload)
-	{
-		if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
-		{
-			auto localPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
-			auto currentWeapon = static_cast<SDK::AFortWeapon*>(localPawn->CurrentWeapon);
+    if (EnableNoSpread || EnableInstantReload)
+    {
+        if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
+        {
+            auto localPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
+            auto currentWeapon = static_cast<SDK::AFortWeapon*>(localPawn->CurrentWeapon);
 
-			if (currentWeapon != nullptr && currentWeapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
-			{
-				auto weaponStats = pGetWeaponStatsRow(&currentWeapon->WeaponData->GetWeaponStatHandle(), &SDK::FString(L"UFortKismetLibrary::GetWeaponStatsRow"), 0, 0);
+            if (currentWeapon != nullptr && currentWeapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
+            {
+                auto weaponStats = pGetWeaponStatsRow(&currentWeapon->WeaponData->WeaponStatHandle, &SDK::FString(L"UFortKismetLibrary::GetWeaponStatsRow"), 0, 0);
 
-				if (weaponStats != nullptr)
-				{
-					if (EnableNoSpread)
-					{
-						// Spread
-						weaponStats->Spread = 0.0f;
-						weaponStats->SpreadDownsights = 0.0f;
-						weaponStats->StandingStillSpreadMultiplier = 0.0f;
-						weaponStats->AthenaSprintingSpreadMultiplier = 0.0f;
-						weaponStats->AthenaJumpingFallingSpreadMultiplier = 0.0f;
-						weaponStats->AthenaCrouchingSpreadMultiplier = 0.0f;
-						weaponStats->MinSpeedForSpreadMultiplier = 999999.f;
-						weaponStats->MaxSpeedForSpreadMultiplier = 999999.f;
+                if (weaponStats != nullptr)
+                {
+                    if (EnableNoSpread)
+                    {
+                        // Spread
+                        weaponStats->Spread = 0.0f;
+                        weaponStats->SpreadDownsights = 0.0f;
+                        weaponStats->StandingStillSpreadMultiplier = 0.0f;
+                        weaponStats->AthenaSprintingSpreadMultiplier = 0.0f;
+                        weaponStats->AthenaJumpingFallingSpreadMultiplier = 0.0f;
+                        weaponStats->AthenaCrouchingSpreadMultiplier = 0.0f;
+                        weaponStats->MinSpeedForSpreadMultiplier = std::numeric_limits<float>::max();
+                        weaponStats->MaxSpeedForSpreadMultiplier = std::numeric_limits<float>::max();
 
-						// Recoil
-						weaponStats->RecoilHoriz = 0.0f;
-						weaponStats->RecoilVert = 0.0f;
-						weaponStats->RecoilDownsightsMultiplier = 0.0f;
-					}
+                        // Recoil
+                        weaponStats->RecoilHoriz = 0.0f;
+                        weaponStats->RecoilVert = 0.0f;
+                        weaponStats->RecoilDownsightsMultiplier = 0.0f;
+                    }
 
-					if (EnableInstantReload)
-					{
-						//InstandReload
-						weaponStats->ReloadTime = 0.0f;
-						weaponStats->ReloadScale = 0.0f;
-						weaponStats->ChargeDownTime = 0.1f;
-					}
-				}
-			}
-		}
-	}
+                    if (EnableInstantReload)
+                    {
+                        //InstandReload
+                        weaponStats->ReloadTime = 0.0f;
+                        weaponStats->ReloadScale = 0.0f;
+                        weaponStats->ChargeDownTime = 0.1f;
+                    }
+                }
+            }
+        }
+    }
 
     if (targetPlayer != nullptr)
     {
-		
+
 
         auto pawn = static_cast<SDK::AFortPawn*>(targetPlayer);
         if (pawn->GetHealth() <= 0.0f || pawn->bIsDBNO)
@@ -256,7 +269,7 @@ DWORD WINAPI UpdateThread(LPVOID)
 {
     try
     {
-        Global::BaseAddress = (DWORD_PTR)GetModuleHandle(NULL);
+        Global::BaseAddress = (DWORD_PTR)GetModuleHandle(nullptr);
         GetModuleInformation(GetCurrentProcess(), (HMODULE)Global::BaseAddress, &Global::info, sizeof(Global::info));
         auto btAddrUWorld = Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x8B\x1D\x00\x00\x00\x00\x00\x00\x00\x10\x4C\x8D\x4D\x00\x4C", "xxx???????xxxx?x", 0);
         auto btOffUWorld = *reinterpret_cast<uint32_t*>(btAddrUWorld + 3);
@@ -272,10 +285,10 @@ DWORD WINAPI UpdateThread(LPVOID)
 
         Util::Engine::w2sAddress = (DWORD_PTR)Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x89\x5C\x24\x00\x48\x89\x74\x24\x00\x57\x48\x81\xEC\x00\x00\x00\x00\x41\x0F\xB6\xF9", "xxxx?xxxx?xxxx????xxxx", 0);
         Util::Engine::boneAddress = (DWORD_PTR)Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x40\x53\x55\x57\x41\x56\x48\x81\xEC\x00\x00\x00\x00\x45\x33\xF6", "xxxxxxxxx????xxx", 0);
-		
-    	//nospread
-    	auto btAddrGetWeaponStatsRow = (DWORD_PTR)Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x83\xEC\x58\x48\x8B\x01\x48\x85\xC0\x0F\x85\x00\x00\x00\x00\x48\x83\xC1\x08\x48\x89\x44\x24\x00", "xxxxxxxxxxxx????xxxxxxxx?", 0);
-		pGetWeaponStatsRow = (_GetWeaponStatsRow)(/*Global::BaseAddress + 0x2709B0*/ btAddrGetWeaponStatsRow);
+
+        // nospread
+        auto btAddrGetWeaponStatsRow = (DWORD_PTR)Util::FindPattern((PBYTE)Global::BaseAddress, Global::info.SizeOfImage, (PBYTE)"\x48\x83\xEC\x58\x48\x8B\x01\x48\x85\xC0\x0F\x85\x00\x00\x00\x00\x48\x83\xC1\x08\x48\x89\x44\x24\x00", "xxxxxxxxxxxx????xxxxxxxx?", 0);
+        pGetWeaponStatsRow = (_GetWeaponStatsRow)(/*Global::BaseAddress + 0x2709B0*/ btAddrGetWeaponStatsRow);
 
         while (true)
         {
@@ -308,147 +321,275 @@ void DrawESP()
             if (actor->IsA(SDK::AFortPawn::StaticClass()))
             {
                 auto pawn = static_cast<SDK::AFortPawn*>(actor);
-                if (pawn->GetName().find("PlayerPawn_Athena_C") != string::npos)
+                if (pawn->GetName().find("PlayerPawn_Athena_C") == std::string::npos)
                 {
-                    SDK::FVector playerLoc;
-                    Util::Engine::GetBoneLocation(pawn->Mesh, &playerLoc, 66);
-
-                    SDK::FVector2D screenPos;
-                    if (!Util::IsTeammate(actor) && !Util::IsLocalPlayer(actor) &&
-                        Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
-                    {
-
-						wstring total;
-						wstring extend = L"|";
-						float extendSize = renderer->getTextExtent(extend, FONT_SIZE, FONT_TYPE).x;
-						Vec2 totalSize;
-						int health = 0;
-						int shield = 0;
-						float distance = 0.0f;
-						float x_offset = 0.0f;
-	                    SDK::AFortPlayerStateAthena * pPlayerState = static_cast<SDK::AFortPlayerStateAthena*>(pawn->PlayerState);
-
-						if (!pPlayerState)
-							continue;
-
-						//Get Health
-						if (pPlayerState->CurrentHealth >= 1.0f)
-						{
-							health = static_cast<int>(pPlayerState->CurrentHealth);
-							total += std::to_wstring(health) + extend;
-						}
-
-						//Get Shield
-						if(pPlayerState->CurrentShield >= 1.0f)
-						{
-							shield = static_cast<int>(pPlayerState->CurrentShield);
-							total += std::to_wstring(shield) + extend;
-						}
-
-						//Get Distance
-						distance = Util::GetDistance(Global::m_LocalPlayer->PlayerController->AcknowledgedPawn->RootComponent->Location, playerLoc) / 1000.0f;
-						wstring distanceText = std::to_wstring(distance);
-						distanceText.resize(4);
-						distanceText += L"k";
-						total += distanceText;
-							
-                    	totalSize = renderer->getTextExtent(total, FONT_SIZE, FONT_TYPE);
-						if(health > 0)
-						{
-						
-							renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), std::to_wstring(health), ENEMY_HEALTH_COLOR, 0, FONT_SIZE, FONT_TYPE);
-							auto size = renderer->getTextExtent(std::to_wstring(health), FONT_SIZE, FONT_TYPE);
-							x_offset += size.x;
-							renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
-							x_offset += extendSize;
-						 }
-						
-						if(shield > 0)
-						{
-							renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), std::to_wstring(shield), ENEMY_SHIELD_COLOR, 0, FONT_SIZE, FONT_TYPE);
-							auto size = renderer->getTextExtent(std::to_wstring(shield), FONT_SIZE, FONT_TYPE);
-							x_offset += size.x;
-							renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
-							x_offset += extendSize;;
-						}
-
-						renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), distanceText, ENEMY_RANGE_COLOR, 0, FONT_SIZE, FONT_TYPE);
-                    }
+                    continue;
                 }
-            }
-            else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()))
-            {
-                SDK::FVector2D screenPos;
-                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+
+                if (Util::IsTeammate(actor) || Util::IsLocalPlayer(actor))
                 {
-                    auto pickup = static_cast<SDK::AB_Pickups_C*>(actor);
+                    continue;
+                }
 
-                    if (pickup->ItemDefinition)
+                if (pawn->PlayerState == nullptr || !pawn->PlayerState->IsA(SDK::AFortPlayerStateAthena::StaticClass()))
+                {
+                    continue;
+                }
+
+                auto state = static_cast<SDK::AFortPlayerStateAthena*>(pawn->PlayerState);
+                if (!state->PlayerName.IsValid() || pawn->RootComponent == nullptr)
+                {
+                    continue;
+                }
+
+                SDK::FVector playerLoc;
+                Util::Engine::GetBoneLocation(pawn->Mesh, &playerLoc, 66);
+
+                SDK::FVector2D screenPos;
+                if (!Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
+                {
+                    continue;
+                }
+
+                wstring total;
+                wstring extend = L"|";
+                float extendSize = renderer->getTextExtent(extend, FONT_SIZE, FONT_TYPE).x;
+                Vec2 totalSize;
+                int health = 0;
+                int shield = 0;
+                float distance = 0.0f;
+                float x_offset = 0.0f;
+
+                // Get Health
+                if (state->CurrentHealth >= 1.0f)
+                {
+                    health = static_cast<int>(state->CurrentHealth);
+                    total += std::to_wstring(health) + extend;
+                }
+
+                // Get Shield
+                if (state->CurrentShield >= 1.0f)
+                {
+                    shield = static_cast<int>(state->CurrentShield);
+                    total += std::to_wstring(shield) + extend;
+                }
+
+                // Get Distance
+                distance = Util::GetDistance(Global::m_LocalPlayer->PlayerController->AcknowledgedPawn->RootComponent->Location, playerLoc);
+                wstring distanceText = Util::DistanceToString(distance);
+                total += distanceText;
+                totalSize = renderer->getTextExtent(total, FONT_SIZE, FONT_TYPE);
+
+                // Extended ESP stuff
+                if (EnableExtendedESP)
+                {
+                    // ENEMY_TEXT_COLOR
+                    wstring playerName = state->PlayerName.c_str();
+                    wstring weaponName;
+                    wstring weaponAmmo;
+                    wstring weaponTier;
+                    float extended_x_offset = 0.0f;
+                    Color weaponColor{ 0.8f, 0.8f, 0.8f, 0.95f };
+
+                    auto curWeapon = pawn->CurrentWeapon;
+                    if (curWeapon == nullptr || curWeapon->WeaponData == nullptr)
                     {
-                        auto itemDef = pickup->ItemDefinition;
-                        if (itemDef->ItemType == SDK::EFortItemType::Ammo)
-                        {
-                            continue;
-                        }
+                        goto draw_exit;
+                    }
 
-                        Color color{ 0.8f, 0.8f, 0.8f, 0.95f };
+                    auto itemDef = static_cast<SDK::UFortWorldItemDefinition*>(curWeapon->WeaponData);
+                    
+                    // Get Weapon: Name, Tier, Ammo
+                    if (itemDef->ItemType == SDK::EFortItemType::WeaponRanged
+                        || itemDef->ItemType == SDK::EFortItemType::WeaponMelee
+                        || itemDef->ItemType == SDK::EFortItemType::WeaponHarvest)
+                    {
+                        weaponName = itemDef->DisplayName.Get();
+                        weaponTier = L"T";
+                        weaponTier += std::to_wstring(static_cast<int>(itemDef->Tier.GetValue()));
+                        weaponAmmo = std::to_wstring(curWeapon->AmmoCount);
 
                         switch (itemDef->Tier.GetValue())
                         {
                         case SDK::EFortItemTier::I: // white
                             break;
                         case SDK::EFortItemTier::II: // green
-                            color = Color{ 0.0f, 0.95f, 0.0f, 0.95f };
+                            weaponColor = Color{ 0.0f, 0.95f, 0.0f, 0.95f };
                             break;
                         case SDK::EFortItemTier::III: // blue
-                            color = Color{ 0.4f, 0.65f, 1.0f, 0.95f };
+                            weaponColor = Color{ 0.4f, 0.65f, 1.0f, 0.95f };
                             break;
                         case SDK::EFortItemTier::IV: // purple
-                            color = Color{ 0.7f, 0.25f, 0.85f, 0.95f };
+                            weaponColor = Color{ 0.7f, 0.25f, 0.85f, 0.95f };
                             break;
                         case SDK::EFortItemTier::V: // orange
-                            color = Color{ 0.85f, 0.65f, 0.0f, 0.95f };
+                            weaponColor = Color{ 0.85f, 0.65f, 0.0f, 0.95f };
                             break;
                         case SDK::EFortItemTier::VI: // gold
                         case SDK::EFortItemTier::VII:
-                            color = Color{ 0.95f, 0.85f, 0.45f, 0.95f };
+                            weaponColor = Color{ 0.95f, 0.85f, 0.45f, 0.95f };
                             break;
                         case SDK::EFortItemTier::VIII:
                         case SDK::EFortItemTier::IX:
                         case SDK::EFortItemTier::X:
-                            color = Color{ 1.0f, 0.0f, 1.0f, 0.95f };
+                            weaponColor = Color{ 1.0f, 0.0f, 1.0f, 0.95f };
                             break;
                         }
-
-                        auto name = itemDef->DisplayName.Get();
-
-                        if (name)
-                        {
-                            auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
-							auto dis = Util::GetDistance(actor->RootComponent->Location, Global::m_LocalPlayer->PlayerController->RootComponent->Location) / 1000.0f;
-							wstring distanceText = std::to_wstring(dis);
-							distanceText.resize(4);
-							distanceText += L"k";
-							wstring text = name;
-                        	text += L"|" + distanceText;
-                            renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, color, 0, 11.0f, L"Verdana");
-                        }
                     }
+
+                    // Draw Player Name
+                    {
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), playerName, ENEMY_TEXT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                        auto size = renderer->getTextExtent(playerName, FONT_SIZE, FONT_TYPE);
+                        extended_x_offset += size.x;
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                        extended_x_offset += extendSize;
+                    }
+
+                    // Draw Weapon Name
+                    {
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), weaponName, weaponColor, 0, FONT_SIZE, FONT_TYPE);
+                        auto size = renderer->getTextExtent(weaponName, FONT_SIZE, FONT_TYPE);
+                        extended_x_offset += size.x;
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                        extended_x_offset += extendSize;
+                    }
+
+                    // Draw Weapon Tier
+                    {
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), weaponTier, weaponColor, 0, FONT_SIZE, FONT_TYPE);
+                        auto size = renderer->getTextExtent(weaponTier, FONT_SIZE, FONT_TYPE);
+                        extended_x_offset += size.x;
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                        extended_x_offset += extendSize;
+                    }
+
+                    // Draw Weapon Ammo
+                    {
+                        renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), weaponAmmo, ENEMY_RANGE_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                    }
+                }
+                
+                // Draw Label
+                draw_exit:
+
+                // Draw Health
+                if (health > 0)
+                {
+                    renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), std::to_wstring(health), ENEMY_HEALTH_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                    auto size = renderer->getTextExtent(std::to_wstring(health), FONT_SIZE, FONT_TYPE);
+                    x_offset += size.x;
+                    renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                    x_offset += extendSize;
+                }
+
+                // Draw Shield
+                if (shield > 0)
+                {
+                    renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), std::to_wstring(shield), ENEMY_SHIELD_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                    auto size = renderer->getTextExtent(std::to_wstring(shield), FONT_SIZE, FONT_TYPE);
+                    x_offset += size.x;
+                    renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend, ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+                    x_offset += extendSize;
+                }
+
+                // Draw Distacne
+                renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), distanceText, ENEMY_RANGE_COLOR, 0, FONT_SIZE, FONT_TYPE);
+            }
+            else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()))
+            {
+                SDK::FVector2D screenPos;
+                if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                {
+                    SDK::FVector2D screenPos;
+                    if (!Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                    {
+                        continue;
+                    }
+
+                    auto pickup = static_cast<SDK::AB_Pickups_C*>(actor);
+                    if (!pickup->ItemDefinition)
+                    {
+                        continue;
+                    }
+
+                    auto itemDef = pickup->ItemDefinition;
+                    if (itemDef->ItemType == SDK::EFortItemType::Ammo)
+                    {
+                        continue;
+                    }
+
+                    Color color{ 0.8f, 0.8f, 0.8f, 0.95f };
+
+                    switch (itemDef->Tier.GetValue())
+                    {
+                    case SDK::EFortItemTier::I: // white
+                        break;
+                    case SDK::EFortItemTier::II: // green
+                        color = Color{ 0.0f, 0.95f, 0.0f, 0.95f };
+                        break;
+                    case SDK::EFortItemTier::III: // blue
+                        color = Color{ 0.4f, 0.65f, 1.0f, 0.95f };
+                        break;
+                    case SDK::EFortItemTier::IV: // purple
+                        color = Color{ 0.7f, 0.25f, 0.85f, 0.95f };
+                        break;
+                    case SDK::EFortItemTier::V: // orange
+                        color = Color{ 0.85f, 0.65f, 0.0f, 0.95f };
+                        break;
+                    case SDK::EFortItemTier::VI: // gold
+                    case SDK::EFortItemTier::VII:
+                        color = Color{ 0.95f, 0.85f, 0.45f, 0.95f };
+                        break;
+                    case SDK::EFortItemTier::VIII:
+                    case SDK::EFortItemTier::IX:
+                    case SDK::EFortItemTier::X:
+                        color = Color{ 1.0f, 0.0f, 1.0f, 0.95f };
+                        break;
+                    }
+
+                    if (!itemDef->DisplayName.Get())
+                    {
+                        continue;
+                    }
+
+                    std::wstring name = itemDef->DisplayName.Get();
+                    if (name == L"Bandage" || name == L"Medkit")
+                    {
+                        color = Color{ 0.9f, 0.55f, 0.55f, 0.95f };
+                    }
+                    else if (name == L"Shield Potion")
+                    {
+                        color = Color{ 0.35f, 0.55f, 0.85f, 0.95f };
+                    }
+
+                    if (pickup->RootComponent == nullptr)
+                    {
+                        continue;
+                    }
+
+                    auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
+                    auto dis = Util::GetDistance(actor->RootComponent->Location, Global::m_LocalPlayer->PlayerController->RootComponent->Location);
+                    wstring distanceText = Util::DistanceToString(dis);
+                    wstring text = name;
+                    text += L"|T" + std::to_wstring(static_cast<int>(itemDef->Tier.GetValue()));
+                    text += L")|" + distanceText;
+                    renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, color, 0, 11.0f, L"Verdana");
                 }
             }
             else if (actor->GetName().find("AthenaSupplyDrop_02_C") != string::npos)
             {
                 SDK::FVector2D screenPos;
-				if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
-				{
-					auto size = renderer->getTextExtent(L"SupplyDrop", 10.0f, L"Verdana");
-					auto dis = Util::GetDistance(actor->RootComponent->Location, Global::m_LocalPlayer->PlayerController->RootComponent->Location) / 1000.0f;
-					wstring distanceText = std::to_wstring(dis);
-					distanceText.resize(4);
-					distanceText += L"k";
-					wstring text = L"Supplydrop|" + distanceText;
-					renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, Color{1.0f, 0.0f, 0.0f, 1.0f}, 0, 11.0f, L"Verdana");
+                if (!Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location, &screenPos))
+                {
+                    continue;
                 }
+
+                auto size = renderer->getTextExtent(L"SupplyDrop", 10.0f, L"Verdana");
+                auto dis = Util::GetDistance(actor->RootComponent->Location, Global::m_LocalPlayer->PlayerController->RootComponent->Location);
+                wstring distanceText = Util::DistanceToString(dis);
+                wstring text = L"SupplyDrop|" + distanceText;
+                renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, Color{ 0.4f, 0.9f, 0.4f, 0.4f }, 0, 11.0f, L"Verdana");
             }
         }
     }
@@ -512,12 +653,12 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
         stencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_ZERO;
         stencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_NEVER;
         pDevice->CreateDepthStencilState(&stencilDesc, &myDepthStencilStates[static_cast<int>(eDepthState::READ_NO_WRITE)]);
-        
+
         //use the back buffer address to create the render target
         if (SUCCEEDED(pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&RenderTargetTexture)))
         {
             //warning: this will crash on res change, nothing seems to fix it (no crash when switching window/fullscreen)
-            pDevice->CreateRenderTargetView(RenderTargetTexture, NULL, &RenderTargetView);
+            pDevice->CreateRenderTargetView(RenderTargetTexture, nullptr, &RenderTargetView);
             RenderTargetTexture->Release();
         }
 
@@ -542,20 +683,18 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
     ScreenCenterY = viewport.Height / 2.0f;
 
     // call before you draw
-    pContext->OMSetRenderTargets(1, &RenderTargetView, NULL);
+    pContext->OMSetRenderTargets(1, &RenderTargetView, nullptr);
 
     renderer->begin();
 
-    auto msg = AutofireEnabled ? L"AUTOFIRE ON" : L"AUTOFIRE OFF";
-	auto msg2 = EnableNoSpread ? L"NOSPREAD ON" : L"NOSPREAD OFF";
-	auto msg3 = EnableInstantReload ? L"INSTANTRELOAD ON" : L"INTATNRELOAD OFF";
-	auto msg4 = L"FOV: " + std::to_wstring(fieldOfView);
-	auto msg5 = L"HS_Range: " + std::to_wstring(HeadshotMinDistance);
-    std::wstringstream ss;
-    ss.precision(9);
-    ss << msg << L" | " << msg2 << L" | " << msg3 << L" | " << msg4 << L" | " << msg5;
-    auto str = ss.str();
-    renderer->drawText(Vec2(16.0f, 12.0f), str.c_str(), Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, FONT_SIZE , FONT_TYPE);
+    wstringstream wss;
+    wss << (AutofireEnabled ? L"AUTOFIRE ON" : L"AUTOFIRE OFF");
+    wss << L" | " << (EnableNoSpread ? L"NOSPREAD ON" : L"NOSPREAD OFF");
+    wss << L" | " << (EnableInstantReload ? L"INSTANTRELOAD ON" : L"INTATNRELOAD OFF");
+    wss << L" | " << (L"FOV: " + std::to_wstring(static_cast<int>(fieldOfView)));
+    wss << L" | " << (L"HS_Range: " + std::to_wstring(static_cast<int>(HeadshotMinDistance)));
+
+    renderer->drawText(Vec2(16.0f, 12.0f), wss.str(), Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, FONT_SIZE, FONT_TYPE);
 
     if ((*Global::m_UWorld) != nullptr)
     {
@@ -576,36 +715,36 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
     pContext->IAGetVertexBuffers(0, 1, &veBuffer, &Stride, &veBufferOffset);
     if (veBuffer)
         veBuffer->GetDesc(&vedesc);
-    if (veBuffer != NULL)
+    if (veBuffer != nullptr)
     {
-        veBuffer->Release(); veBuffer = NULL;
+        veBuffer->Release(); veBuffer = nullptr;
     }
 
     //get indesc.ByteWidth
     pContext->IAGetIndexBuffer(&inBuffer, &inFormat, &inOffset);
     if (inBuffer)
         inBuffer->GetDesc(&indesc);
-    if (inBuffer != NULL)
+    if (inBuffer != nullptr)
     {
-        inBuffer->Release(); inBuffer = NULL;
+        inBuffer->Release(); inBuffer = nullptr;
     }
 
     //get pscdesc.ByteWidth
     pContext->PSGetConstantBuffers(pscStartSlot, 1, &pcsBuffer);
     if (pcsBuffer)
         pcsBuffer->GetDesc(&pscdesc);
-    if (pcsBuffer != NULL)
+    if (pcsBuffer != nullptr)
     {
-        pcsBuffer->Release(); pcsBuffer = NULL;
+        pcsBuffer->Release(); pcsBuffer = nullptr;
     }
 
     //wallhack/chams
     if ((Stride == 24 || Stride == countnum) && EnableChams)
     {
         SetDepthStencilState(DISABLED);
-        pContext->PSSetShader(psRed, NULL, NULL);
+        pContext->PSSetShader(psRed, nullptr, NULL);
         phookD3D11DrawIndexed(pContext, IndexCount, StartIndexLocation, BaseVertexLocation);
-        pContext->PSSetShader(psGreen, NULL, NULL);
+        pContext->PSSetShader(psGreen, nullptr, NULL);
         SetDepthStencilState(READ_NO_WRITE);
     }
 
@@ -628,7 +767,7 @@ void __stdcall hookD3D11PSSetShaderResources(ID3D11DeviceContext* pContext, UINT
 
             ID3D11Resource *Resource;
             pShaderResView->GetResource(&Resource);
-            ID3D11Texture2D *Texture = (ID3D11Texture2D *)Resource;
+            auto *Texture = (ID3D11Texture2D *)Resource;
             Texture->GetDesc(&texdesc);
         }
     }
@@ -722,7 +861,7 @@ void __stdcall hookD3D11DrawIndexedInstancedIndirect(ID3D11DeviceContext* pConte
 
 void __stdcall hookD3D11VSSetConstantBuffers(ID3D11DeviceContext* pContext, UINT StartSlot, UINT NumBuffers, ID3D11Buffer *const *ppConstantBuffers)
 {
-    if (ppConstantBuffers != NULL)
+    if (ppConstantBuffers != nullptr)
         vsStartSlot = StartSlot;
 
     return phookD3D11VSSetConstantBuffers(pContext, StartSlot, NumBuffers, ppConstantBuffers);
@@ -732,7 +871,7 @@ void __stdcall hookD3D11VSSetConstantBuffers(ID3D11DeviceContext* pContext, UINT
 
 void __stdcall hookD3D11PSSetSamplers(ID3D11DeviceContext* pContext, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState *const *ppSamplers)
 {
-    if (ppSamplers != NULL)
+    if (ppSamplers != nullptr)
         psStartSlot = StartSlot;
 
     return phookD3D11PSSetSamplers(pContext, StartSlot, NumSamplers, ppSamplers);
@@ -748,7 +887,7 @@ LRESULT CALLBACK DXGIMsgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 DWORD __stdcall InitializeHook(LPVOID)
 {
 
-    HMODULE hDXGIDLL = 0;
+    HMODULE hDXGIDLL = nullptr;
     do
     {
         hDXGIDLL = GetModuleHandle("dxgi.dll");
@@ -756,13 +895,13 @@ DWORD __stdcall InitializeHook(LPVOID)
     } while (!hDXGIDLL);
     Sleep(100);
 
-    CreateThread(NULL, 0, UpdateThread, NULL, 0, NULL);
+    CreateThread(nullptr, 0, UpdateThread, nullptr, 0, nullptr);
 
     IDXGISwapChain* pSwapChain;
 
-    WNDCLASSEXA wc = { sizeof(WNDCLASSEX), CS_CLASSDC, DXGIMsgProc, 0L, 0L, GetModuleHandleA(NULL), NULL, NULL, NULL, NULL, "DX", NULL };
+    WNDCLASSEXA wc = { sizeof(WNDCLASSEX), CS_CLASSDC, DXGIMsgProc, 0L, 0L, GetModuleHandleA(nullptr), nullptr, nullptr, nullptr, nullptr, "DX", nullptr };
     RegisterClassExA(&wc);
-    HWND hWnd = CreateWindowA("DX", NULL, WS_OVERLAPPEDWINDOW, 100, 100, 300, 300, NULL, NULL, wc.hInstance, NULL);
+    HWND hWnd = CreateWindowA("DX", nullptr, WS_OVERLAPPEDWINDOW, 100, 100, 300, 300, nullptr, nullptr, wc.hInstance, nullptr);
 
     D3D_FEATURE_LEVEL requestedLevels[] = { D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_1 };
     D3D_FEATURE_LEVEL obtainedLevel;
@@ -796,7 +935,7 @@ DWORD __stdcall InitializeHook(LPVOID)
     createFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-    IDXGISwapChain* d3dSwapChain = 0;
+    IDXGISwapChain* d3dSwapChain = nullptr;
 
     if (FAILED(D3D11CreateDeviceAndSwapChain(
         nullptr,
@@ -878,7 +1017,7 @@ BOOL __stdcall DllMain(HINSTANCE hModule, DWORD dwReason, LPVOID lpReserved)
                 dlldir[i + 1] = 0; break;
             }
         }
-        CreateThread(NULL, 0, InitializeHook, NULL, 0, NULL);
+        CreateThread(nullptr, 0, InitializeHook, nullptr, 0, nullptr);
         break;
 
     case DLL_PROCESS_DETACH: // A process unloads the DLL.
