@@ -26,7 +26,7 @@
 bool EnableESP = true;
 bool EnableChams = true;
 bool AutofireEnabled = true;
-float HeadshotMinDistance = 1000.0f;
+float HeadshotMinDistance = 3000.0f;
 float MaxAimbot360LockDistance = 2000.0f;
 
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
@@ -35,6 +35,10 @@ float MaxAimbot360LockDistance = 2000.0f;
 #define ESP_KEY VK_F9
 
 #define ENEMY_TEXT_COLOR Color{ 0.2f, 0.7f, 0.975f, 1.0f }
+#define HEALTHBAR_OUTLINE_COLOR Color{0.4f, 0.4f, 0.4f, 1.0f}
+#define HEALTHBAR_FILL_COLOR Color{1.0f, 1.0f, 1.0f, 0.0f}
+#define HEALTHBAR_HEALTH_COLOR Color{0.0f, 1.0f, 0.0f, 1.0f}
+#define HEALTHBAR_SHIELD_COLOR Color{ 0.2f, 0.7f, 0.975f, 1.0f }
 
 //==========================================================================================================================
 
@@ -215,8 +219,33 @@ void DrawESP()
                     if (!Util::IsTeammate(actor) && !Util::IsLocalPlayer(actor) &&
                         Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, playerLoc, &screenPos))
                     {
-                        auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");
-                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), L"Enemy", ENEMY_TEXT_COLOR, 0, 11.0f, L"Verdana");
+						//draw enemy Tag
+                        auto size = renderer->getTextExtent(L"Enemy", 11.0f, L"Verdana");						
+                        renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 32.0f), L"Enemy", ENEMY_TEXT_COLOR, 0, 11.0f, L"Verdana");
+
+						//draw Distance						
+						auto distance = Util::GetDistance(Global::m_LocalPlayer->PlayerController->AcknowledgedPawn->RootComponent->Location, playerLoc) / 1000.0f;
+						wstring text = L"Dis: " + std::to_wstring(distance);
+						text.resize(8);
+						text += L"k";
+						size = renderer->getTextExtent(text, 11.0f, L"Verdana");
+						renderer->drawText(Vec2(screenPos.X - size.x * 0.5f, screenPos.Y - size.y - 16.0f), text, ENEMY_TEXT_COLOR, 0, 11.0f, L"Verdana");
+
+						//drawHealth border
+						Vec2 HealthBarSize = Vec2(50.0f, 10.0f);
+						Vec4 rect = Vec4(screenPos.X - HealthBarSize.x / 2, screenPos.Y - 50.0f, HealthBarSize.x, HealthBarSize.y);
+						renderer->drawRect(rect, 3.0f, HEALTHBAR_OUTLINE_COLOR);
+						//draw Health
+						rect.w -= 4;
+						rect.z -= 4;
+						rect.y += 2;
+						rect.x += 2;
+						rect.z = rect.z * pawn->GetHealthPercent();
+						renderer->drawFilledRect(rect, HEALTHBAR_HEALTH_COLOR);
+						//draw shield
+						rect.w = rect.w / 2.0f;
+						rect.z = HealthBarSize.x - 4 * pawn->GetShield() / 100.0f;
+						renderer->drawFilledRect(rect, HEALTHBAR_SHIELD_COLOR);
                     }
                 }
             }

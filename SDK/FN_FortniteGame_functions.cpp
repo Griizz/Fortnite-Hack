@@ -4686,7 +4686,7 @@ namespace SDK
     }
 
 
-    // Function FortniteGame.BuildingSMActor.OnDetachFromBuilding
+    // Function FortniteGame.BuildingSMActor.OnFromBuilding
     // (FUNC_Event, FUNC_Public, FUNC_BlueprintEvent)
     // Parameters:
     // class ABuildingSMActor*        AttachedToBuilding             (CPF_Parm, CPF_ZeroConstructor, CPF_IsPlainOldData)
