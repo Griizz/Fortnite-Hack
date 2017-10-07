@@ -59,6 +59,7 @@ float MaxAimbotDistance = 10000.0f;
 #define FONT_OFFSET 16.0f
 #define FONT_TYPE L"Verdana"
 
+
 //==========================================================================================================================
 
 float LastAimDistance = 0.0f;
@@ -572,7 +573,6 @@ void DrawESP()
                     auto dis = Util::GetDistance(actor->RootComponent->Location, Global::m_LocalPlayer->PlayerController->RootComponent->Location);
                     wstring distanceText = Util::DistanceToString(dis);
                     wstring text = name;
-                    text += L"|T" + std::to_wstring(static_cast<int>(itemDef->Tier.GetValue()));
                     text += L"|" + distanceText;
                     renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, color, 0, 11.0f, L"Verdana");
                 }
@@ -739,7 +739,7 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
     }
 
     //wallhack/chams
-    if ((Stride == 24 || Stride == countnum) && EnableChams)
+	if ((Stride == 24 || Stride == countnum) && EnableChams)
     {
         SetDepthStencilState(DISABLED);
         pContext->PSSetShader(psRed, nullptr, NULL);
