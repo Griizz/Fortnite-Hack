@@ -82,7 +82,7 @@ float MaxAimbotDistance = 10000.0f;
 #define MENU_FONT_SIZE 18.0f
 Option CurrentMenuOption = Chams;
 AimButton aimButton = Mouse5;
-Vec2 MenuPosition(300, 300);
+Vec2 MenuPosition(500, 400);
 float MenuOffset = 20.0f;
 
 
