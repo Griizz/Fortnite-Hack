@@ -573,7 +573,7 @@ void DrawESP()
                     wstring distanceText = Util::DistanceToString(dis);
                     wstring text = name;
                     text += L"|T" + std::to_wstring(static_cast<int>(itemDef->Tier.GetValue()));
-                    text += L")|" + distanceText;
+                    text += L"|" + distanceText;
                     renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, color, 0, 11.0f, L"Verdana");
                 }
             }
@@ -692,7 +692,7 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
     wss << L" | " << (EnableNoSpread ? L"NOSPREAD ON" : L"NOSPREAD OFF");
     wss << L" | " << (EnableInstantReload ? L"INSTANTRELOAD ON" : L"INTATNRELOAD OFF");
     wss << L" | " << (L"FOV: " + std::to_wstring(static_cast<int>(fieldOfView)));
-    wss << L" | " << (L"HS_Range: " + std::to_wstring(static_cast<int>(HeadshotMinDistance)));
+    wss << L" | " << (L"HS_Range: " + Util::DistanceToString(HeadshotMinDistance));
 
     renderer->drawText(Vec2(16.0f, 12.0f), wss.str(), Color{ 0.0f, 1.0f, 0.0f, 1.0f }, 0, FONT_SIZE, FONT_TYPE);
 
