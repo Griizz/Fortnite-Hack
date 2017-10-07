@@ -739,7 +739,7 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
     }
 
     //wallhack/chams
-	if ((Stride == 24 || Stride == countnum) && EnableChams)
+	if ((Stride == 24 && pscdesc.ByteWidth == 4096) && EnableChams)
     {
         SetDepthStencilState(DISABLED);
         pContext->PSSetShader(psRed, nullptr, NULL);
