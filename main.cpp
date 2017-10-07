@@ -22,25 +22,28 @@
 
 #include "main.h" //helper funcs
 #include "util.h"
+#include <map>
 
 //==========================================================================================================================
 //-------------------------------------------------Variables---------------------------------------------------------------
 bool EnableESP = true;
+Mode ModeEnemyESP = Simple;
 bool EnableExtendedESP = false;
+Mode ModeItemESP = Simple;
 bool EnableChams = true;
 bool EnableNoSpread = true;
 bool EnableInstantReload = true;
 bool AutofireEnabled = false;
+bool ShowMenue = false;
 float HeadshotMinDistance = 3000.0f;
 float fieldOfView = 3.0f;
 float MaxAimbotDistance = 10000.0f;
 //----------------------------------------------Hotkeys------------------------------------------------------------------------
+#define MENU_TOGGLE_KEY VK_INSERT
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
 #define AIMBOT_KEY VK_XBUTTON2
 #define INSTANT_RELOAD_KEY VK_F6
 #define NOSPREAD_KEY VK_F7
-#define NOSPREAD_KEY VK_F6
-#define INSTANT_RELOAD_KEY VK_F7
 #define CHAMS_KEY VK_F8
 #define ESP_KEY VK_F9
 #define EXTENDED_ESP_KEY VK_NUMPAD1
@@ -72,6 +75,16 @@ float MaxAimbotDistance = 10000.0f;
 #define FONT_SIZE 11.0f
 #define FONT_OFFSET 16.0f
 #define FONT_TYPE L"Verdana"
+//--------------------------------------------------Menu--------------------------------------------------------------------
+#define MENU_OPTIONS_COUNT 9
+#define MENU_NORMAL_COLOR Color{0.7f, 0.7f, 0.7f, 0.95f}
+#define MENU_HIGHLIGHT_COLOR Color{1.0f, 1.0f, 1.0f, 0.95f}
+#define MENU_FONT_SIZE 18.0f
+Option CurrentMenuOption = Chams;
+AimButton aimButton = Mouse5;
+Vec2 MenuPosition(300, 300);
+float MenuOffset = 20.0f;
+
 
 
 //==========================================================================================================================
@@ -85,6 +98,7 @@ std::chrono::high_resolution_clock timer;
 auto delay = timer.now();
 auto nextShotDeadline = timer.now();
 
+
 void Aimbot()
 {
 	if ((GetAsyncKeyState(AUTOFIRE_TOGGLE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
@@ -96,12 +110,14 @@ void Aimbot()
 	if ((GetAsyncKeyState(ESP_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
 	{
 		EnableESP = !EnableESP;
+		++ModeEnemyESP;
 		delay = timer.now();
 	}
 
 	if ((GetAsyncKeyState(EXTENDED_ESP_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
 	{
 		EnableExtendedESP = !EnableExtendedESP;
+		++ModeItemESP;
 		delay = timer.now();
 	}
 
@@ -142,6 +158,12 @@ void Aimbot()
 		delay = timer.now();
 	}
 
+	if ((GetAsyncKeyState(MENU_TOGGLE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
+	{
+		ShowMenue = !ShowMenue;
+		delay = timer.now();
+	}
+
 	if ((*Global::m_UWorld) == nullptr)
 	{
 		return;
@@ -159,7 +181,7 @@ void Aimbot()
 	}
 
 
-	if (GetAsyncKeyState(AIMBOT_KEY) & 0x8000)
+	if (GetAsyncKeyState(GetAimButton(aimButton)) & 0x8000)
 	{
 		if (targetPlayer == nullptr)
 		{
@@ -324,6 +346,8 @@ DWORD WINAPI UpdateThread(LPVOID)
 		while (true)
 		{
 			Aimbot();
+			if (ShowMenue)
+				UpdateMenu();
 			Sleep(1);
 		}
 	}
@@ -338,7 +362,7 @@ std::unique_ptr<Renderer> renderer;
 
 void DrawESP()
 {
-	if (EnableESP && Global::m_persistentLevel != nullptr && Global::m_LocalPlayer != nullptr)
+	if (Global::m_persistentLevel != nullptr && Global::m_LocalPlayer != nullptr &&(ModeEnemyESP != Off || ModeItemESP != Off))
 	{
 		auto actors = Global::m_persistentLevel->AActors;
 		for (int i = 0; i < actors.Num(); i++)
@@ -348,8 +372,8 @@ void DrawESP()
 			{
 				continue;
 			}
-
-			if (actor->IsA(SDK::AFortPawn::StaticClass()))
+			//Enemys
+			if (actor->IsA(SDK::AFortPawn::StaticClass()) && ModeEnemyESP != Off)
 			{
 				auto pawn = static_cast<SDK::AFortPawn*>(actor);
 				if (pawn->GetName().find("PlayerPawn_Athena_C") == std::string::npos)
@@ -381,7 +405,7 @@ void DrawESP()
 				{
 					continue;
 				}
-
+				//EnemyESP Variables
 				wstring total;
 				wstring extend = L"|";
 				float extendSize = renderer->getTextExtent(extend, FONT_SIZE, FONT_TYPE).x;
@@ -391,70 +415,51 @@ void DrawESP()
 				float distance = 0.0f;
 				float x_offset = 0.0f;
 
-				// Get Health
-				if (state->CurrentHealth >= 1.0f)
+				wstring playerName = state->PlayerName.c_str();
+				wstring weaponName;
+				wstring weaponAmmo;
+				float extended_x_offset = 0.0f;
+				Color weaponColor;
+
+				auto curWeapon = pawn->CurrentWeapon;
+				if (curWeapon == nullptr || curWeapon->WeaponData == nullptr)
 				{
-					health = static_cast<int>(state->CurrentHealth);
-					total += std::to_wstring(health) + extend;
+					goto draw_exit;
+				}
+				auto itemDef = static_cast<SDK::UFortWorldItemDefinition*>(curWeapon->WeaponData);
+
+				// Get Weapon: Name, Tier, Ammo
+				if (itemDef->ItemType == SDK::EFortItemType::WeaponRanged
+					|| itemDef->ItemType == SDK::EFortItemType::WeaponMelee
+					|| itemDef->ItemType == SDK::EFortItemType::WeaponHarvest)
+				{
+
+					weaponName = itemDef->DisplayName.Get();
+					weaponAmmo = std::to_wstring(curWeapon->AmmoCount);
+					weaponColor = GetItemColor(itemDef->Tier.GetValue());
 				}
 
-				// Get Shield
-				if (state->CurrentShield >= 1.0f)
+				switch (ModeEnemyESP)
 				{
-					shield = static_cast<int>(state->CurrentShield);
-					total += std::to_wstring(shield) + extend;
-				}
+				case Advanced:
 
-				// Get Distance
-				distance = Util::GetDistance(Global::m_LocalPlayer->PlayerController->AcknowledgedPawn->RootComponent->Location,
-				                             playerLoc);
-				wstring distanceText = Util::DistanceToString(distance);
-				total += distanceText;
-				totalSize = renderer->getTextExtent(total, FONT_SIZE, FONT_TYPE);
-
-				// Extended ESP stuff
-				if (EnableExtendedESP)
-				{
-					// ENEMY_TEXT_COLOR
-					wstring playerName = state->PlayerName.c_str();
-					wstring weaponName;
-					wstring weaponAmmo;
-					float extended_x_offset = 0.0f;
-					Color weaponColor;
-
-					auto curWeapon = pawn->CurrentWeapon;
-					if (curWeapon == nullptr || curWeapon->WeaponData == nullptr)
-					{
-						goto draw_exit;
-					}
-
-					auto itemDef = static_cast<SDK::UFortWorldItemDefinition*>(curWeapon->WeaponData);
+					// Draw Player Name
+					renderer->drawText(
+						Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), playerName,
+						ENEMY_TEXT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+					auto size = renderer->getTextExtent(playerName, FONT_SIZE, FONT_TYPE);
+					extended_x_offset += size.x;
+					renderer->drawText(
+						Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), extend,
+						ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+					extended_x_offset += extendSize;
 
 					// Get Weapon: Name, Tier, Ammo
 					if (itemDef->ItemType == SDK::EFortItemType::WeaponRanged
 						|| itemDef->ItemType == SDK::EFortItemType::WeaponMelee
 						|| itemDef->ItemType == SDK::EFortItemType::WeaponHarvest)
 					{
-						weaponName = itemDef->DisplayName.Get();
-						weaponAmmo = std::to_wstring(curWeapon->AmmoCount);
-						weaponColor = GetItemColor(itemDef->Tier.GetValue());												
-					}
-
-					// Draw Player Name
-					{
-						renderer->drawText(
-							Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), playerName,
-							ENEMY_TEXT_COLOR, 0, FONT_SIZE, FONT_TYPE);
-						auto size = renderer->getTextExtent(playerName, FONT_SIZE, FONT_TYPE);
-						extended_x_offset += size.x;
-						renderer->drawText(
-							Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), extend,
-							ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
-						extended_x_offset += extendSize;
-					}
-
-					// Draw Weapon Name
-					{
+						// Draw Weapon Name
 						renderer->drawText(
 							Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), weaponName,
 							weaponColor, 0, FONT_SIZE, FONT_TYPE);
@@ -464,56 +469,74 @@ void DrawESP()
 							Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), extend,
 							ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
 						extended_x_offset += extendSize;
-					}
 
-					// Draw Weapon Ammo
-					{
+						// Draw Weapon Ammo
 						renderer->drawText(
 							Vec2(screenPos.X - totalSize.x / 2 + extended_x_offset, screenPos.Y - FONT_OFFSET - FONT_SIZE - 1), weaponAmmo,
 							weaponColor, 0, FONT_SIZE, FONT_TYPE);
 					}
+
+					// Draw Label
+				draw_exit:
+
+				case Simple:
+
+					// Get Health
+					if (state->CurrentHealth >= 1.0f)
+					{
+						health = static_cast<int>(state->CurrentHealth);
+						total += std::to_wstring(health) + extend;
+					}
+					// Get Shield
+					if (state->CurrentShield >= 1.0f)
+					{
+						shield = static_cast<int>(state->CurrentShield);
+						total += std::to_wstring(shield) + extend;
+					}
+					// Get Distance
+					distance = Util::GetDistance(Global::m_LocalPlayer->PlayerController->AcknowledgedPawn->RootComponent->Location,
+						playerLoc);
+					wstring distanceText = Util::DistanceToString(distance);
+					total += distanceText;
+					totalSize = renderer->getTextExtent(total, FONT_SIZE, FONT_TYPE);
+
+					// Draw Health
+					if (health > 0)
+					{
+						renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET),
+							std::to_wstring(health), ENEMY_HEALTH_COLOR, 0, FONT_SIZE, FONT_TYPE);
+						auto size = renderer->getTextExtent(std::to_wstring(health), FONT_SIZE, FONT_TYPE);
+						x_offset += size.x;
+						renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend,
+							ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+						x_offset += extendSize;
+					}
+					// Draw Shield
+					if (shield > 0)
+					{
+						renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET),
+							std::to_wstring(shield), ENEMY_SHIELD_COLOR, 0, FONT_SIZE, FONT_TYPE);
+						auto size = renderer->getTextExtent(std::to_wstring(shield), FONT_SIZE, FONT_TYPE);
+						x_offset += size.x;
+						renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend,
+							ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
+						x_offset += extendSize;
+					}
+					// Draw Distacne
+					renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), distanceText,
+						ENEMY_RANGE_COLOR, 0, FONT_SIZE, FONT_TYPE);
 				}
-
-				// Draw Label
-			draw_exit:
-
-				// Draw Health
-				if (health > 0)
-				{
-					renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET),
-					                   std::to_wstring(health), ENEMY_HEALTH_COLOR, 0, FONT_SIZE, FONT_TYPE);
-					auto size = renderer->getTextExtent(std::to_wstring(health), FONT_SIZE, FONT_TYPE);
-					x_offset += size.x;
-					renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend,
-					                   ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
-					x_offset += extendSize;
-				}
-
-				// Draw Shield
-				if (shield > 0)
-				{
-					renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET),
-					                   std::to_wstring(shield), ENEMY_SHIELD_COLOR, 0, FONT_SIZE, FONT_TYPE);
-					auto size = renderer->getTextExtent(std::to_wstring(shield), FONT_SIZE, FONT_TYPE);
-					x_offset += size.x;
-					renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), extend,
-					                   ENEMY_DEFAULT_COLOR, 0, FONT_SIZE, FONT_TYPE);
-					x_offset += extendSize;
-				}
-
-				// Draw Distacne
-				renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), distanceText,
-				                   ENEMY_RANGE_COLOR, 0, FONT_SIZE, FONT_TYPE);
 			}
-			else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()))
+			//Pickups
+			else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()) && ModeItemESP != Off)
 			{
 				SDK::FVector2D screenPos;
 				if (Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location,
-				                                &screenPos))
+					&screenPos))
 				{
 					SDK::FVector2D screenPos;
 					if (!Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location,
-					                                 &screenPos))
+						&screenPos))
 					{
 						continue;
 					}
@@ -534,49 +557,56 @@ void DrawESP()
 					{
 						continue;
 					}
-
-					Color color = GetItemColor(itemDef->Tier.GetValue());
+					auto tier = itemDef->Tier.GetValue();
+					Color color = GetItemColor(tier);
+					bool important = (tier == SDK::EFortItemTier::IV || tier == SDK::EFortItemTier::V);
+						
 
 					std::wstring name = itemDef->DisplayName.Get();
-					if (name == L"Bandage" || name == L"Medkit")
+					if (name == L"Bandage" || name == L"Med Kit")
 					{
 						color = ITEM_COLOR_MEDS;
+						important = true;
 					}
 					else if (name == L"Shield Potion")
 					{
 						color = ITEM_COLOR_SHIELDPOTION;
+						important = true;
 					}
 
 					if (pickup->RootComponent == nullptr)
 					{
 						continue;
+						important = true;
 					}
 
-					auto size = renderer->getTextExtent(name, 11.0f, L"Verdana");
+					auto size = renderer->getTextExtent(name, FONT_SIZE, FONT_TYPE);
 					auto dis = Util::GetDistance(actor->RootComponent->Location,
-					                             Global::m_LocalPlayer->PlayerController->RootComponent->Location);
+						Global::m_LocalPlayer->PlayerController->RootComponent->Location);
 					wstring distanceText = Util::DistanceToString(dis);
 					wstring text = name;
 					text += L"|" + distanceText;
-					renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, color, 0, 11.0f, L"Verdana");
+					if (ModeItemESP == Advanced || important)
+						renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, color, 0, FONT_SIZE, FONT_TYPE);				
 				}
 			}
-			else if (actor->GetName().find("AthenaSupplyDrop_02_C") != string::npos)
+			//Supply-Drops
+			else if (actor->GetName().find("AthenaSupplyDrop_02_C") != string::npos && ModeItemESP != Off)
 			{
 				SDK::FVector2D screenPos;
 				if (!Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, actor->RootComponent->Location,
-				                                 &screenPos))
+					&screenPos))
 				{
 					continue;
 				}
 
 				auto size = renderer->getTextExtent(L"SupplyDrop", 10.0f, L"Verdana");
 				auto dis = Util::GetDistance(actor->RootComponent->Location,
-				                             Global::m_LocalPlayer->PlayerController->RootComponent->Location);
+					Global::m_LocalPlayer->PlayerController->RootComponent->Location);
 				wstring distanceText = Util::DistanceToString(dis);
 				wstring text = L"SupplyDrop|" + distanceText;
 				renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, ITEM_COLOR_SUPPLYDROP, 0, FONT_SIZE,
-				                   FONT_TYPE);
+					FONT_TYPE);
 			}
 		}
 	}
@@ -681,12 +711,16 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
 	wss << L" | " << (EnableInstantReload ? L"INSTANTRELOAD ON" : L"INTATNRELOAD OFF");
 	wss << L" | " << (L"FOV: " + std::to_wstring(static_cast<int>(fieldOfView)));
 	wss << L" | " << (L"HS_Range: " + Util::DistanceToString(HeadshotMinDistance));
+	wss << L" | " << (L"EnemyESP: " + GetTextForMode(ModeEnemyESP));
+	wss << L" | " << (L"ItemESP: " + GetTextForMode(ModeItemESP));
 
 	renderer->drawText(Vec2(16.0f, 12.0f), wss.str(), Color{0.0f, 1.0f, 0.0f, 1.0f}, 0, FONT_SIZE, FONT_TYPE);
 
 	if ((*Global::m_UWorld) != nullptr)
 	{
 		DrawESP();
+		if (ShowMenue)
+			DrawMenu();
 	}
 
 	renderer->draw();
@@ -1091,3 +1125,150 @@ Color GetItemColor(SDK::EFortItemTier tier)
 	}
 }
 
+wstring GetTextForMode(Mode mode)
+{
+	switch (mode)
+	{
+	case Off:
+		return L"Off";
+	case Simple:
+		return L"Simple";
+	case Advanced:
+		return L"Advanced";
+	default:
+		return L"Unknown Mode";
+	}
+}
+
+
+void UpdateMenu()
+{
+	if ((GetAsyncKeyState(VK_UP) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+	{
+		--CurrentMenuOption;
+		delay = timer.now();
+	}
+	if ((GetAsyncKeyState(VK_DOWN) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+	{
+		++CurrentMenuOption;
+		delay = timer.now();
+	}
+	if ((GetAsyncKeyState(VK_RIGHT) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+	{
+		ChangeOption(CurrentMenuOption, 1);
+		delay = timer.now();
+	}
+	if ((GetAsyncKeyState(VK_LEFT) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
+	{
+		ChangeOption(CurrentMenuOption, -1);
+		delay = timer.now();
+	}
+}
+
+void DrawMenu()
+{
+	for (int i = 0; i < MENU_OPTIONS_COUNT; i++)
+	{
+		Color color = (i == CurrentMenuOption) ? MENU_HIGHLIGHT_COLOR : MENU_NORMAL_COLOR;
+		renderer->drawText(Vec2(MenuPosition.x, MenuPosition.y + MenuOffset * i), GetTextForOption(static_cast<Option>(i)), color, 0, MENU_FONT_SIZE, FONT_TYPE);
+	}
+}
+
+
+wstring GetTextForOption(Option option)
+{
+	switch (option)
+	{
+	case Chams:
+		return L"Chams - " + GetStatus(EnableChams);
+	case EnemyESP:
+		return L"EnemyESP - " + GetTextForMode(ModeEnemyESP);
+	case ItemESP:
+		return L"ItemESP - " + GetTextForMode(ModeItemESP);
+	case AimbotKey:
+		return L"AimButton - " + GetTextForAimButton(aimButton);
+	case AutoFire:
+		return L"Autofire - " + GetStatus(AutofireEnabled);
+	case NoSpread:
+		return L"NoSpread - " + GetStatus(EnableNoSpread);
+	case InstantReload:
+		return L"InstantReload - " + GetStatus(EnableInstantReload);
+	case HeadshotRange:
+		return L"Headshotrange - " + Util::DistanceToString(HeadshotMinDistance);
+	case FoV:
+		return L"Field of View - " + std::to_wstring(static_cast<int>(fieldOfView));
+	default:
+		return L"Unknown Option";
+	}
+}
+
+std::wstring GetTextForAimButton(AimButton AimButton)
+{
+	switch(AimButton)
+	{
+	case Mouse5:
+		return L"Mouse5";
+	case RMouseButton:
+		return L"RMouseButton";
+	case LeftAlt:
+		return L"LeftAlt";
+	default:
+		return L"Mouse5 - Error";
+	}
+}
+
+int GetAimButton(AimButton AimButton)
+{
+	switch(AimButton)
+	{
+	case Mouse5:
+		return VK_XBUTTON2;
+	case RMouseButton:
+		return VK_RBUTTON;
+	case LeftAlt:
+		return VK_MENU;
+	default:
+		return VK_XBUTTON2;
+	}
+}
+
+void ChangeOption(Option option, int direction)
+{
+	switch(option)
+	{
+	case Chams:
+		EnableChams = !EnableChams;
+		break;
+	case EnemyESP:
+		(direction > 0) ? ++ModeEnemyESP : --ModeEnemyESP;
+		break;
+	case ItemESP:
+		(direction > 0) ? ++ModeItemESP : --ModeItemESP;
+		break;
+	case AimbotKey:
+		(direction > 0) ? ++aimButton : --aimButton;
+		break;
+	case AutoFire:
+		AutofireEnabled = !AutofireEnabled;
+		break;
+	case NoSpread:
+		EnableNoSpread = !EnableNoSpread;
+		break;
+	case InstantReload:
+		EnableInstantReload = !EnableInstantReload;
+		break;
+	case HeadshotRange:
+		(direction > 0) ? HeadshotMinDistance += 100 : HeadshotMinDistance -= 100;
+		break;
+	case FoV:
+		(direction > 0) ? fieldOfView++ : fieldOfView--;
+		break;
+	default:
+		break;
+	}
+}
+
+wstring GetStatus(bool status)
+{
+	return status ? L"On" : L"Off";
+}

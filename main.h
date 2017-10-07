@@ -10,11 +10,82 @@ unsigned int asdelay = 90;		//use x-999 (shoot for xx millisecs, looks more legi
 bool IsPressed = false;			//
 DWORD astime = timeGetTime();	//autoshoot timer
 
-//helper Functions
-Color GetItemColor(SDK::EFortItemTier tier);
-
 //init only once
 bool firstTime = true;
+
+//Enum Mode
+enum Mode {Off = 0, Simple = 1, Advanced = 2};
+inline Mode& operator++(Mode& orig)
+{
+	if (orig == Advanced)
+		orig = Off;
+	else
+		orig = static_cast<Mode>(orig + 1);
+
+	return orig;
+}
+inline Mode& operator--(Mode& orig)
+{
+	if (orig == Off)
+		orig = Advanced;
+	else
+		orig = static_cast<Mode>(orig - 1);
+
+	return orig;
+}
+std::wstring GetTextForMode(Mode mode);
+
+//Enum Option
+enum Option {Chams = 0, EnemyESP = 1, ItemESP = 2, AimbotKey = 3, AutoFire = 4, NoSpread = 5, InstantReload = 6, HeadshotRange = 7, FoV = 8};
+inline Option& operator++(Option& orig)
+{
+	if (orig == FoV)
+		orig = Chams;
+	else
+		orig = static_cast<Option>(orig + 1);
+
+	return orig;
+}
+inline Option& operator--(Option& orig)
+{
+	if (orig == Chams)
+		orig = FoV;
+	else
+		orig = static_cast<Option>(orig - 1);
+
+	return orig;
+}
+std::wstring GetTextForOption(Option option);
+
+//Enum AimButton
+enum AimButton { Mouse5 = 0, RMouseButton = 1, LeftAlt = 2};
+inline AimButton& operator++(AimButton& orig)
+{
+	if (orig == LeftAlt)
+		orig = Mouse5;
+	else
+		orig = static_cast<AimButton>(orig + 1);
+
+	return orig;
+}
+inline AimButton& operator--(AimButton& orig)
+{
+	if (orig == Mouse5)
+		orig = LeftAlt;
+	else
+		orig = static_cast<AimButton>(orig - 1);
+
+	return orig;
+}
+std::wstring GetTextForAimButton(AimButton AimButton);
+int GetAimButton(AimButton AimButton);
+
+//helper Functions
+Color GetItemColor(SDK::EFortItemTier tier);
+void UpdateMenu();
+void DrawMenu();
+void ChangeOption(Option option, int direction);
+std::wstring GetStatus(bool status);
 
 //viewport
 UINT vps = 1;
