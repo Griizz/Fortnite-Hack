@@ -10,6 +10,9 @@ unsigned int asdelay = 90;		//use x-999 (shoot for xx millisecs, looks more legi
 bool IsPressed = false;			//
 DWORD astime = timeGetTime();	//autoshoot timer
 
+//helper Functions
+Color GetItemColor(SDK::EFortItemTier tier);
+
 //init only once
 bool firstTime = true;
 
