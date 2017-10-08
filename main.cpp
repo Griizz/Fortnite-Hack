@@ -101,17 +101,6 @@ auto nextShotDeadline = timer.now();
 
 void Aimbot()
 {
-	
-
-	if ((*Global::m_UWorld) == nullptr)
-	{
-		return;
-	}
-	Global::m_persistentLevel = (*Global::m_UWorld)->PersistentLevel;
-	Global::m_owningGameInstance = (*Global::m_UWorld)->OwningGameInstance;
-	Global::LocalPlayers = Global::m_owningGameInstance->LocalPlayers;
-	Global::m_LocalPlayer = Global::LocalPlayers[0];
-	Global::m_Actors = &Global::m_persistentLevel->AActors;
 
 	SDK::APlayerController* playerController = Global::m_LocalPlayer->PlayerController;
 	if (playerController == nullptr || playerController->AcknowledgedPawn == nullptr)
@@ -243,6 +232,7 @@ DWORD WINAPI UpdateThread(LPVOID)
 		while (true)
 		{
 			//Aimbot();
+			InitializeGlobals();
 			HandelInput();
 			if (ShowMenue)
 				UpdateMenu();
@@ -660,7 +650,7 @@ void __stdcall hookD3D11DrawIndexed(ID3D11DeviceContext* pContext, UINT IndexCou
 	}
 
 	//wallhack/chams
-	if ((Stride == 24 && pscdesc.ByteWidth == 4096) && EnableChams)
+	if ((Stride == 24 || Stride == countnum && Descr.Format == 71 && pscdesc.ByteWidth == 4096) && EnableChams)
 	{
 		SetDepthStencilState(DISABLED);
 		pContext->PSSetShader(psRed, nullptr, NULL);
@@ -1248,6 +1238,19 @@ void HandelInput()
 	*/
 
 	delay = oldDelay;
+}
+
+void InitializeGlobals()
+{
+	if ((*Global::m_UWorld) == nullptr)
+	{
+		return;
+	}
+	Global::m_persistentLevel = (*Global::m_UWorld)->PersistentLevel;
+	Global::m_owningGameInstance = (*Global::m_UWorld)->OwningGameInstance;
+	Global::LocalPlayers = Global::m_owningGameInstance->LocalPlayers;
+	Global::m_LocalPlayer = Global::LocalPlayers[0];
+	Global::m_Actors = &Global::m_persistentLevel->AActors;
 }
 
 

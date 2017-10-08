@@ -100,6 +100,7 @@ void UpdateMenu();
 void DrawMenu();
 void ChangeOption(Option option, int direction);
 void HandelInput();
+void InitializeGlobals();
 std::wstring GetStatus(bool status);
 
 //viewport
