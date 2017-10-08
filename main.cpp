@@ -29,24 +29,24 @@
 bool EnableESP = true;
 Mode ModeEnemyESP = Simple;
 bool EnableExtendedESP = false;
-Mode ModeItemESP = Simple;
+Mode ModeItemESP = Advanced;
 bool EnableChams = true;
-bool EnableNoSpread = true;
-bool EnableInstantReload = true;
+bool EnableNoSpread = false;
+bool EnableInstantReload = false;
 bool AutofireEnabled = false;
 bool ShowMenue = false;
 float HeadshotMinDistance = 3000.0f;
-float fieldOfView = 3.0f;
+float fieldOfView = 0.2f;
 float MaxAimbotDistance = 10000.0f;
 //----------------------------------------------Hotkeys------------------------------------------------------------------------
 #define MENU_TOGGLE_KEY VK_INSERT
 #define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
 #define AIMBOT_KEY VK_XBUTTON2
 #define INSTANT_RELOAD_KEY VK_F6
-#define NOSPREAD_KEY VK_F7
-#define CHAMS_KEY VK_F8
-#define ESP_KEY VK_F9
-#define EXTENDED_ESP_KEY VK_NUMPAD1
+#define NOSPREAD_KEY
+#define CHAMS_KEY VK_F7
+#define PLAYER_ESP_KEY VK_F9
+#define ITEM_ESP_KEY VK_F8
 #define INCREASE_FOV_KEY VK_NUMPAD6
 #define DECREASE_FOV_KEY VK_NUMPAD4
 #define INCREASE_HSRANGE_KEY VK_NUMPAD8
@@ -76,7 +76,7 @@ float MaxAimbotDistance = 10000.0f;
 #define FONT_OFFSET 16.0f
 #define FONT_TYPE L"Verdana"
 //--------------------------------------------------Menu--------------------------------------------------------------------
-#define MENU_OPTIONS_COUNT 9
+#define MENU_OPTIONS_COUNT 3
 #define MENU_NORMAL_COLOR Color{0.7f, 0.7f, 0.7f, 0.95f}
 #define MENU_HIGHLIGHT_COLOR Color{1.0f, 1.0f, 1.0f, 0.95f}
 #define MENU_FONT_SIZE 18.0f
@@ -101,68 +101,7 @@ auto nextShotDeadline = timer.now();
 
 void Aimbot()
 {
-	if ((GetAsyncKeyState(AUTOFIRE_TOGGLE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		AutofireEnabled = !AutofireEnabled;
-		delay = timer.now();
-	}
-
-	if ((GetAsyncKeyState(ESP_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableESP = !EnableESP;
-		++ModeEnemyESP;
-		delay = timer.now();
-	}
-
-	if ((GetAsyncKeyState(EXTENDED_ESP_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableExtendedESP = !EnableExtendedESP;
-		++ModeItemESP;
-		delay = timer.now();
-	}
-
-	if ((GetAsyncKeyState(CHAMS_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableChams = !EnableChams;
-		delay = timer.now();
-	}
-
-	if ((GetAsyncKeyState(NOSPREAD_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableNoSpread = !EnableNoSpread;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(INSTANT_RELOAD_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(250)))
-	{
-		EnableInstantReload = !EnableInstantReload;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(INCREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		fieldOfView ++;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(DECREASE_FOV_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		fieldOfView --;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(INCREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		HeadshotMinDistance += 100;
-		delay = timer.now();
-	}
-	if ((GetAsyncKeyState(DECREASE_HSRANGE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		HeadshotMinDistance -= 100;
-		delay = timer.now();
-	}
-
-	if ((GetAsyncKeyState(MENU_TOGGLE_KEY) & 0x8000) && ((timer.now() - delay) > std::chrono::milliseconds(150)))
-	{
-		ShowMenue = !ShowMenue;
-		delay = timer.now();
-	}
+	
 
 	if ((*Global::m_UWorld) == nullptr)
 	{
@@ -200,49 +139,7 @@ void Aimbot()
 		targetPlayer = nullptr;
 	}
 
-	if (EnableNoSpread || EnableInstantReload)
-	{
-		if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
-		{
-			auto localPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
-			auto currentWeapon = static_cast<SDK::AFortWeapon*>(localPawn->CurrentWeapon);
-
-			if (currentWeapon != nullptr && currentWeapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
-			{
-				auto weaponStats = pGetWeaponStatsRow(&currentWeapon->WeaponData->WeaponStatHandle,
-				                                      &SDK::FString(L"UFortKismetLibrary::GetWeaponStatsRow"), 0, 0);
-
-				if (weaponStats != nullptr)
-				{
-					if (EnableNoSpread)
-					{
-						// Spread
-						weaponStats->Spread = 0.0f;
-						weaponStats->SpreadDownsights = 0.0f;
-						weaponStats->StandingStillSpreadMultiplier = 0.0f;
-						weaponStats->AthenaSprintingSpreadMultiplier = 0.0f;
-						weaponStats->AthenaJumpingFallingSpreadMultiplier = 0.0f;
-						weaponStats->AthenaCrouchingSpreadMultiplier = 0.0f;
-						weaponStats->MinSpeedForSpreadMultiplier = std::numeric_limits<float>::max();
-						weaponStats->MaxSpeedForSpreadMultiplier = std::numeric_limits<float>::max();
-
-						// Recoil
-						weaponStats->RecoilHoriz = 0.0f;
-						weaponStats->RecoilVert = 0.0f;
-						weaponStats->RecoilDownsightsMultiplier = 0.0f;
-					}
-
-					if (EnableInstantReload)
-					{
-						//InstandReload
-						weaponStats->ReloadTime = 0.0f;
-						weaponStats->ReloadScale = 0.0f;
-						weaponStats->ChargeDownTime = 0.1f;
-					}
-				}
-			}
-		}
-	}
+	
 
 	if (targetPlayer != nullptr)
 	{
@@ -345,7 +242,8 @@ DWORD WINAPI UpdateThread(LPVOID)
 
 		while (true)
 		{
-			Aimbot();
+			//Aimbot();
+			HandelInput();
 			if (ShowMenue)
 				UpdateMenu();
 			Sleep(1);
@@ -706,13 +604,10 @@ HRESULT __stdcall hookD3D11Present(IDXGISwapChain* pSwapChain, UINT SyncInterval
 	renderer->begin();
 
 	wstringstream wss;
-	wss << (AutofireEnabled ? L"AUTOFIRE ON" : L"AUTOFIRE OFF");
-	wss << L" | " << (EnableNoSpread ? L"NOSPREAD ON" : L"NOSPREAD OFF");
-	wss << L" | " << (EnableInstantReload ? L"INSTANTRELOAD ON" : L"INTATNRELOAD OFF");
-	wss << L" | " << (L"FOV: " + std::to_wstring(static_cast<int>(fieldOfView)));
-	wss << L" | " << (L"HS_Range: " + Util::DistanceToString(HeadshotMinDistance));
-	wss << L" | " << (L"EnemyESP: " + GetTextForMode(ModeEnemyESP));
-	wss << L" | " << (L"ItemESP: " + GetTextForMode(ModeItemESP));
+	wss << "Griizz Visuals Only";
+	wss << L" | " << L"Chams: " << (EnableChams ? L"ON" : L"OFF");
+	wss << L" | " << L"EnemyESP: " << GetTextForMode(ModeEnemyESP);
+	wss << L" | " << L"ItemESP: " << GetTextForMode(ModeItemESP);
 
 	renderer->drawText(Vec2(16.0f, 12.0f), wss.str(), Color{0.0f, 1.0f, 0.0f, 1.0f}, 0, FONT_SIZE, FONT_TYPE);
 
@@ -1185,6 +1080,7 @@ wstring GetTextForOption(Option option)
 		return L"EnemyESP - " + GetTextForMode(ModeEnemyESP);
 	case ItemESP:
 		return L"ItemESP - " + GetTextForMode(ModeItemESP);
+		/* OLD OPTIONS
 	case AimbotKey:
 		return L"AimButton - " + GetTextForAimButton(aimButton);
 	case AutoFire:
@@ -1197,6 +1093,7 @@ wstring GetTextForOption(Option option)
 		return L"Headshotrange - " + Util::DistanceToString(HeadshotMinDistance);
 	case FoV:
 		return L"Field of View - " + std::to_wstring(static_cast<int>(fieldOfView));
+		*/
 	default:
 		return L"Unknown Option";
 	}
@@ -1245,6 +1142,7 @@ void ChangeOption(Option option, int direction)
 	case ItemESP:
 		(direction > 0) ? ++ModeItemESP : --ModeItemESP;
 		break;
+		/* OLD OPTIONS
 	case AimbotKey:
 		(direction > 0) ? ++aimButton : --aimButton;
 		break;
@@ -1263,6 +1161,7 @@ void ChangeOption(Option option, int direction)
 	case FoV:
 		(direction > 0) ? fieldOfView++ : fieldOfView--;
 		break;
+		*/
 	default:
 		break;
 	}
@@ -1271,4 +1170,131 @@ void ChangeOption(Option option, int direction)
 wstring GetStatus(bool status)
 {
 	return status ? L"On" : L"Off";
+}
+
+void HandelInput()
+{
+	if ((timer.now() - delay) < std::chrono::milliseconds(250))
+		return;
+
+	auto oldDelay = delay;
+	delay = timer.now();
+
+
+
+	if (GetAsyncKeyState(MENU_TOGGLE_KEY) & 0x8000)
+	{
+		ShowMenue = !ShowMenue;		
+		return;
+	}
+
+	if (GetAsyncKeyState(PLAYER_ESP_KEY) & 0x8000)
+	{
+		EnableESP = !EnableESP;
+		++ModeEnemyESP;
+		return;
+	}
+
+	if (GetAsyncKeyState(ITEM_ESP_KEY) & 0x8000)
+	{
+		EnableExtendedESP = !EnableExtendedESP;
+		++ModeItemESP;
+		return;
+	}
+
+	if (GetAsyncKeyState(CHAMS_KEY) & 0x8000)
+	{
+		EnableChams = !EnableChams;
+		return;
+	}
+
+	/* OLD HOTKEYS
+	if (GetAsyncKeyState(AUTOFIRE_TOGGLE_KEY) & 0x8000)
+	{
+	AutofireEnabled = !AutofireEnabled;
+	return;
+	}
+
+	if (GetAsyncKeyState(NOSPREAD_KEY) & 0x8000)
+	{
+	EnableNoSpread = !EnableNoSpread;
+	return;
+	}
+	if (GetAsyncKeyState(INSTANT_RELOAD_KEY) & 0x8000)
+	{
+	EnableInstantReload = !EnableInstantReload;
+	return;
+	}
+	if (GetAsyncKeyState(INCREASE_FOV_KEY) & 0x8000)
+	{
+	fieldOfView++;
+	return;
+	}
+	if (GetAsyncKeyState(DECREASE_FOV_KEY) & 0x8000)
+	{
+	fieldOfView--;
+	return;
+	}
+	if (GetAsyncKeyState(INCREASE_HSRANGE_KEY) & 0x8000)
+	{
+	HeadshotMinDistance += 100;
+	return;
+	}
+	if (GetAsyncKeyState(DECREASE_HSRANGE_KEY) & 0x8000)
+	{
+	HeadshotMinDistance -= 100;
+	return;
+	}
+	*/
+
+	delay = oldDelay;
+}
+
+
+//RESULTING IN INSTANT BAN
+void ApplyNospread(SDK::APlayerController* playerController)
+{
+	if (EnableNoSpread || EnableInstantReload)
+	{
+		if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
+		{
+			auto localPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
+			auto currentWeapon = static_cast<SDK::AFortWeapon*>(localPawn->CurrentWeapon);
+
+			if (currentWeapon != nullptr && currentWeapon->IsA(SDK::AFortWeaponRanged::StaticClass()))
+			{
+				auto weaponStats = pGetWeaponStatsRow(&currentWeapon->WeaponData->WeaponStatHandle,
+					&SDK::FString(L"UFortKismetLibrary::GetWeaponStatsRow"), 0, 0);
+
+				if (weaponStats != nullptr)
+				{
+					if (EnableNoSpread)
+					{
+						// Spread
+						weaponStats->Spread = 0.0f;
+						weaponStats->SpreadDownsights = 0.0f;
+						weaponStats->StandingStillSpreadMultiplier = 0.0f;
+						weaponStats->AthenaSprintingSpreadMultiplier = 0.0f;
+						weaponStats->AthenaJumpingFallingSpreadMultiplier = 0.0f;
+						weaponStats->AthenaCrouchingSpreadMultiplier = 0.0f;
+						weaponStats->MinSpeedForSpreadMultiplier = std::numeric_limits<float>::max();
+						weaponStats->MaxSpeedForSpreadMultiplier = std::numeric_limits<float>::max();
+
+						// Recoil
+						weaponStats->RecoilHoriz = 0.0f;
+						weaponStats->RecoilVert = 0.0f;
+						weaponStats->RecoilDownsightsMultiplier = 0.0f;
+					}
+
+					if (EnableInstantReload)
+					{
+						//InstandReload
+						weaponStats->ReloadTime = 0.0f;
+						weaponStats->ReloadScale = 0.0f;
+						weaponStats->ChargeDownTime = 0.1f;
+					}
+				}
+			}
+		}
+	}
 }
