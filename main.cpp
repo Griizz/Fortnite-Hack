@@ -1282,8 +1282,6 @@ void ApplyNospread(SDK::APlayerController* playerController)
 						weaponStats->ReloadTime = 0.0f;
 						weaponStats->ReloadScale = 0.0f;
 						weaponStats->ChargeDownTime = 0.1f;				
-					
-						weaponStats->
 				}
 			}
 		}	
