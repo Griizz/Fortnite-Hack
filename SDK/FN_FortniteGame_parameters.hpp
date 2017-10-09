@@ -12331,6 +12331,11 @@ struct UFortCheatManager_TestDisconnect_Params
 {
 };
 
+// Function FortniteGame.FortCheatManager.TestCheckBansAtMatchStart
+struct UFortCheatManager_TestCheckBansAtMatchStart_Params
+{
+};
+
 // Function FortniteGame.FortCheatManager.TestChangePartySize
 struct UFortCheatManager_TestChangePartySize_Params
 {

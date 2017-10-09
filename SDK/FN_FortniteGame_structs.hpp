@@ -4012,8 +4012,9 @@ enum class EDeathCause : uint8_t
 	Heavy                          = 8,
 	DBNOTimeout                    = 9,
 	Banhammer                      = 10,
-	Unspecified                    = 11,
-	EDeathCause_MAX                = 12
+	RemovedFromGame                = 11,
+	Unspecified                    = 12,
+	EDeathCause_MAX                = 13
 };
 
 

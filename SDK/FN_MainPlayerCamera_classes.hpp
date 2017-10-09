@@ -13,7 +13,7 @@ namespace SDK
 //---------------------------------------------------------------------------
 
 // BlueprintGeneratedClass MainPlayerCamera.MainPlayerCamera_C
-// 0x0000 (0x1F60 - 0x1F60)
+// 0x0000 (0x1F80 - 0x1F80)
 class AMainPlayerCamera_C : public AFortPlayerCameraBase
 {
 public:

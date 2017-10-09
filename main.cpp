@@ -27,16 +27,18 @@
 //==========================================================================================================================
 //-------------------------------------------------Variables---------------------------------------------------------------
 bool EnableESP = true;
+bool EnableAimbot = true;
 Mode ModeEnemyESP = Simple;
 bool EnableExtendedESP = false;
 Mode ModeItemESP = Advanced;
+bool EnableBoxes = true;
 bool EnableChams = true;
 bool EnableNoSpread = false;
 bool EnableInstantReload = false;
 bool AutofireEnabled = false;
 bool ShowMenue = false;
 float HeadshotMinDistance = 3000.0f;
-float fieldOfView = 0.2f;
+float fieldOfView = 3.0f;
 float MaxAimbotDistance = 10000.0f;
 //----------------------------------------------Hotkeys------------------------------------------------------------------------
 #define MENU_TOGGLE_KEY VK_INSERT
@@ -76,7 +78,7 @@ float MaxAimbotDistance = 10000.0f;
 #define FONT_OFFSET 16.0f
 #define FONT_TYPE L"Verdana"
 //--------------------------------------------------Menu--------------------------------------------------------------------
-#define MENU_OPTIONS_COUNT 3
+#define MENU_OPTIONS_COUNT 7
 #define MENU_NORMAL_COLOR Color{0.7f, 0.7f, 0.7f, 0.95f}
 #define MENU_HIGHLIGHT_COLOR Color{1.0f, 1.0f, 1.0f, 0.95f}
 #define MENU_FONT_SIZE 18.0f
@@ -113,13 +115,10 @@ void Aimbot()
 	{
 		if (targetPlayer == nullptr)
 		{
-			targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbotDistance, false);
-			SDK::FVector zero{0.0f, 0.0f, 0.0f};
-			if (!playerController->LineOfSightTo(targetPlayer, zero, false))
-				targetPlayer = nullptr;
-			else if (!Util::IsInFOV(Global::m_LocalPlayer->PlayerController, targetPlayer->RootComponent->Location,
-			                        fieldOfView * 1920 / 90))
-				targetPlayer = nullptr;
+			targetPlayer = Util::GetClosestVisiblePlayer(MaxAimbotDistance, true);
+			//if (!Util::IsInFOV(Global::m_LocalPlayer->PlayerController, targetPlayer->RootComponent->Location,
+			//                        fieldOfView * 1920 / 90))
+				//targetPlayer = nullptr;
 			nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
 		}
 	}
@@ -133,11 +132,6 @@ void Aimbot()
 	if (targetPlayer != nullptr)
 	{
 		auto pawn = static_cast<SDK::AFortPawn*>(targetPlayer);
-		if (pawn->GetHealth() <= 0.0f || pawn->bIsDBNO)
-		{
-			targetPlayer = nullptr;
-			return;
-		}
 
 		SDK::FVector playerLoc;
 		Util::Engine::GetBoneLocation(static_cast<SDK::ACharacter*>(targetPlayer)->Mesh, &playerLoc, eBone::BONE_CHEST);
@@ -154,36 +148,7 @@ void Aimbot()
 
 		SDK::FVector zero{0.0f, 0.0f, 0.0f};
 		auto lineOfSight = playerController->LineOfSightTo(targetPlayer, zero, false);
-
-		if (AutofireEnabled)
-		{
-			if (!firing && lineOfSight)
-			{
-				if (nextShotDeadline <= timer.now())
-				{
-					firing = true;
-					Util::LeftClick(true);
-				}
-			}
-			else if (firing && !lineOfSight)
-			{
-				firing = false;
-				Util::LeftClick(false);
-				nextShotDeadline = timer.now() + std::chrono::milliseconds(125);
-			}
-			else if (firing && (nextShotDeadline + std::chrono::milliseconds(250) > timer.now()))
-			{
-				firing = false;
-				Util::LeftClick(false);
-				nextShotDeadline = timer.now();
-			}
-		}
-	}
-	else if (firing)
-	{
-		firing = false;
-		Util::LeftClick(false);
-		nextShotDeadline = timer.now();
+	
 	}
 }
 
@@ -231,11 +196,14 @@ DWORD WINAPI UpdateThread(LPVOID)
 
 		while (true)
 		{
-			//Aimbot();
+
 			InitializeGlobals();
 			HandelInput();
 			if (ShowMenue)
 				UpdateMenu();
+			if(EnableAimbot)
+				Aimbot();
+
 			Sleep(1);
 		}
 	}
@@ -414,6 +382,10 @@ void DrawESP()
 					renderer->drawText(Vec2(screenPos.X - totalSize.x / 2 + x_offset, screenPos.Y - FONT_OFFSET), distanceText,
 						ENEMY_RANGE_COLOR, 0, FONT_SIZE, FONT_TYPE);
 				}
+
+				if (EnableBoxes)
+					DrawPlayerBox(pawn);
+
 			}
 			//Pickups
 			else if (actor->IsA(SDK::AB_Pickups_C::StaticClass()) && ModeItemESP != Off)
@@ -496,6 +468,7 @@ void DrawESP()
 				renderer->drawText(Vec2(screenPos.X - size.x, screenPos.Y - size.y), text, ITEM_COLOR_SUPPLYDROP, 0, FONT_SIZE,
 					FONT_TYPE);
 			}
+			
 		}
 	}
 }
@@ -1070,20 +1043,20 @@ wstring GetTextForOption(Option option)
 		return L"EnemyESP - " + GetTextForMode(ModeEnemyESP);
 	case ItemESP:
 		return L"ItemESP - " + GetTextForMode(ModeItemESP);
-		/* OLD OPTIONS
 	case AimbotKey:
 		return L"AimButton - " + GetTextForAimButton(aimButton);
+		/*OLD OPTIONS
 	case AutoFire:
-		return L"Autofire - " + GetStatus(AutofireEnabled);
+		return L"Autofire - " + GetStatus(AutofireEnabled);		
 	case NoSpread:
 		return L"NoSpread - " + GetStatus(EnableNoSpread);
 	case InstantReload:
 		return L"InstantReload - " + GetStatus(EnableInstantReload);
+		*/
 	case HeadshotRange:
 		return L"Headshotrange - " + Util::DistanceToString(HeadshotMinDistance);
-	case FoV:
+	case FieldOfView:
 		return L"Field of View - " + std::to_wstring(static_cast<int>(fieldOfView));
-		*/
 	default:
 		return L"Unknown Option";
 	}
@@ -1132,10 +1105,11 @@ void ChangeOption(Option option, int direction)
 	case ItemESP:
 		(direction > 0) ? ++ModeItemESP : --ModeItemESP;
 		break;
-		/* OLD OPTIONS
+		
 	case AimbotKey:
 		(direction > 0) ? ++aimButton : --aimButton;
 		break;
+		/* OLD OPTIONS
 	case AutoFire:
 		AutofireEnabled = !AutofireEnabled;
 		break;
@@ -1145,13 +1119,13 @@ void ChangeOption(Option option, int direction)
 	case InstantReload:
 		EnableInstantReload = !EnableInstantReload;
 		break;
+		*/
 	case HeadshotRange:
 		(direction > 0) ? HeadshotMinDistance += 100 : HeadshotMinDistance -= 100;
 		break;
-	case FoV:
+	case FieldOfView:
 		(direction > 0) ? fieldOfView++ : fieldOfView--;
 		break;
-		*/
 	default:
 		break;
 	}
@@ -1252,6 +1226,24 @@ void InitializeGlobals()
 	Global::m_LocalPlayer = Global::LocalPlayers[0];
 	Global::m_Actors = &Global::m_persistentLevel->AActors;
 }
+
+
+void DrawPlayerBox(SDK::AFortPawn* playerPawn)
+{
+
+	SDK::FVector TopPosition, BottemPosition;
+	Util::Engine::GetBoneLocation(playerPawn->Mesh, &TopPosition, BONE_HEAD);
+	Util::Engine::GetBoneLocation(playerPawn->Mesh, &BottemPosition, BONE_L_FOOT_MID);
+	SDK::FVector2D TopPoint, BottemPoint;
+	Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, TopPosition, &TopPoint);
+	Util::Engine::WorldToScreen(Global::m_LocalPlayer->PlayerController, BottemPosition, &BottemPoint);
+
+	float height = BottemPosition.Y - TopPosition.Y;
+	float width = height * 0.65f;
+
+	renderer->drawRect(Vec4(TopPoint.X - width / 2, TopPoint.Y, width, height), 10.0f, ENEMY_HEALTH_COLOR);
+}
+
 
 
 //RESULTING IN INSTANT BAN

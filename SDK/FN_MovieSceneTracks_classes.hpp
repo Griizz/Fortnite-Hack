@@ -924,7 +924,7 @@ public:
 	float                                              PrerollTime;                                              // 0x00E0(0x0004) (CPF_ZeroConstructor, CPF_Deprecated, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData01[0x4];                                       // 0x00E4(0x0004) MISSED OFFSET
 	class UMovieSceneSequence*                         SubSequence;                                              // 0x00E8(0x0008) (CPF_Edit, CPF_ZeroConstructor, CPF_IsPlainOldData)
-	TLazyObjectPtr<class AActor>                       ActorToRecord;                                            // 0x00F0(0x001C) (CPF_Edit, CPF_IsPlainOldData)
+	TLazyObjectPtr<class AActor>                       ActorToRecord;                                            // 0x00F0(0x0020) (CPF_Edit, CPF_IsPlainOldData)
 	unsigned char                                      UnknownData02[0x4];                                       // 0x010C(0x0004) MISSED OFFSET
 	struct FString                                     TargetSequenceName;                                       // 0x0110(0x0010) (CPF_Edit, CPF_ZeroConstructor)
 	struct FDirectoryPath                              TargetPathToRecordTo;                                     // 0x0120(0x0010) (CPF_Edit)

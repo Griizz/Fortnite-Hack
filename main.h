@@ -43,12 +43,16 @@ enum Option
 {
 	Chams = 0,
 	EnemyESP,
-	ItemESP
+	ItemESP,
+	AimbotKey,
+	HeadshotRange,
+	FieldOfView
+
 };
 
 inline Option& operator++(Option& orig)
 {
-	if (orig == ItemESP)
+	if (orig == FieldOfView)
 		orig = Chams;
 	else
 		orig = static_cast<Option>(orig + 1);
@@ -59,7 +63,7 @@ inline Option& operator++(Option& orig)
 inline Option& operator--(Option& orig)
 {
 	if (orig == Chams)
-		orig = ItemESP;
+		orig = FieldOfView;
 	else
 		orig = static_cast<Option>(orig - 1);
 
@@ -102,6 +106,7 @@ void ChangeOption(Option option, int direction);
 void HandelInput();
 void InitializeGlobals();
 std::wstring GetStatus(bool status);
+void DrawPlayerBox(SDK::AFortPawn* playerPawn);
 
 //viewport
 UINT vps = 1;
