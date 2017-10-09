@@ -72,7 +72,7 @@ float MaxAimbotDistance = 10000.0f;
 #define ITEM_COLOR_MEDS Color{ 0.9f, 0.55f, 0.55f, 0.95f }
 #define ITEM_COLOR_SHIELDPOTION Color{ 0.35f, 0.55f, 0.85f, 0.95f }
 #define ITEM_COLOR_CHEST Color{0.95f, 0.95f, 0.0f, 0.95f}
-#define ITEM_COLOR_SUPPLYDROP Color{ 0.4f, 0.9f, 0.4f, 0.4f }
+#define ITEM_COLOR_SUPPLYDROP Color{ 0.9f, 0.1f, 0.1f, 0.9f }
 //--------------------------------------------------------FontSettings------------------------------------------------------
 #define FONT_SIZE 11.0f
 #define FONT_OFFSET 16.0f
