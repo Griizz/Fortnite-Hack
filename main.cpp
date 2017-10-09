@@ -26,33 +26,22 @@
 
 //==========================================================================================================================
 //-------------------------------------------------Variables---------------------------------------------------------------
-bool EnableESP = true;
 bool EnableAimbot = true;
+bool EnableDevMode = false;
 Mode ModeEnemyESP = Simple;
-bool EnableExtendedESP = false;
 Mode ModeItemESP = Advanced;
 bool EnableBoxes = true;
 bool EnableChams = true;
-bool EnableNoSpread = false;
-bool EnableInstantReload = false;
-bool AutofireEnabled = false;
 bool ShowMenue = false;
 float HeadshotMinDistance = 3000.0f;
 float fieldOfView = 3.0f;
 float MaxAimbotDistance = 10000.0f;
 //----------------------------------------------Hotkeys------------------------------------------------------------------------
 #define MENU_TOGGLE_KEY VK_INSERT
-#define AUTOFIRE_TOGGLE_KEY VK_XBUTTON1
-#define AIMBOT_KEY VK_XBUTTON2
-#define INSTANT_RELOAD_KEY VK_F6
-#define NOSPREAD_KEY
 #define CHAMS_KEY VK_F7
 #define PLAYER_ESP_KEY VK_F9
 #define ITEM_ESP_KEY VK_F8
-#define INCREASE_FOV_KEY VK_NUMPAD6
-#define DECREASE_FOV_KEY VK_NUMPAD4
-#define INCREASE_HSRANGE_KEY VK_NUMPAD8
-#define DECREASE_HSRANGE_KEY VK_NUMPAD2
+#define DEVMODE_KEY VK_NUMPAD5
 //---------------------------------------------------------Colors-----------------------------------------------------------
 //ENEMY ESP
 #define ENEMY_TEXT_COLOR Color{ 0.9f, 0.9f, 0.15f, 0.95f }
@@ -1154,14 +1143,12 @@ void HandelInput()
 
 	if (GetAsyncKeyState(PLAYER_ESP_KEY) & 0x8000)
 	{
-		EnableESP = !EnableESP;
 		++ModeEnemyESP;
 		return;
 	}
 
 	if (GetAsyncKeyState(ITEM_ESP_KEY) & 0x8000)
 	{
-		EnableExtendedESP = !EnableExtendedESP;
 		++ModeItemESP;
 		return;
 	}
@@ -1172,13 +1159,13 @@ void HandelInput()
 		return;
 	}
 
-	/* OLD HOTKEYS
-	if (GetAsyncKeyState(AUTOFIRE_TOGGLE_KEY) & 0x8000)
+	
+	if (GetAsyncKeyState(DEVMODE_KEY) & 0x8000)
 	{
-	AutofireEnabled = !AutofireEnabled;
-	return;
+		EnableDevMode = !EnableDevMode;
+		return;
 	}
-
+	/* OLD HOTKEYS
 	if (GetAsyncKeyState(NOSPREAD_KEY) & 0x8000)
 	{
 	EnableNoSpread = !EnableNoSpread;
@@ -1244,13 +1231,26 @@ void DrawPlayerBox(SDK::AFortPawn* playerPawn)
 	renderer->drawRect(Vec4(TopPoint.X - width / 2, TopPoint.Y, width, height), 10.0f, ENEMY_HEALTH_COLOR);
 }
 
+void DrawDevVisuals()
+{
+	if (Global::m_LocalPlayer == nullptr)
+		return;
+
+	Vec2 startpoint(200.0f, 800.0f);
+	auto pos = Global::m_LocalPlayer->PlayerController->RootComponent->Location;
+	float offset = FONT_SIZE * 2 + 4;
+	float values[]{ pos.X, pos.Y, pos.Z };
+
+	for (int i = 0; i < 3; i++ )
+	{
+		renderer->drawText(Vec2(startpoint.x, startpoint.y + offset * i), std::to_wstring(values[i]), ITEM_COLOR_TIER_WHITE, 0, FONT_SIZE * 2, FONT_TYPE);
+	}
+}
 
 
 //RESULTING IN INSTANT BAN
 void ApplyNospread(SDK::APlayerController* playerController)
 {
-	if (EnableNoSpread || EnableInstantReload)
-	{
 		if (playerController->AcknowledgedPawn->IsA(SDK::AFortPawn::StaticClass()))
 		{
 			auto localPawn = static_cast<SDK::AFortPawn*>(playerController->AcknowledgedPawn);
@@ -1262,9 +1262,7 @@ void ApplyNospread(SDK::APlayerController* playerController)
 					&SDK::FString(L"UFortKismetLibrary::GetWeaponStatsRow"), 0, 0);
 
 				if (weaponStats != nullptr)
-				{
-					if (EnableNoSpread)
-					{
+				{					
 						// Spread
 						weaponStats->Spread = 0.0f;
 						weaponStats->SpreadDownsights = 0.0f;
@@ -1279,17 +1277,14 @@ void ApplyNospread(SDK::APlayerController* playerController)
 						weaponStats->RecoilHoriz = 0.0f;
 						weaponStats->RecoilVert = 0.0f;
 						weaponStats->RecoilDownsightsMultiplier = 0.0f;
-					}
-
-					if (EnableInstantReload)
-					{
+										
 						//InstandReload
 						weaponStats->ReloadTime = 0.0f;
 						weaponStats->ReloadScale = 0.0f;
-						weaponStats->ChargeDownTime = 0.1f;
-					}
+						weaponStats->ChargeDownTime = 0.1f;				
+					
+						weaponStats->
 				}
 			}
-		}
-	}
+		}	
 }

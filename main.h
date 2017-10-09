@@ -15,7 +15,6 @@ bool firstTime = true;
 
 //Enum Mode
 enum Mode { Off = 0, Simple = 1, Advanced = 2 };
-
 inline Mode& operator++(Mode& orig)
 {
 	if (orig == Advanced)
@@ -25,7 +24,6 @@ inline Mode& operator++(Mode& orig)
 
 	return orig;
 }
-
 inline Mode& operator--(Mode& orig)
 {
 	if (orig == Off)
@@ -35,7 +33,6 @@ inline Mode& operator--(Mode& orig)
 
 	return orig;
 }
-
 std::wstring GetTextForMode(Mode mode);
 
 //Enum Option
@@ -49,7 +46,6 @@ enum Option
 	FieldOfView
 
 };
-
 inline Option& operator++(Option& orig)
 {
 	if (orig == FieldOfView)
@@ -59,7 +55,6 @@ inline Option& operator++(Option& orig)
 
 	return orig;
 }
-
 inline Option& operator--(Option& orig)
 {
 	if (orig == Chams)
@@ -74,7 +69,6 @@ std::wstring GetTextForOption(Option option);
 
 //Enum AimButton
 enum AimButton { Mouse5 = 0, RMouseButton = 1, LeftAlt = 2 };
-
 inline AimButton& operator++(AimButton& orig)
 {
 	if (orig == LeftAlt)
@@ -84,7 +78,6 @@ inline AimButton& operator++(AimButton& orig)
 
 	return orig;
 }
-
 inline AimButton& operator--(AimButton& orig)
 {
 	if (orig == Mouse5)
@@ -94,7 +87,6 @@ inline AimButton& operator--(AimButton& orig)
 
 	return orig;
 }
-
 std::wstring GetTextForAimButton(AimButton AimButton);
 int GetAimButton(AimButton AimButton);
 
@@ -107,6 +99,7 @@ void HandelInput();
 void InitializeGlobals();
 std::wstring GetStatus(bool status);
 void DrawPlayerBox(SDK::AFortPawn* playerPawn);
+void DrawDevVisuals();
 
 //viewport
 UINT vps = 1;
