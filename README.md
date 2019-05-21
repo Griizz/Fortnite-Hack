@@ -1,4 +1,7 @@
-Features
+DISCLAIMER!
+
+THIS IS OUTDATED SINCE THE BATTLE EYE LAUNCH! Feel free to reuse any code you can recycle. I would not advise to inject this in it's current State. Will only result in crashes and/or bans.
+
 Aimbot
 
     Line of sight check
